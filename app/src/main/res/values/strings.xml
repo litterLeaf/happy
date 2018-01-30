@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">happycash</string>
+
+    <string name="textview_loan">Prijam</string>
+    <string name="textview_certification">Profil</string>
+    <string name="textview_me">Saya</string>
+    <string name="textview_online_QA">Livechat</string>
+
 </resources>
