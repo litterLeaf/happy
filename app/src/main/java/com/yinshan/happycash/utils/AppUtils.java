@@ -42,6 +42,7 @@ public class AppUtils extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mAppContext = getApplicationContext();
+        ToastUtils.register(mAppContext);
     }
 
     /*

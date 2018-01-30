@@ -1,6 +1,15 @@
 package com.yinshan.happycash.network.api;
 
 
+import com.yinshan.happycash.view.login.model.LoginTokenResponse;
+
+import io.reactivex.Observable;
+import okhttp3.ResponseBody;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.Header;
+import retrofit2.http.POST;
+
 /**
  * ┏┓　　　┏┓
  * ┏┛┻━━━┛┻┓
@@ -26,4 +35,24 @@ package com.yinshan.happycash.network.api;
  *
  */
 public interface UserApi {
+
+    @FormUrlEncoded
+    @POST("auth/login")
+    Observable<LoginTokenResponse> login(@Header("X-SMS-CODE") String smsCode,
+                                         @Header("X-CAPTCHA-SID") String captchaSid,
+                                         @Header("X-CAPTCHA") String captcha,
+                                         @Field("mobile") String mobile,
+                                         @Field("code") String code,
+                                         @Field("channelKey") String channelKey,
+                                         @Field("ip") String ip,
+                                         @Field("imei") String imei);
+
+    /**
+     * 20170726  fix auth/login/sms-->auth/login/sms/v2
+     * @param mobile
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("auth/login/sms")
+    Observable<ResponseBody> sendSms(@Field("mobile") String mobile);
 }
