@@ -40,7 +40,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  *
  */
 
-public class RxSupportFragment extends SupportFragment implements LifecycleProvider<FragmentEvent> {
+public abstract class RxSupportFragment extends SupportFragment implements LifecycleProvider<FragmentEvent> {
     private final BehaviorSubject<FragmentEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Override
@@ -122,4 +122,5 @@ public class RxSupportFragment extends SupportFragment implements LifecycleProvi
     public void onDetach() {
         lifecycleSubject.onNext(FragmentEvent.DETACH);
         super.onDetach();
-    }}
+    }
+}

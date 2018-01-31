@@ -11,7 +11,27 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by hoomsun on 2017/5/9.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   神兽保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *  @author  admin
+ *  on 2018/1/31
+ *
  */
 
 

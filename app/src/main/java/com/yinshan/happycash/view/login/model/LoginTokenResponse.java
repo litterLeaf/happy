@@ -7,6 +7,4 @@ package com.yinshan.happycash.view.login.model;
 public class LoginTokenResponse {
 
 
-
-
 }
