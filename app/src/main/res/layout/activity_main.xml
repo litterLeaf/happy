@@ -8,11 +8,109 @@
 
     <FrameLayout
         android:id="@+id/id_fragment_loan"
-
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 
-    <include layout="@layout/sub_main_activity_bottom" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_main_tab_stroke"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+        <!--Loan-->
+        <LinearLayout
+            android:id="@+id/id_linearlayout_loan"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_textview_tab_loan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/ic_tab_loan_selector"
+                android:gravity="center"
+                android:text="@string/textview_loan"
+                android:textColor="@color/tab_text_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+        <!--Certification-->
+        <LinearLayout
+            android:id="@+id/id_linearlayout_certification"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_textview_tab_certification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_tab_cerification_selector"
+                android:gravity="center"
+                android:text="@string/textview_certification"
+                android:textColor="@color/tab_text_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+        <!--Me-->
+        <LinearLayout
+            android:id="@+id/id_linearlayout_me"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/id_textview_tab_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_tab_me_selector"
+                android:gravity="center"
+                android:text="@string/textview_me"
+                android:textColor="@color/tab_text_color_selector"
+                android:textSize="12dp" />
+
+        </LinearLayout>
+
+
+        <!--Online Q&A-->
+        <LinearLayout
+            android:id="@+id/id_linearlayout_online_qa"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/id_textview_tab_online_qa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:drawableTop="@drawable/ic_tab_onlineqa_serector"
+                android:gravity="center"
+                android:text="@string/textview_online_QA"
+                android:textColor="@color/tab_text_color_selector"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
