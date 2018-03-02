@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * ┏┓　　　┏┓
@@ -42,13 +41,5 @@ public class HotLineFragment extends BaseFragment {
     @Override
     protected int bindLayout() {
         return R.layout.fragment_hot_line;
-    }
-    public static MineFragment newInstance(String param1, String param2) {
-        MineFragment fragment = new MineFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
     }
 }

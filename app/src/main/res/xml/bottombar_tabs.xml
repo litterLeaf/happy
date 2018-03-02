@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@mipmap/tb_loan"
+        title="@string/textview_loan" />
+    <tab
+        id="@+id/tab_information"
+        icon="@mipmap/tb_info"
+        title="@string/textview_certification" />
+    <tab
+        id="@+id/tab_mine"
+        icon="@mipmap/tb_me"
+        title="@string/textview_me" />
+    <tab
+        id="@+id/tab_online"
+        icon="@mipmap/tb_chat"
+        title="@string/textview_me" />
+
+</tabs>

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * ┏┓　　　┏┓
@@ -44,12 +43,4 @@ public class InformationFragment extends BaseFragment {
         return R.layout.fragment_information;
     }
 
-    public static InformationFragment newInstance(String param1, String param2) {
-        InformationFragment fragment = new InformationFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 }

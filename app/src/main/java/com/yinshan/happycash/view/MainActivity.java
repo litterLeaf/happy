@@ -1,32 +1,21 @@
 package com.yinshan.happycash.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.network.api.UserApi;
-import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.framework.BaseActivity;
-import com.yinshan.happycash.view.fragments.HotLineFragment;
-import com.yinshan.happycash.view.fragments.InformationFragment;
-import com.yinshan.happycash.view.fragments.MineFragment;
-import com.yinshan.happycash.view.fragments.UnLoanFragment;
-import com.yinshan.happycash.widget.BottomBar;
-import com.yinshan.happycash.widget.BottomBarTab;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import me.yokeyword.fragmentation.SupportFragment;
-import okhttp3.ResponseBody;
 
 /**
  * ┏┓　　　┏┓
@@ -38,73 +27,141 @@ import okhttp3.ResponseBody;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- * ┃　　　┃   神兽保佑
- * ┃　　　┃   代码无BUG！
- * ┃　　　┗━━━┓
- * ┃　　　　　　　┣┓
- * ┃　　　　　　　┏┛
- * ┗┓┓┏━┳┓┏┛
- * ┃┫┫　┃┫┫
- * ┗┻┛　┗┻┛
+ *        ┃　　　┃   神兽保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
  *
  * @author admin
  *         on 2018/1/11
  */
 public class MainActivity extends BaseActivity {
 
-
-    @BindView(R.id.bottom_bar)
-    BottomBar mBottomBar;
+    @BindView(R.id.id_textview_tab_loan)
+    TextView textViewLoan;
+    @BindView(R.id.id_textview_tab_certification)
+    TextView textViewCertification;
+    @BindView(R.id.id_textview_tab_me)
+    TextView textViewMe;
+    @BindView(R.id.id_textview_tab_online_qa)
+    TextView textViewOnlineQA;
     @BindView(R.id.id_fragment_loan)
     FrameLayout fragmentLoan;
-    private SupportFragment[] mFragments = new SupportFragment[4];
-    public static final int FIRST = 0;
-    public static final int SECOND = 1;
-    public static final int THIRD = 2;
-    @Override
-    protected void initView(View view, Bundle savedInstanceState) {
-        SupportFragment firstFragment = findFragment(UnLoanFragment.class);
-        if (savedInstanceState == null) {
-            mFragments[0] = UnLoanFragment.newInstance("unLoan", "");
-            mFragments[1] = InformationFragment.newInstance("information", "");
-            mFragments[2] = MineFragment.newInstance("mine", "");
-            mFragments[3] = HotLineFragment.newInstance("online", "");
-            loadMultipleRootFragment(R.id.id_fragment_loan, 0, mFragments[0], mFragments[1], mFragments[2],mFragments[3]);
-        } else {
-            mFragments[0] =firstFragment;
-            mFragments[1] = findFragment(InformationFragment.class);
-            mFragments[2] = findFragment(MineFragment.class);
-            mFragments[3] = findFragment(HotLineFragment.class);
-        }
-        mBottomBar
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_loan_selector, getString(R.string.textview_loan)))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_cerification_selector, getString(R.string.textview_certification)))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_me_selector, getString(R.string.textview_me)))
-                .addItem(new BottomBarTab(this, R.drawable.ic_tab_onlineqa_serector, getString(R.string.textview_online_QA)));
 
-        mBottomBar.setOnTabSelectedListener(new BottomBar.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(int position, int prePosition) {
-                if(prePosition==3){
-                    showHideFragment(mFragments[position], mFragments[prePosition]);
-                }else {
-                    showHideFragment(mFragments[position], mFragments[prePosition]);
-                }
-            }
+    private static final int TABLOAN = 0;
+    private static final int TABCERT = 1;
+    private static final int TABME = 2;
+    private static final int TABONLINE = 3;
 
-            @Override
-            public void onTabUnselected(int position) {
+    private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
 
-            }
-
-            @Override
-            public void onTabReselected(int position) {
-            }
-        });
-    }
 
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
+
+    }
+
+    @OnClick({R.id.id_textview_tab_loan,R.id.id_textview_tab_certification,R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.id_textview_tab_loan:
+                    setSelect(TABLOAN);
+                break;
+            case R.id.id_textview_tab_certification:
+                reSet();
+                setSelect(TABCERT);
+                break;
+            case R.id.id_textview_tab_me:
+                reSet();
+                setSelect(TABME);
+                break;
+            case R.id.id_textview_tab_online_qa:
+
+                break;
+        }
+    }
+    private void reSet() {
+        textViewLoan.setSelected(false);
+        textViewCertification.setSelected(false);
+        textViewMe.setSelected(false);
+        textViewOnlineQA.setSelected(false);
+    }
+
+    private void f(){
+        //home
+        if (isHomeVisible && null == homeFragment) {
+            Fragment tab1 = getSupportFragmentManager().findFragmentByTag("tab1");
+            if (null != tab1) {
+                homeFragment = (HomeStandardFragment) tab1;
+            } else {
+                homeFragment = new HomeStandardFragment();
+                fragmentTransaction.add(R.id.fragmentContent, homeFragment, "tab1");
+            }
+        }
+        if (isHomeVisible && null != homeFragment) {
+            fragmentTransaction.show(homeFragment);
+        } else if (!isHomeVisible && null != homeFragment) {
+            fragmentTransaction.hide(homeFragment);
+        }
+    }
+
+
+    private void setSelect(int i) {
+        switch (i) {
+            case TABLOAN:
+                textViewLoan.setSelected(true);
+                break;
+            case TABCERT:
+//                reSet();
+//                hideFragment(transaction);
+//                setMainTopVisibility(View.VISIBLE);
+//                if (certFrag == null) {
+//                    certFrag = new CertificationFragmentProgress();
+//                    transaction.add(R.id.id_fragment_loan, certFrag);
+//                    Log.d(TAG, "setSelect: 1 new fragment certFrag");
+//                } else {
+//                    transaction.show(certFrag);
+//                    Log.d(TAG, "setSelect: 1 show fragment certFrag");
+//                }
+//
+//                textViewTitle.setText(titleAuthentication);
+//                imageButtonBack.setVisibility(View.INVISIBLE);
+//                imageButtonInfoList.setVisibility(View.INVISIBLE);
+//                betal.setVisibility(View.GONE);
+                textViewCertification.setSelected(true);
+                break;
+            case TABME:
+//                reSet();
+//                hideFragment(transaction);
+//                setMainTopVisibility(View.GONE);
+//                if (meFrag == null) {
+//                    meFrag = new MeFragment();
+//                    transaction.add(R.id.id_fragment_loan, meFrag);
+//                    LoggerWrapper.d("SetSelect 2, new fragment of me");
+//                } else {
+//                    transaction.show(meFrag);
+//                    LoggerWrapper.d("setSelect 2,show me fragment");
+//                }
+//                betal.setVisibility(View.GONE);
+                textViewMe.setSelected(true);
+                break;
+            case TABONLINE:
+//                initYW();
+                break;
+            default:
+                break;
+        }
+//        transaction.commitAllowingStateLoss();
+//        mSelect = i;
     }
 }

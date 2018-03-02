@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.login;
 import android.os.Bundle;
 import android.view.View;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 
 /**
@@ -18,6 +19,6 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected int bindLayout() {
-        return 0;
+        return R.layout.activity_login;
     }
 }

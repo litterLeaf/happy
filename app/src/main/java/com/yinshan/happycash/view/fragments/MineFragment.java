@@ -5,8 +5,6 @@ import android.os.Bundle;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
-import me.yokeyword.fragmentation.SupportFragment;
-
 /**
  * ┏┓　　　┏┓
  * ┏┛┻━━━┛┻┓

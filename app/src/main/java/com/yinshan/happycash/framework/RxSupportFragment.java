@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.CheckResult;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -14,7 +15,6 @@ import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
-import me.yokeyword.fragmentation.SupportFragment;
 
 /**
  * ┏┓　　　┏┓
@@ -40,7 +40,7 @@ import me.yokeyword.fragmentation.SupportFragment;
  *
  */
 
-public abstract class RxSupportFragment extends SupportFragment implements LifecycleProvider<FragmentEvent> {
+public abstract class RxSupportFragment extends Fragment implements LifecycleProvider<FragmentEvent> {
     private final BehaviorSubject<FragmentEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Override
