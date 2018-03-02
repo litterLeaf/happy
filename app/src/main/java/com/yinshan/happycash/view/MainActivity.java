@@ -97,23 +97,23 @@ public class MainActivity extends BaseActivity {
         textViewOnlineQA.setSelected(false);
     }
 
-    private void f(){
-        //home
-        if (isHomeVisible && null == homeFragment) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag("tab1");
-            if (null != tab1) {
-                homeFragment = (HomeStandardFragment) tab1;
-            } else {
-                homeFragment = new HomeStandardFragment();
-                fragmentTransaction.add(R.id.fragmentContent, homeFragment, "tab1");
-            }
-        }
-        if (isHomeVisible && null != homeFragment) {
-            fragmentTransaction.show(homeFragment);
-        } else if (!isHomeVisible && null != homeFragment) {
-            fragmentTransaction.hide(homeFragment);
-        }
-    }
+//    private void f(){
+//        //home
+//        if (isHomeVisible && null == homeFragment) {
+//            Fragment tab1 = getSupportFragmentManager().findFragmentByTag("tab1");
+//            if (null != tab1) {
+//                homeFragment = (HomeStandardFragment) tab1;
+//            } else {
+//                homeFragment = new HomeStandardFragment();
+//                fragmentTransaction.add(R.id.fragmentContent, homeFragment, "tab1");
+//            }
+//        }
+//        if (isHomeVisible && null != homeFragment) {
+//            fragmentTransaction.show(homeFragment);
+//        } else if (!isHomeVisible && null != homeFragment) {
+//            fragmentTransaction.hide(homeFragment);
+//        }
+//    }
 
 
     private void setSelect(int i) {

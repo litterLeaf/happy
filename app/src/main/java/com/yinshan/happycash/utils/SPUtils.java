@@ -3,6 +3,8 @@ package com.yinshan.happycash.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.yinshan.happycash.application.AppApplication;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -133,7 +135,7 @@ public class SPUtils {
      * @return
      */
     private static SharedPreferences obtainPref() {
-        Context context = AppUtils.getAppContext();
+        Context context = AppApplication.getInstance();
         SharedPreferences pref = context.getSharedPreferences(FILE_NAME,
                 Context.MODE_PRIVATE);
         return pref;
