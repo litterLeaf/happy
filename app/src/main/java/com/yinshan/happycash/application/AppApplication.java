@@ -3,6 +3,9 @@ package com.yinshan.happycash.application;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
+import com.yinshan.happycash.config.AppEnvConfig;
+import com.yinshan.happycash.config.AppNetConfig;
+
 /**
  * Created by huxin on 2018/3/2.
  */
@@ -18,9 +21,14 @@ public class AppApplication extends MultiDexApplication{
     public void onCreate() {
         super.onCreate();
         instance = this;
+
+        init();
     }
 
     private void init() {
+
+        //设置访问网络配置
+        AppContext.setAppEnvConfig(AppEnvConfig.indexOf(AppNetConfig.RUN_NET_CONFIG));
 
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);

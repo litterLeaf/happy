@@ -144,4 +144,8 @@ public class AppManager {
         }
         activityStack.clear();
     }
+
+    public void init() {
+
+    }
 }

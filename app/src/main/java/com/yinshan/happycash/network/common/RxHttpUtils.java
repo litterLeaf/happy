@@ -41,9 +41,7 @@ public class RxHttpUtils {
     private static RxHttpUtils instance;
 
     private static Retrofit mRetrofit;
-    private static final String API_BASE_URL = SourceKey.API_BASE_URL;
-    public static final String HARVESTER_URL = SourceKey.UPLOADDATA;
-
+    public static final String HARVESTER_URL = BaseURL.UPLOADDATA;
 
     //单例
     public static RxHttpUtils getInstance() {
@@ -78,7 +76,7 @@ public class RxHttpUtils {
                  .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                  .addConverterFactory(new NullOnEmptyConverterFactory())
-                .baseUrl(API_BASE_URL)//替换为你自己的BaseUrl
+                .baseUrl(BaseURL.getBaseURL())//替换为你自己的BaseUrl
                 .build();
 
     }
