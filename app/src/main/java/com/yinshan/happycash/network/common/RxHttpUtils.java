@@ -1,12 +1,11 @@
 package com.yinshan.happycash.network.common;
 
+import android.text.TextUtils;
 import com.yinshan.happycash.network.common.network.GsonAdapter;
 import com.yinshan.happycash.network.common.network.NullOnEmptyConverterFactory;
 import com.yinshan.happycash.network.common.network.RequestInterceptor;
 import com.yinshan.happycash.network.common.network.ResponseInterceptor;
-
 import java.util.concurrent.TimeUnit;
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -39,8 +38,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RxHttpUtils {
     private static RxHttpUtils instance;
-
-    private static Retrofit mRetrofit;
+    //getBaseURL
+    private String baseUrl;
     public static final String HARVESTER_URL = BaseURL.UPLOADDATA;
 
     //单例
@@ -55,8 +54,45 @@ public class RxHttpUtils {
         return instance;
     }
 
-    private  RxHttpUtils() {
-        //HTTP log
+//    private  RxHttpUtils() {
+//        //Retrofit
+//         mRetrofit = new Retrofit.Builder()
+//                .client(getOkHttpClient())
+//                 .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()))
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                 .addConverterFactory(new NullOnEmptyConverterFactory())
+//                .baseUrl(BaseURL.getBaseURL())//替换为你自己的BaseUrl
+//                .build();
+//    }
+
+    public RxHttpUtils baseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+        return this;
+    }
+
+    public  <T> T createApi(Class<T> serviceClass) {
+        return getRetrofitBuilder().build().create(serviceClass);
+    }
+
+    public Retrofit.Builder getRetrofitBuilder(){
+        Retrofit.Builder builder= new Retrofit.Builder();
+        if (TextUtils.isEmpty(baseUrl)) {
+            builder.baseUrl(BaseURL.getBaseURL());
+        } else {
+            builder.baseUrl(baseUrl);
+        }
+         builder.client(getOkHttpClient())
+                 .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()))
+                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                 .addConverterFactory(new NullOnEmptyConverterFactory());
+        return builder;
+    }
+
+    private static OkHttpClient getOkHttpClient(){
+        return getOkHttpBuilder().build();
+    }
+
+    private static OkHttpClient.Builder getOkHttpBuilder(){
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -66,23 +102,8 @@ public class RxHttpUtils {
                 .readTimeout(20,TimeUnit.SECONDS)
                 .writeTimeout(20,TimeUnit.SECONDS)
                 .addInterceptor(new RequestInterceptor())
-                .addInterceptor(new ResponseInterceptor());
-        builder.addInterceptor(httpLoggingInterceptor);
-        OkHttpClient mOkHttpClient = builder.build();
-
-        //Retrofit
-         mRetrofit = new Retrofit.Builder()
-                .client(mOkHttpClient)
-                 .addConverterFactory(GsonConverterFactory.create(GsonAdapter.buildGson()))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                 .addConverterFactory(new NullOnEmptyConverterFactory())
-                .baseUrl(BaseURL.getBaseURL())//替换为你自己的BaseUrl
-                .build();
-
+                .addInterceptor(new ResponseInterceptor())
+                .addInterceptor(httpLoggingInterceptor);
+        return builder;
     }
-
-    public  <T> T createService(Class<T> serviceClass) {
-        return mRetrofit.create(serviceClass);
-    }
-
 }

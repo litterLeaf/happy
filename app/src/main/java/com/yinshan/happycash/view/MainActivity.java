@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.network.common.RxHttpUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -97,6 +98,7 @@ public class MainActivity extends BaseActivity {
         textViewOnlineQA.setSelected(false);
     }
 
+
 //    private void f(){
 //        //home
 //        if (isHomeVisible && null == homeFragment) {
@@ -153,6 +155,9 @@ public class MainActivity extends BaseActivity {
 //                    LoggerWrapper.d("setSelect 2,show me fragment");
 //                }
 //                betal.setVisibility(View.GONE);
+
+//                RxHttpUtils.getInstance().createService(.)
+
                 textViewMe.setSelected(true);
                 break;
             case TABONLINE:

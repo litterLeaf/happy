@@ -25,4 +25,12 @@ package com.yinshan.happycash.utils;
  *
  */
 public interface SPKeyUtils {
+    /**
+     * 保存cookie
+     */
+    String COOKIE = "cookie";
+    /**
+     * 服务器相应时间
+     */
+    String DATE = "date";
 }

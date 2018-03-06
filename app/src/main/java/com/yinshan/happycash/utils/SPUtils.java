@@ -8,6 +8,7 @@ import com.yinshan.happycash.application.AppApplication;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Set;
 
 public class SPUtils {
     public SPUtils() {
@@ -52,6 +53,12 @@ public class SPUtils {
         return sp.getLong(key, defaultValue);
     }
 
+    public static Set<String> get(String key, Set<String> defaultValue) {
+        SharedPreferences sp = obtainPref();
+        return sp.getStringSet(key, defaultValue);
+    }
+
+
     /**
      * 写入新的键值对，如果已存在该键，则覆盖对应的值
      *
@@ -88,6 +95,11 @@ public class SPUtils {
         SharedPreferencesCompat.apply(editor);
     }
 
+    public static void put(String key, Set value) {
+        SharedPreferences.Editor editor = obtainPrefEditor();
+        editor.putStringSet(key, value);
+        SharedPreferencesCompat.apply(editor);
+    }
     /**
      * 移除一个键值对
      *

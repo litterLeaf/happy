@@ -1,5 +1,6 @@
 package com.yinshan.happycash.application;
 
+import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
 
@@ -16,7 +17,7 @@ public class AppApplication extends MultiDexApplication{
 
     //单例模式instance
     private static AppApplication instance = null;
-
+    public static Context appContext = null;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -32,7 +33,7 @@ public class AppApplication extends MultiDexApplication{
 
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
-
+        appContext = this.getApplicationContext();
         //内存泄漏检测
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //
