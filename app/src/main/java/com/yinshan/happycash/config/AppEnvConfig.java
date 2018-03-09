@@ -23,7 +23,7 @@ public enum AppEnvConfig {
             AppNetConfig.TEST_NET_CONFIG,
             "测试环境",
             "TEST",
-            "https://www.rupiahplus.com/api/test/"
+            "https://www.rupiahplus.com/api/"
     ),
 
     /**

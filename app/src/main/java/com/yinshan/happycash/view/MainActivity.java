@@ -10,13 +10,25 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.network.common.base.BaseObserver;
+import com.yinshan.happycash.utils.ToastUtils;
+
+import java.lang.ref.SoftReference;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.ResponseBody;
 
 /**
  * ┏┓　　　┏┓
@@ -87,7 +99,25 @@ public class MainActivity extends BaseActivity {
                 setSelect(TABME);
                 break;
             case R.id.id_textview_tab_online_qa:
+                    RxHttpUtils.getInstance()
+                            .createApi(UserApi.class)
+                            .sendSms("0818912345611")
+                            .subscribeOn(Schedulers.io())
+                            .doOnSubscribe(new Consumer<Disposable>() {
+                                @Override
+                                public void accept(Disposable disposable) throws Exception {
 
+                                }
+                            }).subscribeOn(AndroidSchedulers.mainThread())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(new BaseObserver<ResponseBody>(new SoftReference(MainActivity.this)){
+                                @Override
+                                public void onNext(ResponseBody value) {
+                                    super.onNext(value);
+                                    ToastUtils.showShort("success");
+                                }
+
+                            });
                 break;
         }
     }
