@@ -1,4 +1,4 @@
-package com.yinshan.happycash.network.common;
+package com.yinshan.happycash.network.common.base;
 
 import com.yinshan.happycash.application.AppContext;
 

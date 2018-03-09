@@ -1,11 +1,16 @@
 package com.yinshan.happycash.network.common;
 
+
 import android.text.TextUtils;
+
+import com.yinshan.happycash.network.common.base.BaseURL;
 import com.yinshan.happycash.network.common.network.GsonAdapter;
 import com.yinshan.happycash.network.common.network.NullOnEmptyConverterFactory;
 import com.yinshan.happycash.network.common.network.RequestInterceptor;
 import com.yinshan.happycash.network.common.network.ResponseInterceptor;
+
 import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -38,8 +43,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RxHttpUtils {
     private static RxHttpUtils instance;
-    //getBaseURL
-    private String baseUrl;
+    private static String baseUrl;
     public static final String HARVESTER_URL = BaseURL.UPLOADDATA;
 
     //单例
@@ -53,7 +57,10 @@ public class RxHttpUtils {
         }
         return instance;
     }
-
+    public RxHttpUtils baseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+        return this;
+    }
 //    private  RxHttpUtils() {
 //        //Retrofit
 //         mRetrofit = new Retrofit.Builder()
@@ -65,16 +72,11 @@ public class RxHttpUtils {
 //                .build();
 //    }
 
-    public RxHttpUtils baseUrl(String baseUrl) {
-        this.baseUrl = baseUrl;
-        return this;
-    }
-
     public  <T> T createApi(Class<T> serviceClass) {
         return getRetrofitBuilder().build().create(serviceClass);
     }
 
-    public Retrofit.Builder getRetrofitBuilder(){
+    private static Retrofit.Builder getRetrofitBuilder(){
         Retrofit.Builder builder= new Retrofit.Builder();
         if (TextUtils.isEmpty(baseUrl)) {
             builder.baseUrl(BaseURL.getBaseURL());
