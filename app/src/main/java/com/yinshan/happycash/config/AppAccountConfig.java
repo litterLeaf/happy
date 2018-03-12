@@ -5,4 +5,6 @@ package com.yinshan.happycash.config;
  */
 
 public class AppAccountConfig {
+
+    public static final String USER_NAME = "";
 }
