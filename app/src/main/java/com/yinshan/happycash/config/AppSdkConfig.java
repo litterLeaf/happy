@@ -5,4 +5,6 @@ package com.yinshan.happycash.config;
  */
 
 public class AppSdkConfig {
+
+    public static final String BAICHUAN_APP_KEY = "24819201";
 }

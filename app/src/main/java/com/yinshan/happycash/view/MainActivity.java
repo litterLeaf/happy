@@ -6,12 +6,18 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.mobileim.IYWLoginService;
+import com.alibaba.mobileim.YWAPI;
+import com.alibaba.mobileim.YWIMKit;
+import com.alibaba.mobileim.YWLoginParam;
+import com.alibaba.mobileim.channel.event.IWxCallback;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.network.api.UserApi;
@@ -198,5 +204,71 @@ public class MainActivity extends BaseActivity {
         }
 //        transaction.commitAllowingStateLoss();
 //        mSelect = i;
+    }
+
+    @OnClick(R.id.id_linearlayout_online_qa)
+    public void onBtnOnlineQa(){
+//        String token = TokenManager.getInstance().getToken();
+//        if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
+//            BandaSnackBar.showSnackBar(getWindow().getDecorView(),R.string.show_not_login_yet, SPKey.SNACKBAR_TYPE_INTEENT);
+//            startActivity(new Intent(this, LoginActivity.class));
+//            return;
+//        }
+//        showLoading(getString(R.string.show_open_chat_window));
+//        UserApi mUserApi = ServiceGenerator.createService(UserApi.class);
+//        mUserApi.getChatUserInfo(token)
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<YWUser>() {
+//                    @Override
+//                    public void onCompleted() {
+//
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        dismissLoading();
+//                        BandaSnackBar.showSnackBar(getWindow().getDecorView(),R.string.show_get_user_account_fail, SPKey.SNACKBAR_TYPE_ERROR);
+//                    }
+//
+//                    @Override
+//                    public void onNext(YWUser responseBody) {
+//                        String userid = responseBody.getUserid();
+//                        String password = responseBody.getPassword();
+//                        loginYW(userid, password);
+//                    }
+//                });
+    }
+
+    private void loginYW(String userid, String password) {
+//        final YWIMKit mIMKit = YWAPI.getIMKitInstance(userid, App.ALI_IM_APP_KEY);
+//        mIMKit.setShortcutBadger(0);
+//        IYWLoginService loginService = mIMKit.getLoginService();
+//        YWLoginParam loginParam = YWLoginParam.createLoginParam(userid, password);
+//        loginService.login(loginParam, new IWxCallback() {
+//
+//            @Override
+//            public void onSuccess(Object... arg0) {
+//                LoggerWrapper.d(arg0.length);
+//
+//                for (Object obj : arg0
+//                        ) {
+//                    LoggerWrapper.d(obj.toString());
+//                }
+//                begainConversation(mIMKit);
+//            }
+//
+//            @Override
+//            public void onProgress(int arg0) {
+//                LoggerWrapper.d("progress " + arg0);
+//            }
+//
+//            @Override
+//            public void onError(int errCode, String description) {
+//                //如果登录失败，errCode为错误码,description是错误的具体描述信息
+//                dismissLoading();
+//                LoggerWrapper.d("errCode " + errCode + " desc " + description);
+//            }
+//        });
     }
 }
