@@ -89,6 +89,10 @@
         <activity android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait"
             />
+        <activity android:name=".view.bindcard.BindCardActivity"
+            android:screenOrientation="portrait"
+            />
+
     </application>
 
 </manifest>
