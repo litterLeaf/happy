@@ -6,4 +6,11 @@
     <string name="textview_me">Saya</string>
     <string name="textview_online_QA">Livechat</string>
 
+    <string name="login_logout">Login/Daftar</string>
+    <string name="my_loan">Pinjaman Saya</string>
+    <string name="safe_setting">Pengaturan Keamanan</string>
+    <string name="help_center">Pusat Bantuan</string>
+    <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
+    <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
+
 </resources>
