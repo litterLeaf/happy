@@ -6,6 +6,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 
 import com.yinshan.happycash.R;
 
@@ -47,13 +48,17 @@ public abstract class BaseActivity extends RxSupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
         if (mContextView == null) {
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         }
         setContentView(mContextView);
+
+        initView(mContextView, savedInstanceState);
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this, mContextView);
-        initView(mContextView, savedInstanceState);
+        secondLayout();
     }
 
     /**
@@ -69,6 +74,9 @@ public abstract class BaseActivity extends RxSupportActivity {
      * @return
      */
     protected abstract int bindLayout();
+
+    protected abstract void secondLayout();
+
     @CallSuper
     @Override
     protected void onDestroy() {

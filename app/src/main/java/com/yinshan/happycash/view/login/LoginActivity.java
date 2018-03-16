@@ -21,4 +21,9 @@ public class LoginActivity extends BaseActivity{
     protected int bindLayout() {
         return R.layout.activity_login;
     }
+
+    @Override
+    protected void secondLayout() {
+
+    }
 }

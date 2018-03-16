@@ -88,8 +88,13 @@
         <activity android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name=".view.me.UploadPhotoActivity"
+        <activity android:name=".view.me.view.impl.UploadPhotoActivity"
             android:screenOrientation="portrait"
+            >
+
+        </activity>
+
+        <activity android:name=".view.me.view.impl.LoanListActivity"
             >
 
         </activity>

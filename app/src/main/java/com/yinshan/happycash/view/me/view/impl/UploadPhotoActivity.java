@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.me;
+package com.yinshan.happycash.view.me.view.impl;
 
 import android.os.Bundle;
 import android.view.View;
@@ -20,5 +20,10 @@ public class UploadPhotoActivity extends BaseActivity{
     @Override
     protected int bindLayout() {
         return R.layout.activity_upload_photo;
+    }
+
+    @Override
+    protected void secondLayout() {
+
     }
 }

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">happycash</string>
+    <string name="test">test</string>
 
     <string name="textview_loan">Prijam</string>
     <string name="textview_certification">Profil</string>
@@ -12,5 +13,9 @@
     <string name="help_center">Pusat Bantuan</string>
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
     <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
+    <string name="borrowed_details">Rincian Pinjaman</string>
+    <string name="loan_count">Jumlah Pinjaman</string>
+    <string name="time_period">Jangka Waktu</string>
+    <string name="status">Status</string>
 
 </resources>
