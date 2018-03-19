@@ -6,7 +6,10 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 
@@ -58,7 +61,7 @@ public abstract class BaseActivity extends RxSupportActivity {
         initView(mContextView, savedInstanceState);
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this, mContextView);
-        secondLayout();
+        secondInit();
     }
 
     /**
@@ -75,7 +78,8 @@ public abstract class BaseActivity extends RxSupportActivity {
      */
     protected abstract int bindLayout();
 
-    protected abstract void secondLayout();
+    //子页面的INIT
+    protected abstract void secondInit();
 
     @CallSuper
     @Override
@@ -95,5 +99,24 @@ public abstract class BaseActivity extends RxSupportActivity {
     public void exitAnimtion() {
         //动画
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 }

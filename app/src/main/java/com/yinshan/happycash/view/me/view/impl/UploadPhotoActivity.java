@@ -23,7 +23,7 @@ public class UploadPhotoActivity extends BaseActivity{
     }
 
     @Override
-    protected void secondLayout() {
+    protected void secondInit() {
 
     }
 }

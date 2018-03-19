@@ -7,6 +7,8 @@
     <string name="textview_me">Saya</string>
     <string name="textview_online_QA">Livechat</string>
 
+    <string name="loan_count">Jumlah Pinjaman</string>
+    <string name="time_period">Jangka Waktu</string>
     <string name="login_logout">Login/Daftar</string>
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
@@ -14,8 +16,7 @@
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
     <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
-    <string name="loan_count">Jumlah Pinjaman</string>
-    <string name="time_period">Jangka Waktu</string>
     <string name="status">Status</string>
+    <string name="loan_info">Info Pinjaman</string>
 
 </resources>

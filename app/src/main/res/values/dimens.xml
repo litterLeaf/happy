@@ -5,6 +5,7 @@
     <dimen name="text_normal">14sp</dimen>
 
     <dimen name="normal_height">50dp</dimen>
+    <dimen name="normal_left">20dp</dimen>
     <dimen name="me_left_image">28dp</dimen>
     <dimen name="me_left_text">60dp</dimen>
 

@@ -25,7 +25,7 @@ public class LoanListActivity extends BaseSingleNoScrollActivity{
 
     @Override
     protected String bindTitle() {
-        return getResources().getString(R.string.borrowed_details);
+        return getResources().getString(R.string.my_loan);
     }
 
     @Override
@@ -34,12 +34,7 @@ public class LoanListActivity extends BaseSingleNoScrollActivity{
     }
 
     @Override
-    protected void init() {
-
-    }
-
-    @Override
-    protected void secondLayout() {
+    protected void secondInit() {
         mLoanAdapter = new LoanAdapter(this);
         mListView.setAdapter(mLoanAdapter);
     }

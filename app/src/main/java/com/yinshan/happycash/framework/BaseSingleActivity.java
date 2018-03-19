@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,12 +23,14 @@ public abstract class BaseSingleActivity extends BaseActivity{
     TextView title;
     RelativeLayout btnBack;
     FrameLayout contentLayout;
+    protected LinearLayout lowestBg;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         btnBack = (RelativeLayout)findViewById(R.id.btnBack);
         title = (TextView)findViewById(R.id.title);
         contentLayout = (FrameLayout)findViewById(R.id.fragment_content);
+        lowestBg = (LinearLayout)findViewById(R.id.lowest_bg);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,5 +60,6 @@ public abstract class BaseSingleActivity extends BaseActivity{
 
     protected abstract int bindDownLayout();
 
-    protected abstract void init();
+    protected void init(){
+    }
 }
