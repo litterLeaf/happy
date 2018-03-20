@@ -20,4 +20,9 @@ public class BindCardActivity  extends BaseActivity {
     protected int bindLayout() {
         return R.layout.activity_bind_bank_card;
     }
+
+    @Override
+    protected void secondInit() {
+
+    }
 }
