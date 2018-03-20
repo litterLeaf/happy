@@ -9,6 +9,7 @@
     <string name="loan_info">Info Pinjaman</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
+    <string name="quit_login">keluar</string>
     <string name="login_logout">Login/Daftar</string>
     <string name="textview_online_QA">Livechat</string>
     <string name="name">Nama</string>
@@ -22,7 +23,7 @@
     <string name="text_next">NEXT</string>
     <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
-    <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
+    <string name="about_happy_cash">Tentang Happy Cash</string>
     <string name="telephone">Telepon</string>
     <string name="invite_friends">Undang Teman</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
