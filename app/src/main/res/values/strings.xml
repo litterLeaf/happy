@@ -17,4 +17,5 @@
     <string name="login_statement"> Kebijakan Privasi</string>
     <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
     <string name="button_bind_card">Tambah</string>
+    <string name="unloan_button"> Pinjam Sekarang</string>
 </resources>

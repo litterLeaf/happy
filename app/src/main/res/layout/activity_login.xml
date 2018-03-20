@@ -89,7 +89,7 @@
                     android:layout_marginTop="@dimen/dp20"
                     android:orientation="horizontal">
 
-                    <com.banda.program.banda_android.widget.SmsEditText
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
                         android:id="@+id/login_edit1"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -101,7 +101,7 @@
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_color" />
 
-                    <com.banda.program.banda_android.widget.SmsEditText
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
                         android:id="@+id/login_edit2"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -114,7 +114,7 @@
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_color" />
 
-                    <com.banda.program.banda_android.widget.SmsEditText
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
                         android:id="@+id/login_edit3"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -127,7 +127,7 @@
                         android:maxLines="1"
                         android:textCursorDrawable="@drawable/cursor_color" />
 
-                    <com.banda.program.banda_android.widget.SmsEditText
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
                         android:id="@+id/login_edit4"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -225,7 +225,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/dp124"
                 android:layout_gravity="center_horizontal"
-                android:src="@drawable/cat_1" />
+                android:src="@drawable/group_20" />
 
         </FrameLayout>
 
@@ -236,6 +236,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="@dimen/dp40"
             android:layout_marginRight="@dimen/dp40"
+            android:gravity="center"
             android:layout_marginTop="@dimen/dp20"
             android:background="@drawable/shape_button"
             android:text="@string/button_login"
