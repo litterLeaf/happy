@@ -1,13 +1,17 @@
 <resources>
     <string name="app_name">happycash</string>
     <string name="test">test</string>
+    <string name="test_desc">descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</string>
 
+    <string name="how_to_borrow">Cara Meminjam</string>
+    <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
     <string name="loan_info">Info Pinjaman</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
     <string name="login_logout">Login/Daftar</string>
     <string name="textview_online_QA">Livechat</string>
+    <string name="name">Nama</string>
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
     <string name="textview_loan">Prijam</string>
@@ -16,6 +20,7 @@
     <string name="status">Status</string>
     <string name="textview_me">Saya</string>
     <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
+    <string name="telephone">Telepon</string>
     <string name="invite_friends">Undang Teman</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
 
