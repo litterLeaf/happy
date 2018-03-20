@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.login;
+package com.yinshan.happycash.view.me.view.impl;
 
 import android.os.Bundle;
 import android.view.View;
@@ -7,10 +7,10 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 
 /**
- * Created by admin on 2018/1/31.
+ * Created by huxin on 2018/3/14.
  */
 
-public class LoginActivity extends BaseActivity{
+public class UploadPhotoActivity extends BaseActivity{
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -19,7 +19,7 @@ public class LoginActivity extends BaseActivity{
 
     @Override
     protected int bindLayout() {
-        return R.layout.activity_login;
+        return R.layout.activity_upload_photo;
     }
 
     @Override

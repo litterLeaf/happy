@@ -6,6 +6,10 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 
@@ -47,13 +51,17 @@ public abstract class BaseActivity extends RxSupportActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
         if (mContextView == null) {
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         }
         setContentView(mContextView);
+
+        initView(mContextView, savedInstanceState);
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this, mContextView);
-        initView(mContextView, savedInstanceState);
+        secondInit();
     }
 
     /**
@@ -69,6 +77,10 @@ public abstract class BaseActivity extends RxSupportActivity {
      * @return
      */
     protected abstract int bindLayout();
+
+    //子页面的INIT
+    protected abstract void secondInit();
+
     @CallSuper
     @Override
     protected void onDestroy() {
@@ -87,5 +99,24 @@ public abstract class BaseActivity extends RxSupportActivity {
     public void exitAnimtion() {
         //动画
         overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = 0;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
     }
 }

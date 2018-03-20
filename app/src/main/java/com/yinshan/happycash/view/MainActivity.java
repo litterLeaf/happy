@@ -57,6 +57,11 @@ public class MainActivity extends BaseActivity  {
     }
 
     @Override
+    protected void secondInit() {
+
+    }
+
+    @Override
     protected void initView(View view, Bundle savedInstanceState) {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

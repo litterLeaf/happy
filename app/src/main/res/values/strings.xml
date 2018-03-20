@@ -1,13 +1,26 @@
 <resources>
     <string name="app_name">happycash</string>
+    <string name="test">test</string>
 
+    <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
+    <string name="loan_info">Info Pinjaman</string>
+    <string name="loan_count">Jumlah Pinjaman</string>
+    <string name="time_period">Jangka Waktu</string>
+    <string name="login_logout">Login/Daftar</string>
+    <string name="textview_online_QA">Livechat</string>
+    <string name="my_loan">Pinjaman Saya</string>
+    <string name="safe_setting">Pengaturan Keamanan</string>
     <string name="textview_loan">Prijam</string>
     <string name="textview_certification">Profil</string>
+    <string name="help_center">Pusat Bantuan</string>
+    <string name="status">Status</string>
     <string name="textview_me">Saya</string>
-    <string name="textview_online_QA">Livechat</string>
     <string name="text_next">NEXT</string>
     <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
+    <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
+    <string name="invite_friends">Undang Teman</string>
+    <string name="borrowed_details">Rincian Pinjaman</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="arrow_right">25dp</dimen>
+    <dimen name="text_normal">14sp</dimen>
+
+    <dimen name="normal_height">50dp</dimen>
+    <dimen name="normal_left">20dp</dimen>
+    <dimen name="me_left_image">28dp</dimen>
+    <dimen name="me_left_text">60dp</dimen>
+
     <dimen name="sp10">10sp</dimen>
     <dimen name="sp11">11sp</dimen>
     <dimen name="sp12">12sp</dimen>
