@@ -12,7 +12,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.view.fragments.HotLineFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
-import com.yinshan.happycash.view.home.MeFragment;
+import com.yinshan.happycash.view.me.MeFragment;
 import com.yinshan.happycash.view.unloan.UnLoanFragment;
 import com.yinshan.happycash.widget.DataGenerator;
 

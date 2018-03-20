@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.home;
+package com.yinshan.happycash.view.me;
 
 import com.yinshan.happycash.framework.BaseFragment;
 
