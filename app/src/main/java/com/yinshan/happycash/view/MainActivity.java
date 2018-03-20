@@ -4,23 +4,19 @@ package com.yinshan.happycash.view;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.view.fragments.HotLineFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
-import com.yinshan.happycash.view.fragments.MineFragment;
+import com.yinshan.happycash.view.home.MeFragment;
 import com.yinshan.happycash.view.unloan.UnLoanFragment;
 import com.yinshan.happycash.widget.DataGenerator;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * ┏┓　　　┏┓
@@ -105,7 +101,7 @@ public class MainActivity extends BaseActivity  {
                 fragment = new InformationFragment();
                 break;
             case 2:
-                fragment = new MineFragment();
+                fragment = new MeFragment();
                 break;
             case 3:
                 fragment =new HotLineFragment();
