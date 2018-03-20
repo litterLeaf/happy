@@ -1,19 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.yinshan.happycash.view.MainActivity">
-<TextView
-    android:id="@+id/login"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:textSize="16sp"
-    android:text="login"
-    />
-</LinearLayout>
+    android:background="@color/colorPrimary"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp30"
+                android:layout_marginTop="110dp"
+                android:background="@drawable/shape_login_input_bg"
+                android:paddingBottom="@dimen/dp20"
+                android:orientation="vertical">
+
+                <!--phone number -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingBottom="@dimen/dp18"
+                        android:paddingTop="@dimen/dp18"
+                        android:text="+62"
+                        android:textColor="@color/hc_text"
+                        android:textSize="@dimen/sp14" />
+
+                    <View
+                        android:layout_width="@dimen/dp0.5"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="@dimen/dp18"
+                        android:layout_marginLeft="@dimen/dp12"
+                        android:layout_marginTop="@dimen/dp18"
+                        android:background="@color/hc_text" />
+
+                    <com.yinshan.happycash.widget.userdefined.RupiahEditText
+                        android:id="@+id/id_edittext_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/dp08"
+                        android:background="@null"
+                        android:gravity="center_vertical"
+                        android:hint="@string/edittext_phone_number_hint"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:text=""
+                        android:textColor="@color/hc_input_text"
+                        android:textColorHint="@color/login_phone_hint"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="@dimen/sp14" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:background="@color/white" />
+
+                <!--SMS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:orientation="horizontal">
+
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
+                        android:id="@+id/login_edit1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/shape_edittext_login"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
+                        android:id="@+id/login_edit2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:background="@drawable/shape_edittext_login"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
+                        android:id="@+id/login_edit3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:background="@drawable/shape_edittext_login"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+
+                    <com.yinshan.happycash.widget.userdefined.SmsEditText
+                        android:id="@+id/login_edit4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:background="@drawable/shape_edittext_login"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:textCursorDrawable="@drawable/cursor_color" />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="@dimen/dp10"
+                        android:background="@drawable/send_sms_selector"
+                        android:gravity="center"
+                        android:paddingLeft="@dimen/dp3"
+                        android:paddingRight="@dimen/dp3"
+                        android:text="@string/button_obtain_code"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_button_text"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/login_vioce_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/dp10"
+                    android:layout_marginTop="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp18"
+                    android:layout_marginRight="@dimen/dp18"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:textSize="@dimen/sp14"
+                    android:textColor="@color/hc_text"
+                    android:text="@string/login_send_voice_sms" />
+
+                <!--graphical-->
+                <LinearLayout
+                    android:id="@+id/id_linearlayout_graphical_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:visibility="gone"
+                    >
+
+                    <EditText
+                        android:id="@+id/id_edittext_graphical_code"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_gravity="center"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:background="@null"
+                        android:hint="@string/edittext_graphical_code"
+                        android:imeActionId="5"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLines="1"
+                        android:textColorHint="@color/login_phone_hint"
+                        android:textColor="@color/hc_input_text"
+                        android:textCursorDrawable="@drawable/cursor_color"
+                        android:textSize="12sp" />
+
+                    <com.banda.program.banda_android.widget.RoundRectImageView
+                        android:id="@+id/id_imageview_code"
+                        android:layout_width="0dp"
+                        android:layout_marginTop="@dimen/dp4"
+                        android:layout_marginBottom="@dimen/dp4"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:scaleType="fitXY" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp1"
+                    android:layout_marginLeft="@dimen/dp15"
+                    android:layout_marginRight="@dimen/dp15"
+                    android:layout_marginBottom="@dimen/dp20"
+                    android:visibility="gone"
+                    android:background="@color/white" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dp124"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/group_20" />
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/id_button_login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp40"
+            android:layout_marginRight="@dimen/dp40"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/shape_button"
+            android:text="@string/button_login"
+            android:textAllCaps="false"
+            android:textColor="@color/color_button_text"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp08"
+            android:layout_marginTop="@dimen/dp10"
+            android:orientation="vertical">
+            <!--Dengan mendaftar, berarti anda setuju dengan -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Dengan mendaftar, berarti anda setuju dengan"
+                android:textColor="@color/hc_text"
+                android:textSize="@dimen/sp12" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/id_login_statement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp3"
+                    android:text="@string/login_statement"
+                    android:textColor="@color/hc_input_text"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hc_text"
+                    android:text="dan"
+                    android:textSize="@dimen/sp12" />
+
+                <TextView
+                    android:id="@+id/id_login_statement1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/dp3"
+                    android:text="@string/login_statement1"
+                    android:textColor="@color/hc_input_text"
+                    android:textSize="@dimen/sp12" />
+            </LinearLayout>
 
 
-
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

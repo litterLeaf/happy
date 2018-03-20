@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BandaEditText">
+        <attr name="customStyle" format="enum">
+            <enum name="rectangle" value="0"/>
+            <enum name="line" value="1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

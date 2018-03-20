@@ -1,8 +1,10 @@
-package com.yinshan.happycash.view.login.contract;
+package com.yinshan.happycash.view.unloan;
 
-import com.yinshan.happycash.framework.MvpBasePresenter;
-import com.yinshan.happycash.framework.MvpBaseView;
-import com.yinshan.happycash.view.login.model.LoginTokenResponse;
+import android.os.Bundle;
+
+import com.yinshan.happycash.R;
+import com.yinshan.happycash.framework.BaseFragment;
+
 
 /**
  * ┏┓　　　┏┓
@@ -28,15 +30,17 @@ import com.yinshan.happycash.view.login.model.LoginTokenResponse;
  *
  */
 
-public class LoginContract {
+public class UnLoanFragment extends BaseFragment {
 
-   public  interface View extends MvpBaseView{
-        void signInSuccess(LoginTokenResponse tokenResponse);
+    @Override
+    protected void initView() {
 
-        void signInError(String message);
     }
 
-    public interface Presenter extends MvpBasePresenter<View>{
-        void signIn(String userName, String password);
+    @Override
+    protected int bindLayout() {
+        return R.layout.fragment_main_unloan;
     }
+
+
 }

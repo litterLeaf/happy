@@ -1,113 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:orientation="vertical"
-    tools:context="com.yinshan.happycash.view.MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <FrameLayout
-        android:id="@+id/id_fragment_loan"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        >
+    </FrameLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.6"
+        android:background="@android:color/darker_gray"
         />
-
-    <LinearLayout
+    <android.support.design.widget.TabLayout
+        android:id="@+id/bottom_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@drawable/shape_main_tab_stroke"
-        android:orientation="horizontal">
-        <!--Loan-->
-        <LinearLayout
-            android:id="@+id/id_linearlayout_loan"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:clickable="true"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/id_textview_tab_loan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableTop="@drawable/ic_tab_loan_selector"
-                android:gravity="center"
-                android:text="@string/textview_loan"
-                android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-        <!--Certification-->
-        <LinearLayout
-            android:id="@+id/id_linearlayout_certification"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/id_textview_tab_certification"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:clickable="true"
-                android:drawableTop="@drawable/ic_tab_cerification_selector"
-                android:gravity="center"
-                android:text="@string/textview_certification"
-                android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-
-        <!--Me-->
-        <LinearLayout
-            android:id="@+id/id_linearlayout_me"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <TextView
-                android:id="@+id/id_textview_tab_me"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:drawableTop="@drawable/ic_tab_me_selector"
-                android:gravity="center"
-                android:text="@string/textview_me"
-                android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
-
-        </LinearLayout>
-
-
-        <!--Online Q&A-->
-        <LinearLayout
-            android:id="@+id/id_linearlayout_online_qa"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/id_textview_tab_online_qa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:drawableTop="@drawable/ic_tab_onlineqa_serector"
-                android:gravity="center"
-                android:text="@string/textview_online_QA"
-                android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="56dp"
+        app:tabBackground="@color/white"
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="@color/hc_input_text" />
 
 </LinearLayout>

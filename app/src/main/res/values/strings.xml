@@ -19,9 +19,21 @@
     <string name="help_center">Pusat Bantuan</string>
     <string name="status">Status</string>
     <string name="textview_me">Saya</string>
+    <string name="text_next">NEXT</string>
+    <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
+    <string name="button_obtain_code">Dapatkan\n Kode</string>
     <string name="about_rupiah_plus">Tentang Rupiah Plus</string>
     <string name="telephone">Telepon</string>
     <string name="invite_friends">Undang Teman</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
 
+    <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
+    <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
+    <string name="login_voice_sms_tip_from"> Anda akan mendapatkan telepon kode verifikasi dari 6285574719927,mohon diangkat</string>
+    <string name="edittext_graphical_code">Kode Verifikasi Grafik</string>
+    <string name="button_login">Login</string>
+    <string name="login_statement"> Kebijakan Privasi</string>
+    <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="button_bind_card">Tambah</string>
+    <string name="unloan_button"> Pinjam Sekarang</string>
 </resources>
