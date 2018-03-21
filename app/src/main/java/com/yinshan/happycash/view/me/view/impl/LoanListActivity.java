@@ -1,8 +1,10 @@
 package com.yinshan.happycash.view.me.view.impl;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
@@ -10,6 +12,7 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
 import com.yinshan.happycash.view.me.view.impl.support.LoanAdapter;
+import com.yinshan.happycash.view.me.view.impl.support.LoanDetailAdapter;
 
 import butterknife.BindView;
 
@@ -37,5 +40,12 @@ public class LoanListActivity extends BaseSingleNoScrollActivity{
     protected void secondInit() {
         mLoanAdapter = new LoanAdapter(this);
         mListView.setAdapter(mLoanAdapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(LoanListActivity.this, LoanDetailActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

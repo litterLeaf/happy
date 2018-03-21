@@ -3,6 +3,7 @@
     <string name="test">test</string>
     <string name="test_desc">descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</string>
 
+    <string name="auth">otentikasi</string>
     <string name="how_to_borrow">Cara Meminjam</string>
     <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>

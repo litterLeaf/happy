@@ -22,11 +22,6 @@ public class AboutActivity extends BaseSingleActivity{
     }
 
     @Override
-    protected void secondLayout() {
-
-    }
-
-    @Override
     protected void secondInit() {
         lowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.app_yellow));
     }

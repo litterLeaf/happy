@@ -38,6 +38,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="@dimen/normal_left"
             android:layout_marginRight="@dimen/normal_left"
+            android:divider="@null"
+            android:scrollbars="none"
             >
         </ListView>
         <View

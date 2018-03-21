@@ -1,15 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textColor="@color/hc_input_text"
-        android:text="InformationFragment" />
-</RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_height"
+        android:background="@color/app_yellow">
+        <TextView
+            android:id="@+id/textView"
+            style="@style/text_wrap_layout"
+            android:layout_centerInParent="true"
+            android:textColor="@color/app_white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@string/auth" />
+        <ImageView
+            style="@style/image_wrap_layout"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:src="@drawable/messages"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_bg">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="155dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="155dp"
+                    android:layout_weight="1"
+                    android:background="@color/app_yellow"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/data_1"
+                            />
+                    </RelativeLayout>
+                </FrameLayout>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"/>
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="155dp"
+                    android:layout_weight="1"
+                    android:background="@color/app_yellow"
+                    >
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
