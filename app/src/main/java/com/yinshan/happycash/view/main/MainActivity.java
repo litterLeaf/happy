@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view;
+package com.yinshan.happycash.view.main;
 
 
 import android.os.Bundle;
@@ -7,11 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.view.fragments.HotLineFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
+import com.yinshan.happycash.view.fragments.LoanInProcessFragment;
+import com.yinshan.happycash.view.fragments.LoaningFragment;
 import com.yinshan.happycash.view.me.MeFragment;
 import com.yinshan.happycash.view.unloan.UnLoanFragment;
 import com.yinshan.happycash.widget.DataGenerator;
@@ -47,6 +51,16 @@ public class MainActivity extends BaseActivity  {
     @BindView(R.id.fragment_container)
     FrameLayout homeContainer;
 
+   private FragmentManager fragmentManager;
+    private FragmentTransaction transaction;
+
+    private UnLoanFragment unLoanFrag;
+    private LoaningFragment loaningFrag;
+
+    private LoanInProcessFragment processFragment;
+    private InformationFragment inforFragament;
+    private MeFragment meFrag;
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;
@@ -59,6 +73,10 @@ public class MainActivity extends BaseActivity  {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        initTabLayout();
+    }
+
+    private void initTabLayout() {
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

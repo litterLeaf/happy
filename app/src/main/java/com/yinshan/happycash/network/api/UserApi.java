@@ -2,11 +2,13 @@ package com.yinshan.happycash.network.api;
 
 
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
@@ -55,4 +57,7 @@ public interface UserApi {
     @FormUrlEncoded
     @POST("auth/login/sms")
     Observable<ResponseBody> sendSms(@Field("mobile") String mobile);
+
+    @GET("loanapp/latest")
+    Observable<LastLoanAppBean> getLatestLoanApp(@Header("X-AUTH-TOKEN") String token);
 }

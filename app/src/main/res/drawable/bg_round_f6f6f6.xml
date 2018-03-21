@@ -3,8 +3,8 @@
 
     <!-- 描边 -->
     <solid
-        android:color="#f6f6f6" ></solid>
+        android:color="#ffffff" ></solid>
 
-    <corners android:radius="20dp"/>
+    <corners android:radius="50dp"/>
 
 </shape>
