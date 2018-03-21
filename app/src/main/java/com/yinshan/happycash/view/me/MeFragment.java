@@ -1,5 +1,6 @@
 package com.yinshan.happycash.view.me;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
 /**
@@ -15,6 +16,6 @@ public class MeFragment extends BaseFragment{
 
     @Override
     protected int bindLayout() {
-        return 0;
+        return R.layout.fragment_me;
     }
 }
