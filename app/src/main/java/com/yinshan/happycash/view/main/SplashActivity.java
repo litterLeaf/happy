@@ -30,7 +30,8 @@ import io.reactivex.schedulers.Schedulers;
 public class SplashActivity extends AppCompatActivity {
     private Long              mStartTime;
     private Handler           mHandler;
-    private boolean canFinish;
+    private boolean canFinish= true;
+    private boolean isVisible = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class SplashActivity extends AppCompatActivity {
 
         mStartTime = SystemClock.currentThreadTimeMillis();
         mHandler = new Handler();
+        jumpToMainActivity(mStartTime);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
@@ -50,51 +52,14 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(intent);
-                        if (canFinish) {
-                            mHandler.removeCallbacksAndMessages(null);
-                            finish();
-                        } else {
-                            //                    setVisible(false);
-                            isVisible = false;
-                        }
-//                if(TextUtils.isEmpty(password)){
-//                    if(TextUtils.isEmpty(TokenManager.getInstance().getToken())){
-//                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                        if (canFinish) {
-//                            mHandler.removeCallbacksAndMessages(null);
-//                            finish();
-//                        } else {
-//                            //                    setVisible(false);
-//                            isVisible = false;
-//                        }
-//                    }else {
-//                        Intent intent = new Intent(SplashActivity.this, SetPatternActivity.class);
-//                        intent.putExtra("splash",true);
-//                        startActivity(intent);
-//                        if (canFinish) {
-//                            mHandler.removeCallbacksAndMessages(null);
-//                            finish();
-//                        } else {
-//                            //                    setVisible(false);
-//                            isVisible = false;
-//                        }
-//                    }
-
-//                }else {
-//                    Intent intent = new Intent(SplashActivity.this, VerifyPatternActivity.class);
-//                    startActivity(intent);
-//                    if (canFinish) {
-//                        mHandler.removeCallbacksAndMessages(null);
-//                        finish();
-//                    } else {
-//                        //                    setVisible(false);
-//                        isVisible = false;
-//                    }
-//                }
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                if (canFinish) {
+                    mHandler.removeCallbacksAndMessages(null);
+                    finish();
+                } else {
+                    isVisible = false;
+                }
             }
         }, delayTime);
     }
