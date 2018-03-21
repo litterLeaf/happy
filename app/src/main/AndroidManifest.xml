@@ -87,22 +87,35 @@
         <activity android:name=".view.main.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop">
-    </activity>
+
+        </activity>
         <activity android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity android:name=".view.me.view.impl.UploadPhotoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
 
-        <activity android:name=".view.me.view.impl.LoanListActivity" />
+        </activity>
 
-        <activity android:name=".view.me.view.impl.LoanDetailActivity" />
+        <activity android:name=".view.me.view.impl.LoanListActivity"  >
 
-        <activity android:name=".view.me.view.impl.HelpCenterActivity" />
+        </activity>
 
-        <activity android:name=".view.me.view.impl.SafeSettingActivity" />
+        <activity android:name=".view.me.view.impl.LoanDetailActivity" >
+
+        </activity>
+
+        <activity android:name=".view.me.view.impl.HelpCenterActivity"  >
+
+        </activity>
+
+        <activity android:name=".view.me.view.impl.SafeSettingActivity"  >
+
+        </activity>
         <activity android:name=".view.me.view.impl.AboutActivity"
-            />
+            >
+
+        </activity>
     </application>
 
 </manifest>

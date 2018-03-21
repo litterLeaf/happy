@@ -58,9 +58,10 @@ public abstract class BaseActivity extends RxSupportActivity {
         }
         setContentView(mContextView);
 
-        initView(mContextView, savedInstanceState);
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this, mContextView);
+        initView(mContextView, savedInstanceState);
+
         secondInit();
     }
 
