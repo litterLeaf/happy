@@ -67,6 +67,11 @@ public class MainActivity extends BaseActivity  {
     }
 
     @Override
+    protected void secondLayout() {
+
+    }
+
+    @Override
     protected void secondInit() {
 
     }

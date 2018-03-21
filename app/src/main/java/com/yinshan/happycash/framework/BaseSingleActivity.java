@@ -26,7 +26,7 @@ public abstract class BaseSingleActivity extends BaseActivity{
     protected LinearLayout lowestBg;
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
+    protected void secondLayout() {
         btnBack = (RelativeLayout)findViewById(R.id.btnBack);
         title = (TextView)findViewById(R.id.title);
         contentLayout = (FrameLayout)findViewById(R.id.fragment_content);
@@ -40,6 +40,10 @@ public abstract class BaseSingleActivity extends BaseActivity{
         });
         title.setText(bindTitle());
         setContentLayout(bindDownLayout());
+    }
+
+    @Override
+    protected void initView(View view, Bundle savedInstanceState) {
         init();
     }
 

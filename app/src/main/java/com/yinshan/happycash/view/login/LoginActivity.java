@@ -23,6 +23,11 @@ public class LoginActivity extends BaseActivity{
     }
 
     @Override
+    protected void secondLayout() {
+
+    }
+
+    @Override
     protected void secondInit() {
 
     }

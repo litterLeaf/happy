@@ -38,6 +38,7 @@
             android:orientation="vertical"
             android:background="#ffffff">
             <RelativeLayout
+                android:id="@+id/loanView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_height">
                 <ImageView
@@ -70,13 +71,14 @@
                 android:background="@color/line"
                 />
             <RelativeLayout
+                android:id="@+id/safeSettingView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_height">
                 <ImageView
                     style="@style/image_wrap_layout"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/me_left_image"
-                    android:src="@drawable/me_1"
+                    android:src="@drawable/me_2"
                     />
                 <TextView
                     style="@style/text_wrap_layout"
@@ -102,13 +104,14 @@
                 android:background="@color/line"
                 />
             <RelativeLayout
+                android:id="@+id/helpCenterView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_height">
                 <ImageView
                     style="@style/image_wrap_layout"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/me_left_image"
-                    android:src="@drawable/me_1"
+                    android:src="@drawable/me_5"
                     />
                 <TextView
                     style="@style/text_wrap_layout"
@@ -134,13 +137,14 @@
                 android:background="@color/line"
                 />
             <RelativeLayout
+                android:id="@+id/customHotLineView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_height">
                 <ImageView
                     style="@style/image_wrap_layout"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/me_left_image"
-                    android:src="@drawable/me_1"
+                    android:src="@drawable/me_4"
                     />
                 <TextView
                     style="@style/text_wrap_layout"
@@ -166,13 +170,14 @@
                 android:background="@color/line"
                 />
             <RelativeLayout
+                android:id="@+id/aboutView"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/normal_height">
                 <ImageView
                     style="@style/image_wrap_layout"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/me_left_image"
-                    android:src="@drawable/me_1"
+                    android:src="@drawable/me_3"
                     />
                 <TextView
                     style="@style/text_wrap_layout"

@@ -53,10 +53,12 @@ public abstract class BaseActivity extends RxSupportActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
 
+
         if (mContextView == null) {
             mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         }
         setContentView(mContextView);
+        secondLayout();
 
         ButterKnife.bind(this);
         unbinder = ButterKnife.bind(this, mContextView);
@@ -78,6 +80,9 @@ public abstract class BaseActivity extends RxSupportActivity {
      * @return
      */
     protected abstract int bindLayout();
+
+    //子页面的Layout
+    protected abstract void secondLayout();
 
     //子页面的INIT
     protected abstract void secondInit();

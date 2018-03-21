@@ -79,15 +79,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.main.SplashActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity android:name=".view.main.MainActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait" />
@@ -97,7 +97,8 @@
 
         </activity>
 
-        <activity android:name=".view.me.view.impl.LoanListActivity"  >
+        <activity android:name=".view.me.view.impl.LoanListActivity"
+            android:launchMode="singleTask">
 
         </activity>
 

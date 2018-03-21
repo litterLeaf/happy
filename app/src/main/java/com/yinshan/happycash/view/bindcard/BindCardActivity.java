@@ -22,6 +22,11 @@ public class BindCardActivity  extends BaseActivity {
     }
 
     @Override
+    protected void secondLayout() {
+
+    }
+
+    @Override
     protected void secondInit() {
 
     }
