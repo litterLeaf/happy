@@ -100,8 +100,8 @@
         <activity android:name=".view.me.view.impl.HelpCenterActivity" />
 
         <activity android:name=".view.me.view.impl.SafeSettingActivity" />
-
-
+        <activity android:name=".view.me.view.impl.AboutActivity"
+            />
     </application>
 
 </manifest>
