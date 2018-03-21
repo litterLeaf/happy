@@ -24,6 +24,16 @@ public class AppApplication extends MultiDexApplication{
     @Override
     public void onCreate() {
         super.onCreate();
+        SysUtil.setApplication(this);
+        if(SysUtil.isTCMSServiceProcess(this)){
+            return;
+        }
+        //第一个参数是Application Context
+        //这里的APP_KEY即应用创建时申请的APP_KEY，同时初始化必须是在主进程中
+        if(SysUtil.isMainProcess()){
+            YWAPI.init(this, AppSdkConfig.BAICHUAN_APP_KEY);
+        }
+
         instance = this;
 
         init();
@@ -37,17 +47,6 @@ public class AppApplication extends MultiDexApplication{
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
         appContext = this.getApplicationContext();
-
-
-        SysUtil.setApplication(this);
-        if(SysUtil.isTCMSServiceProcess(this)){
-            return;
-        }
-        //第一个参数是Application Context
-        //这里的APP_KEY即应用创建时申请的APP_KEY，同时初始化必须是在主进程中
-        if(SysUtil.isMainProcess()){
-            YWAPI.init(this, AppSdkConfig.BAICHUAN_APP_KEY);
-        }
 
         //内存泄漏检测
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
