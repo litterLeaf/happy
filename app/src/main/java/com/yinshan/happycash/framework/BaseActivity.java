@@ -104,7 +104,7 @@ public abstract class BaseActivity extends RxSupportActivity {
      */
     public void exitAnimtion() {
         //动画
-        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+//        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
 
     public static void setListViewHeightBasedOnChildren(ListView listView) {

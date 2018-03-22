@@ -37,6 +37,6 @@ public class LoginContract {
     }
 
     public interface Presenter extends MvpBasePresenter<View>{
-        void signIn(String userName, String password);
+        void signIn(String smsCode, String captchaSid, String captcha,String mobile,String inviteCode,String andridId);
     }
 }

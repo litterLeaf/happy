@@ -8,6 +8,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.view.me.domain.NameDescData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by huxin on 2018/3/19.
@@ -17,9 +21,22 @@ public class HelpCenterAdapter extends BaseAdapter{
 
     int chooseIndex = -1;
 
+    List<NameDescData> nameDescList = new ArrayList<>();
+
+    public HelpCenterAdapter(){
+    }
+
+    public void addList(String name,String desc){
+        if(nameDescList!=null){
+            nameDescList.add(new NameDescData(name,desc));
+        }
+    }
+
     @Override
     public int getCount() {
-        return 10;
+        if(nameDescList!=null)
+            return nameDescList.size();
+        return 0;
     }
 
     @Override
@@ -67,6 +84,9 @@ public class HelpCenterAdapter extends BaseAdapter{
         }else{
             holder.descRow.setVisibility(View.GONE);
         }
+
+        holder.name.setText(nameDescList.get(position).getName());
+        holder.desc.setText(nameDescList.get(position).getDesc());
 
         return view;
     }

@@ -31,8 +31,6 @@
                 android:layout_marginTop="-2dp"
                 android:background="@drawable/bg_round_50_white">
 
-
-
                 <TextView
                     style="@style/text_wrap_layout"
                     android:layout_marginLeft="17dp"
@@ -41,7 +39,7 @@
                     android:layout_marginBottom="45dp"
                     android:textColor="#4a2e09"
                     android:textSize="14sp"
-                    android:text="@string/test_desc"
+                    android:text="@string/about_desc"
                     />
 
             </RelativeLayout>
