@@ -24,15 +24,20 @@ public class AppApplication extends MultiDexApplication{
     @Override
     public void onCreate() {
         super.onCreate();
-        SysUtil.setApplication(this);
-        if(SysUtil.isTCMSServiceProcess(this)){
-            return;
+        try{
+            SysUtil.setApplication(this);
+            if(SysUtil.isTCMSServiceProcess(this)){
+                return;
+            }
+            //第一个参数是Application Context
+            //这里的APP_KEY即应用创建时申请的APP_KEY，同时初始化必须是在主进程中
+            if(SysUtil.isMainProcess()){
+                YWAPI.init(this, AppSdkConfig.BAICHUAN_APP_KEY);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        //第一个参数是Application Context
-        //这里的APP_KEY即应用创建时申请的APP_KEY，同时初始化必须是在主进程中
-        if(SysUtil.isMainProcess()){
-            YWAPI.init(this, AppSdkConfig.BAICHUAN_APP_KEY);
-        }
+
 
         instance = this;
 

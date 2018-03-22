@@ -199,14 +199,14 @@
                         android:textCursorDrawable="@drawable/cursor_color"
                         android:textSize="12sp" />
 
-                    <com.banda.program.banda_android.widget.RoundRectImageView
-                        android:id="@+id/id_imageview_code"
-                        android:layout_width="0dp"
-                        android:layout_marginTop="@dimen/dp4"
-                        android:layout_marginBottom="@dimen/dp4"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:scaleType="fitXY" />
+                    <!--<com.banda.program.banda_android.widget.RoundRectImageView-->
+                        <!--android:id="@+id/id_imageview_code"-->
+                        <!--android:layout_width="0dp"-->
+                        <!--android:layout_marginTop="@dimen/dp4"-->
+                        <!--android:layout_marginBottom="@dimen/dp4"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="1"-->
+                        <!--android:scaleType="fitXY" />-->
 
                 </LinearLayout>
 
