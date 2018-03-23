@@ -3,6 +3,8 @@ package com.yinshan.happycash.view.me;
 import android.content.Intent;
 import android.view.View;
 
+import com.alibaba.mobileim.YWAPI;
+import com.alibaba.mobileim.YWIMKit;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.view.me.view.impl.AboutActivity;
@@ -18,9 +20,11 @@ import butterknife.OnClick;
 
 public class MeFragment extends BaseFragment{
 
+    YWIMKit mIMKit;
+
     @Override
     protected void initView() {
-
+//        mIMKit = YWAPI.getIMKitInstance("", "");
     }
 
     @Override
@@ -41,7 +45,8 @@ public class MeFragment extends BaseFragment{
                 startActivity(new Intent(getContext(), HelpCenterActivity.class));
                 break;
             case R.id.customHotLineView:
-                //startActivity(new Intent(getActivity(), Custom.class));
+//                Intent intent = mIMKit.getConversationActivityIntent();
+//                startActivity(intent);
                 break;
             case R.id.aboutView:
                 startActivity(new Intent(getContext(), AboutActivity.class));
