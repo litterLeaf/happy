@@ -31,9 +31,9 @@ import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 public class SplashContract {
 
    public  interface View extends MvpBaseView{
-        void signInSuccess(LastLoanAppBean latestLoanAppBean);
+        void getStatusSuccess(LastLoanAppBean latestLoanAppBean);
 
-        void signInError(String message);
+        void getStatusError(String message);
     }
 
     public interface Presenter extends MvpBasePresenter<View>{

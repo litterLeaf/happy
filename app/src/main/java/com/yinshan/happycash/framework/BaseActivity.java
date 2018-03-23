@@ -1,5 +1,7 @@
 package com.yinshan.happycash.framework;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
@@ -124,5 +126,14 @@ public abstract class BaseActivity extends RxSupportActivity {
         ViewGroup.LayoutParams params = listView.getLayoutParams();
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
+    }
+    public  void mStartActivity(Context packageContext, Class<?> cls){
+        Intent intent = new Intent(packageContext,cls);
+        startActivity(intent);
+    }
+    public  void mStartActivity(Context packageContext, Class<?> cls,Bundle bundle){
+        Intent intent = new Intent(packageContext,cls);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

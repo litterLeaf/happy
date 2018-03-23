@@ -13,17 +13,18 @@ public enum AppEnvConfig {
             AppNetConfig.LOCAL_NET_CONFIG,
             "本地环境",
             "LOCAL",
-            "https://10.0.0.93/app/api/v1/"
+            "https://www.happycash.id"
     ),
 
     /**
      * 测试环境
+     *   "https://www.rupiahplus.com/api/"
      */
     TEST(
             AppNetConfig.TEST_NET_CONFIG,
             "测试环境",
             "TEST",
-            "https://www.rupiahplus.com/api/"
+            "https://www.happycash.id/api/"
     ),
 
     /**
@@ -33,7 +34,7 @@ public enum AppEnvConfig {
             AppNetConfig.RELEASE_NET_CONFIG,
             "正式环境",
             "RELEASE",
-            "https://www.rupiahplus.com/api/"
+            "https://www.happycash.id/api/"
     );
 
 

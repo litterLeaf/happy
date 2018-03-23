@@ -95,6 +95,9 @@
         <activity android:name=".view.login.LoginActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".view.main.HotLineActivity"
+            android:screenOrientation="portrait" />
+
         <activity android:name=".view.me.view.impl.UploadPhotoActivity"
             android:screenOrientation="portrait" >
 

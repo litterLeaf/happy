@@ -1,5 +1,6 @@
 package com.yinshan.happycash.view.fragments;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
 /**
@@ -14,6 +15,6 @@ public class RejectFragment extends BaseFragment {
 
     @Override
     protected int bindLayout() {
-        return 0;
+        return R.layout.fragment_reject;
     }
 }

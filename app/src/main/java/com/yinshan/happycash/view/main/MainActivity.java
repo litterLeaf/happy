@@ -7,14 +7,12 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
-import com.yinshan.happycash.view.fragments.HotLineFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
 import com.yinshan.happycash.view.fragments.LoanInProcessFragment;
 import com.yinshan.happycash.view.fragments.LoaningFragment;
@@ -89,6 +87,7 @@ public class MainActivity extends BaseActivity  {
     }
 
     private void initTabLayout() {
+
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -121,7 +120,8 @@ public class MainActivity extends BaseActivity  {
     }
 
     private void onTabItemSelected(int position) {
-        Fragment fragment = null;
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
         switch (position){
             case 0:
                 manageFragament(true,false,false,false,false,
@@ -136,11 +136,9 @@ public class MainActivity extends BaseActivity  {
                         false,false,false);
                 break;
             case 3:
-                fragment =new HotLineFragment();
+//                fragment =new HotLineFragment();
+                mStartActivity(MainActivity.this, HotLineActivity.class);
                 break;
-        }
-        if(fragment!=null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
         }
 
     }
@@ -148,7 +146,7 @@ public class MainActivity extends BaseActivity  {
     private void manageFragament( boolean isUnLoan,boolean isInfor,boolean isMeFragment,boolean isLoaning,boolean isProcess,
                                 boolean isBuildUp, boolean isRepayment, boolean isReject ){
 
-        //Rejec
+        //repaymentFragment
         if (isRepayment && null == repaymentFragment) {
             Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.REPAYMENT_FRAG);
             if (null != tab1) {
@@ -275,6 +273,7 @@ public class MainActivity extends BaseActivity  {
         } else if (!isMeFragment && null != meFrag) {
             transaction.hide(meFrag);
         }
+        transaction.commit();
     }
 
 }
