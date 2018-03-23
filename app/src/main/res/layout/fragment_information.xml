@@ -35,42 +35,281 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="155dp"
+                android:layout_height="@dimen/info_item_height"
                 android:layout_marginLeft="25dp"
                 android:layout_marginRight="25dp"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal">
                 <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="155dp"
+                    android:layout_height="@dimen/info_item_height"
                     android:layout_weight="1"
-                    android:background="@color/app_yellow"
                     >
                     <RelativeLayout
-                        android:id="@+id/view"
+                        android:id="@+id/view_not_finish_person"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_white"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top1"
+                            android:src="@drawable/data_11"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_yellow"
+                            android:textSize="14sp"
+                            android:text="@string/person_info"
+                            />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/view_finish_person"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_yellow"
+                        >
                         <ImageView
                             style="@style/image_wrap_layout"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp"
                             android:src="@drawable/data_1"
                             />
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top4"
+                            android:src="@drawable/selected"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_white"
+                            android:textSize="14sp"
+                            android:text="@string/person_info"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top3"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_blue"
+                            android:textSize="12sp"
+                            android:text="@string/hailed_auth"
+                            />
                     </RelativeLayout>
                 </FrameLayout>
                 <View
                     android:layout_width="10dp"
                     android:layout_height="wrap_content"/>
-                <RelativeLayout
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="155dp"
+                    android:layout_height="@dimen/info_item_height"
                     android:layout_weight="1"
-                    android:background="@color/app_yellow"
                     >
-                </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/view_not_finish_employ"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_white"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top1"
+                            android:src="@drawable/data_21"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_yellow"
+                            android:textSize="14sp"
+                            android:text="@string/employ_info"
+                            />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/view_finish_employ"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_yellow"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/data_2"
+                            />
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top4"
+                            android:src="@drawable/selected"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_white"
+                            android:textSize="14sp"
+                            android:text="@string/employ_info"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top3"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_blue"
+                            android:textSize="12sp"
+                            android:text="@string/hailed_auth"
+                            />
+                    </RelativeLayout>
+                </FrameLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/info_item_height"
+                    android:layout_weight="1"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/view_not_finish_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_white"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top1"
+                            android:src="@drawable/data_31"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_yellow"
+                            android:textSize="14sp"
+                            android:text="@string/contact_info"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/view_finish_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_yellow"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/data_3"
+                            />
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top4"
+                            android:src="@drawable/selected"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_white"
+                            android:textSize="14sp"
+                            android:text="@string/contact_info"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top3"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_blue"
+                            android:textSize="12sp"
+                            android:text="@string/hailed_auth"
+                            />
+                    </RelativeLayout>
+                </FrameLayout>
+                <View
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"/>
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/info_item_height"
+                    android:layout_weight="1"
+                    >
+                    <RelativeLayout
+                        android:id="@+id/view_not_finish_upload_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_white"
+                        android:visibility="gone"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top1"
+                            android:src="@drawable/data_41"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_yellow"
+                            android:textSize="14sp"
+                            android:text="@string/upload_photo"
+                            />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:id="@+id/view_finish_upload_photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_round_20_yellow"
+                        >
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="30dp"
+                            android:src="@drawable/data_4"
+                            />
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/info_item_top4"
+                            android:src="@drawable/selected"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top2"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_white"
+                            android:textSize="14sp"
+                            android:text="@string/upload_photo"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="@dimen/info_item_top3"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/app_blue"
+                            android:textSize="12sp"
+                            android:text="@string/hailed_auth"
+                            />
+                    </RelativeLayout>
+                </FrameLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 </LinearLayout>

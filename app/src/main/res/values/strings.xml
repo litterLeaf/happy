@@ -3,17 +3,24 @@
     <string name="test">test</string>
     <string name="test_desc">descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</string>
 
-    <string name="auth">otentikasi</string>
+
     <string name="how_to_borrow">Cara Meminjam</string>
     <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
+    <string name="data_integrity">Integritas Data</string><!--数据完整性-->
     <string name="loan_info">Info Pinjaman</string>
+    <string name="person_info">Informasi Pribadi</string>
+    <string name="employ_info">Informasi Pekerjaan</string>
+    <string name="contact_info">Info Kontak</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
     <string name="quit_login">keluar</string>
+    <string name="submit">Kirim</string>
     <string name="login_logout">Login/Daftar</string>
     <string name="textview_online_QA">Livechat</string>
     <string name="name">Nama</string>
+    <string name="auth">otentikasi</string>
+    <string name="hailed_auth">Otentikasi berhail</string><!--受到认证-->
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
     <string name="textview_loan">Prijam</string>
@@ -27,6 +34,7 @@
     <string name="about_happy_cash">Tentang Happy Cash</string>
     <string name="telephone">Telepon</string>
     <string name="invite_friends">Undang Teman</string>
+    <string name="upload_photo">Upload Foto</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
@@ -38,4 +46,10 @@
     <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
+
+    <string name="about_desc">Happy Cash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
+Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
+Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
+Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
+Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
 </resources>

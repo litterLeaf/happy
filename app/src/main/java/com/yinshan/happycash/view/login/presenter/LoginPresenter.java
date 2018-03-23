@@ -3,7 +3,17 @@ package com.yinshan.happycash.view.login.presenter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.yinshan.happycash.application.AppContext;
+import com.yinshan.happycash.network.api.UserApi;
+import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.network.common.network.RetrofitClient;
+import com.yinshan.happycash.utils.MachineUtils;
 import com.yinshan.happycash.view.login.contract.LoginContract;
+import com.yinshan.happycash.view.login.model.LoginTokenResponse;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DefaultObserver;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by admin on 2018/1/31.
@@ -12,6 +22,7 @@ import com.yinshan.happycash.view.login.contract.LoginContract;
 public class LoginPresenter implements LoginContract.Presenter {
     private Context context;
     private LoginContract.View mvpView;
+    final UserApi api = RxHttpUtils.getInstance().createApi(UserApi.class);
 
     public LoginPresenter(Context ctx) {
         //construct
@@ -29,7 +40,33 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void signIn(String userName, String password) {
+    public void signIn(String smsCode, String captchaSid, String captcha, String mobile, String inviteCode, String andridId) {
+        api.login(smsCode,
+                captchaSid,
+                captcha,
+                mobile,
+                inviteCode,
+                andridId,
+                MachineUtils.getIPAddress(AppContext.getContext()),
+                ""
+                )
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DefaultObserver<LoginTokenResponse>() {
+                    @Override
+                    public void onNext(LoginTokenResponse loginTokenResponse) {
 
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
