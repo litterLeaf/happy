@@ -309,11 +309,25 @@
                     </RelativeLayout>
                 </FrameLayout>
             </LinearLayout>
-            <com.yinshan.happycash.widget.userdefined.ProfilProgressView
+            <RelativeLayout
                 android:layout_width="66dp"
                 android:layout_height="66dp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="26dp"/>
+                android:layout_marginTop="26dp"
+                >
+                <com.yinshan.happycash.widget.userdefined.ProfilProgressView
+                    android:id="@+id/progressView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/progressText"
+                    style="@style/text_wrap_layout"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/app_blue"
+                    />
+            </RelativeLayout>
+
         </LinearLayout>
     </ScrollView>
 

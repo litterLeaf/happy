@@ -18,7 +18,7 @@ import com.yinshan.happycash.R;
 public class ProfilProgressView extends View {
 
     Context mContext;
-
+    float currentProgress = 0;
 
     public ProfilProgressView(Context context) {
         super(context);
@@ -33,6 +33,10 @@ public class ProfilProgressView extends View {
     public ProfilProgressView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mContext = context;
+    }
+
+    public void setCurrentProgress(float currentProgress) {
+        this.currentProgress = currentProgress;
     }
 
     @Override
@@ -51,6 +55,13 @@ public class ProfilProgressView extends View {
         arcPaint.setStrokeWidth(arcWidth);
 
         RectF oval = new RectF(arcWidth,arcWidth,getWidth()-arcWidth,getHeight()-arcWidth);
-        canvas.drawArc(oval,360,440,false,arcPaint);
+        if(currentProgress<=0.5){
+            canvas.drawArc(oval,180,currentProgress*360,false,arcPaint);
+        }else{
+            canvas.drawArc(oval,180,180,false,arcPaint);
+            canvas.drawArc(oval,0, (float) (0+(currentProgress-0.5)*360),false,arcPaint);
+        }
+
+
     }
 }
