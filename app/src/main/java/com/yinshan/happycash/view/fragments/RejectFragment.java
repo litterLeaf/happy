@@ -6,7 +6,7 @@ import com.yinshan.happycash.framework.BaseFragment;
  * Created by admin on 2018/3/20.
  */
 
-public class LoanInProcessFragment extends BaseFragment {
+public class RejectFragment extends BaseFragment {
     @Override
     protected void initView() {
 

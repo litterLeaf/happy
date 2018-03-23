@@ -33,4 +33,13 @@ public interface SPKeyUtils {
      * 服务器相应时间
      */
     String DATE = "date";
+
+    String UNLOAN_FRAG="unLoanFrag";
+    String LOANING_FRAG="loaningFrag";
+    String PROCESS_FRAG="processFrag";
+    String BUILDUP_FRAG="buildUpFrag";
+    String REJECT_FRAG="rejectFrag";
+    String REPAYMENT_FRAG = "repayment_fragment";
+    String CERTIFICATION_TAB="certificationFrag";
+    String ME_TAB="meFrag";
 }
