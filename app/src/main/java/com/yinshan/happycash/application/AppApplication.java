@@ -45,6 +45,7 @@ public class AppApplication extends MultiDexApplication{
     }
 
     private void init() {
+        AppContext.init(this);
 
         //设置访问网络配置
         AppContext.setAppEnvConfig(AppEnvConfig.indexOf(AppNetConfig.RUN_NET_CONFIG));
