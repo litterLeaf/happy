@@ -1,7 +1,6 @@
 package com.yinshan.happycash.view.login.contract;
 
 import com.yinshan.happycash.framework.MvpBasePresenter;
-import com.yinshan.happycash.framework.MvpBaseView;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 
 /**
@@ -30,7 +29,7 @@ import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 
 public class LoginContract {
 
-   public  interface View extends MvpBaseView{
+   public  interface View {
         void signInSuccess(LoginTokenResponse tokenResponse);
 
         void signInError(String message);
