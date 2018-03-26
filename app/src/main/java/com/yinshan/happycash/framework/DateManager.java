@@ -2,6 +2,7 @@ package com.yinshan.happycash.framework;
 
 
 import com.yinshan.happycash.application.AppApplication;
+import com.yinshan.happycash.network.common.RxHttpUtils;
 
 import java.util.HashMap;
 
@@ -11,6 +12,7 @@ import java.util.HashMap;
 
 public class DateManager {
     public static String MOBILE_CACHE_KEY        = "mobile_cache_key";
+    private static DateManager instance;
     ACache cache;
     private HashMap<String,Object> mTempStatus;
 
@@ -18,37 +20,49 @@ public class DateManager {
         cache = ACache.get(AppApplication.appContext);
         mTempStatus = new HashMap<>();
     }
-
     public static DateManager getInstance() {
-        return DateManager.Holder.INSTANCE;
+        if (instance == null) {
+            synchronized (RxHttpUtils.class) {
+                if (instance == null) {
+                    instance = new DateManager();
+                }
+            }
+        }
+        return instance;
     }
-    private static class Holder{
-        private static final DateManager INSTANCE = new DateManager();
+
+
+
+    public static void putToCache(String key,Object obj){
+        instance.storeMessage(key,obj);
     }
-    public static void putMessage(String key,Object obj){
-        Holder.INSTANCE.storeMessage(key,obj);
+    public static void removeToCache(String key){
+        instance.getAndRemove(key);
     }
-    public static void putMessageToFile(String key,String obj){
-        Holder.INSTANCE.cache.put(key,obj);
+    public static void putToFile(String key,String obj){
+        instance.cache.put(key,obj);
     }
-    public static String checkoutMessageFromFile(String key){
-        return Holder.INSTANCE.cache.getAsString(key);
+
+    public static void removeToFile(String key){
+        instance.cache.remove(key);
     }
+
     public static Object checkoutMessage(String key){
-        return Holder.INSTANCE.getMessage(key);
+        return instance.getMessage(key);
     }
 
     public static Object removeMessage(String key){
-        return Holder.INSTANCE.getAndRemove(key);
+        return instance.getAndRemove(key);
     }
     public void setMobile(String mobile){
         cache.put(MOBILE_CACHE_KEY, mobile);
     }
+
     public String getMobile(){
         return cache.getAsString(MOBILE_CACHE_KEY);
     }
-    private synchronized void storeMessage(String key,Object message){
 
+    private synchronized void storeMessage(String key,Object message){
         if (key != null) {
             mTempStatus.put(key, message);
         }
@@ -70,14 +84,12 @@ public class DateManager {
      * @param key
      * @return
      */
-    public synchronized Object getAndRemove(String key){
+    private synchronized Object getAndRemove(String key){
         if (key == null) {
             return null;
         }
         return mTempStatus.remove(key);
     }
 
-    public static void removeMessageFromFile(String username) {
-        Holder.INSTANCE.cache.remove(username);
-    }
+
 }
