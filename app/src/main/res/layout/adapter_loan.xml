@@ -26,6 +26,7 @@
             />
         <!--no-->
         <TextView
+            android:id="@+id/id"
             style="@style/text_wrap_layout"
             android:textColor="@color/text_blue"
             android:textSize="@dimen/text_normal"
@@ -52,6 +53,7 @@
             />
         <!--loan count-->
         <TextView
+            android:id="@+id/money"
             style="@style/text_wrap_layout"
             android:textColor="#9b9b9b"
             android:textSize="12sp"
@@ -69,6 +71,7 @@
             />
         <!--time_period-->
         <TextView
+            android:id="@+id/period"
             style="@style/text_wrap_layout"
             android:textColor="#9b9b9b"
             android:textSize="12sp"
@@ -87,6 +90,7 @@
             />
         <!--status-->
         <TextView
+            android:id="@+id/status"
             style="@style/text_wrap_layout"
             android:textColor="#9b9b9b"
             android:textSize="12sp"

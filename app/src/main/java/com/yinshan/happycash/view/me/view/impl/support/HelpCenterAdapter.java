@@ -8,7 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.view.me.domain.NameDescData;
+import com.yinshan.happycash.view.me.model.NameDescData;
 
 import java.util.ArrayList;
 import java.util.List;

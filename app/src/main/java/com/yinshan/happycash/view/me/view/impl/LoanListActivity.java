@@ -11,8 +11,13 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
+import com.yinshan.happycash.view.me.model.LoanItem;
+import com.yinshan.happycash.view.me.presenter.LoanListPresenter;
+import com.yinshan.happycash.view.me.view.ILoanListView;
 import com.yinshan.happycash.view.me.view.impl.support.LoanAdapter;
 import com.yinshan.happycash.view.me.view.impl.support.LoanDetailAdapter;
+
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -20,11 +25,13 @@ import butterknife.BindView;
  * Created by huxin on 2018/3/14.
  */
 
-public class LoanListActivity extends BaseSingleNoScrollActivity{
+public class LoanListActivity extends BaseSingleNoScrollActivity implements ILoanListView{
 
     @BindView(R.id.listView)
     ListView mListView;
     LoanAdapter mLoanAdapter;
+
+    LoanListPresenter mPresenter;
 
     @Override
     protected String bindTitle() {
@@ -47,5 +54,13 @@ public class LoanListActivity extends BaseSingleNoScrollActivity{
                 startActivity(intent);
             }
         });
+        mPresenter = new LoanListPresenter(this,this);
+        mPresenter.getList();
+    }
+
+    @Override
+    public void showList(List<LoanItem> loanList) {
+        mLoanAdapter.addList(loanList);
+        mLoanAdapter.notifyDataSetChanged();
     }
 }

@@ -47,6 +47,10 @@
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
 
+    <string name="years">tahun</string>
+    <string name="months">bulan</string>
+    <string name="days"> Hari</string>
+
     <string name="about_desc">Happy Cash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
 Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
 Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
