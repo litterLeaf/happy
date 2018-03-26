@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.me.domain;
+package com.yinshan.happycash.view.me.model;
 
 /**
  * Created by huxin on 2018/3/22.
