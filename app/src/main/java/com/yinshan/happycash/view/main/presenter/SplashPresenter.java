@@ -5,8 +5,10 @@ import android.support.annotation.NonNull;
 
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
-import com.yinshan.happycash.network.common.base.RxSchedulers;
+import com.yinshan.happycash.network.common.base.IModel;
+import com.yinshan.happycash.network.common.base.RxTransformer;
 import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.main.SplashActivity;
@@ -44,15 +46,21 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
-    public void getLastLoanAppBean(String userName, String password) {
+    public void getLastLoanAppBean(String token) {
         RxHttpUtils.getInstance().createApi(UserApi.class)
-                .getLatestLoanApp("")
-               .compose(RxSchedulers.io_main())
+                .getLatestLoanApp(token)
+                .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<LastLoanAppBean>(new SoftReference(context)){
                     @Override
                     public void onNext(LastLoanAppBean value) {
                         super.onNext(value);
-                        ToastUtils.showShort("success");
+                        mvpView.getStatusSuccess(value);
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        mvpView.getStatusError(ex.getDisplayMessage());
                     }
                 });
     }

@@ -9,6 +9,7 @@ import com.alibaba.wxlib.util.SysUtil;
 import com.yinshan.happycash.config.AppEnvConfig;
 import com.yinshan.happycash.config.AppNetConfig;
 import com.yinshan.happycash.config.AppSdkConfig;
+import com.yinshan.happycash.widget.logger.LogUtil;
 
 /**
  * Created by huxin on 2018/3/2.
@@ -53,7 +54,7 @@ public class AppApplication extends MultiDexApplication{
         CrashHandler crashHandler = CrashHandler.getInstance();
         crashHandler.init(this);
         appContext = this.getApplicationContext();
-
+        LogUtil.getInstance().init(this);
         //内存泄漏检测
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //

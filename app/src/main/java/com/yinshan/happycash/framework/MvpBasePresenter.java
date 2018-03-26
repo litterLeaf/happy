@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
  * Every presenter in the app must either implement this interface or extend BasePresenter
  * indicating the MvpView type thatnts to be attached with.
  */
-public interface MvpBasePresenter<T extends MvpBaseView> {
+public interface MvpBasePresenter<T> {
     void attachView(@NonNull T mvpView);
 
     void detachView();

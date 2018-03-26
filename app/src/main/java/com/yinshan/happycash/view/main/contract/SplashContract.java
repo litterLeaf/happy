@@ -1,7 +1,6 @@
 package com.yinshan.happycash.view.main.contract;
 
 import com.yinshan.happycash.framework.MvpBasePresenter;
-import com.yinshan.happycash.framework.MvpBaseView;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 /**
@@ -30,13 +29,13 @@ import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 public class SplashContract {
 
-   public  interface View extends MvpBaseView{
+   public  interface View{
         void getStatusSuccess(LastLoanAppBean latestLoanAppBean);
 
         void getStatusError(String message);
     }
 
     public interface Presenter extends MvpBasePresenter<View>{
-        void getLastLoanAppBean(String userName, String password);
+        void getLastLoanAppBean(String token);
     }
 }
