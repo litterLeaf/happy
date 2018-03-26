@@ -93,9 +93,9 @@ public class SplashActivity extends BaseActivity implements SplashContract.View{
     public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
         mLatestLoanAppBean = latestLoanAppBean;
         DateManager dateManager = DateManager.getInstance();
-//        if(latestLoanAppBean ==null){
+        if(latestLoanAppBean ==null){
 //            dateManager.
-//        }
+        }
         Log.e("song","splash"+latestLoanAppBean.toString());
 
 
