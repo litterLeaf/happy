@@ -13,7 +13,7 @@ public interface MvpBaseView {
      * @param <T> T
      * @return
      */
-    <T> ObservableTransformer<T, T> bindToLifecycle();
+//    <T> ObservableTransformer<T, T> bindToLifecycle();
 
 //    /**
 //     * 由于无法区分是fragment的event还是activity的暂时隐藏

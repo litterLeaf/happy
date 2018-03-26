@@ -14,7 +14,9 @@ import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.utils.ToastUtils;
+import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.presenter.SplashPresenter;
 
 import java.lang.ref.SoftReference;
 
@@ -27,11 +29,12 @@ import io.reactivex.schedulers.Schedulers;
  * Created by admin on 2018/3/20.
  */
 
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends AppCompatActivity implements SplashContract.View{
     private Long              mStartTime;
     private Handler           mHandler;
     private boolean canFinish= true;
     private boolean isVisible = true;
+    private SplashContract.Presenter splashPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,7 +46,8 @@ public class SplashActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
-
+        splashPresenter = new SplashPresenter(this);
+        splashPresenter.attachView(this);
     }
 
     private void jumpToMainActivity(Long currentTime) {
@@ -64,8 +68,14 @@ public class SplashActivity extends AppCompatActivity {
         }, delayTime);
     }
 
-    public void getLatestLoan() {
+
+    @Override
+    public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
 
     }
 
+    @Override
+    public void getStatusError(String message) {
+
+    }
 }

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.BaseObserver;
+import com.yinshan.happycash.network.common.base.RxSchedulers;
 import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.main.SplashActivity;
@@ -46,15 +47,7 @@ public class SplashPresenter implements SplashContract.Presenter {
     public void getLastLoanAppBean(String userName, String password) {
         RxHttpUtils.getInstance().createApi(UserApi.class)
                 .getLatestLoanApp("")
-                .subscribeOn(Schedulers.io())
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    @Override
-                    public void accept(Disposable disposable) throws Exception {
-
-                    }
-                })
-                .subscribeOn(AndroidSchedulers.mainThread())
-                .observeOn(AndroidSchedulers.mainThread())
+               .compose(RxSchedulers.io_main())
                 .subscribe(new BaseObserver<LastLoanAppBean>(new SoftReference(context)){
                     @Override
                     public void onNext(LastLoanAppBean value) {
