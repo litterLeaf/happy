@@ -105,15 +105,6 @@ public abstract class BaseActivity extends RxSupportActivity {
         disposables2Stop = new CompositeDisposable();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if (disposables2Stop == null) {
-            throw new IllegalStateException("onStop called multiple times or onStart not called");
-        }
-        disposables2Stop.dispose();
-        disposables2Stop = null;
-    }
 
     @CallSuper
     @Override
@@ -121,11 +112,6 @@ public abstract class BaseActivity extends RxSupportActivity {
         super.onDestroy();
         if (unbinder != null)
             unbinder.unbind();
-        if (disposables2Destroy == null) {
-            throw new IllegalStateException( "onDestroy called multiple times or onCreate not called");
-        }
-        disposables2Destroy.dispose();
-        disposables2Destroy = null;
     }
     @Override
     public void finish() {
@@ -168,43 +154,4 @@ public abstract class BaseActivity extends RxSupportActivity {
         startActivity(intent);
     }
 
-
-    private <T> Observable<T> createData(final T t) {
-        return Observable.create(subscriber -> {
-            try {
-                subscriber.onNext(t);
-                subscriber.onComplete();
-            } catch (Exception e) {
-                subscriber.onError(e);
-            }
-        });
-    }
-
-    public boolean addRxStop(Disposable disposable) {
-        if (disposables2Stop == null) {
-            throw new IllegalStateException("addUtilStop should be called between onStart and onStop");
-        }
-        disposables2Stop.add(disposable);
-        return true;
-    }
-
-    public boolean addRxDestroy(Disposable disposable) {
-        if (disposables2Destroy == null) {
-            throw new IllegalStateException("addUtilDestroy should be called between onCreate and onDestroy");
-        }
-        disposables2Destroy.add(disposable);
-        return true;
-    }
-
-    public void remove(Disposable disposable) {
-        if (disposables2Stop == null && disposables2Destroy == null) {
-            throw new IllegalStateException("remove should not be called after onDestroy");
-        }
-        if (disposables2Stop != null) {
-            disposables2Stop.remove(disposable);
-        }
-        if (disposables2Destroy != null) {
-            disposables2Destroy.remove(disposable);
-        }
-    }
 }
