@@ -12,14 +12,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.TokenManager;
-import com.yinshan.happycash.network.api.UserApi;
-import com.yinshan.happycash.network.common.RxHttpUtils;
-import com.yinshan.happycash.network.common.base.RxTransformer;
-import com.yinshan.happycash.utils.FieldParams;
-import com.yinshan.happycash.utils.LoanStatus;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.presenter.SplashPresenter;
@@ -77,7 +71,6 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         mLatestLoanAppBean = latestLoanAppBean;
         DateManager dateManager = DateManager.getInstance();
         if(latestLoanAppBean ==null){
-//            dateManager.
         }
         Log.e("song","splash"+latestLoanAppBean.toString());
 

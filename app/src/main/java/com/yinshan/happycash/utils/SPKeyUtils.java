@@ -33,6 +33,7 @@ public interface SPKeyUtils {
      * 服务器相应时间
      */
     String DATE = "date";
+    String STATUES = "loan_status";
 
     String UNLOAN_FRAG="unLoanFrag";
     String LOANING_FRAG="loaningFrag";

@@ -9,7 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.utils.FieldParams;
+import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.utils.TimeManager;
 import com.yinshan.happycash.view.me.model.LoanItem;
@@ -79,7 +79,7 @@ public class LoanAdapter extends BaseAdapter{
 //        }else{
 //            holder.status.setTextColor(mContext.getResources().getColor(R.color.color_red));
 //        }
-        if (TextUtils.equals(FieldParams.LoanStatus.WITHDRAWN,status)) {
+        if (TextUtils.equals(ServiceLoanStatus.WITHDRAWN,status)) {
             holder.status.setAllCaps(true);
             holder.status.setText(R.string.text_cancel);
         }else {
