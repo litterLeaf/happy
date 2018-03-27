@@ -11,7 +11,7 @@ import java.util.HashMap;
  */
 
 public class DateManager {
-    public static String MOBILE_CACHE_KEY        = "mobile_cache_key";
+    private  String MOBILE_CACHE_KEY        = "mobile_cache_key";
     private static DateManager instance;
     ACache cache;
     private HashMap<String,Object> mTempStatus;

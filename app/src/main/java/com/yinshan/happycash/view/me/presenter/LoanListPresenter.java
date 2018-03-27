@@ -7,7 +7,7 @@ import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
-import com.yinshan.happycash.network.common.base.RxSchedulers;
+import com.yinshan.happycash.network.common.base.RxTransformer;
 import com.yinshan.happycash.view.me.model.LoanItem;
 import com.yinshan.happycash.view.me.view.ILoanListView;
 
@@ -31,7 +31,7 @@ public class LoanListPresenter {
     public void getList(){
         RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .getLoanList("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjM2MTExNTl9.m30aWJmeJfD_jRgDRstYC8O5aS97Z4YvPGAsSMh5a7bzdFIuqQIWtTzNomTSl7M-DqvT6F8CkZMlVdKxygszbA")
-                .compose(RxSchedulers.io_main())
+                .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<List<LoanItem>>(new SoftReference(mContext)){
                     @Override
                     public void onNext(List<LoanItem> value) {

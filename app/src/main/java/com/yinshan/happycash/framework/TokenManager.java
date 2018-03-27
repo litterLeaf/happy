@@ -3,7 +3,6 @@ package com.yinshan.happycash.framework;
 import com.yinshan.happycash.application.AppApplication;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 
-import java.util.HashMap;
 
 /**
  * Created by admin on 2018/3/26.
@@ -28,9 +27,7 @@ public class TokenManager {
         }
         return instance;
     }
-    private static class Holder{
-        private static final TokenManager INSTANCE = new TokenManager();
-    }
+
     public boolean hasLogin(){
         return getToken() != null&&!isExpired;
     }

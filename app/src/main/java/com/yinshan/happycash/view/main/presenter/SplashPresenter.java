@@ -7,20 +7,12 @@ import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
-import com.yinshan.happycash.network.common.base.IModel;
 import com.yinshan.happycash.network.common.base.RxTransformer;
-import com.yinshan.happycash.utils.ToastUtils;
-import com.yinshan.happycash.view.login.contract.LoginContract;
-import com.yinshan.happycash.view.main.SplashActivity;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 import java.lang.ref.SoftReference;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by admin on 2018/1/31.
