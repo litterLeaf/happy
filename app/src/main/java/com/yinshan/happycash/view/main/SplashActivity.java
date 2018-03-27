@@ -28,7 +28,7 @@ import com.yinshan.happycash.view.main.presenter.SplashPresenter;
  * Created by admin on 2018/3/20.
  */
 
-public class SplashActivity extends BaseActivity implements SplashContract.View{
+public class SplashActivity extends AppCompatActivity implements SplashContract.View{
     private Long              mStartTime;
     private Handler           mHandler;
     private boolean canFinish= true;
@@ -44,10 +44,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View{
         jumpToMainActivity(mStartTime);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-    }
+        setContentView(R.layout.activity_splash);
 
-    @Override
-    protected void initView(View view, Bundle savedInstanceState) {
         splashPresenter = new SplashPresenter(this);
         splashPresenter.attachView(this);
         if (!TokenManager.getInstance().hasLogin()) {
@@ -56,21 +54,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.View{
         } else {
             splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
         }
-    }
-
-    @Override
-    protected int bindLayout() {
-        return R.layout.activity_splash;
-    }
-
-    @Override
-    protected void secondLayout() {
-
-    }
-
-    @Override
-    protected void secondInit() {
-
     }
 
     private void jumpToMainActivity(Long currentTime) {
