@@ -32,26 +32,25 @@ public class DateManager {
     }
 
 
-
-    public static void putToCache(String key,Object obj){
+    public  void putToCache(String key,Object obj){
         instance.storeMessage(key,obj);
     }
-    public static void removeToCache(String key){
+    public  void removeToCache(String key){
         instance.getAndRemove(key);
     }
-    public static void putToFile(String key,String obj){
+    public  void putToFile(String key,String obj){
         instance.cache.put(key,obj);
     }
 
-    public static void removeToFile(String key){
+    public  void removeToFile(String key){
         instance.cache.remove(key);
     }
 
-    public static Object checkoutMessage(String key){
+    public  Object checkoutMessage(String key){
         return instance.getMessage(key);
     }
 
-    public static Object removeMessage(String key){
+    public  Object removeMessage(String key){
         return instance.getAndRemove(key);
     }
     public void setMobile(String mobile){

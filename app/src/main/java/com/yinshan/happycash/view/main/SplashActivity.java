@@ -14,6 +14,9 @@ import android.view.WindowManager;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.utils.AppLoanStatus;
+import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.presenter.SplashPresenter;
@@ -71,10 +74,14 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         mLatestLoanAppBean = latestLoanAppBean;
         DateManager dateManager = DateManager.getInstance();
         if(latestLoanAppBean ==null){
+            if(!TokenManager.getInstance().hasLogin()){
+                dateManager.putToCache(SPKeyUtils.STATUES, AppLoanStatus.UNLOAN);
+            }
+        }else {
+            dateManager.putToCache(SPKeyUtils.LOANAPPBEAN,latestLoanAppBean);
+            dateManager.putToCache(SPKeyUtils.STATUES,latestLoanAppBean.getStatus());
+            StatusManagementUtils.loanStatusClassify(latestLoanAppBean);
         }
-        Log.e("song","splash"+latestLoanAppBean.toString());
-
-
         canFinish = true;
         if (SplashActivity.this.isVisible) {
             jumpToMainActivity(SystemClock.currentThreadTimeMillis());

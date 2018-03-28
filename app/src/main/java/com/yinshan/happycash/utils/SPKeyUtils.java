@@ -34,7 +34,7 @@ public interface SPKeyUtils {
      */
     String DATE = "date";
     String STATUES = "loan_status";
-
+    String LOANAPPBEAN = "loanAppBean";
     String UNLOAN_FRAG="unLoanFrag";
     String LOANING_FRAG="loaningFrag";
     String PROCESS_FRAG="processFrag";
