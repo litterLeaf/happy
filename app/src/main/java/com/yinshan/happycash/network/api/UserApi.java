@@ -58,6 +58,6 @@ public interface UserApi {
     @POST("auth/login/sms")
     Observable<ResponseBody> sendSms(@Field("mobile") String mobile);
 
-    @GET("loanapp/latest")
+    @GET("loanapps/latest")
     Observable<LastLoanAppBean> getLatestLoanApp(@Header("X-AUTH-TOKEN") String token);
 }
