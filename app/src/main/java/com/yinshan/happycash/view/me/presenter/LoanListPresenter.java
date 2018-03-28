@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.me.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
@@ -30,7 +31,7 @@ public class LoanListPresenter {
 
     public void getList(){
         RxHttpUtils.getInstance().createApi(LoanApi.class)
-                .getLoanList("eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjM2MTExNTl9.m30aWJmeJfD_jRgDRstYC8O5aS97Z4YvPGAsSMh5a7bzdFIuqQIWtTzNomTSl7M-DqvT6F8CkZMlVdKxygszbA")
+                .getLoanList(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<List<LoanItem>>(new SoftReference(mContext)){
                     @Override

@@ -19,7 +19,7 @@ import com.yinshan.happycash.view.fragments.LoanInProcessFragment;
 import com.yinshan.happycash.view.fragments.LoaningFragment;
 import com.yinshan.happycash.view.fragments.RejectFragment;
 import com.yinshan.happycash.view.fragments.RepaymentFragment;
-import com.yinshan.happycash.view.me.MeFragment;
+import com.yinshan.happycash.view.me.view.impl.MeFragment;
 import com.yinshan.happycash.view.unloan.UnLoanFragment;
 import com.yinshan.happycash.widget.DataGenerator;
 
