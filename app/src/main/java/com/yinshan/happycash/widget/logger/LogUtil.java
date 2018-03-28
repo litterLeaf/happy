@@ -12,6 +12,7 @@ public class LogUtil {
     private String defaultTag = "";
 
     public void init(Context ctx) {
+        baseLogStrategy = new LoggerLogStrategy();
         if (DebugUtil.isApkInDebug(ctx)) {
             LOG = true;
         } else {
