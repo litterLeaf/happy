@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.me;
+package com.yinshan.happycash.view.me.view.impl;
 
 import android.content.Intent;
 import android.view.View;

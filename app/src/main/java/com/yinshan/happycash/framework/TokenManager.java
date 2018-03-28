@@ -33,7 +33,8 @@ public class TokenManager {
     }
 
     public String getToken() {
-        return cache.getAsString(TOKEN_CACHE_KEY);
+        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjM2MTExNTl9.m30aWJmeJfD_jRgDRstYC8O5aS97Z4YvPGAsSMh5a7bzdFIuqQIWtTzNomTSl7M-DqvT6F8CkZMlVdKxygszbA";
+        //return cache.getAsString(TOKEN_CACHE_KEY);
     }
 
     public void setToken(String token, int time){

@@ -52,7 +52,7 @@ public class SplashPresenter implements SplashContract.Presenter {
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
-                        mvpView.getStatusError(ex.getDisplayMessage());
+//                        mvpView.getStatusError(ex.getDisplayMessage());
                     }
                 });
     }

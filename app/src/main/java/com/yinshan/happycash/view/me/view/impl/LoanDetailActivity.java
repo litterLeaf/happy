@@ -4,6 +4,7 @@ import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.view.me.view.ILoanDetailView;
 import com.yinshan.happycash.view.me.view.impl.support.LoanDetailAdapter;
 
 import butterknife.BindView;
@@ -12,7 +13,7 @@ import butterknife.BindView;
  * Created by huxin on 2018/3/16.
  */
 
-public class LoanDetailActivity extends BaseSingleActivity{
+public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetailView{
 
     @BindView(R.id.listView)
     ListView mListView;
@@ -33,6 +34,9 @@ public class LoanDetailActivity extends BaseSingleActivity{
         lowestBg.setBackgroundColor(getResources().getColor(R.color.app_yellow));
         mAdapter = new LoanDetailAdapter();
         mListView.setAdapter(mAdapter);
+
+
+
         setListViewHeightBasedOnChildren(mListView);
     }
 }
