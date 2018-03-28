@@ -20,6 +20,7 @@
             android:minHeight="16dp"
             >
             <TextView
+                android:id="@+id/name"
                 style="@style/text_wrap_layout"
                 android:layout_centerVertical="true"
                 android:textColor="@color/text_red"
@@ -34,6 +35,7 @@
             android:minHeight="16dp"
             >
             <TextView
+                android:id="@+id/desc"
                 style="@style/text_wrap_layout"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"

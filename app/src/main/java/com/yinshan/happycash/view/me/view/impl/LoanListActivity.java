@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.config.inner.AppInnerConfig;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
@@ -51,6 +52,7 @@ public class LoanListActivity extends BaseSingleNoScrollActivity implements ILoa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(LoanListActivity.this, LoanDetailActivity.class);
+                intent.putExtra(AppInnerConfig.LONG,((LoanItem)mLoanAdapter.getItem(position)).getLoanAppId());
                 startActivity(intent);
             }
         });
