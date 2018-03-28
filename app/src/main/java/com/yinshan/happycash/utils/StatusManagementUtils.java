@@ -8,32 +8,32 @@ import com.yinshan.happycash.framework.BaseLoanAppBean;
 
 public class StatusManagementUtils {
 
-    private String mTempStatus=null;
+    private static String mTempStatus=null;
 
-    private String showLoanInfoFragment(BaseLoanAppBean bean) {
+    public static String loanStatusClassify(BaseLoanAppBean bean) {
         String status = bean.getStatus();
         if ( ServiceLoanStatus.OVERDUE.equals(status)) {
-            mTempStatus = ServiceLoanStatus.OVERDUE;
+            mTempStatus = AppLoanStatus.OVERDUE;
         }  else if (ServiceLoanStatus.SUBMITTED.equals(status)) {
-            mTempStatus = ServiceLoanStatus.UNLOAN;
+            mTempStatus = AppLoanStatus.UNLOAN;
         } else if(ServiceLoanStatus.SUPPLEMENT.equals(status)){
-            mTempStatus = ServiceLoanStatus.SUPPLEMENT;
+            mTempStatus = AppLoanStatus.REVIEW_SUPPLEMENT;
         } else if(ServiceLoanStatus.PRE_REVIEW.equals(status)){
-            mTempStatus = ServiceLoanStatus.PRE_REVIEW;
+            mTempStatus = AppLoanStatus.REVIEW;
         } else if(ServiceLoanStatus.FIRST_REVIEW.equals(status)){
-            mTempStatus = ServiceLoanStatus.FIRST_REVIEW;
+            mTempStatus = AppLoanStatus.REVIEW;
         } else if(ServiceLoanStatus.SECOND_REVIEW.equals(status)){
-            mTempStatus = ServiceLoanStatus.SECOND_REVIEW;
+            mTempStatus = AppLoanStatus.REVIEW;
         } else if(ServiceLoanStatus.FINAL_REVIEW.equals(status)){
-            mTempStatus = ServiceLoanStatus.FINAL_REVIEW;
+            mTempStatus = AppLoanStatus.REVIEW;
         }else if(ServiceLoanStatus.CURRENT.equals(status)){
-            mTempStatus = ServiceLoanStatus.CURRENT;
+            mTempStatus = AppLoanStatus.REPAYMENT;
         }else if(ServiceLoanStatus.PAID_OFF.equals(status)){
-            mTempStatus = ServiceLoanStatus.PAID_OFF;
+            mTempStatus = AppLoanStatus.UNLOAN;
         } else if(ServiceLoanStatus.CLOSED.equals(status)){
-            mTempStatus = ServiceLoanStatus.CLOSED;
+            mTempStatus = AppLoanStatus.UNLOAN;
         } else if(ServiceLoanStatus.REJECTED.equals(status)){
-            mTempStatus = ServiceLoanStatus.REJECTED;
+            mTempStatus = AppLoanStatus.UNLOAN;
         }
         return mTempStatus;
     }

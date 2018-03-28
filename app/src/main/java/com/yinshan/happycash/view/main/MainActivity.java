@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
@@ -122,10 +123,12 @@ public class MainActivity extends BaseActivity  {
     private void onTabItemSelected(int position) {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
+        DateManager  dateManager= DateManager.getInstance();
+        String status =(String)dateManager.getMessage(SPKeyUtils.STATUES);
         switch (position){
             case 0:
-                manageFragament(true,false,false,false,false,
-                        false,false,false);
+//                manageFragament(true,false,false,false,false,
+//                        false,false,false);
                 break;
             case 1:
                 manageFragament(false,true,false,false,false,
