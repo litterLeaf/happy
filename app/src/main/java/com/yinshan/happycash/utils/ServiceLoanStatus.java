@@ -5,7 +5,6 @@ package com.yinshan.happycash.utils;
  */
 
 public interface ServiceLoanStatus {
-      String UNLOAN = "UNLOAN";
       String SUBMITTED = "SUBMITTED";
       String SUPPLEMENT = "SUPPLEMENT";
       String CURRENT   = "CURRENT";

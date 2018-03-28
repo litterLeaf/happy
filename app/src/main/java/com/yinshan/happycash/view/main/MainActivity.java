@@ -127,8 +127,9 @@ public class MainActivity extends BaseActivity  {
         String status =(String)dateManager.getMessage(SPKeyUtils.STATUES);
         switch (position){
             case 0:
-//                manageFragament(true,false,false,false,false,
-//                        false,false,false);
+
+                manageFragament(true,false,false,false,false,
+                        false,false,false);
                 break;
             case 1:
                 manageFragament(false,true,false,false,false,
@@ -145,6 +146,19 @@ public class MainActivity extends BaseActivity  {
         }
 
     }
+
+    /**
+     * Installation failed with message Failed to finalize session : INSTALL_FAILED_USER_RESTRICTED: Install canceled by user.
+     It is possible that this issue is resolved by uninstalling an existing version of the apk if it is present, and then re-installing
+     * @param isUnLoan
+     * @param isInfor
+     * @param isMeFragment
+     * @param isLoaning
+     * @param isProcess
+     * @param isBuildUp
+     * @param isRepayment
+     * @param isReject
+     */
 
     private void manageFragament( boolean isUnLoan,boolean isInfor,boolean isMeFragment,boolean isLoaning,boolean isProcess,
                                 boolean isBuildUp, boolean isRepayment, boolean isReject ){
