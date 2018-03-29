@@ -55,7 +55,7 @@ public interface UserApi {
      * @return
      */
     @FormUrlEncoded
-    @POST("auth/login/sms")
+    @POST("auth/login/sms/")
     Observable<ResponseBody> sendSms(@Field("mobile") String mobile);
 
     @GET("loanapps/latest")

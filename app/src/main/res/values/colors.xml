@@ -4,6 +4,7 @@
     <color name="colorAccent">#ffe232</color>
     <color name="colorPrimary">#ffe232</color>
     <color name="colorPrimaryDark">#ffe232</color>
+    <color name="colorWrong">#FF4081</color>
     <color name="hc_text">#FCA849</color>
     <color name="hc_input_text">#9187F6</color>
     <color name="hc_button">#9187F6</color>
