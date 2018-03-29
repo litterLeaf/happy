@@ -125,10 +125,9 @@ public class MainActivity extends BaseActivity  {
     private void onTabItemSelected(int position) {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
-        DateManager  dateManager= DateManager.getInstance();
-        String status =(String)dateManager.getMessage(SPKeyUtils.APP_STATUES);
         switch (position){
             case 0:
+                String status =(String)DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
                 if(status==null){
                     showFragment(AppLoanStatus.UNLOAN);
                 }else {
