@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentTransaction;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
+import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.fragments.InformationFragment;
@@ -124,12 +125,10 @@ public class MainActivity extends BaseActivity  {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         DateManager  dateManager= DateManager.getInstance();
-        String status =(String)dateManager.getMessage(SPKeyUtils.STATUES);
+        String status =(String)dateManager.getMessage(SPKeyUtils.APP_STATUES);
         switch (position){
             case 0:
-
-                manageFragament(true,false,false,false,false,
-                        false,false,false);
+                    showFragment(status);
                 break;
             case 1:
                 manageFragament(false,true,false,false,false,
@@ -293,4 +292,24 @@ public class MainActivity extends BaseActivity  {
         transaction.commit();
     }
 
+    private void showFragment(String  status){
+
+        if(AppLoanStatus.UNLOAN.equals(status)){
+            manageFragament(true,false,false,false,false,false,false,
+                    false);
+        }else if(AppLoanStatus.REVIEW.equals(status)){
+            manageFragament(false,false,false,false,true,false,false,
+                    false);
+        }else if(AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)){
+            manageFragament(false,false,false,false,false,true,false,
+                    false);
+        }else if(AppLoanStatus.REPAYMENT.equals(status)){
+            manageFragament(false,false,false,false,false,false,true,
+                    false);
+        }else if(AppLoanStatus.OVERDUE.equals(status)){
+            manageFragament(false,false,false,false,false,false,true,
+                    false);
+        }
+
+    }
 }

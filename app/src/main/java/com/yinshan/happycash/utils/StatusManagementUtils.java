@@ -26,7 +26,9 @@ public class StatusManagementUtils {
             mTempStatus = AppLoanStatus.REVIEW;
         } else if(ServiceLoanStatus.FINAL_REVIEW.equals(status)){
             mTempStatus = AppLoanStatus.REVIEW;
-        }else if(ServiceLoanStatus.CURRENT.equals(status)){
+        }else if(ServiceLoanStatus.ISSUING.equals(status)){
+            mTempStatus = AppLoanStatus.REVIEW;
+        } else if(ServiceLoanStatus.CURRENT.equals(status)){
             mTempStatus = AppLoanStatus.REPAYMENT;
         }else if(ServiceLoanStatus.PAID_OFF.equals(status)){
             mTempStatus = AppLoanStatus.UNLOAN;

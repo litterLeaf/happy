@@ -13,7 +13,7 @@ public enum AppEnvConfig {
             AppNetConfig.LOCAL_NET_CONFIG,
             "本地环境",
             "LOCAL",
-            "https://www.happycash.id"
+            "https://www.happycash.id/api/"
     ),
 
     /**

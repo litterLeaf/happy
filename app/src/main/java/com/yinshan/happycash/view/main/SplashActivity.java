@@ -6,8 +6,7 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
+import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,6 +15,7 @@ import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
@@ -56,18 +56,43 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     private void jumpToMainActivity(Long currentTime) {
         Long delayTime = (currentTime - mStartTime >= 3000L) ? 0 : (mStartTime + 3000 - currentTime);
         mHandler.postDelayed(() -> {
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-            if (canFinish) {
-                mHandler.removeCallbacksAndMessages(null);
-                finish();
-            } else {
-                isVisible = false;
-            }
-        }, delayTime);
+//            if(TextUtils.isEmpty(password)){
+//                if(TextUtils.isEmpty(TokenManager.getInstance().getToken())){
+                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    if (canFinish) {
+                        mHandler.removeCallbacksAndMessages(null);
+                        finish();
+                    } else {
+                        //                    setVisible(false);
+                        isVisible = false;
+                    }
+//                }else {
+//                    Intent intent = new Intent(SplashActivity.this, SetPatternActivity.class);
+//                    intent.putExtra("splash",true);
+//                    startActivity(intent);
+//                    if (canFinish) {
+//                        mHandler.removeCallbacksAndMessages(null);
+//                        finish();
+//                    } else {
+//                        //                    setVisible(false);
+//                        isVisible = false;
+//                    }
+//                }
+//            }else {
+//                Intent intent = new Intent(SplashActivity.this, VerifyPatternActivity.class);
+//                startActivity(intent);
+//                if (canFinish) {
+//                    mHandler.removeCallbacksAndMessages(null);
+//                    finish();
+//                } else {
+//                    //                    setVisible(false);
+//                    isVisible = false;
+//                }
+//            }
+        },delayTime);
     }
-
 
     @Override
     public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
@@ -75,11 +100,13 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         DateManager dateManager = DateManager.getInstance();
         if(latestLoanAppBean ==null){
             if(!TokenManager.getInstance().hasLogin()){
-                dateManager.putToCache(SPKeyUtils.STATUES, AppLoanStatus.UNLOAN);
+                dateManager.putToCache(SPKeyUtils.APP_STATUES, AppLoanStatus.UNLOAN);
             }
         }else {
             dateManager.putToCache(SPKeyUtils.LOANAPPBEAN,latestLoanAppBean);
-            dateManager.putToCache(SPKeyUtils.STATUES,latestLoanAppBean.getStatus());
+//            dateManager.putToCache(SPKeyUtils.STATUES,latestLoanAppBean.getStatus());
+            dateManager.putToCache(SPKeyUtils.SERVER_STATUES, latestLoanAppBean.getStatus());
+            dateManager.putToCache(SPKeyUtils.APP_STATUES, StatusManagementUtils.loanStatusClassify(latestLoanAppBean));
             StatusManagementUtils.loanStatusClassify(latestLoanAppBean);
         }
         canFinish = true;
@@ -93,6 +120,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void getStatusError(String message) {
+        DateManager.getInstance().putToCache(SPKeyUtils.APP_STATUES, AppLoanStatus.UNLOAN);
         canFinish = true;
         if (SplashActivity.this.isVisible) {
             jumpToMainActivity(SystemClock.currentThreadTimeMillis());
