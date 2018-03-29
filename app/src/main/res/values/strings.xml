@@ -5,6 +5,7 @@
 
 
     <string name="how_to_borrow">Cara Meminjam</string>
+    <string name="borrowing_costs">Biaya Pinjaman</string>
     <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>
     <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
     <string name="data_integrity">Integritas Data</string><!--数据完整性-->
@@ -14,27 +15,37 @@
     <string name="contact_info">Info Kontak</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
+    <string name="number_of_returns">Jumlah Pengembalian</string>
     <string name="quit_login">keluar</string>
     <string name="submit">Kirim</string>
+    <string name="ktp">KTP</string>
     <string name="login_logout">Login/Daftar</string>
     <string name="textview_online_QA">Livechat</string>
     <string name="name">Nama</string>
+    <string name="name_of_beneficiary_bank">Nama Bank Penerima</string>
+    <string name="rule_number_receiver">Nomor Rek. Penerima</string>
     <string name="auth">otentikasi</string>
     <string name="hailed_auth">Otentikasi berhail</string><!--受到认证-->
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
+    <string name="current_repay">Pembayaran saat ini</string>
     <string name="textview_loan">Prijam</string>
     <string name="textview_certification">Profil</string>
     <string name="help_center">Pusat Bantuan</string>
     <string name="status">Status</string>
     <string name="textview_me">Saya</string>
     <string name="text_next">NEXT</string>
+    <string name="no_order">No.Order</string>
     <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
     <string name="about_happy_cash">Tentang Happy Cash</string>
     <string name="telephone">Telepon</string>
+    <string name="disbursement_date">Tanggal Pencairan</string>
+    <string name="due_date">Tanggal Jatuh Tempo</string>
+    <string name="date_of_return">Tanggal Pengembalian</string>
     <string name="invite_friends">Undang Teman</string>
     <string name="upload_photo">Upload Foto</string>
+    <string name="submit_time">Waktu Pengajuan</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>

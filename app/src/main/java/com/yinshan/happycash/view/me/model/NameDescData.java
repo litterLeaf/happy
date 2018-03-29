@@ -9,6 +9,10 @@ public class NameDescData {
     String name;
     String desc;
 
+    public NameDescData(){
+
+    }
+
     public NameDescData(String name, String desc) {
         this.name = name;
         this.desc = desc;

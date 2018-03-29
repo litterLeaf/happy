@@ -20,7 +20,7 @@ public class LoanDetailBean {
     private int period;
     private double principalAmount;
     private String  status;
-    List<LoanDetailBean> lpayDtoList;
+    List<StageBean> lpayDtoList;
 
     public String getBankCode() {
         return bankCode;
@@ -118,11 +118,11 @@ public class LoanDetailBean {
         this.status = status;
     }
 
-    public List<LoanDetailBean> getLpayDtoList() {
+    public List<StageBean> getLpayDtoList() {
         return lpayDtoList;
     }
 
-    public void setLpayDtoList(List<LoanDetailBean> lpayDtoList) {
+    public void setLpayDtoList(List<StageBean> lpayDtoList) {
         this.lpayDtoList = lpayDtoList;
     }
 }
