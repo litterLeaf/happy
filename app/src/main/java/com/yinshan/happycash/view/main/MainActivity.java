@@ -4,6 +4,7 @@ package com.yinshan.happycash.view.main;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -55,7 +56,7 @@ public class MainActivity extends BaseActivity  {
     @BindView(R.id.fragment_container)
     FrameLayout homeContainer;
 
-   private FragmentManager fragmentManager;
+    private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
 
     private UnLoanFragment unLoanFrag;
@@ -128,7 +129,12 @@ public class MainActivity extends BaseActivity  {
         String status =(String)dateManager.getMessage(SPKeyUtils.APP_STATUES);
         switch (position){
             case 0:
+                if(status==null){
+                    showFragment(AppLoanStatus.UNLOAN);
+                }else {
                     showFragment(status);
+                }
+
                 break;
             case 1:
                 manageFragament(false,true,false,false,false,
@@ -160,7 +166,7 @@ public class MainActivity extends BaseActivity  {
      */
 
     private void manageFragament( boolean isUnLoan,boolean isInfor,boolean isMeFragment,boolean isLoaning,boolean isProcess,
-                                boolean isBuildUp, boolean isRepayment, boolean isReject ){
+                                  boolean isBuildUp, boolean isRepayment, boolean isReject ){
 
         //repaymentFragment
         if (isRepayment && null == repaymentFragment) {
