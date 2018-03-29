@@ -134,7 +134,6 @@ public class MainActivity extends BaseActivity  {
                 }else {
                     showFragment(status);
                 }
-
                 break;
             case 1:
                 manageFragament(false,true,false,false,false,
