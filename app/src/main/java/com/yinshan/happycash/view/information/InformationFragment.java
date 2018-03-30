@@ -1,14 +1,6 @@
-package com.yinshan.happycash.view.fragments;
+package com.yinshan.happycash.view.information;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.ForegroundColorSpan;
-import android.text.style.RelativeSizeSpan;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -44,8 +36,6 @@ import butterknife.BindView;
 
 public class InformationFragment extends BaseFragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     float progress;
 
