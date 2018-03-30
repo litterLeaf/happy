@@ -335,6 +335,35 @@
                 android:textSize="12sp"
                 android:text="@string/data_integrity"
                 />
+            
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/bg_btn_blue">
+                <TextView
+                    style="@style/text_wrap_layout"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:text="@string/submit"
+                    />
+            </RelativeLayout>
+            <TextView
+                style="@style/text_wrap_layout"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/app_orange"
+                android:textSize="12sp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="42dp"
+                android:layout_marginRight="42dp"
+                android:text="@string/please_make_original_data_submit_can_done_after_all_data_is_completed"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
         </LinearLayout>
     </ScrollView>
 

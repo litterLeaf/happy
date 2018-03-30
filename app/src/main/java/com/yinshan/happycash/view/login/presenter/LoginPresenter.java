@@ -58,7 +58,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 .subscribe(new DefaultObserver<LoginTokenResponse>() {
                     @Override
                     public void onNext(LoginTokenResponse loginTokenResponse) {
-
+                        String token = loginTokenResponse.getToken();
                     }
 
                     @Override
