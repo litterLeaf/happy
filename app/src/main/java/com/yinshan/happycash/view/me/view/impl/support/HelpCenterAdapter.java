@@ -11,6 +11,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.view.me.model.NameDescData;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -22,8 +23,10 @@ public class HelpCenterAdapter extends BaseAdapter{
     int chooseIndex = -1;
 
     List<NameDescData> nameDescList = new ArrayList<>();
+    private HashMap<Integer,View> mHashMap;
 
     public HelpCenterAdapter(){
+        mHashMap = new HashMap<>();
     }
 
     public void addList(String name,String desc){
@@ -52,7 +55,7 @@ public class HelpCenterAdapter extends BaseAdapter{
     @Override
     public View getView(final int position, View view, ViewGroup parent) {
         final ViewHolder holder;
-        if(null==view){
+        if(null==mHashMap.get(position)){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_help_center,parent,false);
             holder = new ViewHolder();
             holder.name = (TextView)view.findViewById(R.id.name);
@@ -61,6 +64,7 @@ public class HelpCenterAdapter extends BaseAdapter{
             holder.descRow = (RelativeLayout) view.findViewById(R.id.descRow);
             holder.line = (View) view.findViewById(R.id.line);
 
+            mHashMap.put(position,view);
             holder.nameRow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -76,6 +80,7 @@ public class HelpCenterAdapter extends BaseAdapter{
 
             view.setTag(holder);
         }else{
+            view = mHashMap.get(position);
             holder = (ViewHolder)view.getTag();
         }
 

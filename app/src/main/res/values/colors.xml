@@ -12,7 +12,7 @@
     <color name="hc_line_bg">#f6f6f6</color>
     <color name="login_phone_hint">#D6D6D6</color>
     <color name="color_orange_cursor">#FF8636</color>
-    <color name="white">#fff</color>
+    <color name="white">#ffffff</color>
     <color name="color_main_tab_stroke">#babfbd</color>
     <color name="color_button_d">#AEB9B4</color>
     <color name="color_button">#9187F6 </color>
@@ -26,6 +26,7 @@
     <color name="app_yellow">#ffe232</color>
     <color name="app_orange">#f5a623</color>
     <color name="app_blue">#9187F6</color>
+    <color name="app_brown">#4A2E09</color>
     <color name="f6f6f6">#f6f6f6</color>
     <color name="text_white">#ffffff</color>
     <color name="text_blue">#9187f6</color>
