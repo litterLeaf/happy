@@ -78,5 +78,8 @@
         android:scrollbars="none">
     </ListView>
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
 
 </LinearLayout>

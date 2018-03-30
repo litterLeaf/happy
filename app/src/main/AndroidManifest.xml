@@ -116,7 +116,9 @@
         <activity android:name=".view.me.view.impl.HelpCenterActivity"  >
 
         </activity>
+        <activity android:name=".view.me.view.impl.BorrowStrategyActivity"  >
 
+        </activity>
         <activity android:name=".view.me.view.impl.SafeSettingActivity"  >
 
         </activity>
