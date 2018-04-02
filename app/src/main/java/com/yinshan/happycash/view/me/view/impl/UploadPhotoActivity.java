@@ -5,26 +5,22 @@ import android.view.View;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.framework.BaseSingleActivity;
 
 /**
  * Created by huxin on 2018/3/14.
  */
 
-public class UploadPhotoActivity extends BaseActivity{
+public class UploadPhotoActivity extends BaseSingleActivity{
 
     @Override
-    protected void initView(View view, Bundle savedInstanceState) {
-
+    protected String bindTitle() {
+        return getResources().getString(R.string.upload_photo);
     }
 
     @Override
-    protected int bindLayout() {
+    protected int bindDownLayout() {
         return R.layout.activity_upload_photo;
-    }
-
-    @Override
-    protected void secondLayout() {
-
     }
 
     @Override

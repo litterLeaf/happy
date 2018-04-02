@@ -1,5 +1,6 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 
 /**
@@ -10,12 +11,12 @@ public class ContactActivity extends BaseSingleActivity{
 
     @Override
     protected String bindTitle() {
-        return null;
+        return getResources().getString(R.string.contact_info);
     }
 
     @Override
     protected int bindDownLayout() {
-        return 0;
+        return R.layout.activity_contact;
     }
 
     @Override

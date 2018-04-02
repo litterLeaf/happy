@@ -30,5 +30,12 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+    <style name="edit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColorHint">@color/text_d6d6d6</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
 
 </resources>

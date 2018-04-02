@@ -13,6 +13,7 @@
     <string name="person_info">Informasi Pribadi</string>
     <string name="employ_info">Informasi Pekerjaan</string>
     <string name="contact_info">Info Kontak</string>
+    <string name="contact">Kontak</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
     <string name="number_of_returns">Jumlah Pengembalian</string>
@@ -47,6 +48,9 @@
     <string name="upload_photo">Upload Foto</string>
     <string name="submit_time">Waktu Pengajuan</string>
     <string name="borrowed_details">Rincian Pinjaman</string>
+    <string name="relative">Hubungan</string>
+    <string name="family_card">Halaman Depan KTP</string>
+    <string name="photo_worker_with_uniform">Foto Kartu Pekerja (Jika tidak ada anda dapat foto memakai seragam kerja)</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
@@ -73,4 +77,6 @@ Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa ja
 Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
 Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
 Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
+    <string name="rp_not_call_your_relative_please_write_cool">RupiahPlus tidak akan mengambil inisiatif unutuk menelepon kontak yang anda berikan, silahkan isi data dengan tenang</string>
+
 </resources>

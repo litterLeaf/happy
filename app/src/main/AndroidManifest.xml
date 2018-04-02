@@ -99,11 +99,14 @@
         <activity android:name=".view.main.HotLineActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".view.information.view.impl.ContactActivity"
+            >
+
+        </activity>
         <activity android:name=".view.me.view.impl.UploadPhotoActivity"
             android:screenOrientation="portrait" >
 
         </activity>
-
         <activity android:name=".view.me.view.impl.LoanListActivity"
             android:launchMode="singleTask">
 

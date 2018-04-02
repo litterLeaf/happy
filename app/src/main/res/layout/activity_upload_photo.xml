@@ -2,27 +2,84 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/app_bg">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <ScrollView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        android:layout_height="200dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:layerType="software"
+        android:background="@drawable/bg_dash_white">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="15dp"
-                android:layerType="software"
-                android:background="@drawable/bg_dash_white">
+            android:layout_height="match_parent">
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/add_photo"
+                />
+            <TextView
+                style="@style/text_wrap_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="120dp"
+                android:textColor="@color/app_yellow"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:text="@string/family_card"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
 
-            </RelativeLayout>
-        </LinearLayout>
-    </ScrollView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:layerType="software"
+        android:background="@drawable/bg_dash_white">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/add_photo"
+                />
+            <TextView
+                style="@style/text_wrap_layout"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="120dp"
+                android:layout_marginLeft="37.5dp"
+                android:layout_marginRight="37.5dp"
+                android:textColor="@color/app_yellow"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:text="@string/photo_worker_with_uniform"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="42.5dp"
+        android:layout_marginRight="42.5dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_btn_disable">
+        <TextView
+            style="@style/text_wrap_layout"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:text="@string/submit"
+            />
+    </RelativeLayout>
 
 </LinearLayout>
