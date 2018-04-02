@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.dataauth.view.impl;
+package com.yinshan.happycash.view.information.view.impl;
 
 import com.yinshan.happycash.framework.BaseSingleActivity;
 
