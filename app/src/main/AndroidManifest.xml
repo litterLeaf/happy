@@ -103,7 +103,7 @@
             >
 
         </activity>
-        <activity android:name=".view.me.view.impl.UploadPhotoActivity"
+        <activity android:name=".view.information.view.impl.UploadPhotoActivity"
             android:screenOrientation="portrait" >
 
         </activity>
