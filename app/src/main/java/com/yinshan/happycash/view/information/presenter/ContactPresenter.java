@@ -5,4 +5,6 @@ package com.yinshan.happycash.view.information.presenter;
  */
 
 public class ContactPresenter {
+
+
 }

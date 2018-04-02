@@ -36,5 +36,23 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+    <style name="edit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColorHint">@color/text_d6d6d6</item>
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+
+    <!--Dialog加载框样式-->
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item> <!--边框 -->
+        <item name="android:windowIsFloating">true</item> <!--是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item><!--半透明 -->
+        <item name="android:windowNoTitle">true</item><!--无标题 -->
+        <item name="android:windowBackground">@color/re10a90</item><!--背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item><!--模糊 -->
+        <item name="android:windowFullscreen">true</item>
+    </style>
 
 </resources>
