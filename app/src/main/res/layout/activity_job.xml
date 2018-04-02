@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--gender -->
+    <LinearLayout
+        android:id="@+id/ll_job_work_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_work_type"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_job_type"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--education -->
+    <LinearLayout
+        android:id="@+id/ll_job_monthly_income"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_monthly_income"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_monthly_income"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--married -->
+    <LinearLayout
+        android:id="@+id/ll_job_company_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/tv_job_company_name"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/edittext_job_info_company_name"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--children_number -->
+    <LinearLayout
+        android:id="@+id/ll_job_children_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_company_province"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_province_of_company_located"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_province -->
+    <LinearLayout
+        android:id="@+id/ll_job_company_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_company_city"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_city_of_company_located"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_city -->
+    <LinearLayout
+        android:id="@+id/ll_job_company_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_company_street"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_street_of_company_located"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_area -->
+    <LinearLayout
+        android:id="@+id/ll_job_company_in_the_village"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_job_company_in_the_village"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_job_info_city_in_the_village"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--  address-->
+    <LinearLayout
+        android:id="@+id/ll_job_company_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15"
+        app:layout_constraintTop_toBottomOf="@+id/ll_job_name"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/et_job_company_address"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/edittext_job_info_address"
+            android:inputType="text"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+    </LinearLayout>
+
+
+    <!--Tel of Company-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp50"
+        android:background="@drawable/shape_main_tab_stroke"
+        android:orientation="horizontal">
+
+        <com.yinshan.happycash.widget.droplistview.DropListView
+            android:id="@+id/bdlv_job_info_telpre"
+            android:layout_width="@dimen/dp122"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:drawableRight="@drawable/path_8_copy"
+            android:textColor="@color/colorPrimary" />
+        <!--<Spinner-->
+        <!--android:id="@+id/spinner_job_info_telpre"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@drawable/spinner_down"-->
+        <!--android:gravity="center"-->
+        <!--android:layout_weight="2" />-->
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/id_edittext_job_info_tel"
+            style="@style/info_color_style_gray"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="14dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:hint="@string/edittext_job_info_tel_of_company"
+            android:inputType="number"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_job_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginBottom="@dimen/dp25"
+        android:background="@drawable/bg_btn_gray">
+        <TextView
+            style="@style/text_wrap_layout"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="@string/submit"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

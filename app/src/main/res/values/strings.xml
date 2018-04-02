@@ -22,6 +22,19 @@
     <string name="textview_personal_info_duration_of_residence">Durasi Hunian</string>
 
 
+    <string name="textview_job_info_title">Informasi Pekerjaan</string>
+    <string name="textview_job_info_job_type">Tipe Pekerjaan</string>
+    <string name="textview_job_info_monthly_income">Pendapatan Bulanan</string>
+    <string name="edittext_job_info_company_name">Nama Perusahaan</string>
+    <string name="textview_job_info_province_of_company_located">Provinsi Perusahaan</string>
+    <string name="textview_job_info_city_of_company_located">Kota Perusahaan</string>
+    <string name="textview_job_info_street_of_company_located">Kecamatan Perusahaan</string>
+    <string name="textview_job_info_city_in_the_village">Kelurahan Perusahaan</string>
+    <string name="edittext_job_info_address">Alamat Lengkap</string>
+    <string name="edittext_job_info_tel_of_company">No Tel Perusahaan</string>
+
+
+
 
 
     <string name="how_to_borrow">Cara Meminjam</string>

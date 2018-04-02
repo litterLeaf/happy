@@ -4,7 +4,7 @@
 
     <!-- 描边 -->
     <solid
-        android:color="@color/login_phone_hint"></solid>
+        android:color="@color/app_blue"></solid>
 
     <corners android:radius="50dp"/>
 </shape>

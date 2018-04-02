@@ -1,5 +1,6 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 
 /**
@@ -9,12 +10,12 @@ import com.yinshan.happycash.framework.BaseSingleActivity;
 public class JobInformation extends BaseSingleActivity {
     @Override
     protected String bindTitle() {
-        return null;
+        return getString(R.string.textview_job_info_title);
     }
 
     @Override
     protected int bindDownLayout() {
-        return 0;
+        return R.layout.activity_job;
     }
 
     @Override
