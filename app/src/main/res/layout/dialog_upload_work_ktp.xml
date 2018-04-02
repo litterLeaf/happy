@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="467dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_round_50_yellow"
+            android:layout_marginTop="92dp">
+            <ImageView
+                android:id="@+id/photoType"
+                android:layout_width="wrap_content"
+                android:layout_height="178dp"
+                android:background="@drawable/pic_2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="218dp"
+                android:orientation="vertical">
+                <TextView
+                    style="@style/text_wrap_layout"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/text_blue"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:text="@string/with_job_photo"
+                    />
+                <TextView
+                    style="@style/text_wrap_layout"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/app_red"
+                    android:textSize="12sp"
+                    android:layout_marginTop="7dp"
+                    android:text="@string/photo_should_clear"
+                    />
+            </LinearLayout>
+            
+            <RelativeLayout
+                android:layout_width="110dp"
+                android:layout_height="45dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/bg_btn_blue"
+                >
+                <TextView
+                    style="@style/text_wrap_layout"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:text="@string/start"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>
+        <ImageView
+            style="@style/image_wrap_layout"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/cat_2"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        />
+
+</LinearLayout>

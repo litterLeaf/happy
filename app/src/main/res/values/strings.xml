@@ -61,10 +61,15 @@
     <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
+    <string name="with_job_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
+    <string name="photo_should_clear">Foto harus jelas</string>
+    <string name="start">Mulai</string>
 
     <string name="years">tahun</string>
     <string name="months">bulan</string>
     <string name="days"> Hari</string>
+
+    <string name="text_cancel">Batal</string>
 
     <string name="please_make_original_data_submit_can_done_after_all_data_is_completed">Mohon pastikan data asli,pengajuan bisa dilakukan setelah seluruh data dilengkapi</string>
     <string name="help_1">Download Happy Cash di Google Play atau Android Market lainnya</string>

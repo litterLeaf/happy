@@ -1,17 +1,16 @@
-package com.yinshan.happycash.view.me.view.impl;
-
-import android.os.Bundle;
-import android.view.View;
+package com.yinshan.happycash.view.information.view.impl;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
 
 /**
  * Created by huxin on 2018/3/14.
  */
 
 public class UploadPhotoActivity extends BaseSingleActivity{
+
+    UploadJobPhotoDialog mDialog;
 
     @Override
     protected String bindTitle() {
@@ -25,6 +24,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
-
+        mDialog = new UploadJobPhotoDialog(this,R.style.DialogTheme);
+        mDialog.show();
     }
 }

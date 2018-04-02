@@ -27,6 +27,7 @@
     <color name="app_orange">#f5a623</color>
     <color name="app_blue">#9187F6</color>
     <color name="app_brown">#4A2E09</color>
+    <color name="app_red">#ff816c</color>
     <color name="f6f6f6">#f6f6f6</color>
     <color name="text_white">#ffffff</color>
     <color name="text_blue">#9187f6</color>
@@ -35,6 +36,9 @@
     <color name="line">#d6d6d6</color>
     <color name="line2">#f6f6f6</color>
 
-    <string name="text_cancel">Batal</string>
+
+
+
+    <color name="re10a90">#4b000000</color>
 
 </resources>
