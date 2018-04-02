@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
+import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.main.MainActivity;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
@@ -102,8 +103,10 @@ public class InformationFragment extends BaseFragment {
                 ((MainActivity)getActivity()).mStartActivity(getActivity(), PersonalInformation.class);
                 break;
             case R.id.view_not_finish_employ:
+                ((MainActivity)getActivity()).mStartActivity(getActivity(), JobInformation.class);
                 break;
             case R.id.view_finish_employ:
+                ((MainActivity)getActivity()).mStartActivity(getActivity(), JobInformation.class);
                 break;
             case R.id.view_not_finish_contact:
                 break;
