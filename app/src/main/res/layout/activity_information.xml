@@ -421,7 +421,8 @@
         android:layout_height="45dp"
         android:layout_marginLeft="42dp"
         android:layout_marginRight="42dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginBottom="@dimen/dp25"
         android:background="@drawable/bg_btn_gray">
         <TextView
             style="@style/text_wrap_layout"

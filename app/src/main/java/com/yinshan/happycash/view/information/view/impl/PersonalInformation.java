@@ -15,9 +15,29 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * Created by admin on 2018/4/2.
+s *
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   神兽保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *  @author  admin
+ *  on 2018/4/2
+ *
  */
-
 public class PersonalInformation extends BaseSingleActivity {
     @BindView(R.id.et_personal_name)
     BandaEditText personalName;
@@ -94,6 +114,7 @@ public class PersonalInformation extends BaseSingleActivity {
     @OnClick({ R.id.ll_personal_gender, R.id.ll_personal_education, R.id.ll_personal_marital, R.id.ll_personal_children_number,
             R.id.ll_personal_residence_province, R.id.ll_personal_residence_city, R.id.ll_personal_residence_street, R.id.ll_personal_residence_area,
             R.id.ll_personal_duration_of_residence, R.id.rl_personal_confirm})
+
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.ll_personal_gender:
@@ -115,6 +136,7 @@ public class PersonalInformation extends BaseSingleActivity {
             case R.id.ll_personal_duration_of_residence:
                 break;
             case R.id.rl_personal_confirm:
+                finish();
                 break;
         }
     }
