@@ -29,6 +29,7 @@
             android:text="@string/text_cancel"
             />
     </RelativeLayout>
+    <!--中间下拉界面-->
     <com.yinshan.happycash.widget.pullrefresh.RefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
@@ -56,13 +57,88 @@
                     android:layout_width="match_parent"
                     android:layout_height="20dp"
                     android:background="#fffcec">
+                    <!--进度文字-->
                     <TextView
+                        android:id="@+id/textProgress"
                         style="@style/text_wrap_layout"
                         android:layout_centerInParent="true"
                         android:textColor="#9b9b9b"
                         android:textSize="12sp"
                         />
                 </RelativeLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:background="@color/white">
+                    <!--金额区域-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textMoney"
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="52dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="12sp"
+                            android:text="@string/loan_count"
+                            />
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="1.5dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="25dp"
+                        android:background="@color/app_yellow"
+                        />
+                    <!--时间区域-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textTime"
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="25dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="52dp"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="12sp"
+                            android:text="@string/time_period"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp"
+                    android:background="@color/white">
+                    <RelativeLayout
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:layout_centerHorizontal="true">
+                        <ImageView
+                            style="@style/image_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/down"
+                            />
+                    </RelativeLayout>
+                </RelativeLayout>
+                
             </LinearLayout>
         </ScrollView>
     </com.yinshan.happycash.widget.pullrefresh.RefreshLayout>
