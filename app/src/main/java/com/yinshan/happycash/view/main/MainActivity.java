@@ -16,7 +16,7 @@ import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.fragments.LoanInProcessFragment;
-import com.yinshan.happycash.view.fragments.LoaningFragment;
+import com.yinshan.happycash.view.loan.view.LoaningFragment;
 import com.yinshan.happycash.view.fragments.RejectFragment;
 import com.yinshan.happycash.view.fragments.RepaymentFragment;
 import com.yinshan.happycash.view.information.view.InformationFragment;

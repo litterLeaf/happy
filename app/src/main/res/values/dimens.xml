@@ -154,6 +154,7 @@
     <dimen name="px_24" >12dp</dimen>
     <dimen name="px_25" >12.5dp</dimen>
     <dimen name="px_26" >13dp</dimen>
+    <dimen name="px_32" >16dp</dimen>
     <dimen name="px_100" >50dp</dimen>
 
 
