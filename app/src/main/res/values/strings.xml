@@ -34,7 +34,9 @@
     <string name="edittext_job_info_tel_of_company">No Tel Perusahaan</string>
 
 
-
+    <!-- loaning的String-->
+    <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
+    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(hulan)</string>
 
 
     <string name="how_to_borrow">Cara Meminjam</string>

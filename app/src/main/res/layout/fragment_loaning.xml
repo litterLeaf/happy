@@ -8,5 +8,81 @@
 
 <include layout="@layout/fragment_title_layout"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_loaning_text1"
+                android:textSize="@dimen/sp12"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/dp10"
+                android:layout_marginRight="@dimen/dp24"
+                android:layout_marginLeft="@dimen/dp24"
+                android:textColor="@color/hc_input_text"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp15"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp10"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:src="@drawable/sub"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/sp32"
+                    android:textStyle="bold"
+                    android:textColor="@color/hc_input_text"
+                    android:text="5,000.000"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="@dimen/dp10"
+                    android:layout_marginLeft="@dimen/dp10"
+                    android:src="@drawable/add"/>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/textview_loaning_text2"
+                android:textColor="#FF9187F6"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp20"
+                android:textSize="@dimen/sp12"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            ></LinearLayout>
+
+    </LinearLayout>
+
+
+
 
 </LinearLayout>
