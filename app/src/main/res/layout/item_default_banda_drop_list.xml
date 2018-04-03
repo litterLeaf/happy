@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="@dimen/dp122"
+          android:id = "@+id/tv_drop_list_default"
+          android:layout_height="@dimen/dp50"
+          android:gravity="center"
+          android:textSize="@dimen/sp14"
+          android:textColor="@color/hc_input_text"
+          android:text="test"/>

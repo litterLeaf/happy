@@ -4,6 +4,39 @@
     <string name="test_desc">descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</string>
 
 
+    <string name="title_personal_infor">Informasi Pribadi</string>
+
+    <!--personal  infor -->
+    <string name="edittext_personal_info_full_name">Nama Lengkap</string>
+    <string name="edittext_personal_info_ktp_no">No KTP</string>
+    <string name="edittext_personal_info_family_name_in_law">Nama Gadis Ibu Kandung</string>
+    <string name="textview_personal_info_gender">Jenis Kelamin</string>
+    <string name="textview_personal_info_education">Edukasi</string>
+    <string name="textview_personal_info_marital_status">Status Perkawinan</string>
+    <string name="textview_personal_info_number_of_children">Jumlah Anak</string>
+    <string name="textview_personal_info_province_of_residence">Provinsi Tempat Tinggal</string>
+    <string name="textview_personal_info_city_of_residence">Kota Tempat Tinggal</string>
+    <string name="textview_personal_info_street_of_residence">Kecamatan </string>
+    <string name="textview_personal_info_area_of_residence">Kelurahan </string>
+    <string name="textview_personal_info_address">Alamat Lengkap</string>
+    <string name="textview_personal_info_duration_of_residence">Durasi Hunian</string>
+
+
+    <string name="textview_job_info_title">Informasi Pekerjaan</string>
+    <string name="textview_job_info_job_type">Tipe Pekerjaan</string>
+    <string name="textview_job_info_monthly_income">Pendapatan Bulanan</string>
+    <string name="edittext_job_info_company_name">Nama Perusahaan</string>
+    <string name="textview_job_info_province_of_company_located">Provinsi Perusahaan</string>
+    <string name="textview_job_info_city_of_company_located">Kota Perusahaan</string>
+    <string name="textview_job_info_street_of_company_located">Kecamatan Perusahaan</string>
+    <string name="textview_job_info_city_in_the_village">Kelurahan Perusahaan</string>
+    <string name="edittext_job_info_address">Alamat Lengkap</string>
+    <string name="edittext_job_info_tel_of_company">No Tel Perusahaan</string>
+
+
+
+
+
     <string name="how_to_borrow">Cara Meminjam</string>
     <string name="borrowing_costs">Biaya Pinjaman</string>
     <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>

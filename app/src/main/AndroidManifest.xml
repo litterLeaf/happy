@@ -129,6 +129,17 @@
             >
 
         </activity>
+
+        <activity android:name=".view.information.view.impl.PersonalInformation"
+        android:screenOrientation="portrait" >
+
+    </activity>
+        <activity android:name=".view.information.view.impl.JobInformation"
+            android:screenOrientation="portrait" >
+
+        </activity>
+
+
     </application>
 
 </manifest>

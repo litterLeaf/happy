@@ -18,6 +18,7 @@
             android:textStyle="bold"
             android:text="@string/auth" />
         <ImageView
+            android:id="@+id/message"
             style="@style/image_wrap_layout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -68,40 +69,53 @@
                             />
 
                     </RelativeLayout>
+
                     <RelativeLayout
                         android:id="@+id/view_finish_person"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:background="@drawable/bg_round_20_yellow"
-                        >
+                        android:background="@drawable/bg_round_20_yellow">
+
                         <ImageView
                             style="@style/image_wrap_layout"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="30dp"
-                            android:src="@drawable/data_1"
-                            />
+                            android:src="@drawable/data_1" />
+
                         <ImageView
                             style="@style/image_wrap_layout"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="@dimen/info_item_top4"
-                            android:src="@drawable/selected"
-                            />
+                            android:src="@drawable/selected" />
+
                         <TextView
                             style="@style/text_wrap_layout"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginTop="@dimen/info_item_top2"
-                            android:layout_centerHorizontal="true"
-                            android:textColor="@color/app_white"
-                            android:textSize="14sp"
                             android:text="@string/person_info"
-                            />
+                            android:textColor="@color/app_white"
+                            android:textSize="14sp" />
+
                         <TextView
                             style="@style/text_wrap_layout"
-                            android:layout_marginTop="@dimen/info_item_top3"
                             android:layout_centerHorizontal="true"
-                            android:textColor="@color/app_blue"
-                            android:textSize="12sp"
+                            android:layout_marginTop="@dimen/info_item_top3"
                             android:text="@string/hailed_auth"
-                            />
+                            android:textColor="@color/app_blue"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginLeft="17dp"
+                            android:layout_marginStart="17dp"
+                            android:layout_marginTop="357dp"
+                            android:text="@string/please_make_original_data_submit_can_done_after_all_data_is_completed"
+                            android:textColor="@color/app_orange"
+                            android:textSize="12sp" />
                     </RelativeLayout>
                 </FrameLayout>
                 <View
@@ -351,16 +365,7 @@
                     android:text="@string/submit"
                     />
             </RelativeLayout>
-            <TextView
-                style="@style/text_wrap_layout"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/app_orange"
-                android:textSize="12sp"
-                android:layout_marginTop="7dp"
-                android:layout_marginLeft="42dp"
-                android:layout_marginRight="42dp"
-                android:text="@string/please_make_original_data_submit_can_done_after_all_data_is_completed"
-                />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"/>
