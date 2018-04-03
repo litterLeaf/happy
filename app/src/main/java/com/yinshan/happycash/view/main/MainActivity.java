@@ -98,6 +98,7 @@ public class MainActivity extends BaseActivity  {
                 for(int i=0;i< mTabLayout.getTabCount();i++){
                     View view = mTabLayout.getTabAt(i).getCustomView();
                     ImageView icon = view.findViewById(R.id.tab_content_image);
+
                     if(i == tab.getPosition()){ // 选中状态
                         icon.setImageResource(DataGenerator.mTabResPressed[i]);
                     }else{// 未选中状态
