@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.loan.view.impl;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
@@ -20,6 +21,8 @@ public class ApplyFragment extends BaseFragment{
     RefreshLayout refreshLayout;
     @BindView(R.id.progressView)
     View progressView;
+    @BindView(R.id.progressList)
+    ListView progressList;
 
     @Override
     protected void initView() {

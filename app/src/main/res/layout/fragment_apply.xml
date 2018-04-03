@@ -123,6 +123,7 @@
                             />
                     </RelativeLayout>
                 </LinearLayout>
+                <!--下拉按钮-->
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="15dp"
@@ -138,7 +139,14 @@
                             />
                     </RelativeLayout>
                 </RelativeLayout>
-                
+                <!--进度列表-->
+                <ListView
+                    android:id="@+id/progressList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp">
+
+                </ListView>
             </LinearLayout>
         </ScrollView>
     </com.yinshan.happycash.widget.pullrefresh.RefreshLayout>
