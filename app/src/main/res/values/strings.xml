@@ -84,6 +84,7 @@
     <string name="relative">Hubungan</string>
     <string name="family_card">Halaman Depan KTP</string>
     <string name="photo_worker_with_uniform">Foto Kartu Pekerja (Jika tidak ada anda dapat foto memakai seragam kerja)</string>
+    <string name="in_analysis_it_done_f">Dalam analisa, telah selesai %f</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
