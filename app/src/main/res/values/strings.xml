@@ -86,7 +86,18 @@
     <string name="relative">Hubungan</string>
     <string name="family_card">Halaman Depan KTP</string>
     <string name="photo_worker_with_uniform">Foto Kartu Pekerja (Jika tidak ada anda dapat foto memakai seragam kerja)</string>
-    <string name="in_analysis_it_done_f">Dalam analisa, telah selesai %f</string>
+    <string name="in_analysis_it_done_f">Dalam analisa, telah selesai %s</string>
+    <string name="full_repayment">Pelunasan Penuh</string>
+    <string name="pay">Bayar</string>
+    <string name="number_of_returns_for_this_period">Jumlah pengembalian periode ini(Rp)</string>
+    <string name="payment_date_f">Tanggai penbayaran %s</string>
+    <string name="payment_date_df">Tanggai penbayaran --</string>
+    <string name="number">Jumiah</string>
+    <string name="tenor">Tenor</string>
+    <string name="details">Rincian</string>
+    <string name="time_period2">Jumiah Periode</string>
+    <string name="rp_df">Rp--</string>
+    <string name="df">--</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
