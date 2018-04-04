@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/f6f6f6">
+    android:background="@color/app_bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -143,10 +143,17 @@
                 <ListView
                     android:id="@+id/progressList"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp">
-
-                </ListView>
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginTop="30dp"
+                    android:scrollbars="none"
+                    android:listSelector="@color/app_bg"
+                    android:divider="@null"
+                    />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"/>
             </LinearLayout>
         </ScrollView>
     </com.yinshan.happycash.widget.pullrefresh.RefreshLayout>

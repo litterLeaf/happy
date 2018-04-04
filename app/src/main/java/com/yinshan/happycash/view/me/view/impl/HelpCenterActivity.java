@@ -1,5 +1,7 @@
 package com.yinshan.happycash.view.me.view.impl;
 
+import android.content.Intent;
+import android.view.View;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
@@ -9,6 +11,7 @@ import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
 import com.yinshan.happycash.view.me.view.impl.support.HelpCenterAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/3/19.
@@ -51,5 +54,14 @@ public class HelpCenterActivity extends BaseSingleNoScrollActivity{
         mAdapter.addList("Bagaimana cara menghitung tanggal jatuh tempo? Bagaimana cara memeriksa tanggal jatuh tempo pinjaman ?",
                 "Tanggal jatuh tempo dijadwalkan satu bulan setelah tanggal pengeluaran pinjaman (berdasarkan jangka waktu pinjaman yang telah anda pilih sebelumnya). Setelah pinjaman berhasil, anda dapat memeriksa tanggal jatuh tempo pinjaman pada halaman utama app.");
         mListView.setAdapter(mAdapter);
+    }
+
+    @OnClick(R.id.btnLoan)
+    public void onViewClicked(View view){
+        switch (view.getId()){
+            case R.id.btnLoan:
+                startActivity(new Intent(this,BorrowStrategyActivity.class));
+                break;
+        }
     }
 }

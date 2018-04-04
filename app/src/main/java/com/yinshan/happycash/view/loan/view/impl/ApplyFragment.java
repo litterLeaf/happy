@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
+import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
@@ -23,6 +24,7 @@ public class ApplyFragment extends BaseFragment{
     View progressView;
     @BindView(R.id.progressList)
     ListView progressList;
+    ApplyAdapter mAdapter;
 
     @Override
     protected void initView() {
@@ -38,6 +40,10 @@ public class ApplyFragment extends BaseFragment{
 
 //        ViewGroup.LayoutParams layoutParams = progressView.getLayoutParams();
 //        progressView.setLayoutParams(new ViewGroup.LayoutParams(299,4));
+
+        mAdapter = new ApplyAdapter(getActivity());
+        progressList.setAdapter(mAdapter);
+        setListViewHeightBasedOnChildren(progressList);
     }
 
     @Override
