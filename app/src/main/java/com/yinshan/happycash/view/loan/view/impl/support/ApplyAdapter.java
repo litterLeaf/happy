@@ -48,16 +48,16 @@ public class ApplyAdapter extends BaseAdapter{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
-//        if(position==0){
-//            viewHolder.topLine.setVisibility(View.INVISIBLE);
-//            viewHolder.bottomLine.setVisibility(View.VISIBLE);
-//        }else if(position==getCount()-1){
-//            viewHolder.topLine.setVisibility(View.VISIBLE);
-//            viewHolder.bottomLine.setVisibility(View.VISIBLE);
-//        }else{
-//            viewHolder.topLine.setVisibility(View.VISIBLE);
-//            viewHolder.bottomLine.setVisibility(View.VISIBLE);
-//        }
+        if(position==0){
+            viewHolder.topLine.setVisibility(View.INVISIBLE);
+            viewHolder.bottomLine.setVisibility(View.VISIBLE);
+        }else if(position==getCount()-1){
+            viewHolder.topLine.setVisibility(View.VISIBLE);
+            viewHolder.bottomLine.setVisibility(View.INVISIBLE);
+        }else{
+            viewHolder.topLine.setVisibility(View.VISIBLE);
+            viewHolder.bottomLine.setVisibility(View.VISIBLE);
+        }
 
 //        viewHolder.topLine.setVisibility(View.VISIBLE);
 //        viewHolder.bottomLine.setVisibility(View.VISIBLE);

@@ -64,7 +64,7 @@
                 android:textStyle="bold"
                 android:text="Verifikasi"
                 />
-            <TextView
+            <com.yinshan.happycash.view.loan.view.impl.support.ApplyFitTextView
                 style="@style/text_wrap_layout"
                 android:textSize="14sp"
                 android:textColor="#4a2e09"
