@@ -70,6 +70,25 @@
             android:layout_marginRight="30dp"
             android:background="@color/line"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/textPhone1"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/relative"
+                android:textColor="@color/text_d6d6d6"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="15dp"/>
@@ -139,6 +158,25 @@
             android:layout_marginRight="30dp"
             android:background="@color/line"
             />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/textPhone2"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/relative"
+                android:textColor="@color/text_d6d6d6"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
         <View
             android:layout_width="match_parent"
             android:layout_height="15dp"/>
@@ -168,7 +206,7 @@
         android:layout_marginRight="42.5dp"
         android:layout_marginTop="7dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/rp_not_call_your_relative_please_write_cool"
+        android:text="@string/hy_not_call_your_relative_please_write_cool"
         />
 
     <View
