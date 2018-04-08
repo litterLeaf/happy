@@ -59,8 +59,11 @@ public class HelpCenterActivity extends BaseSingleNoScrollActivity{
     @OnClick(R.id.btnLoan)
     public void onViewClicked(View view){
         switch (view.getId()){
-            case R.id.btnLoan:
+            case R.id.btnBorrow:
                 startActivity(new Intent(this,BorrowStrategyActivity.class));
+                break;
+            case R.id.btnLoan:
+                startActivity(new Intent(this,RepaymentStrategyActivity.class));
                 break;
         }
     }

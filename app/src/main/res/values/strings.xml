@@ -98,6 +98,16 @@
     <string name="time_period2">Jumiah Periode</string>
     <string name="rp_df">Rp--</string>
     <string name="df">--</string>
+    <string name="change_the_pattern_password">Ubah password pola</string>
+    <string name="reload_id">Upload ulang KTP</string>
+    <string name="if_want_change_phone_please_call__">Jika anda ingin mengganti nomor ponsel , silahkan hubungi telepon layanan pelanggan: 622180679688</string>
+    <string name="you_can_repay_the_loan_in_the_following_ways">Anda dapat mengembalikan pinjaman dengan cara berikut:</string>
+    <string name="internet_banking">Internet Banking</string>
+    <string name="atm">ATM</string>
+    <string name="mobile_banking">Mobile Banking</string>
+    <string name="alfarmart_pay">Alfarmart Pay</string>
+    <string name="this_transaction_can_be_done_through_all">Transaksi ini dapat dilakukan melalui seluruh bank dan Alfamart</string>
+
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>

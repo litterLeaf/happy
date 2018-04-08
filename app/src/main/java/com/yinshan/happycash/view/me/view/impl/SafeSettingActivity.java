@@ -23,6 +23,5 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity{
 
     @Override
     protected void secondInit() {
-        lowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.app_white));
     }
 }

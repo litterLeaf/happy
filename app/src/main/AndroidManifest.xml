@@ -122,6 +122,9 @@
         <activity android:name=".view.me.view.impl.BorrowStrategyActivity"  >
 
         </activity>
+        <activity android:name=".view.me.view.impl.RepaymentStrategyActivity"  >
+
+        </activity>
         <activity android:name=".view.me.view.impl.SafeSettingActivity"  >
 
         </activity>
