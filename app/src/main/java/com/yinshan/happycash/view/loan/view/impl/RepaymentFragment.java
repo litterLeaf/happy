@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.fragments;
+package com.yinshan.happycash.view.loan.view.impl;
 
 import android.widget.ListView;
 
