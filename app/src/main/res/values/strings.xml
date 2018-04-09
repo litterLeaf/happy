@@ -107,6 +107,8 @@
     <string name="mobile_banking">Mobile Banking</string>
     <string name="alfarmart_pay">Alfarmart Pay</string>
     <string name="this_transaction_can_be_done_through_all">Transaksi ini dapat dilakukan melalui seluruh bank dan Alfamart</string>
+    <string name="not_return_clear">Belum lunas</string>
+    <string name="return_clear">Dibayar</string>
 
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>

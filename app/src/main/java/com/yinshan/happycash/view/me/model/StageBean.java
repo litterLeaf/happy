@@ -13,6 +13,7 @@ public class StageBean {
     private double interestPaid;
     private double principalAccr;
     private double principalPaid;
+    private String status;
 
     public double getDefaultAccr() {
         return defaultAccr;
@@ -68,5 +69,13 @@ public class StageBean {
 
     public void setPrincipalPaid(double principalPaid) {
         this.principalPaid = principalPaid;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

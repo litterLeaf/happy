@@ -41,4 +41,18 @@ public class TimeManager {
 
         return "0";
     }
+
+    public static String getRpTime(String periodUnit){
+        if(periodUnit.equals("M")){
+            return "bulan";
+        }else if(periodUnit.equals("Y")){
+            return "tahun";
+        }else if(periodUnit.equals("D")){
+            return "hari";
+        }else if(periodUnit.equals("W")){
+            return "minggu";
+        }else{
+            return "";
+        }
+    }
 }
