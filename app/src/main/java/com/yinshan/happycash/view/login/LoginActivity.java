@@ -20,6 +20,8 @@ import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.MachineUtils;
 import com.yinshan.happycash.utils.ToolsUtils;
+import com.yinshan.happycash.view.login.contract.LoginContract;
+import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.userdefined.OnCheckInputResult;
@@ -27,12 +29,13 @@ import com.yinshan.happycash.widget.userdefined.RupiahEditText;
 import com.yinshan.happycash.widget.userdefined.SmsEditText;
 
 import butterknife.BindView;
+import okhttp3.ResponseBody;
 
 /**
  * Created by admin on 2018/1/31.
  */
 
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     LoginPresenter mPresenter;
 
@@ -84,6 +87,7 @@ public class LoginActivity extends BaseActivity{
 
     private void init(){
         mPresenter = new LoginPresenter(this);
+        mPresenter.attachView(this);
         mBtnSendSms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -273,4 +277,18 @@ public class LoginActivity extends BaseActivity{
             return false;
         }
     };
+
+    @Override
+    public void signInSuccess(LoginTokenResponse tokenResponse) {
+        finish();
+    }
+
+    @Override
+    public void signInError(String message) {
+
+    }
+
+    @Override
+    public void getSMSCodeSuccess(ResponseBody responseBody) {
+    }
 }
