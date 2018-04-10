@@ -42,6 +42,7 @@
                         android:layout_marginTop="20dp"
                         android:text="@string/number_of_returns_for_this_period" />
                     <TextView
+                        android:id="@+id/currentReturn"
                         style="@style/text_wrap_layout"
                         android:layout_centerHorizontal="true"
                         android:textColor="@color/text_blue"
@@ -51,6 +52,7 @@
                         android:text="--"
                         />
                     <TextView
+                        android:id="@+id/paymentDate"
                         style="@style/text_wrap_layout"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="113dp"
@@ -73,7 +75,7 @@
                         android:text="@string/number" />
                     <!--number-->
                     <TextView
-                        android:id="@+id/number"
+                        android:id="@+id/money"
                         style="@style/text_wrap_layout"
                         android:layout_marginRight="43dp"
                         android:layout_alignParentRight="true"
@@ -140,10 +142,11 @@
                     android:layout_height="42dp"
                     >
                     <TextView
+                        android:id="@+id/titlePeriod"
                         style="@style/text_wrap_layout"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="25dp"
-                        android:textColor="#9f9f9f"
+                        android:textColor="#C8C8C8"
                         android:textSize="12sp"
                         android:text="@string/time_period2"
                         />
@@ -151,7 +154,7 @@
                         style="@style/text_wrap_layout"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="168dp"
-                        android:textColor="#9f9f9f"
+                        android:textColor="#C8C8C8"
                         android:textSize="12sp"
                         android:text="@string/number"
                         />
@@ -160,7 +163,7 @@
                         android:layout_marginTop="20dp"
                         android:layout_marginRight="25dp"
                         android:layout_alignParentRight="true"
-                        android:textColor="#9f9f9f"
+                        android:textColor="#C8C8C8"
                         android:textSize="12sp"
                         android:text="@string/status"
                         />

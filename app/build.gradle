@@ -62,10 +62,4 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //阿里百川客服
-    implementation 'com.alibaba.mobileim:IMCore:2.0.2.1@aar'
-    //可选，如果使用SDK的UI必须添加该依赖，如果不使用SDK的UI，完全自己开发UI则无需添加该依赖
-    implementation 'com.alibaba.mobileim:IMKit:2.0.2.1@aar'
-    //TextVi
-    implementation 'com.github.litterLeaf:TextViewExpand:1.0.1'
 }

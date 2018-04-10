@@ -18,6 +18,7 @@ public class LoanDetailBean {
     private String paidOffDate;
     private String paidOffMode;
     private int period;
+    private String periodUnit;
     private double principalAmount;
     private String  status;
     List<StageBean> lpayDtoList;
@@ -124,5 +125,13 @@ public class LoanDetailBean {
 
     public void setLpayDtoList(List<StageBean> lpayDtoList) {
         this.lpayDtoList = lpayDtoList;
+    }
+
+    public String getPeriodUnit() {
+        return periodUnit;
+    }
+
+    public void setPeriodUnit(String periodUnit) {
+        this.periodUnit = periodUnit;
     }
 }

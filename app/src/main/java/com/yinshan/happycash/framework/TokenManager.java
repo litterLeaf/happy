@@ -11,7 +11,7 @@ import com.yinshan.happycash.network.common.RxHttpUtils;
 public class TokenManager {
     private static String TOKEN_CACHE_KEY         = "token_cache_key";
     public static String REFRESH_TOKEN_CACHE_KEY = "refresh_token_cahce_key";
-    private static boolean isExpired = false;
+    public static boolean isExpired = false;
     private static TokenManager instance;
     private ACache cache;
     private TokenManager(){
@@ -33,8 +33,8 @@ public class TokenManager {
     }
 
     public String getToken() {
-        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjM2MTExNTl9.m30aWJmeJfD_jRgDRstYC8O5aS97Z4YvPGAsSMh5a7bzdFIuqQIWtTzNomTSl7M-DqvT6F8CkZMlVdKxygszbA";
-//        return cache.getAsString(TOKEN_CACHE_KEY);
+//        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjM2MTExNTl9.m30aWJmeJfD_jRgDRstYC8O5aS97Z4YvPGAsSMh5a7bzdFIuqQIWtTzNomTSl7M-DqvT6F8CkZMlVdKxygszbA";
+        return cache.getAsString(TOKEN_CACHE_KEY);
     }
 
     public void setToken(String token, int time){
