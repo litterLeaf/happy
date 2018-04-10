@@ -1,12 +1,15 @@
 package com.yinshan.happycash.view.me.view.impl;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.alibaba.mobileim.YWAPI;
 import com.alibaba.mobileim.YWIMKit;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
+import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.me.view.impl.AboutActivity;
 import com.yinshan.happycash.view.me.view.impl.HelpCenterActivity;
 import com.yinshan.happycash.view.me.view.impl.LoanListActivity;
@@ -36,7 +39,10 @@ public class MeFragment extends BaseFragment{
     public void onViewClicked(View view){
         switch (view.getId()){
             case R.id.loanView:
-                startActivity(new Intent(getContext(), LoanListActivity.class));
+                if(TextUtils.isEmpty(TokenManager.getInstance().getToken())||TokenManager.isExpired)
+                    startActivity(new Intent(getContext(), LoginActivity.class));
+                else
+                    startActivity(new Intent(getContext(), LoanListActivity.class));
                 break;
             case R.id.safeSettingView:
                 startActivity(new Intent(getContext(), SafeSettingActivity.class));

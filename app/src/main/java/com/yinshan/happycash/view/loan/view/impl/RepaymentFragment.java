@@ -57,16 +57,22 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView{
     @Override
     public void showDetail(LoanDetailBean detail) {
         if(detail.getLpayDtoList()!=null||detail.getLpayDtoList().size()>0){
-            mCurrentReturn.setText(StringFormatUtils.moneyFormat(detail.getLpayDtoList().get(0).getPrincipalAccr()));
-            mPaymentDate.setText(getString(R.string.payment_date_f,TimeManager.convertYNTimeDay(detail.getLpayDtoList().get(0).getDueDate())));
-
             String stage = TimeManager.getRpTime(detail.getPeriodUnit());
             int count = 0;
+            int firstActive = -1;
             for(int i=0;i<detail.getLpayDtoList().size();i++){
-                if(detail.getLpayDtoList().get(i).getStatus().equals("INACTIVE")){
+                if(detail.getLpayDtoList().get(i).getStatus().equals("INACTIVE")) {
                     count++;
+                }else if(firstActive==-1&&detail.getLpayDtoList().get(i).getStatus().equals("ACTIVE")){
+                    firstActive = i;
                 }
             }
+
+            if(firstActive!=-1){
+                mCurrentReturn.setText(StringFormatUtils.moneyFormat(detail.getLpayDtoList().get(firstActive).getPrincipalAccr()));
+                mPaymentDate.setText(getString(R.string.payment_date_f,TimeManager.convertYNTimeDay(detail.getLpayDtoList().get(firstActive).getDueDate())));
+            }
+
             mTenor.setText(detail.getPeriod()+" "+stage+"/"+count+" "+stage+" lunas");
             mTitlePeriod.setText(getString(R.string.time_period2)+"("+count+"/"+detail.getPeriod()+")");
             mAdapter.setList(detail.getLpayDtoList());

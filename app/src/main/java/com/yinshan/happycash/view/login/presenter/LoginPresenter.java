@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.yinshan.happycash.application.AppContext;
+import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.RxTransformer;
@@ -59,6 +60,8 @@ public class LoginPresenter implements LoginContract.Presenter {
                     @Override
                     public void onNext(LoginTokenResponse loginTokenResponse) {
                         String token = loginTokenResponse.getToken();
+
+                        TokenManager.getInstance().setToken(token,0);
                     }
 
                     @Override
