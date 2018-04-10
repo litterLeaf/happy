@@ -47,6 +47,11 @@
     <dimen name="sp38">38sp</dimen>
     <dimen name="sp39">39sp</dimen>
     <dimen name="sp40">40sp</dimen>
+    <dimen name="sp41">41sp</dimen>
+    <dimen name="sp42">42sp</dimen>
+    <dimen name="sp43">43sp</dimen>
+    <dimen name="sp44">44sp</dimen>
+    <dimen name="sp45">45sp</dimen>
 
     <dimen name="px2">1px</dimen>
     <dimen name="dp0.5">0.5dp</dimen>

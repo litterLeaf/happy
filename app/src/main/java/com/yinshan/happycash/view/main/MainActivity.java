@@ -151,8 +151,7 @@ public class MainActivity extends BaseActivity  {
     }
 
     /**
-     * Installation failed with message Failed to finalize session : INSTALL_FAILED_USER_RESTRICTED: Install canceled by user.
-     It is possible that this issue is resolved by uninstalling an existing version of the apk if it is present, and then re-installing
+     *manage  fragment  with status
      * @param isUnLoan
      * @param isInfor
      * @param isMeFragment

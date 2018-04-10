@@ -21,7 +21,6 @@
     <string name="textview_personal_info_address">Alamat Lengkap</string>
     <string name="textview_personal_info_duration_of_residence">Durasi Hunian</string>
 
-
     <string name="textview_job_info_title">Informasi Pekerjaan</string>
     <string name="textview_job_info_job_type">Tipe Pekerjaan</string>
     <string name="textview_job_info_monthly_income">Pendapatan Bulanan</string>
@@ -37,7 +36,8 @@
     <!-- loaning的String-->
     <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
     <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(hulan)</string>
-
+    <string name="textview_loaning_bind_card">Rekening Penerima</string>
+    <string name="textview_loaning_borrowing_reason">Tujuan Pinjaman</string>
 
     <string name="how_to_borrow">Cara Meminjam</string>
     <string name="borrowing_costs">Biaya Pinjaman</string>
