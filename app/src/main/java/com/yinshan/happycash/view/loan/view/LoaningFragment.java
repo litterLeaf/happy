@@ -9,12 +9,11 @@ import com.yinshan.happycash.framework.BaseFragment;
 
 public class LoaningFragment extends BaseFragment {
     @Override
-    protected void initView() {
-
-    }
+    protected void initView() {}
 
     @Override
     protected int bindLayout() {
         return R.layout.fragment_loaning;
     }
+
 }
