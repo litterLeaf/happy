@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.alibaba.mobileim.YWAPI;
-import com.alibaba.mobileim.YWIMKit;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
@@ -22,8 +20,6 @@ import butterknife.OnClick;
  */
 
 public class MeFragment extends BaseFragment{
-
-    YWIMKit mIMKit;
 
     @Override
     protected void initView() {
