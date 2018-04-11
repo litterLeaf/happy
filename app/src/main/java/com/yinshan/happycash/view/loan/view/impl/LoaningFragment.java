@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.loan.view;
+package com.yinshan.happycash.view.loan.view.impl;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;

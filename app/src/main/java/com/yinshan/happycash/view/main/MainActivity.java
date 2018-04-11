@@ -12,17 +12,21 @@ import android.support.v4.app.FragmentTransaction;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
+import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.loan.view.impl.LoanInProcessFragment;
-import com.yinshan.happycash.view.loan.view.LoaningFragment;
+import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.information.view.InformationFragment;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
-import com.yinshan.happycash.view.unloan.UnLoanFragment;
+import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.widget.DataGenerator;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
 
@@ -88,7 +92,7 @@ public class MainActivity extends BaseActivity  {
         initTabLayout();
     }
 
-    private void initTabLayout() {
+    public void initTabLayout() {
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -152,6 +156,7 @@ public class MainActivity extends BaseActivity  {
 
     /**
      *manage  fragment  with status
+     *
      * @param isUnLoan
      * @param isInfor
      * @param isMeFragment
@@ -295,24 +300,33 @@ public class MainActivity extends BaseActivity  {
         transaction.commit();
     }
 
-    private void showFragment(String  status){
+    private void showFragment(String  status) {
 
-        if(AppLoanStatus.UNLOAN.equals(status)){
-            manageFragament(true,false,false,false,false,false,false,
+        if (AppLoanStatus.UNLOAN.equals(status)) {
+            manageFragament(true, false, false, false, false, false, false,
                     false);
-        }else if(AppLoanStatus.REVIEW.equals(status)){
-            manageFragament(false,false,false,false,true,false,false,
+        } else if (AppLoanStatus.REVIEW.equals(status)) {
+            manageFragament(false, false, false, false, true, false, false,
                     false);
-        }else if(AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)){
-            manageFragament(false,false,false,false,false,true,false,
+        } else if (AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)) {
+            manageFragament(false, false, false, false, false, true, false,
                     false);
-        }else if(AppLoanStatus.REPAYMENT.equals(status)){
-            manageFragament(false,false,false,false,false,false,true,
+        } else if (AppLoanStatus.REPAYMENT.equals(status)) {
+            manageFragament(false, false, false, false, false, false, true,
                     false);
-        }else if(AppLoanStatus.OVERDUE.equals(status)){
-            manageFragament(false,false,false,false,false,false,true,
+        } else if (AppLoanStatus.OVERDUE.equals(status)) {
+            manageFragament(false, false, false, false, false, false, true,
                     false);
         }
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void goInformationFragment(MessageEvent messageEvent) {
+        mTabLayout.getTabAt(1);
+        View view = mTabLayout.getTabAt(1).getCustomView();
+        ImageView icon = view.findViewById(R.id.tab_content_image);
+        icon.setImageResource(DataGenerator.mTabResPressed[1]);
+//        manageFragament(false,true,false,false,false,
+//                false,false,false);
     }
 }

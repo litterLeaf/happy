@@ -91,4 +91,14 @@ public abstract class BaseFragment extends RxSupportFragment  {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
+    public  void mStartActivity( Class<?> cls){
+        Intent intent = new Intent(getActivity(),cls);
+        startActivity(intent);
+    }
+    public  void mStartActivity( Class<?> cls,Bundle bundle){
+        Intent intent = new Intent(getActivity(),cls);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }

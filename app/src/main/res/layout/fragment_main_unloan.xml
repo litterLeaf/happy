@@ -37,7 +37,7 @@
                 android:textSize="@dimen/sp14" />
 
             <SeekBar
-                android:id="@+id/seeker1"
+                android:id="@+id/unloan_seeker"
                 android:padding="@dimen/dp5"
                 style="?android:attr/seekBarStyle"
                 android:layout_marginTop="@dimen/dp20"
@@ -71,18 +71,22 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
+
                     <Button
                         android:id="@+id/bt_period_1_unloan"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:textStyle="bold"
-                        android:gravity="center"
-                        android:textSize="@dimen/sp35"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginRight="45dp"
                         android:background="@drawable/shape_unloan_bg"
-                        android:layout_centerVertical="true"
-                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:text="1"
                         android:textColor="@color/hc_input_text"
-                        android:text="1"/>
+                        android:textSize="@dimen/sp35"
+                        android:textStyle="bold" />
                 </RelativeLayout>
 
                 <RelativeLayout
@@ -158,6 +162,7 @@
                             android:textSize="@dimen/sp14" />
 
                         <TextView
+                            android:id="@+id/unloan_fee"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp40"
@@ -171,6 +176,7 @@
 
                     </LinearLayout>
                     <Button
+                        android:id="@+id/unloan_go_information"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="-25dip"
@@ -193,7 +199,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="@dimen/dp40"
                             android:layout_marginRight="@dimen/dp40"
-                            android:layout_marginTop="@dimen/dp25"
+                            android:layout_marginTop="@dimen/dp20"
                             android:gravity="center"
                             android:padding="@dimen/dp5"
                             android:text="Hanya butuh 4 langkah, paling cepat cair dalam 5 menit"

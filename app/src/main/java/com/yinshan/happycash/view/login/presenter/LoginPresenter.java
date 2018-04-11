@@ -61,7 +61,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     public void onNext(LoginTokenResponse loginTokenResponse) {
                         String token = loginTokenResponse.getToken();
 
-                        TokenManager.getInstance().setToken(token,0);
+                        TokenManager.getInstance().setToken(token);
                     }
 
                     @Override

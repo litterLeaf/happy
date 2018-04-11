@@ -1,10 +1,7 @@
 package com.yinshan.happycash.view.information.view;
 
-import android.os.Bundle;
 import android.text.SpannableStringBuilder;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -14,11 +11,9 @@ import com.yinshan.happycash.view.information.view.impl.ContactActivity;
 import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
-import com.yinshan.happycash.view.main.MainActivity;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
@@ -99,28 +94,28 @@ public class InformationFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), PersonalInformation.class);
+               mStartActivity( PersonalInformation.class);
                 break;
             case R.id.view_finish_person:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), PersonalInformation.class);
+               mStartActivity( PersonalInformation.class);
                 break;
             case R.id.view_not_finish_employ:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), JobInformation.class);
+               mStartActivity(JobInformation.class);
                 break;
             case R.id.view_finish_employ:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), JobInformation.class);
+                mStartActivity(JobInformation.class);
                 break;
             case R.id.view_not_finish_contact:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), ContactActivity.class);
+              mStartActivity( ContactActivity.class);
                 break;
             case R.id.view_finish_contact:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), ContactActivity.class);
+              mStartActivity( ContactActivity.class);
                 break;
             case R.id.view_not_finish_upload_photo:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), UploadPhotoActivity.class);
+              mStartActivity( UploadPhotoActivity.class);
                 break;
             case R.id.view_finish_upload_photo:
-                ((MainActivity)getActivity()).mStartActivity(getActivity(), UploadPhotoActivity.class);
+              mStartActivity( UploadPhotoActivity.class);
                 break;
         }
     }

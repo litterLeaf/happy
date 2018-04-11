@@ -32,6 +32,7 @@ public interface SPKeyUtils {
     /**
      * 服务器相应时间
      */
+    String TOKEN_KEY         = "token_key";
     String DATE = "date";
     String APP_STATUES = "loan_app_status";
     String SERVER_STATUES = "loan_server_status";

@@ -15,6 +15,8 @@ import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
@@ -70,6 +72,7 @@ public abstract class BaseActivity extends RxSupportActivity {
         secondLayout();
 
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         unbinder = ButterKnife.bind(this, mContextView);
         initView(mContextView, savedInstanceState);
 
@@ -112,6 +115,8 @@ public abstract class BaseActivity extends RxSupportActivity {
         super.onDestroy();
         if (unbinder != null)
             unbinder.unbind();
+        if(EventBus.getDefault().isRegistered(this))
+            EventBus.getDefault().unregister(this);
     }
     @Override
     public void finish() {
