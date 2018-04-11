@@ -21,12 +21,20 @@
             android:layout_height="60dp"
             android:layout_marginTop="5dp">
             <TextView
-                android:id="@+id/textRelative1"
+                android:id="@+id/hintRelative1"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
                 android:text="@string/relative"
                 android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textRelative1"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/app_blue"
                 />
             <ImageView
                 style="@style/image_wrap_layout"
@@ -48,12 +56,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
-                android:id="@+id/textContact1"
+                android:id="@+id/hintContact1"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
                 android:text="@string/contact"
                 android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textContact1"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
                 />
             <ImageView
                 style="@style/image_wrap_layout"
@@ -74,12 +90,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:id="@+id/hintPhone1"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
                 android:id="@+id/textPhone1"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
-                android:text="@string/relative"
-                android:textColor="@color/text_d6d6d6"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
                 />
         </RelativeLayout>
         <View
@@ -109,12 +133,20 @@
             android:layout_height="60dp"
             android:layout_marginTop="5dp">
             <TextView
-                android:id="@+id/textRelative2"
+                android:id="@+id/hintRelative2"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
                 android:text="@string/relative"
                 android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textRelative2"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
                 />
             <ImageView
                 style="@style/image_wrap_layout"
@@ -136,12 +168,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
-                android:id="@+id/textContact2"
+                android:id="@+id/hintContact2"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
                 android:text="@string/contact"
                 android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textContact2"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
                 />
             <ImageView
                 style="@style/image_wrap_layout"
@@ -162,12 +202,20 @@
             android:layout_width="match_parent"
             android:layout_height="60dp">
             <TextView
+                android:id="@+id/hintPhone2"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
                 android:id="@+id/textPhone2"
                 style="@style/text_wrap_layout"
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
-                android:text="@string/relative"
-                android:textColor="@color/text_d6d6d6"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
                 />
         </RelativeLayout>
         <View
