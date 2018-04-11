@@ -8,38 +8,34 @@ import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
-import com.yinshan.happycash.view.information.model.ContactBean;
-import com.yinshan.happycash.view.information.view.IContactView;
+import com.yinshan.happycash.view.information.model.ProgressBean;
+import com.yinshan.happycash.view.information.view.IInfoView;
 
 import java.lang.ref.SoftReference;
-import java.util.List;
-
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 
 /**
- * Created by huxin on 2018/4/2.
+ * Created by huxin on 2018/4/10.
  */
 
-public class ContactPresenter {
+public class InformationPresenter {
 
     Context mContext;
-    IContactView mView;
+    IInfoView mView;
 
-    public ContactPresenter(Context context,IContactView view){
+    public InformationPresenter(Context context,IInfoView view){
         mContext = context;
         mView = view;
     }
 
-    public void getContactInfo(){
+    public void getProgress(){
         RxHttpUtils.getInstance().createApi(RecordApi.class)
-                .getContactInfo(TokenManager.getInstance().getToken())
+                .progress(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
-                .subscribe(new BaseObserver<List<ContactBean>>(new SoftReference(mContext)){
+                .subscribe(new BaseObserver<ProgressBean>(new SoftReference(mContext)){
                     @Override
-                    public void onNext(List<ContactBean> value) {
-                        super.onNext(value);
-                        mView.showContactInfo(value);
+                    public void onNext(ProgressBean bean) {
+                        super.onNext(bean);
+                        mView.showProgress(bean);
                     }
 
                     @Override

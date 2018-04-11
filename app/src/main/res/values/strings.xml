@@ -49,6 +49,7 @@
     <string name="employ_info">Informasi Pekerjaan</string>
     <string name="contact_info">Info Kontak</string>
     <string name="contact">Kontak</string>
+    <string name="telephone_number">Nomor telepon</string>
     <string name="loan_count">Jumlah Pinjaman</string>
     <string name="time_period">Jangka Waktu</string>
     <string name="number_of_returns">Jumlah Pengembalian</string>

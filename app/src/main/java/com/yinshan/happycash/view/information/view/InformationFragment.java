@@ -7,6 +7,9 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
+import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.view.information.model.ProgressBean;
+import com.yinshan.happycash.view.information.presenter.InformationPresenter;
 import com.yinshan.happycash.view.information.view.impl.ContactActivity;
 import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
@@ -41,10 +44,7 @@ import butterknife.Unbinder;
  *         on 2018/1/31
  */
 
-public class InformationFragment extends BaseFragment {
-
-
-    float progress;
+public class InformationFragment extends BaseFragment implements IInfoView{
 
     @BindView(R.id.progressView)
     ProfilProgressView mProgressView;
@@ -70,18 +70,19 @@ public class InformationFragment extends BaseFragment {
     RelativeLayout finishUploadPhoto;
     Unbinder unbinder;
 
+    @BindView(R.id.submit)
+    RelativeLayout mSubmit;
+
+    InformationPresenter mPresenter;
+    private ProgressBean mProgressBean;
+
     @Override
     protected void initView() {
-        progress = 0.5f;
-        mProgressView.setCurrentProgress(progress);
-        SpannableStringBuilder spannableString = new SpannableStringBuilder();
-        spannableString.append(String.valueOf(progress * 100));
-        spannableString.append("%");
-//        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(20);
-//        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(10);
-//        spannableString.setSpan(sizeSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//        spannableString.setSpan(sizeSpan2, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mProgressText.setText(spannableString);
+
+        resetProgress();
+
+        mPresenter = new InformationPresenter(getActivity(),this);
+        mPresenter.getProgress();
     }
 
     @Override
@@ -117,6 +118,83 @@ public class InformationFragment extends BaseFragment {
             case R.id.view_finish_upload_photo:
               mStartActivity( UploadPhotoActivity.class);
                 break;
+        }
+    }
+
+    @Override
+    public void showProgress(ProgressBean bean) {
+        mProgressBean = bean;
+        updateProgress();
+    }
+
+    private void resetProgress(){
+        mProgressBean = new ProgressBean();
+        mProgressBean.clear();
+        updateProgress();
+    }
+
+    private void updateProgress(){
+        int progress = 0;
+        if(mProgressBean.isPersonalInfoPart()){
+            notFinishPerson.setVisibility(View.INVISIBLE);
+            finishPerson.setVisibility(View.VISIBLE);
+            progress += 25;
+        }else{
+            notFinishPerson.setVisibility(View.VISIBLE);
+            finishPerson.setVisibility(View.INVISIBLE);
+        }
+        if(mProgressBean.isEmploymentPart()){
+            notFinishEmploy.setVisibility(View.INVISIBLE);
+            finishEmploy.setVisibility(View.VISIBLE);
+            progress += 25;
+        }else{
+            notFinishEmploy.setVisibility(View.VISIBLE);
+            finishEmploy.setVisibility(View.INVISIBLE);
+        }
+        if(mProgressBean.isContactPart()){
+            notFinishContact.setVisibility(View.INVISIBLE);
+            finishContact.setVisibility(View.VISIBLE);
+            progress += 25;
+        }else{
+            notFinishContact.setVisibility(View.VISIBLE);
+            finishContact.setVisibility(View.INVISIBLE);
+        }
+        if(mProgressBean.isFilePart()){
+            notFinishUploadPhoto.setVisibility(View.INVISIBLE);
+            finishUploadPhoto.setVisibility(View.VISIBLE);
+            progress += 25;
+        }else{
+            notFinishUploadPhoto.setVisibility(View.VISIBLE);
+            finishUploadPhoto.setVisibility(View.INVISIBLE);
+        }
+        setProgress(progress);
+        showApplyButton(progress);
+    }
+
+    private void setProgress(int progress){
+        mProgressView.setCurrentProgress((float)(progress*0.01));
+        mProgressView.invalidate();
+        SpannableStringBuilder spannableString = new SpannableStringBuilder();
+        spannableString.append(String.valueOf(progress));
+        spannableString.append("%");
+//        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(20);
+//        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(10);
+//        spannableString.setSpan(sizeSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        spannableString.setSpan(sizeSpan2, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        mProgressText.setText(spannableString);
+    }
+
+    private void showApplyButton(int progress){
+        if(TokenManager.getInstance().hasLogin()){
+            mSubmit.setVisibility(View.INVISIBLE);
+        }else{
+            if(progress==100){
+                mSubmit.setClickable(true);
+                mSubmit.setAlpha(0.8f);
+            }else{
+                mSubmit.setClickable(false);
+                mSubmit.setAlpha(0.3f);
+            }
         }
     }
 }
