@@ -1,18 +1,26 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import android.app.Activity;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.view.information.model.ContactBean;
+import com.yinshan.happycash.view.information.model.RelationStatus;
 import com.yinshan.happycash.view.information.presenter.ContactPresenter;
 import com.yinshan.happycash.view.information.view.IContactView;
+import com.yinshan.happycash.widget.dialog.ListDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/4/2.
@@ -63,6 +71,31 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mPresenter.getContactInfo();
     }
 
+    @OnClick({R.id.btnRelative1})
+    public void onViewClicked(View view){
+        switch (view.getId()){
+            case R.id.btnRelative1:
+                List<String> relativeList1 = new ArrayList<>();
+                relativeList1.add(RelationStatus.PARENT.getValue());
+                relativeList1.add(RelationStatus.SPOUSE.getValue());
+                relativeList1.add(RelationStatus.SIBLING.getValue());
+                ListDialog listDialog = new ListDialog(this,R.style.DialogTheme,relativeList1){
+                    @Override
+                    public void clickIndex(int index) {
+                        showRelative1(relativeList1.get(index));
+                    }
+                };
+                listDialog.show();
+                DisplayMetrics dm = getResources().getDisplayMetrics();
+                int displayWidth = dm.widthPixels;
+                android.view.WindowManager.LayoutParams lp = listDialog.getWindow().getAttributes(); //获取对话框当前的参数值
+                lp.width = displayWidth;
+                listDialog.getWindow().setAttributes(lp);
+                listDialog.getWindow().setGravity(Gravity.CENTER);
+                break;
+        }
+    }
+
     @Override
     public void showContactInfo(List<ContactBean> list) {
         if(list==null)
@@ -70,9 +103,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         if(list.size()>=1){
             ContactBean contactBean = list.get(0);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                mHintRelative1.setVisibility(View.INVISIBLE);
-                mRelative1.setVisibility(View.VISIBLE);
-                mRelative1.setText(contactBean.getRelation());
+                showRelative1(contactBean.getRelation());
             }
             if(!TextUtils.isEmpty(contactBean.getName())){
                 mHintContact1.setVisibility(View.INVISIBLE);
@@ -103,5 +134,11 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                 mPhone2.setText(contactBean.getMobile());
             }
         }
+    }
+
+    private void showRelative1(String str){
+        mHintRelative1.setVisibility(View.INVISIBLE);
+        mRelative1.setVisibility(View.VISIBLE);
+        mRelative1.setText(str);
     }
 }

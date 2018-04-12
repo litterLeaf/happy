@@ -111,6 +111,13 @@
     <string name="not_return_clear">Belum lunas</string>
     <string name="return_clear">Dibayar</string>
 
+    <string name="relation_parent">ORANGTUA</string>
+    <string name="relation_friend">TEMAN</string>
+    <string name="relation_spouse">PASANGAN</string>
+    <string name="relation_sibling">SAUDARA</string>
+    <string name="relation_colleague">REKAN</string>
+    <string name="relation_classmate">TEMAN KELAS</string>
+
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
