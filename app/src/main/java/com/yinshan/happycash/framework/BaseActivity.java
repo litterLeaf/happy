@@ -99,10 +99,10 @@ public abstract class BaseActivity extends RxSupportActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (disposables2Stop != null) {
-            throw new IllegalStateException("onStart called multiple times");
-        }
-        disposables2Stop = new CompositeDisposable();
+//        if (disposables2Stop != null) {
+//            throw new IllegalStateException("onStart called multiple times");
+//        }
+//        disposables2Stop = new CompositeDisposable();
     }
 
 
