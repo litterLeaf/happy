@@ -24,7 +24,16 @@ public class UploadPhotoActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
-        mDialog = new UploadJobPhotoDialog(this,R.style.DialogTheme);
+
+    }
+
+    private void loadAndSetPhoto(){
+
+    }
+
+    private void showJobDialog(){
+        if(mDialog==null)
+            mDialog = new UploadJobPhotoDialog(this,R.style.DialogTheme);
         mDialog.show();
     }
 }

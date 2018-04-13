@@ -79,7 +79,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mPresenter.getContactInfo();
     }
 
-    @OnClick({R.id.btnRelative1,R.id.btnContact1,R.id.btnRelative2,R.id.btnContact2})
+    @OnClick({R.id.btnRelative1,R.id.btnContact1,R.id.btnRelative2,R.id.btnContact2,R.id.btnSubmit})
     public void onViewClicked(View view){
         switch (view.getId()){
             case R.id.btnRelative1:
@@ -120,6 +120,11 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             case R.id.btnContact2:
                 getContactInfo(1);
                 break;
+            case R.id.btnSubmit:
+                mPresenter.submitContactInfo(mRelative1.getText().toString(),mContact1.getText().toString(),mPhone1.getText().toString(),
+                        mRelative2.getText().toString(),mContact2.getText().toString(),mPhone2.getText().toString()
+                        );
+                break;
         }
     }
 
@@ -141,6 +146,11 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             }
             showContact2(contactBean.getName(),contactBean.getMobile());
         }
+    }
+
+    @Override
+    public void submitContactOk() {
+        finish();
     }
 
     @Override
