@@ -50,9 +50,9 @@ public class ContactPresenter {
                 });
     }
 
-    public void submitContactInfo(String relative1,String name1,String mobile1,String relative2,String name2,String mobile2){
+    public void submitContactInfo(String name1,String mobile1,String relative1,String name2,String mobile2,String relative2){
         RxHttpUtils.getInstance().createApi(RecordApi.class)
-                .submitContactInfo(relative1,name1,mobile1,relative2,name2,mobile2,TokenManager.getInstance().getToken())
+                .submitContactInfo(name1,mobile1,relative1,name2,mobile2,relative2,TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
                     @Override

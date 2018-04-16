@@ -121,8 +121,8 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                 getContactInfo(1);
                 break;
             case R.id.btnSubmit:
-                mPresenter.submitContactInfo(mRelative1.getText().toString(),mContact1.getText().toString(),mPhone1.getText().toString(),
-                        mRelative2.getText().toString(),mContact2.getText().toString(),mPhone2.getText().toString()
+                mPresenter.submitContactInfo(mContact1.getText().toString(),mPhone1.getText().toString(),mRelative1.getText().toString(),
+                        mContact2.getText().toString(),mPhone2.getText().toString(),mRelative2.getText().toString()
                         );
                 break;
         }
