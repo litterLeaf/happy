@@ -44,4 +44,9 @@ public interface SPKeyUtils {
     String REPAYMENT_FRAG = "repayment_fragment";
     String CERTIFICATION_TAB="certificationFrag";
     String ME_TAB="meFrag";
+
+
+
+    String IS_KTP_PHOTO_OK = "is_ktp_photo_ok";
+    String IS_WORK_PHOTO_OK = "is_work_photo_ok";
 }

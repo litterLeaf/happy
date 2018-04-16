@@ -15,9 +15,11 @@
         android:layerType="software"
         android:background="@drawable/bg_dash_white">
         <RelativeLayout
+            android:id="@+id/btnKtp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/ktpImage"
                 style="@style/image_wrap_layout"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
@@ -44,9 +46,11 @@
         android:layerType="software"
         android:background="@drawable/bg_dash_white">
         <RelativeLayout
+            android:id="@+id/btnJob"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/jobImage"
                 style="@style/image_wrap_layout"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
@@ -67,12 +71,13 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/btnInfoSubmit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="42.5dp"
         android:layout_marginRight="42.5dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bg_btn_disable">
+        android:background="@drawable/bg_btn_blue">
         <TextView
             style="@style/text_wrap_layout"
             android:textColor="@color/white"

@@ -128,8 +128,11 @@
     <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
-    <string name="with_job_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
+    <string name="with_ktp_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
+    <string name="with_job_photo">Foto halaman depan KTP</string>
     <string name="photo_should_clear">Foto harus jelas</string>
+    <string name="must_self_photo_and_clear">Harus foto anda sendiri, pastikan foto jelas dan bisa dibaca</string>
+
     <string name="start">Mulai</string>
 
     <string name="years">tahun</string>
