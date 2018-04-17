@@ -134,6 +134,15 @@
     <string name="must_self_photo_and_clear">Harus foto anda sendiri, pastikan foto jelas dan bisa dibaca</string>
 
     <string name="start">Mulai</string>
+    <string name="show_generate_wrong">Rekaman gagal, silahkan coba lagi.</string>
+    <string name="loading_storing_img">loading gambar</string>
+    <string name="CAMERA">Kamera</string>
+    <string name="WRITE_EXTERNAL_STORAGE">Penyimpanan</string>
+    <string name="permissions_rationale">Demi kelancaran proses peminjaman Anda, Kami membutuhkan otorisasi dibawah ini:\n</string>
+    <string name="ok">"Oke"</string>
+    <string name="CAMERA_INVALID">Kamera tidak dapat digunakan, mohon ke pengaturan dan buka izin akses kamera</string>
+    <string name="STORAGE_INVALID">Tidak dapat menyimpan gambar, silahkan pergi ke Settings di hak penyimpanan terbuka</string>
+
 
     <string name="years">tahun</string>
     <string name="months">bulan</string>

@@ -2,6 +2,7 @@ package com.yinshan.happycash.application;
 
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
+import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.yinshan.happycash.config.AppEnvConfig;
@@ -20,6 +21,11 @@ public class AppApplication extends MultiDexApplication{
     //单例模式instance
     private static AppApplication instance = null;
     public static Context appContext = null;
+
+
+    public static int mScreenWidth = 0;
+    public static int mScreenHeight = 0;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -39,6 +45,12 @@ public class AppApplication extends MultiDexApplication{
         crashHandler.init(this);
         appContext = this.getApplicationContext();
         LogUtil.getInstance().init(this);
+
+        DisplayMetrics mDisplayMetrics = getApplicationContext().getResources()
+                .getDisplayMetrics();
+        AppApplication.mScreenWidth = mDisplayMetrics.widthPixels;
+        AppApplication.mScreenHeight = mDisplayMetrics.heightPixels;
+
         //内存泄漏检测
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //
@@ -46,6 +58,7 @@ public class AppApplication extends MultiDexApplication{
 //        }
 
 //        LeakCanary.install(this);
+
     }
 
     public static AppApplication getInstance() {

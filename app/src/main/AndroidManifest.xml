@@ -132,6 +132,10 @@
             >
 
         </activity>
+        <activity android:name=".widget.camera.TakePhotoActivity"
+            >
+
+        </activity>
 
         <activity android:name=".view.information.view.impl.PersonalInformation"
         android:screenOrientation="portrait" >

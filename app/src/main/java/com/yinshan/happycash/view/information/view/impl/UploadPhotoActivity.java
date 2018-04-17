@@ -1,5 +1,6 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -7,6 +8,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.application.FieldParams;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.utils.FileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
@@ -15,6 +17,7 @@ import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
 import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
 import com.yinshan.happycash.view.information.view.impl.support.UploadKtpPhotoDialog;
+import com.yinshan.happycash.widget.camera.TakePhotoActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 
 import java.io.File;
@@ -99,7 +102,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
             mKtpDialog = new UploadKtpPhotoDialog(this, R.style.DialogTheme, new CommonClickListener() {
                 @Override
                 public void onClick() {
-
+                    changeTo(TakePhotoActivity.class, true);
                 }
             });
         mKtpDialog.show();
@@ -129,5 +132,9 @@ public class UploadPhotoActivity extends BaseSingleActivity{
         }
     }
 
-    //private void changeTo
+    private void changeTo(Class clazz,boolean isKTP){
+        Intent intent = new Intent(this, clazz);
+        intent.putExtra(FieldParams.PHOTO_TYPE, isKTP?1:2);
+        startActivity(intent);
+    }
 }

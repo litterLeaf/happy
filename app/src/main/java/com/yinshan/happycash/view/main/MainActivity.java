@@ -1,8 +1,11 @@
 package com.yinshan.happycash.view.main;
 
 
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -315,5 +318,15 @@ public class MainActivity extends BaseActivity  {
                     false);
         }
 
+    }
+
+    //crash 中出现Lenov的某机型会出现RuntimeExeception错误，应该是他们的底层做了修改
+    //暂时先catch出来，后续找找解决方案
+    public static boolean hasSelfPermission(Context context, String permission) {
+        try {
+            return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
+        } catch (RuntimeException e) {
+            return false;
+        }
     }
 }

@@ -49,4 +49,14 @@ public interface SPKeyUtils {
 
     String IS_KTP_PHOTO_OK = "is_ktp_photo_ok";
     String IS_WORK_PHOTO_OK = "is_work_photo_ok";
+
+
+    //错误的警告
+    int SNACKBAR_TYPE_ERROR = 0;
+    //提示
+    int SNACKBAR_TYPE_TIP = 1;
+    //提醒
+    int SNACKBAR_TYPE_WORN =2;
+    //跳转的提示
+    int SNACKBAR_TYPE_INTEENT = 3;
 }

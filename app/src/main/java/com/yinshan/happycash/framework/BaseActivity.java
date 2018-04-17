@@ -154,4 +154,11 @@ public abstract class BaseActivity extends RxSupportActivity {
         startActivity(intent);
     }
 
+    public void dismissLoading() {
+
+    }
+
+    public void showLoading(String message){
+
+    }
 }
