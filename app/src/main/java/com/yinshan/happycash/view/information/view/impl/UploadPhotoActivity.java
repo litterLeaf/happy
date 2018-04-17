@@ -7,12 +7,16 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.application.FieldParams;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.support.takepicture.bean.PhotoInfo;
 import com.yinshan.happycash.utils.FileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.Util;
 import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
 import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
@@ -58,20 +62,23 @@ public class UploadPhotoActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
+        RxBus.get().register(this);
+        mFileStatus = new HashMap<>(2);
+
         loadAndSetPhoto();
     }
 
     private void loadAndSetPhoto(){
         File cacheFile = FileUtil.getCacheFile(this);
 
-        File ktpFile = new File(cacheFile,"ktp.jpg");
+        File ktpFile = new File(cacheFile, Util.ktpFile);
         if(ktpFile.exists()){
             changeImage(mKtpImage,ktpFile);
             mKTPFile = ktpFile;
             mFileStatus.put(FileUploadType.KTP_PHOTO,FileStatus.FILE_ADDED);
         }
 
-        File jobFile = new File(cacheFile,"job.jpg");
+        File jobFile = new File(cacheFile,Util.jobFile);
         if(jobFile.exists()){
             changeImage(mJobImage,jobFile);
             mJobFile = jobFile;
@@ -136,5 +143,14 @@ public class UploadPhotoActivity extends BaseSingleActivity{
         Intent intent = new Intent(this, clazz);
         intent.putExtra(FieldParams.PHOTO_TYPE, isKTP?1:2);
         startActivity(intent);
+    }
+
+    @Subscribe
+    public void onPhotoTaken(PhotoInfo photoInfo){
+        if(photoInfo.photoType == 1){
+            changeImage(mKtpImage,photoInfo.mFile);
+        }else if(photoInfo.photoType == 2){
+            changeImage(mJobImage,photoInfo.mFile);
+        }
     }
 }

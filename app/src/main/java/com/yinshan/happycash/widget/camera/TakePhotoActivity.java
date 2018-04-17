@@ -105,17 +105,16 @@ public class TakePhotoActivity extends BaseActivity {
 
                 File myImage;
                 if(photoType==1){
-                     myImage = new File(storagePath, "ktp.jpg");
+                     myImage = new File(storagePath, Util.ktpFile);
                 }else if(photoType==2){
                      myImage = new File(storagePath,
-                             "workPicture.jpg");
+                             Util.jobFile);
                 }else if(photoType==3){
                     myImage = new File(storagePath,
-                            "buildup.jpg");
-
+                            Util.buildUpFile);
                 }else{
                     myImage = new File(storagePath,
-                            "other.jpg");
+                            Util.otherFile);
                 }
 
                 try {
