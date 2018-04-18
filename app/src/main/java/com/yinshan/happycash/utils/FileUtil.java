@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -105,4 +106,39 @@ public class FileUtil {
         }
         return storagePath;
     }
+
+    /**
+     * @return The MIME type for the given file.
+     */
+    public static String getMimeType(File file) {
+
+        String extension = getExtension(file.getName());
+
+        if (extension.length() > 0)
+            return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.substring(1));
+
+        return "application/octet-stream";
+    }
+
+    /**
+     * Gets the extension of a file name, like ".png" or ".jpg".
+     *
+     * @param uri
+     * @return Extension including the dot("."); "" if there is no extension;
+     *         null if uri was null.
+     */
+    public static String getExtension(String uri) {
+        if (uri == null) {
+            return null;
+        }
+
+        int dot = uri.lastIndexOf(".");
+        if (dot >= 0) {
+            return uri.substring(dot);
+        } else {
+            // No extension.
+            return "";
+        }
+    }
+
 }

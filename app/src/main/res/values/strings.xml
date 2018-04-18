@@ -119,6 +119,9 @@
     <string name="relation_colleague">REKAN</string>
     <string name="relation_classmate">TEMAN KELAS</string>
 
+    <string name="show_upload_failed">upload gagal</string>
+    <string name="show_upload_sucess">upload berhasil</string>
+
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>

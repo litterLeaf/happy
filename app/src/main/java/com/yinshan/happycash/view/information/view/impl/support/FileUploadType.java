@@ -6,5 +6,5 @@ package com.yinshan.happycash.view.information.view.impl.support;
 
 public enum FileUploadType {
 
-    KTP_PHOTO,JOB_PHOTO,CONTRACT_INFO
+    KTP_PHOTO, EMPLOYMENT_PHOTO, CONTRACT_VIDEO
 }

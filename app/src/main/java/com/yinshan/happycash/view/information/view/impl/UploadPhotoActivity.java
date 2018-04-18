@@ -1,6 +1,8 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -12,15 +14,19 @@ import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.application.FieldParams;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.network.common.network.FileUploadUtil;
 import com.yinshan.happycash.support.takepicture.bean.PhotoInfo;
 import com.yinshan.happycash.utils.FileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.Util;
+import com.yinshan.happycash.view.information.view.IUploadPhotoView;
 import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
 import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
 import com.yinshan.happycash.view.information.view.impl.support.UploadKtpPhotoDialog;
+import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.ZQImageViewRoundOval;
 import com.yinshan.happycash.widget.camera.TakePhotoActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
@@ -30,12 +36,18 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by huxin on 2018/3/14.
  */
 
-public class UploadPhotoActivity extends BaseSingleActivity{
+public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPhotoView{
 
     @BindView(R.id.ktpImage)
     ZQImageViewRoundOval mKtpImage;
@@ -86,7 +98,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
         if(jobFile.exists()){
             changeImage(mJobImage,jobFile);
             mJobFile = jobFile;
-            mFileStatus.put(FileUploadType.JOB_PHOTO,FileStatus.FILE_ADDED);
+            mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO,FileStatus.FILE_ADDED);
         }
 
         setButtonClickableState();
@@ -169,7 +181,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
             SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,true);
             changeImage(mJobImage,photoInfo.mFile);
             mJobFile = photoInfo.mFile;
-            mFileStatus.put(FileUploadType.JOB_PHOTO,FileStatus.FILE_ADDED);
+            mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO,FileStatus.FILE_ADDED);
             setButtonClickableState();
         }
     }
@@ -179,9 +191,62 @@ public class UploadPhotoActivity extends BaseSingleActivity{
             mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.UPLOADING);
             upload(mKTPFile,FileUploadType.KTP_PHOTO);
         }
+        if(mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO)==FileStatus.FILE_ADDED|| mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_FAILED){
+            mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO, FileStatus.UPLOADING);
+            upload(mJobFile,FileUploadType.EMPLOYMENT_PHOTO);
+        }
+        if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
+            dismissLoading();
+            finish();
+        }
     }
 
-    private void upload(File mKTPFile, FileUploadType ktpPhoto) {
-        
+    private void upload(File mKTPFile, final FileUploadType fileUploadType) {
+        FileUploadUtil.uploadPhotoFile(
+                fileUploadType,
+                mKTPFile,
+                TokenManager.getInstance().getToken())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber<Pair<Call<ResponseBody>, Response<ResponseBody>>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
+                        if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
+                                mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
+                            dismissLoading();
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
+                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
+                        }
+                    }
+
+                    @Override
+                    public void onNext(Pair<Call<ResponseBody>, Response<ResponseBody>> callResponsePair) {
+                        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_SUCCESS);
+
+                        if ((mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED || mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_SUCCESS)
+                                && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
+                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
+                            dismissLoading();
+                            SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
+                            SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
+                            UploadPhotoActivity.this.setResult(Activity.RESULT_OK);
+                            finish();
+                        } else if (
+                                mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
+                                        mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING
+                                ) {
+                            dismissLoading();
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
+                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
+                        }
+                    }
+                });
     }
 }
