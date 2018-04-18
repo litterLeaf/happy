@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/ktpImage"
                 style="@style/image_wrap_layout"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
@@ -34,6 +33,14 @@
                 android:textSize="12sp"
                 android:text="@string/family_card"
                 />
+            <com.yinshan.happycash.widget.ZQImageViewRoundOval
+                android:id="@+id/ktpImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"/>
         </RelativeLayout>
     </RelativeLayout>
 
@@ -50,7 +57,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
-                android:id="@+id/jobImage"
                 style="@style/image_wrap_layout"
                 android:layout_marginTop="50dp"
                 android:layout_centerHorizontal="true"
@@ -67,6 +73,14 @@
                 android:textSize="12sp"
                 android:text="@string/photo_worker_with_uniform"
                 />
+            <com.yinshan.happycash.widget.ZQImageViewRoundOval
+                android:id="@+id/jobImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"/>
         </RelativeLayout>
     </RelativeLayout>
 

@@ -21,6 +21,7 @@ import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
 import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
 import com.yinshan.happycash.view.information.view.impl.support.UploadKtpPhotoDialog;
+import com.yinshan.happycash.widget.ZQImageViewRoundOval;
 import com.yinshan.happycash.widget.camera.TakePhotoActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 
@@ -37,9 +38,9 @@ import butterknife.OnClick;
 public class UploadPhotoActivity extends BaseSingleActivity{
 
     @BindView(R.id.ktpImage)
-    ImageView mKtpImage;
+    ZQImageViewRoundOval mKtpImage;
     @BindView(R.id.jobImage)
-    ImageView mJobImage;
+    ZQImageViewRoundOval mJobImage;
     @BindView(R.id.btnInfoSubmit)
     RelativeLayout mBtnInfoSubmit;
 
@@ -62,6 +63,9 @@ public class UploadPhotoActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
+        mKtpImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
+        mJobImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
+
         RxBus.get().register(this);
         mFileStatus = new HashMap<>(2);
 
@@ -88,7 +92,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
         setButtonClickableState();
     }
 
-    @OnClick({R.id.btnKtp,R.id.btnJob})
+    @OnClick({R.id.btnKtp,R.id.btnJob,R.id.btnInfoSubmit})
     public void onCLick(View view){
         switch (view.getId()){
             case R.id.btnKtp:
@@ -96,6 +100,9 @@ public class UploadPhotoActivity extends BaseSingleActivity{
                 break;
             case R.id.btnJob:
                 showJobDialog();
+                break;
+            case R.id.btnInfoSubmit:
+                uploadImages();
                 break;
         }
     }
@@ -117,7 +124,12 @@ public class UploadPhotoActivity extends BaseSingleActivity{
 
     private void showJobDialog(){
         if(mJobDialog ==null)
-            mJobDialog = new UploadJobPhotoDialog(this,R.style.DialogTheme);
+            mJobDialog = new UploadJobPhotoDialog(this, R.style.DialogTheme, new CommonClickListener() {
+                @Override
+                public void onClick() {
+                    changeTo(TakePhotoActivity.class, false);
+                }
+            });
         mJobDialog.show();
     }
 
@@ -130,7 +142,7 @@ public class UploadPhotoActivity extends BaseSingleActivity{
     }
 
     private void setButtonClickableState(){
-        if(SPUtils.get(SPKeyUtils.IS_KTP_PHOTO_OK,false)&&SPUtils.get(SPKeyUtils.IS_WORK_PHOTO_OK,false)){
+        if(SPUtils.get(SPKeyUtils.IS_KTP_PHOTO_OK,true)&&SPUtils.get(SPKeyUtils.IS_WORK_PHOTO_OK,true)){
             mBtnInfoSubmit.setEnabled(true);
             mBtnInfoSubmit.setAlpha(1.0f);
         }else{
@@ -148,9 +160,28 @@ public class UploadPhotoActivity extends BaseSingleActivity{
     @Subscribe
     public void onPhotoTaken(PhotoInfo photoInfo){
         if(photoInfo.photoType == 1){
+            SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,true);
             changeImage(mKtpImage,photoInfo.mFile);
+            mKTPFile = photoInfo.mFile;
+            mFileStatus.put(FileUploadType.KTP_PHOTO,FileStatus.FILE_ADDED);
+            setButtonClickableState();
         }else if(photoInfo.photoType == 2){
+            SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,true);
             changeImage(mJobImage,photoInfo.mFile);
+            mJobFile = photoInfo.mFile;
+            mFileStatus.put(FileUploadType.JOB_PHOTO,FileStatus.FILE_ADDED);
+            setButtonClickableState();
         }
+    }
+
+    private void uploadImages(){
+        if(mFileStatus.get(FileUploadType.KTP_PHOTO)==FileStatus.FILE_ADDED|| mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_FAILED){
+            mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.UPLOADING);
+            upload(mKTPFile,FileUploadType.KTP_PHOTO);
+        }
+    }
+
+    private void upload(File mKTPFile, FileUploadType ktpPhoto) {
+        
     }
 }

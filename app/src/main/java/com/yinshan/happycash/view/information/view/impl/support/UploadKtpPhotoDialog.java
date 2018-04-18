@@ -36,6 +36,7 @@ public class UploadKtpPhotoDialog extends Dialog{
             @Override
             public void onClick(View v) {
                 mListener.onClick();
+                dismiss();
             }
         });
 

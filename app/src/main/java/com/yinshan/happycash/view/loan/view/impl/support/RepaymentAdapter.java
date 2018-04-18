@@ -71,6 +71,8 @@ public class RepaymentAdapter extends BaseAdapter{
             viewHolder.status.setText(mContext.getString(R.string.return_clear));
         else if(status.equals("ACTIVE"))
             viewHolder.status.setText(mContext.getString(R.string.not_return_clear));
+        else if(status.equals("OVERDUE"))
+            viewHolder.status.setText(mContext.getString(R.string.more_than_expected));
 
         return convertView;
     }
