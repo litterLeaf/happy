@@ -119,6 +119,23 @@
     <string name="relation_colleague">REKAN</string>
     <string name="relation_classmate">TEMAN KELAS</string>
 
+    <string name="apply_purpose_EDUCATION">BIAYA PENDIDIKAN</string>
+    <string name="apply_purpose_MEDICAL">BIAYA MEDIS</string>
+    <string name="apply_purpose_DAILY_PRODUCTS">PRODUK KEBUTUHAN SEHARI-HARI</string>
+    <string name="apply_purpose_BUSINESS_CAPITAL">MODAL BISNIS</string>
+    <string name="apply_purpose_ELECTRICITY_BILL">TAGIHAN LISTRIK</string>
+    <string name="apply_purpose_LOAN_PAYMENT">BAYAR PINJAMAN</string>
+    <string name="apply_purpose_ELECTRONICS_INSTALLMENT">CICILAN ELEKTRONIK</string>
+    <string name="apply_purpose_HOUSE_INSTALLMENT">CICILAN RUMAH</string>
+    <string name="apply_purpose_VEHICLE_INSTALLMENT">CICILAN KENDARAAN</string>
+    <string name="apply_purpose_VEHICLE_REPAIRMENT">PERBAIKAN KENDARAAN</string>
+    <string name="apply_purpose_VACATION">	LIBURAN</string>
+    <string name="apply_purpose_HOUSE_RENOVATION">RENOVASI RUMAH</string>
+    <string name="apply_purpose_APARTMENT_RENT">BAYAR KOS</string>
+    <string name="apply_purpose_WEDDING_EXPENSES">BIAYA PERNIKAHAN</string>
+    <string name="apply_purpose_TRANSPORTAION_FEE">BIAYA TRANSPORTASI</string>
+    <string name="apply_purpose_OTHERS">	LAIN-LAIN</string>
+
     <string name="show_upload_failed">upload gagal</string>
     <string name="show_upload_sucess">upload berhasil</string>
 
