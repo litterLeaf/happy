@@ -1,7 +1,7 @@
 package com.yinshan.happycash.view.bindcard.contract;
 
 import com.yinshan.happycash.framework.MvpBasePresenter;
-import com.yinshan.happycash.view.bindcard.model.BindCardBean;
+import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 
 /**
  * Created by admin on 2018/3/13.
@@ -9,7 +9,7 @@ import com.yinshan.happycash.view.bindcard.model.BindCardBean;
 
 public class BindCardContract {
     public  interface View  {
-        void bindCardSuccess(BindCardBean bean);
+        void bindCardSuccess(BandCardBean bean);
 
         void bindCardError(String message);
     }

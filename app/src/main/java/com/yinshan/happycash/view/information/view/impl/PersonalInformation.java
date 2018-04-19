@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.view.information.view.IPersonalView;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
 
 import butterknife.BindView;
@@ -38,7 +39,7 @@ s *
  *  on 2018/4/2
  *
  */
-public class PersonalInformation extends BaseSingleActivity {
+public class PersonalInformation extends BaseSingleActivity implements IPersonalView{
     @BindView(R.id.et_personal_name)
     BandaEditText personalName;
     @BindView(R.id.ll_personal_name)
@@ -108,8 +109,6 @@ public class PersonalInformation extends BaseSingleActivity {
     protected void secondInit() {
 
     }
-
-
 
     @OnClick({ R.id.ll_personal_gender, R.id.ll_personal_education, R.id.ll_personal_marital, R.id.ll_personal_children_number,
             R.id.ll_personal_residence_province, R.id.ll_personal_residence_city, R.id.ll_personal_residence_street, R.id.ll_personal_residence_area,
