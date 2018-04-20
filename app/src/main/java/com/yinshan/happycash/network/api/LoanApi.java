@@ -2,6 +2,7 @@ package com.yinshan.happycash.network.api;
 
 import com.yinshan.happycash.view.loan.model.ApplyLoanAppsBean;
 import com.yinshan.happycash.view.loan.model.ApplyPurpose;
+import com.yinshan.happycash.view.loan.model.ApplyResponseBean;
 import com.yinshan.happycash.view.loan.model.DepositMethodsBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
@@ -10,11 +11,13 @@ import com.yinshan.happycash.view.me.model.LoanItem;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -75,4 +78,11 @@ public interface LoanApi {
      */
     @GET("loanapps/purposes")
     Observable<List<ApplyPurpose>> getApplyPurposes(@Header("X-AUTH-TOKEN")  String token);
+
+    @GET("loanapps/qualification")
+    Observable<ApplyResponseBean> isQualification(@Header("X-AUTH-TOKEN") String token);
+
+    @PUT("loanapps/{loanAppId}")
+    rx.Observable<ResponseBody> resubmitLoanApp(@Path("loanAppId") long loanAppId,
+                                                @Header("X-AUTH-TOKEN") String token);
 }
