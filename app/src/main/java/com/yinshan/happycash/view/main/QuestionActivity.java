@@ -5,23 +5,12 @@ import android.view.View;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
-import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
 
 /**
- * Created by admin on 2018/3/23.
+ * Created by admin on 2018/4/23.
  */
 
-public class HotLineActivity extends BaseActivity {
-//    @Override
-//    protected String bindTitle() {
-//        return "HotLine";
-//    }
-//
-//    @Override
-//    protected int bindDownLayout() {
-//        return R.layout.activity_loan_list;
-//    }
-
+public class QuestionActivity extends BaseActivity {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
@@ -29,7 +18,7 @@ public class HotLineActivity extends BaseActivity {
 
     @Override
     protected int bindLayout() {
-        return R.layout.activity_loan_list;
+        return R.layout.activity_question;
     }
 
     @Override

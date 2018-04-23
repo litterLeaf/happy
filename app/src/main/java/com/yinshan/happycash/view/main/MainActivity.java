@@ -2,16 +2,16 @@ package com.yinshan.happycash.view.main;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -20,20 +20,21 @@ import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
+import com.yinshan.happycash.view.information.view.InformationFragment;
 import com.yinshan.happycash.view.loan.view.impl.LoanInProcessFragment;
 import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
-import com.yinshan.happycash.view.information.view.InformationFragment;
-import com.yinshan.happycash.view.me.view.impl.MeFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
-import com.yinshan.happycash.widget.DataGenerator;
+import com.yinshan.happycash.view.me.view.impl.MeFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -46,33 +47,39 @@ import butterknife.OnClick;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- *        ┃　　　┃   神兽保佑
- *        ┃　　　┃   代码无BUG！
- *        ┃　　　┗━━━┓
- *        ┃　　　　　　　┣┓
- *        ┃　　　　　　　┏┛
- *        ┗┓┓┏━┳┓┏┛
- *           ┃┫┫　┃┫┫
- *           ┗┻┛　┗┻┛
+ * ┃　　　┃   神兽保佑
+ * ┃　　　┃   代码无BUG！
+ * ┃　　　┗━━━┓
+ * ┃　　　　　　　┣┓
+ * ┃　　　　　　　┏┛
+ * ┗┓┓┏━┳┓┏┛
+ * ┃┫┫　┃┫┫
+ * ┗┻┛　┗┻┛
  *
  * @author admin
  *         on 2018/1/11
  */
-public class MainActivity extends BaseActivity  {
+public class MainActivity extends BaseActivity {
 
-//    @BindView(R.id.bottom_tab_layout)
-//    TabLayout mTabLayout;
-    @BindView(R.id.id_textview_tab_loan)
-    TextView textViewLoan;
-    @BindView(R.id.id_textview_tab_certification)
-    TextView textViewCertification;
-    @BindView(R.id.id_textview_tab_me)
-    TextView textViewMe;
-    @BindView(R.id.id_textview_tab_online_qa)
-    TextView textViewOnlineQA;
+
     @BindView(R.id.fragment_container)
-    FrameLayout homeContainer;
-
+    FrameLayout fragmentContainer;
+    @BindView(R.id.id_textview_tab_loan)
+    TextView tabLoan;
+    @BindView(R.id.id_linearlayout_loan)
+    LinearLayout idLinearlayoutLoan;
+    @BindView(R.id.id_textview_tab_certification)
+    TextView tabInformation;
+    @BindView(R.id.id_linearlayout_certification)
+    LinearLayout idLinearlayoutCertification;
+    @BindView(R.id.id_textview_tab_me)
+    TextView tabMe;
+    @BindView(R.id.id_linearlayout_me)
+    LinearLayout idLinearlayoutMe;
+    @BindView(R.id.id_textview_tab_online_qa)
+    TextView abOnlineQa;
+    @BindView(R.id.id_linearlayout_online_qa)
+    LinearLayout idLinearlayoutOnlineQa;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
 
@@ -104,45 +111,10 @@ public class MainActivity extends BaseActivity  {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
 
-        initBottomBar();
-
     }
-
-    private void initBottomBar() {
-
-    }
-
-    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification,
-            R.id.id_textview_tab_online_qa , R.id.id_textview_tab_me})
-    public void click(View view){
-        switch (view.getId()){
-
-            case R.id.id_textview_tab_loan:
-                String status =(String)DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
-                if(status==null){
-                    showFragment(AppLoanStatus.UNLOAN);
-                }else {
-                    showFragment(status);
-                }
-                textViewLoan.setSelected(true);
-                break;
-            case R.id.id_textview_tab_certification:
-                manageFragament(false,true,false,false,false,
-                        false,false,false);
-                break;
-            case R.id.id_textview_tab_me:
-                manageFragament(false,false,true,false,false,
-                        false,false,false);
-                break;
-            case R.id.id_textview_tab_online_qa:
-                mStartActivity(MainActivity.this, HotLineActivity.class);
-                break;
-        }
-    }
-
 
     /**
-     *manage  fragment  with status
+     * manage  fragment  with status
      *
      * @param isUnLoan
      * @param isInfor
@@ -154,8 +126,8 @@ public class MainActivity extends BaseActivity  {
      * @param isReject
      */
 
-    private void manageFragament( boolean isUnLoan,boolean isInfor,boolean isMeFragment,boolean isLoaning,boolean isProcess,
-                                  boolean isBuildUp, boolean isRepayment, boolean isReject ){
+    private void manageFragament(boolean isUnLoan, boolean isInfor, boolean isMeFragment, boolean isLoaning, boolean isProcess,
+                                 boolean isBuildUp, boolean isRepayment, boolean isReject) {
 
         //repaymentFragment
         if (isRepayment && null == repaymentFragment) {
@@ -287,7 +259,7 @@ public class MainActivity extends BaseActivity  {
         transaction.commit();
     }
 
-    private void showFragment(String  status) {
+    private void showFragment(String status) {
 
         if (AppLoanStatus.UNLOAN.equals(status)) {
             manageFragament(true, false, false, false, false, false, false,
@@ -309,8 +281,8 @@ public class MainActivity extends BaseActivity  {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void goInformationFragment(MessageEvent messageEvent) {
-        manageFragament(false,true,false,false,false,
-                false,false,false);
+        manageFragament(false, true, false, false, false,
+                false, false, false);
     }
 
     //crash 中出现Lenov的某机型会出现RuntimeExeception错误，应该是他们的底层做了修改
@@ -320,6 +292,37 @@ public class MainActivity extends BaseActivity  {
             return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
         } catch (RuntimeException e) {
             return false;
+        }
+    }
+
+    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.id_textview_tab_loan:
+                ToastUtils.showShort("loan");
+                String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
+                //                if(status==null){
+                //                    showFragment(AppLoanStatus.UNLOAN);
+                //                }else {
+                //                    showFragment(status);
+                //                }
+                tabLoan.setSelected(true);
+                break;
+            case R.id.id_textview_tab_certification:
+                ToastUtils.showShort("certification");
+                //                manageFragament(false,true,false,false,false,
+                //                        false,false,false);
+                break;
+            case R.id.id_textview_tab_me:
+                ToastUtils.showShort("me");
+                //                manageFragament(false,false,true,false,false,
+                //                        false,false,false);
+                break;
+            case R.id.id_textview_tab_online_qa:
+                ToastUtils.showShort("me");
+//                Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+//                startActivity(intent);
+                break;
         }
     }
 }
