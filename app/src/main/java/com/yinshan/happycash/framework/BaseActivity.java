@@ -55,8 +55,6 @@ public abstract class BaseActivity extends RxSupportActivity {
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
 
-    private CompositeDisposable disposables2Stop;// 管理Stop取消订阅者者
-    private CompositeDisposable disposables2Destroy;// 管理Destroy取消订阅者者
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

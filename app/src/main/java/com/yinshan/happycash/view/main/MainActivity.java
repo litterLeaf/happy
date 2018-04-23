@@ -320,8 +320,8 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.id_textview_tab_online_qa:
                 ToastUtils.showShort("me");
-//                Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
+                startActivity(intent);
                 break;
         }
     }
