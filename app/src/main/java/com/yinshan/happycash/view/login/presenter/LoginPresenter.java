@@ -36,7 +36,6 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void attachView(@NonNull LoginContract.View mvpView) {
         this.mvpView=mvpView;
-
     }
     @Override
     public void detachView() {
@@ -60,13 +59,13 @@ public class LoginPresenter implements LoginContract.Presenter {
                     @Override
                     public void onNext(LoginTokenResponse loginTokenResponse) {
                         String token = loginTokenResponse.getToken();
-
                         TokenManager.getInstance().setToken(token);
+                        mvpView.signInSuccess(loginTokenResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                            mvpView.signInError(e.getMessage());
                     }
 
                     @Override
@@ -88,12 +87,10 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-
                     }
 
                     @Override
                     public void onComplete() {
-
                     }
                 });
     }

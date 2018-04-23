@@ -19,12 +19,13 @@
         android:alpha="0.6"
         android:background="@android:color/darker_gray"
         />
-    <android.support.design.widget.TabLayout
-        android:id="@+id/bottom_tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        app:tabBackground="@color/white"
-        app:tabIndicatorHeight="0dp"
-        app:tabSelectedTextColor="@color/hc_input_text" />
+    <!--<android.support.design.widget.TabLayout-->
+        <!--android:id="@+id/bottom_tab_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="56dp"-->
+        <!--app:tabBackground="@color/white"-->
+        <!--app:tabIndicatorHeight="0dp"-->
+        <!--app:tabSelectedTextColor="@color/hc_input_text" />-->
+    <include layout="@layout/main_activity_bottom"/>
 
 </LinearLayout>

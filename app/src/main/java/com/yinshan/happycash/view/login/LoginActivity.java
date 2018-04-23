@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -24,11 +25,13 @@ import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
+import com.yinshan.happycash.widget.logger.LogUtil;
 import com.yinshan.happycash.widget.userdefined.OnCheckInputResult;
 import com.yinshan.happycash.widget.userdefined.RupiahEditText;
 import com.yinshan.happycash.widget.userdefined.SmsEditText;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 /**
@@ -88,30 +91,30 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     private void init(){
         mPresenter = new LoginPresenter(this);
         mPresenter.attachView(this);
-        mBtnSendSms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMobile = mEditMobile.getText().toString();
-                mPresenter.sendSms(mMobile);
-            }
-        });
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        updateSendSmsState();
+        updateLoginState();
+        setFocusListener();
+    }
+
+    @OnClick({R.id.id_button_login,R.id.btnSendSms})
+    public void onClick(View view){
+        switch (view.getId()){
+
+            case R.id.id_button_login:
                 mMobile = mEditMobile.getText().toString();
                 mSmsCode = getSmsCode();
                 mCaptchaSid = "";
                 mCaptcha = "";
                 mInviteCode = "";
                 mPresenter.signIn(mSmsCode,mCaptchaSid,mCaptcha,mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
-            }
-        });
+                break;
+            case R.id.btnSendSms:
+                mMobile = mEditMobile.getText().toString();
+                mPresenter.sendSms(mMobile);
+                break;
+        }
 
-        updateSendSmsState();
-        updateLoginState();
-        setFocusListener();
     }
-
     //连接4个验证码
     private String getSmsCode(){
         String sms1 = mSmsCode1.getText().toString().trim();
@@ -123,9 +126,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     private void setFocusListener(){
         //mobile改变检查
-        mEditMobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
+        mEditMobile.setOnFocusChangeListener((v,hasFocus)-> {
                 if(hasFocus){
                     mEditMobile.setCursorVisible(true);
                     mMobileLayout.setActivated(true);
@@ -135,8 +136,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
                     mEditMobile.setCursorVisible(false);
                     mMobileLayout.setActivated(false);
                 }
-            }
         });
+
         OnCheckInputResult onCheckInputResult = new OnCheckInputResultAdapter() {
             @Override
             public boolean onCheckResult(EditText v) {
@@ -285,10 +286,11 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void signInError(String message) {
-
+        LogUtil.getInstance().e(message);
     }
 
     @Override
     public void getSMSCodeSuccess(ResponseBody responseBody) {
+
     }
 }

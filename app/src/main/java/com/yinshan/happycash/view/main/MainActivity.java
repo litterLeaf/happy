@@ -9,6 +9,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.TextView;
+
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
@@ -29,6 +31,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * ┏┓　　　┏┓
@@ -54,8 +57,16 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity  {
 
-    @BindView(R.id.bottom_tab_layout)
-    TabLayout mTabLayout;
+//    @BindView(R.id.bottom_tab_layout)
+//    TabLayout mTabLayout;
+    @BindView(R.id.id_textview_tab_loan)
+    TextView textViewLoan;
+    @BindView(R.id.id_textview_tab_certification)
+    TextView textViewCertification;
+    @BindView(R.id.id_textview_tab_me)
+    TextView textViewMe;
+    @BindView(R.id.id_textview_tab_online_qa)
+    TextView textViewOnlineQA;
     @BindView(R.id.fragment_container)
     FrameLayout homeContainer;
 
@@ -89,70 +100,43 @@ public class MainActivity extends BaseActivity  {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        initTabLayout();
+
+        initBottomBar();
+
     }
 
-    public void initTabLayout() {
+    private void initBottomBar() {
 
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                onTabItemSelected(tab.getPosition());
-                //改变Tab 状态
-                for(int i=0;i< mTabLayout.getTabCount();i++){
-                    View view = mTabLayout.getTabAt(i).getCustomView();
-                    ImageView icon = view.findViewById(R.id.tab_content_image);
-
-                    if(i == tab.getPosition()){ // 选中状态
-                        icon.setImageResource(DataGenerator.mTabResPressed[i]);
-                    }else{// 未选中状态
-                        icon.setImageResource(DataGenerator.mTabRes[i]);
-                    }
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-        for(int i=0;i<4;i++){
-            mTabLayout.addTab(mTabLayout.newTab().setCustomView(DataGenerator.getTabView(this,i)));
-        }
     }
 
-    private void onTabItemSelected(int position) {
-        fragmentManager = getSupportFragmentManager();
-        transaction = fragmentManager.beginTransaction();
-        switch (position){
-            case 0:
+    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification,
+            R.id.id_textview_tab_online_qa , R.id.id_textview_tab_me})
+    public void click(View view){
+        switch (view.getId()){
+
+            case R.id.id_textview_tab_loan:
                 String status =(String)DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
                 if(status==null){
                     showFragment(AppLoanStatus.UNLOAN);
                 }else {
                     showFragment(status);
                 }
+                textViewLoan.setSelected(true);
                 break;
-            case 1:
+            case R.id.id_textview_tab_certification:
                 manageFragament(false,true,false,false,false,
                         false,false,false);
                 break;
-            case 2:
+            case R.id.id_textview_tab_me:
                 manageFragament(false,false,true,false,false,
                         false,false,false);
                 break;
-            case 3:
-//                fragment =new HotLineFragment();
+            case R.id.id_textview_tab_online_qa:
                 mStartActivity(MainActivity.this, HotLineActivity.class);
                 break;
         }
-
     }
+
 
     /**
      *manage  fragment  with status
@@ -322,11 +306,7 @@ public class MainActivity extends BaseActivity  {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void goInformationFragment(MessageEvent messageEvent) {
-        mTabLayout.getTabAt(1);
-        View view = mTabLayout.getTabAt(1).getCustomView();
-        ImageView icon = view.findViewById(R.id.tab_content_image);
-        icon.setImageResource(DataGenerator.mTabResPressed[1]);
-//        manageFragament(false,true,false,false,false,
-//                false,false,false);
+        manageFragament(false,true,false,false,false,
+                false,false,false);
     }
 }
