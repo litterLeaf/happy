@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.yinshan.happycash.R;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -56,6 +57,7 @@ public abstract class BaseActivity extends RxSupportActivity {
     private Unbinder unbinder;
 
 
+    @Subscribe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

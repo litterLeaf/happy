@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.view.information.presenter.PersonalPresenter;
 import com.yinshan.happycash.view.information.view.IPersonalView;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
 
@@ -95,6 +96,8 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
     @BindView(R.id.rl_personal_confirm)
     RelativeLayout confirm;
 
+    PersonalPresenter mPresenter;
+
     @Override
     protected String bindTitle() {
         return getString(R.string.title_personal_infor);
@@ -107,6 +110,7 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
 
     @Override
     protected void secondInit() {
+        mPresenter = new PersonalPresenter(this,this);
 
     }
 
