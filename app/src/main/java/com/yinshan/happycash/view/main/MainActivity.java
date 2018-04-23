@@ -128,6 +128,8 @@ public class MainActivity extends BaseActivity {
 
     private void manageFragament(boolean isUnLoan, boolean isInfor, boolean isMeFragment, boolean isLoaning, boolean isProcess,
                                  boolean isBuildUp, boolean isRepayment, boolean isReject) {
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
 
         //repaymentFragment
         if (isRepayment && null == repaymentFragment) {
@@ -301,22 +303,22 @@ public class MainActivity extends BaseActivity {
             case R.id.id_textview_tab_loan:
                 ToastUtils.showShort("loan");
                 String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
-                //                if(status==null){
-                //                    showFragment(AppLoanStatus.UNLOAN);
-                //                }else {
-                //                    showFragment(status);
-                //                }
+                if(status==null){
+                    showFragment(AppLoanStatus.UNLOAN);
+                }else {
+                    showFragment(status);
+                }
                 tabLoan.setSelected(true);
                 break;
             case R.id.id_textview_tab_certification:
                 ToastUtils.showShort("certification");
-                //                manageFragament(false,true,false,false,false,
-                //                        false,false,false);
+                manageFragament(false,true,false,false,false,
+                        false,false,false);
                 break;
             case R.id.id_textview_tab_me:
                 ToastUtils.showShort("me");
-                //                manageFragament(false,false,true,false,false,
-                //                        false,false,false);
+                manageFragament(false,false,true,false,false,
+                        false,false,false);
                 break;
             case R.id.id_textview_tab_online_qa:
                 ToastUtils.showShort("me");
