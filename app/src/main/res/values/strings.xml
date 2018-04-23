@@ -138,6 +138,23 @@
 
     <string name="show_upload_failed">upload gagal</string>
     <string name="show_upload_sucess">upload berhasil</string>
+    <string name="enum_period_three_month">TIGA_BULAN</string>
+    <string name="enum_period_six_month">ENAM_BULAN</string>
+    <string name="enum_period_one_year">SATU_TAHUN</string>
+    <string name="enum_period_two_year">DUA_TAHUN</string>
+    <string name="enum_period_over_two_year">DI_ATAS_DUA_TAHUN</string>
+    <string name="enum_gender_male">LAKI-LAKI</string>
+    <string name="enum_gender_female">PEREMPUAN</string>
+    <string name="enum_marriage_married">TELAH MENIKAH</string>
+    <string name="enum_marriage_single">SINGLE</string>
+    <string name="enum_marriage_divorced">CERAI</string>
+    <string name="enum_marriage_widowed">DUDA/JANDA</string>
+    <string name="enum_children_zero">NIHIL</string>
+    <string name="enum_children_one">SATU</string>
+    <string name="enum_children_two">DUA</string>
+    <string name="enum_children_three">TIGA</string>
+    <string name="enum_children_four">EMPAT</string>
+    <string name="enum_children_overfour">DI_ATAS_EMPAT</string>
 
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
