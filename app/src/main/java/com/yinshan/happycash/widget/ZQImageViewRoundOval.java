@@ -11,6 +11,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -20,7 +21,7 @@ import android.widget.ImageView;
  * Created by huxin on 2018/4/18.
  */
 
-public class ZQImageViewRoundOval extends ImageView{
+public class ZQImageViewRoundOval extends AppCompatImageView {
 
     private Paint mPaint;
 
