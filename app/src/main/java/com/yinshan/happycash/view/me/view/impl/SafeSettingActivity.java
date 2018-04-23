@@ -4,6 +4,7 @@ import android.support.v4.content.ContextCompat;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
+import com.yinshan.happycash.utils.SPUtils;
 
 /**
  * Created by huxin on 2018/3/20.
@@ -23,5 +24,9 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity{
 
     @Override
     protected void secondInit() {
+    }
+
+    private void quitClear(){
+        SPUtils.clearAll();
     }
 }

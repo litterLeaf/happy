@@ -12,4 +12,7 @@ public interface IContactView {
 
 
     void showContactInfo(List<ContactBean> value);
+
+    void submitContactOk();
+
 }

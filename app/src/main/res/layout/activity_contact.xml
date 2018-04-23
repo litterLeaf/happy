@@ -20,14 +20,16 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="5dp">
+
             <TextView
                 android:id="@+id/hintRelative1"
                 style="@style/text_wrap_layout"
-                android:layout_centerInParent="true"
-                android:textSize="16sp"
+                android:layout_alignBaseline="@+id/textRelative1"
+                android:layout_alignBottom="@+id/textRelative1"
+                android:layout_centerHorizontal="true"
                 android:text="@string/relative"
                 android:textColor="@color/text_d6d6d6"
-                />
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/textRelative1"
                 style="@style/text_wrap_layout"
@@ -231,6 +233,7 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginLeft="42.5dp"

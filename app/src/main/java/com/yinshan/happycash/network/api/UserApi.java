@@ -11,6 +11,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * ┏┓　　　┏┓
@@ -58,6 +59,31 @@ public interface UserApi {
     @POST("auth/login/sms/")
     Observable<ResponseBody> sendSms(@Field("mobile") String mobile);
 
-    @GET("loanapps/latest")
-    Observable<LastLoanAppBean> getLatestLoanApp(@Header("X-AUTH-TOKEN") String token);
+    /**
+     * 20170726  fix auth/login/sms-->auth/login/sms/v2
+     * @param mobile
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("auth/login/sms/voice")
+    Observable<ResponseBody> sendVoice(@Field("mobile") String mobile);
+
+    @FormUrlEncoded
+    @POST("auth/login/{mobile}/gesture")
+    Observable<LoginTokenResponse> loginWithGesturePwd(@Path("mobile") String mobile,
+                                                          @Field("gesturePassword") String gesturePassword);
+
+    @GET("auth/passwords/{mobile}/gesture/exists")
+    Observable<Boolean> hasGesturePasswordSet(@Path("mobile") String mobile,
+                                                 @Header("X-AUTH-TOKEN") String token);
+
+    @FormUrlEncoded
+    @POST("auth/passwords/{mobile}/gesture/reset")
+    Observable<Boolean> resetGesturePassword(@Path("mobile") String mobile,
+                                                @Field("gesturePassword") String gesturePassword,
+                                                @Header("X-AUTH-TOKEN") String token);
+
+    @FormUrlEncoded
+    @POST("auth/logout")
+    Observable<ResponseBody> logout(@Field("token") String token);
 }

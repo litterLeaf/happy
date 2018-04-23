@@ -53,6 +53,7 @@
             </LinearLayout>
             
             <RelativeLayout
+                android:id="@+id/btnSubmit"
                 android:layout_width="110dp"
                 android:layout_height="45dp"
                 android:layout_centerHorizontal="true"

@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.main.presenter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
@@ -39,7 +40,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
     @Override
     public void getLastLoanAppBean(String token) {
-        RxHttpUtils.getInstance().createApi(UserApi.class)
+        RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .getLatestLoanApp(token)
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<LastLoanAppBean>(new SoftReference(context)){
