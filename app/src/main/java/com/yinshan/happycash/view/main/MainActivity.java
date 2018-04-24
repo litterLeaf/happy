@@ -293,6 +293,7 @@ public class MainActivity extends BaseActivity {
     public void goInformationFragment(MessageEvent messageEvent) {
         manageFragament(false, true, false, false, false,
                 false, false, false);
+        reSetTab(2);
     }
 
     @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})

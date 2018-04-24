@@ -36,9 +36,11 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
-        toGoMainActivity();
+
         splashPresenter = new SplashPresenter(this);
         splashPresenter.attachView(this);
+        splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
+//        toGoMainActivity();
     }
 
     private void toGoMainActivity() {
@@ -64,10 +66,16 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
             dateManager.putToCache(SPKeyUtils.APP_STATUES, StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
             StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean);
         }
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void getStatusError(String message) {
         DateManager.getInstance().putToCache(SPKeyUtils.APP_STATUES, AppLoanStatus.UNLOAN);
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
