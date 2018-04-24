@@ -26,8 +26,9 @@ import com.yinshan.happycash.view.main.presenter.SplashPresenter;
  */
 
 public class SplashActivity extends AppCompatActivity implements SplashContract.View{
-    private SplashContract.Presenter splashPresenter;
-    private LastLoanAppBean mLatestLoanAppBean;
+     SplashContract.Presenter splashPresenter;
+     LastLoanAppBean mLatestLoanAppBean;
+    private Handler           mHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,8 +36,18 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_splash);
+        toGoMainActivity();
         splashPresenter = new SplashPresenter(this);
         splashPresenter.attachView(this);
+    }
+
+    private void toGoMainActivity() {
+        mHandler = new Handler();
+        mHandler.postDelayed(()-> {
+                Intent intent = new Intent(this,MainActivity.class);
+                startActivity(intent);
+                finish();
+        },3000);
     }
 
     @Override
