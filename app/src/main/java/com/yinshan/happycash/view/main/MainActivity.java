@@ -18,6 +18,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
+import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.ToastUtils;
@@ -28,6 +29,7 @@ import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
+import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -110,7 +112,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-
+        reSetTab(1);
+        String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
+        if(status==null){
+            showFragment(AppLoanStatus.UNLOAN);
+        }else {
+            showFragment(status);
+        }
     }
 
     /**
@@ -287,6 +295,56 @@ public class MainActivity extends BaseActivity {
                 false, false, false);
     }
 
+    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.id_textview_tab_loan:
+                reSetTab(1);
+                String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
+                if(status==null){
+                    showFragment(AppLoanStatus.UNLOAN);
+                }else {
+                    showFragment(status);
+                }
+                break;
+            case R.id.id_textview_tab_certification:
+                reSetTab(2);
+                manageFragament(false,true,false,false,false,
+                        false,false,false);
+                break;
+            case R.id.id_textview_tab_me:
+                reSetTab(3);
+                manageFragament(false,false,true,false,false,
+                        false,false,false);
+                break;
+            case R.id.id_textview_tab_online_qa:
+                if(TokenManager.getInstance().hasLogin()){
+                    mStartActivity(MainActivity.this,QuestionActivity.class);
+                }else {
+                    mStartActivity(MainActivity.this,LoginActivity.class);
+                }
+
+                break;
+        }
+    }
+
+    private void reSetTab(int tab){
+        tabLoan.setSelected(false);
+        tabInformation.setSelected(false);
+        tabMe.setSelected(false);
+        switch (tab){
+            case  1:
+                tabLoan.setSelected(true);
+                break;
+            case  2:
+                tabInformation.setSelected(true);
+                break;
+            case  3:
+                tabMe.setSelected(true);
+                break;
+        }
+    }
+
     //crash 中出现Lenov的某机型会出现RuntimeExeception错误，应该是他们的底层做了修改
     //暂时先catch出来，后续找找解决方案
     public static boolean hasSelfPermission(Context context, String permission) {
@@ -297,34 +355,5 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.id_textview_tab_loan:
-                ToastUtils.showShort("loan");
-                String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
-                if(status==null){
-                    showFragment(AppLoanStatus.UNLOAN);
-                }else {
-                    showFragment(status);
-                }
-                tabLoan.setSelected(true);
-                break;
-            case R.id.id_textview_tab_certification:
-                ToastUtils.showShort("certification");
-                manageFragament(false,true,false,false,false,
-                        false,false,false);
-                break;
-            case R.id.id_textview_tab_me:
-                ToastUtils.showShort("me");
-                manageFragament(false,false,true,false,false,
-                        false,false,false);
-                break;
-            case R.id.id_textview_tab_online_qa:
-                ToastUtils.showShort("me");
-                Intent intent = new Intent(MainActivity.this, QuestionActivity.class);
-                startActivity(intent);
-                break;
-        }
-    }
+
 }
