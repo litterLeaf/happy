@@ -14,6 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.application.AppManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -77,6 +78,8 @@ public abstract class BaseActivity extends RxSupportActivity {
         initView(mContextView, savedInstanceState);
 
         secondInit();
+
+        AppManager.getInstance().addActivity(this);
     }
 
     /**

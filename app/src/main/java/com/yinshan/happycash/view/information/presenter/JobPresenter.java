@@ -8,37 +8,36 @@ import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
-import com.yinshan.happycash.view.information.model.PersonalBean;
-import com.yinshan.happycash.view.information.view.IPersonalView;
+import com.yinshan.happycash.view.information.model.EmploymentBean;
+import com.yinshan.happycash.view.information.view.IJobView;
 
 import java.lang.ref.SoftReference;
 
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import okhttp3.ResponseBody;
 
 /**
- * Created by huxin on 2018/4/19.
+ * Created by huxin on 2018/4/24.
  */
 
-public class PersonalPresenter {
+public class JobPresenter {
 
     Context mContext;
-    IPersonalView mView;
+    IJobView mView;
     RecordApi mApi;
 
-    public PersonalPresenter(Context context,IPersonalView view){
+    public JobPresenter(Context context,IJobView view){
         mContext = context;
         mView = view;
         mApi = RxHttpUtils.getInstance().createApi(RecordApi.class);
     }
 
-    public void getPersonInfo() {
-        mApi.getPersonalInfo(TokenManager.getInstance().getToken())
+    public void getJobInfo(){
+        mApi.getEmploymentInfo(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
-                .subscribe(new BaseObserver<PersonalBean>(new SoftReference(mContext)) {
+                .subscribe(new BaseObserver<EmploymentBean>(new SoftReference(mContext)) {
                     @Override
-                    public void onNext(PersonalBean personalBean) {
-                        mView.showInfo(personalBean);
+                    public void onNext(EmploymentBean bean) {
+                        mView.showInfo(bean);
                     }
 
                     @Override
@@ -48,18 +47,16 @@ public class PersonalPresenter {
                 });
     }
 
-    public void submitPersonalInfo(PersonalBean personalBean){
-        mApi.submitPersonalInfo(personalBean.getFullName(),personalBean.getCredentialNo(),personalBean.getFamilyNameInLaw(),
-                personalBean.getGender(),personalBean.getProvince(),personalBean.getCity(),personalBean.getDistrict(),personalBean.getArea(),
-                personalBean.getAddress(),personalBean.getLastEducation(),personalBean.getMaritalStatus(),personalBean.getChildrenNumber(),
-                personalBean.getResidenceDuration(),personalBean.getFacebookId(),TokenManager.getInstance().getToken()
-                )
+    public void submitJobInfo(EmploymentBean bean){
+        mApi.submitEmploymentInfo(bean.getCompanyName(),bean.getCompanyProvince(),bean.getCompanyCity(),bean.getCompanyDistrict()
+                ,bean.getCompanyArea(),bean.getCompanyAddress(),bean.getCompanyPhone(),bean.getProfession(),bean.getSalary(),bean.getSalaryDay(),
+                TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
                     @Override
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
-                        mView.submitPersonOk();
+                        mView.submitOk();
                     }
 
                     @Override
