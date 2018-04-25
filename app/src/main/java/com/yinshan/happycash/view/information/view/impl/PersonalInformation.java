@@ -1,12 +1,16 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.ChildrenNumStatus;
 import com.yinshan.happycash.view.information.model.DurationStatus;
 import com.yinshan.happycash.view.information.model.GenderStatus;
@@ -18,6 +22,7 @@ import com.yinshan.happycash.widget.userdefined.BandaEditText;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Observable;
 
 /**
 s *
@@ -185,5 +190,76 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         mBean.setChildrenNumber(personalChildrenNumber.getText().toString().trim());
         mBean.setResidenceDuration(personalResidenceArea.getText().toString().trim());
         mPresenter.submitPersonalInfo(mBean);
+    }
+
+    private void addEditListener(){
+        addTextChangeEvent();
+    }
+
+    private void addTextChangeEvent(){
+        addTextChangeEvent(personalName);
+        addTextChangeEvent(PersonalKtp);
+        addTextChangeEvent(personalFamilyName);
+        addTextChangeEvent(PersonalKtp);
+        addTextChangeEvent(PersonalKtp);
+    }
+
+    private void addTextChangeEvent(EditText editText){
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                updateSubmitSate();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+
+    private boolean isCheckedField(){
+        if(StringUtil.isNullOrEmpty(personalName.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(PersonalKtp.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalFamilyName.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalGender.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalResidenceProvince.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalResidenceCity.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalResidenceStreet.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalResidenceArea.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalAddress.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalEducation.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalMarital.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalChildrenNumber.getText().toString()))
+            return false;
+        if(StringUtil.isNullOrEmpty(personalResidenceArea.getText().toString()))
+            return false;
+        return true;
+    }
+
+    private void updateSubmitSate() {
+        if (isCheckedField()) {
+            confirm.setClickable(true);
+            confirm.setAlpha(0.8f);
+        } else {
+            confirm.setClickable(false);
+            confirm.setAlpha(0.3f);
+        }
     }
 }

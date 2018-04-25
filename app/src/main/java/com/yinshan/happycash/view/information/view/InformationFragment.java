@@ -103,16 +103,16 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
-               mStartActivity( PersonalInformation.class);
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
                 break;
             case R.id.view_finish_person:
-               mStartActivity( PersonalInformation.class);
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
                 break;
             case R.id.view_not_finish_employ:
-               mStartActivity(JobInformation.class);
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
                 break;
             case R.id.view_finish_employ:
-                mStartActivity(JobInformation.class);
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
                 break;
             case R.id.view_not_finish_contact:
                 changeToForResult(ContactActivity.class,REQUEST_CONTACT);
@@ -121,10 +121,10 @@ public class InformationFragment extends BaseFragment implements IInfoView{
                 changeToForResult(ContactActivity.class,REQUEST_CONTACT);
                 break;
             case R.id.view_not_finish_upload_photo:
-              mStartActivity( UploadPhotoActivity.class);
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
                 break;
             case R.id.view_finish_upload_photo:
-              mStartActivity( UploadPhotoActivity.class);
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
                 break;
         }
     }
