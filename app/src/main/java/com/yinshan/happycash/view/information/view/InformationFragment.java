@@ -213,7 +213,7 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     }
 
     private void showApplyButton(int progress){
-        if(TokenManager.getInstance().hasLogin()){
+        if(!TokenManager.getInstance().hasLogin()){
             mSubmit.setVisibility(View.INVISIBLE);
         }else{
             if(progress==100){
