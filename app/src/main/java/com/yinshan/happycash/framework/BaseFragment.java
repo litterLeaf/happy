@@ -4,12 +4,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+
+import com.yinshan.happycash.application.FieldParams;
+import com.yinshan.happycash.view.login.LoginActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -41,6 +45,8 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends RxSupportFragment  {
 
+
+    private static final int LOGIN_INTERCEPT = 1005;
     private Unbinder unbinder;
 
     @Override
@@ -100,5 +106,43 @@ public abstract class BaseFragment extends RxSupportFragment  {
         Intent intent = new Intent(getActivity(),cls);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    public void changeToForResult(Class cls,int requestCode){
+        changeToForResult(cls,requestCode,false);
+    }
+
+    public void changeToForResult(Class cls,int requestCode,boolean checkLogin){
+        Intent intent = new Intent(getActivity(),cls);
+        if(checkLogin&&!isLogin()){
+            intent.putExtra(FieldParams.REQUEST_CODE,requestCode);
+            changeTo(intent,true);
+        }else{
+            startActivityForResult(intent,requestCode);
+        }
+    }
+
+    /**
+     * 检查登录状态的跳转，登录则跳转，否则留在本页
+     * @param intent
+     * @param checkLogin 是否检查登录状态
+     */
+    public void changeTo(Intent intent,boolean checkLogin){
+        if (checkLogin) {
+            if (!isLogin()) {
+                Intent loginIntent = new Intent(getActivity(), LoginActivity.class);
+                loginIntent.putExtra(FieldParams.TEMP_INTENT,intent);
+                startActivityForResult(loginIntent,LOGIN_INTERCEPT);
+            }else{
+                startActivity(intent);
+            }
+        }else {
+            startActivity(intent);
+        }
+
+    }
+
+    public boolean isLogin(){
+        return TokenManager.getInstance().hasLogin();
     }
 }

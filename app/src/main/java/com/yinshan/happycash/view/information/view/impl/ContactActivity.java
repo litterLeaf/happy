@@ -150,6 +150,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
 
     @Override
     public void submitContactOk() {
+        ContactActivity.this.setResult(Activity.RESULT_OK);
         finish();
     }
 

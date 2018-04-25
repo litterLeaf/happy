@@ -33,16 +33,16 @@ public class TokenManager {
     }
 
     public boolean hasLogin(){
-        return getToken() != null&&!getToken().equals("")&&!isExpired;
+        return getToken() != null&&!getToken().equals("");
     }
 
     public String getToken() {
-        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjU0Mjk0ODR9.UAmaP3N_61ZcP9gvxfz215JWCVADDrpEg4LKelHtEgYkHuyINn56DtgVX_WohYQFrSUdDH9ruhL9IZZ6EyyFrQ";
-//        return SPUtils.get(SPKeyUtils.TOKEN_KEY,"");
+//        return "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwODk1Mjc2MzcwNTA2NjYiLCJleHAiOjE1MjU0Mjk0ODR9.UAmaP3N_61ZcP9gvxfz215JWCVADDrpEg4LKelHtEgYkHuyINn56DtgVX_WohYQFrSUdDH9ruhL9IZZ6EyyFrQ";
+        return SPUtils.get(SPKeyUtils.TOKEN_KEY,"");
     }
 
     public void setToken(String token){
         SPUtils.put(SPKeyUtils.TOKEN_KEY, token);
-        isExpired = false;
+//        isExpired = false;
     }
 }

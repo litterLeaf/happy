@@ -1,5 +1,8 @@
 package com.yinshan.happycash.view.information.view;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -76,6 +79,11 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     InformationPresenter mPresenter;
     private ProgressBean mProgressBean;
 
+    private static final int REQUEST_PERSONAL     = 1100;
+    private static final int REQUEST_PROFESSIONAL = 1101;
+    private static final int REQUEST_CONTACT      = 1102;
+    private static final int REQUEST_PHOTO        = 1103;
+
     @Override
     protected void initView() {
 
@@ -107,10 +115,10 @@ public class InformationFragment extends BaseFragment implements IInfoView{
                 mStartActivity(JobInformation.class);
                 break;
             case R.id.view_not_finish_contact:
-              mStartActivity( ContactActivity.class);
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
                 break;
             case R.id.view_finish_contact:
-              mStartActivity( ContactActivity.class);
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
                 break;
             case R.id.view_not_finish_upload_photo:
               mStartActivity( UploadPhotoActivity.class);
@@ -125,6 +133,26 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     public void showProgress(ProgressBean bean) {
         mProgressBean = bean;
         updateProgress();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_PERSONAL && resultCode == Activity.RESULT_OK){
+            mProgressBean.setPersonalInfoPart(true);
+            updateProgress();
+        }else if(requestCode == REQUEST_PROFESSIONAL && resultCode == Activity.RESULT_OK){
+            mProgressBean.setEmploymentPart(true);
+            updateProgress();
+        }else if(requestCode == REQUEST_CONTACT && resultCode == Activity.RESULT_OK){
+            mProgressBean.setContactPart(true);
+            updateProgress();
+        }else if(requestCode == REQUEST_PHOTO && resultCode == Activity.RESULT_OK){
+            mProgressBean.setFilePart(true);
+            updateProgress();
+        }else{
+
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void resetProgress(){

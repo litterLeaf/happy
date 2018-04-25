@@ -7,4 +7,6 @@ package com.yinshan.happycash.application;
 public interface FieldParams {
 
     String PHOTO_TYPE             = "photo_type";
+    String REQUEST_CODE           = "request_code";
+    String TEMP_INTENT            = "tempintent";
 }
