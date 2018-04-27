@@ -257,12 +257,16 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         }
         if(event.data.getType()==InfoType.GENDER){
             personalGender.setText(event.data.getInfoStr());
+            mBean.setGender(event.data.getValueStr());
         }else if(event.data.getType()==InfoType.MATRIAL){
             personalMarital.setText(event.data.getInfoStr());
+            mBean.setMaritalStatus(event.data.getValueStr());
         }else if(event.data.getType()==InfoType.CHILDREN){
             personalChildrenNumber.setText(event.data.getInfoStr());
+            mBean.setChildrenNumber(event.data.getValueStr());
         }else if(event.data.getType()==InfoType.DURATION){
             personalDurationOfResidence.setText(event.data.getInfoStr());
+            mBean.setResidenceDuration(event.data.getValueStr());
         }
         updateSubmitSate();
     }
@@ -297,16 +301,12 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
             mBean.setFullName(personalName.getText().toString().trim());
             mBean.setCredentialNo(PersonalKtp.getText().toString().trim());
             mBean.setFamilyNameInLaw(personalFamilyName.getText().toString().trim());
-            mBean.setGender(personalGender.getText().toString().trim());
             mBean.setProvince(personalResidenceProvince.getText().toString().trim());
             mBean.setCity(personalResidenceCity.getText().toString().trim());
             mBean.setDistrict(personalResidenceStreet.getText().toString().trim());
             mBean.setArea(personalResidenceArea.getText().toString().trim());
             mBean.setAddress(personalAddress.getText().toString().trim());
             mBean.setLastEducation(personalEducation.getText().toString().trim());
-            mBean.setMaritalStatus(personalMarital.getText().toString().trim());
-            mBean.setChildrenNumber(personalChildrenNumber.getText().toString().trim());
-            mBean.setResidenceDuration(personalDurationOfResidence.getText().toString().trim());
             mPresenter.submitPersonalInfo(mBean);
         }
     }
