@@ -111,6 +111,7 @@
     <string name="not_return_clear">Belum lunas</string>
     <string name="return_clear">Dibayar</string>
     <string name="more_than_expected">Lebih dari yang diharapkan</string>
+    <string name="button_logout">Log out</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>

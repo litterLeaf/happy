@@ -4,16 +4,17 @@ import android.content.Context;
 
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
+import com.yinshan.happycash.network.api.RegionApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
 import com.yinshan.happycash.view.information.model.PersonalBean;
+import com.yinshan.happycash.view.information.model.RegionsBean;
 import com.yinshan.happycash.view.information.view.IPersonalView;
 
 import java.lang.ref.SoftReference;
 
-import io.reactivex.internal.observers.BlockingBaseObserver;
 import okhttp3.ResponseBody;
 
 /**
@@ -25,11 +26,13 @@ public class PersonalPresenter {
     Context mContext;
     IPersonalView mView;
     RecordApi mApi;
+    RegionApi mRegionApi;
 
     public PersonalPresenter(Context context,IPersonalView view){
         mContext = context;
         mView = view;
         mApi = RxHttpUtils.getInstance().createApi(RecordApi.class);
+        mRegionApi = RxHttpUtils.getInstance().createApi(RegionApi.class);
     }
 
     public void getPersonInfo() {
@@ -39,6 +42,22 @@ public class PersonalPresenter {
                     @Override
                     public void onNext(PersonalBean personalBean) {
                         mView.showInfo(personalBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+                });
+    }
+
+    public void getRegion(String level,int id,final int index){
+        mRegionApi.getRegion(level,id)
+                .compose(RxTransformer.io_main())
+                .subscribe(new BaseObserver<RegionsBean>(new SoftReference(mContext)) {
+                    @Override
+                    public void onNext(RegionsBean bean) {
+                        mView.showRegion(bean,index);
                     }
 
                     @Override
