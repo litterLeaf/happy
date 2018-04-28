@@ -99,7 +99,7 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     }
 
     @OnClick({R.id.view_not_finish_person, R.id.view_finish_person, R.id.view_not_finish_employ, R.id.view_finish_employ,
-            R.id.view_not_finish_contact,R.id.view_finish_contact,R.id.view_not_finish_upload_photo,R.id.view_finish_upload_photo})
+            R.id.view_not_finish_contact,R.id.view_finish_contact,R.id.view_not_finish_upload_photo,R.id.view_finish_upload_photo,R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
@@ -125,6 +125,9 @@ public class InformationFragment extends BaseFragment implements IInfoView{
                 break;
             case R.id.view_finish_upload_photo:
                 changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
+                break;
+            case R.id.submit:
+
                 break;
         }
     }
