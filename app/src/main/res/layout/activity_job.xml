@@ -105,7 +105,7 @@
 
     <!--children_number -->
     <LinearLayout
-        android:id="@+id/ll_job_children_number"
+        android:id="@+id/ll_job_company_provice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

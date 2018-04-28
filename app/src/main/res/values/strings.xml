@@ -204,6 +204,8 @@
     <string name="enum_salary_over_20b">Di atas 20.000.000</string>
     <string name="enum_salary_over_8b">Di atas 8.000.000</string>
 
+    <string name="text_area_code">021</string>
+
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
     <string name="login_voice_sms_tip_from"> Anda akan mendapatkan telepon kode verifikasi dari 6285574719927,mohon diangkat</string>
