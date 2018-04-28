@@ -59,7 +59,6 @@ public class UnLoanFragment extends BaseFragment {
     TextView unloanFee;
     @BindView(R.id.unloan_go_information)
     Button goInformation;
-    Unbinder unbinder;
 
     @Override
     protected void initView() {

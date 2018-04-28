@@ -28,18 +28,11 @@ public class ApplyFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        refreshLayout.setRefreshListener(new RefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                refresh();
-            }
+        refreshLayout.setRefreshListener(()-> {
+            refreshLayout.refreshComplete();
         });
         MyRefreshHeader header = new MyRefreshHeader(getActivity());
         refreshLayout.setRefreshHeader(header);
-        //refreshLayout.autoRefresh();
-
-//        ViewGroup.LayoutParams layoutParams = progressView.getLayoutParams();
-//        progressView.setLayoutParams(new ViewGroup.LayoutParams(299,4));
 
         mAdapter = new ApplyAdapter(getActivity());
         progressList.setAdapter(mAdapter);
@@ -51,7 +44,4 @@ public class ApplyFragment extends BaseFragment{
         return R.layout.fragment_apply;
     }
 
-    private void refresh(){
-        refreshLayout.refreshComplete();
-    }
 }

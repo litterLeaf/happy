@@ -28,7 +28,6 @@ import android.widget.RelativeLayout;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.application.FieldParams;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.support.takepicture.CameraManager;
 import com.yinshan.happycash.support.takepicture.CameraView;
@@ -228,7 +227,7 @@ public class TakePhotoActivity extends BaseActivity {
     protected void initView(View view, Bundle savedInstanceState) {
         RxBus.get().register(this);
         Intent intent = getIntent();
-        photoType = intent.getIntExtra(FieldParams.PHOTO_TYPE, 1);
+        photoType = intent.getIntExtra(SPKeyUtils.PHOTO_TYPE, 1);
         //mFileUploadType = mIsKTP ? FileUploadType.KTP_PHOTO : FileUploadType.EMPLOYMENT_PHOTO;
         relativeLayout = (RelativeLayout) findViewById(R.id.containerImg);
 

@@ -1,94 +1,60 @@
 package com.yinshan.happycash.framework;
 
 
-import com.yinshan.happycash.application.AppApplication;
-import com.yinshan.happycash.network.common.RxHttpUtils;
+import android.app.Application;
+import android.content.Context;
+import android.text.TextUtils;
 
-import java.util.HashMap;
+import com.yinshan.happycash.application.AppApplication;
+import com.yinshan.happycash.utils.AppLoanStatus;
+import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 /**
  * Created by admin on 2018/3/26.
  */
 
 public class DateManager {
-    private  String MOBILE_CACHE_KEY        = "mobile_cache_key";
-    private static DateManager instance;
-    ACache cache;
-    private HashMap<String,Object> mTempStatus;
 
-    private DateManager(){
-        cache = ACache.get(AppApplication.appContext);
-        mTempStatus = new HashMap<>();
+    public static String getMobile(){
+        return SPUtils.get(SPKeyUtils.MOBILE,"");
     }
-    public static DateManager getInstance() {
-        if (instance == null) {
-            synchronized (RxHttpUtils.class) {
-                if (instance == null) {
-                    instance = new DateManager();
-                }
-            }
+
+    public static void setMobile(String mobile){
+        SPUtils.put(SPKeyUtils.MOBILE,mobile);
+    }
+
+    public static void setServerStatus(String status){
+        SPUtils.get(SPKeyUtils.SERVER_STATUES,status);
+    }
+    public  static String  getStatus(){
+        if(TextUtils.isEmpty(SPUtils.get(SPKeyUtils.SERVER_STATUES,""))){
+            return AppLoanStatus.UNLOAN;
+        }else {
+            return SPUtils.get(SPKeyUtils.SERVER_STATUES,"");
         }
-        return instance;
     }
-
-
-    public  void putToCache(String key,Object obj){
-        instance.storeMessage(key,obj);
+    public static void setAPPStatus(String status){
+        SPUtils.get(SPKeyUtils.APP_STATUES,status);
     }
-    public  void removeToCache(String key){
-        instance.getAndRemove(key);
-    }
-    public  void putToFile(String key,String obj){
-        instance.cache.put(key,obj);
-    }
-
-    public  void removeToFile(String key){
-        instance.cache.remove(key);
-    }
-
-    public  Object checkoutMessage(String key){
-        return instance.getMessage(key);
-    }
-
-    public  Object removeMessage(String key){
-        return instance.getAndRemove(key);
-    }
-    public void setMobile(String mobile){
-        cache.put(MOBILE_CACHE_KEY, mobile);
-    }
-
-    public String getMobile(){
-        return cache.getAsString(MOBILE_CACHE_KEY);
-    }
-
-    private synchronized void storeMessage(String key,Object message){
-        if (key != null) {
-            mTempStatus.put(key, message);
+    public  static String  getAPPStatus(){
+        if(TextUtils.isEmpty(SPUtils.get(SPKeyUtils.APP_STATUES,""))){
+            return AppLoanStatus.UNLOAN;
+        }else {
+            return SPUtils.get(SPKeyUtils.APP_STATUES,"");
         }
     }
 
-    /**
-     * 获取暂存的信息，不删除
-     * @param key
-     * @return
-     */
-    public synchronized Object getMessage(String key){
-        if (key == null) {
-            return null;
-        }
-        return mTempStatus.get(key);
+    public static void putToCache(String key, Object mLatestLoanAppBean) {
+        SPUtils.put(AppApplication.appContext,key,mLatestLoanAppBean);
     }
-    /**
-     * 获取暂存的信息并删除
-     * @param key
-     * @return
-     */
-    private synchronized Object getAndRemove(String key){
-        if (key == null) {
-            return null;
-        }
-        return mTempStatus.remove(key);
+    public static Object getMessage(String key) {
+        return SPUtils.get(AppApplication.appContext,key,null);
+
     }
+    public static Object getMessage(Context context,String key) {
+        return SPUtils.get(context,key,null);
 
-
+    }
 }

@@ -47,6 +47,10 @@ public interface SPKeyUtils {
     String ME_TAB="meFrag";
 
 
+    String MOBILE = "mobile";
+    String PHOTO_TYPE  = "photo_type";
+    String REQUEST_CODE  = "request_code";
+    String TEMP_INTENT = "tempintent";
 
     String IS_KTP_PHOTO_OK = "is_ktp_photo_ok";
     String IS_WORK_PHOTO_OK = "is_work_photo_ok";
