@@ -55,4 +55,9 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="popupwindow_anim_style">
+        <item name="android:windowEnterAnimation">@anim/popwindow_pop</item>
+        <item name="android:windowExitAnimation">@anim/popwindow_pop_out</item>
+    </style>
+
 </resources>

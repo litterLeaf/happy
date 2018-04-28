@@ -44,4 +44,6 @@
     <color name="color_camera_button_pressed">#59d6e6</color>
     <color name="colorBlack">#000</color>
 
+    <color name="color_expiry_red">#F46262</color>
+
 </resources>

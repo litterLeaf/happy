@@ -23,6 +23,7 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.view.information.view.InformationFragment;
+import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
@@ -293,6 +294,13 @@ public class MainActivity extends BaseActivity {
         reSetTab(2);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
+        manageFragament(false, false, false, true, false,
+                false, false, false);
+        reSetTab(1);
+    }
+
     @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -321,6 +329,7 @@ public class MainActivity extends BaseActivity {
                 }else {
                     mStartActivity(MainActivity.this,LoginActivity.class);
                 }
+
                 break;
         }
     }
