@@ -46,7 +46,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView{
         listView.setAdapter(mAdapter);
 
         mDetailPresenter = new LoanDetailPresenter(getActivity(),this);
-        mDetailPresenter.getDetail(Long.valueOf(((LastLoanAppBean)DateManager.getInstance().getMessage(SPKeyUtils.LOANAPPBEAN)).getLoanAppId()));
+        mDetailPresenter.getDetail(Long.valueOf(((LastLoanAppBean)DateManager.getMessage(SPKeyUtils.LOANAPPBEAN)).getLoanAppId()));
     }
 
     @Override

@@ -2,34 +2,32 @@ package com.yinshan.happycash.view.main;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
+import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.SystemUtil;
 import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.information.view.InformationFragment;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
-import com.yinshan.happycash.view.loan.view.impl.LoanInProcessFragment;
 import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
@@ -93,7 +91,7 @@ public class MainActivity extends BaseActivity {
     private UnLoanFragment unLoanFrag;
     private LoaningFragment loaningFrag;
 
-    private LoanInProcessFragment processFragment;
+    private ApplyFragment applyFragment;
     private InformationFragment inforFragament;
     private MeFragment meFrag;
     private BuildUpFragment buildUpFragment;
@@ -118,7 +116,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         reSetTab(1);
-        String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
+        String status = DateManager.getStatus();
         if(status==null){
             showFragment(AppLoanStatus.UNLOAN);
         }else {
@@ -193,19 +191,19 @@ public class MainActivity extends BaseActivity {
         }
 
         //isProcess
-        if (isProcess && null == processFragment) {
+        if (isProcess && null == applyFragment) {
             Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.PROCESS_FRAG);
             if (null != tab1) {
-                processFragment = (LoanInProcessFragment) tab1;
+                applyFragment = (ApplyFragment) tab1;
             } else {
-                processFragment = new LoanInProcessFragment();
-                transaction.add(R.id.fragment_container, processFragment, SPKeyUtils.PROCESS_FRAG);
+                applyFragment = new ApplyFragment();
+                transaction.add(R.id.fragment_container, applyFragment, SPKeyUtils.PROCESS_FRAG);
             }
         }
-        if (isProcess && null != processFragment) {
-            transaction.show(processFragment);
-        } else if (!isProcess && null != processFragment) {
-            transaction.hide(processFragment);
+        if (isProcess && null != applyFragment) {
+            transaction.show(applyFragment);
+        } else if (!isProcess && null != applyFragment) {
+            transaction.hide(applyFragment);
         }
 
         //loaning
@@ -313,7 +311,7 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.id_textview_tab_loan:
                 reSetTab(1);
-                String status = (String) DateManager.getInstance().getMessage(SPKeyUtils.APP_STATUES);
+                String status = DateManager.getStatus();
                 if(status==null){
                     showFragment(AppLoanStatus.UNLOAN);
                 }else {

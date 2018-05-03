@@ -11,6 +11,7 @@
         android:background="@drawable/about_me"
         >
         <RelativeLayout
+            android:id="@+id/loginView"
             android:layout_width="140dp"
             android:layout_height="43dp"
             android:layout_alignParentBottom="true"

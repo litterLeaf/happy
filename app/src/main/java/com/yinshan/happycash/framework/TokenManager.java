@@ -13,14 +13,10 @@ import com.yinshan.happycash.utils.SPUtils;
  */
 
 public class TokenManager {
-    //    private static String TOKEN_CACHE_KEY         = "token_cache_key";
-//    public static String REFRESH_TOKEN_CACHE_KEY = "refresh_token_cahce_key";
+
     public static boolean isExpired = false;
     private static TokenManager instance;
-    //    private ACache cache;
-//    private TokenManager(){
-//        cache = ACache.get(AppApplication.appContext);
-//    }
+
     public static TokenManager getInstance() {
         if (instance == null) {
             synchronized (TokenManager.class) {
@@ -43,6 +39,5 @@ public class TokenManager {
 
     public void setToken(String token){
         SPUtils.put(SPKeyUtils.TOKEN_KEY, token);
-//        isExpired = false;
     }
 }

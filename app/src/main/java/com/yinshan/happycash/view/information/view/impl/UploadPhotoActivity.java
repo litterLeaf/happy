@@ -12,7 +12,6 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
-import com.yinshan.happycash.application.FieldParams;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.common.network.FileUploadUtil;
@@ -165,7 +164,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     private void changeTo(Class clazz,boolean isKTP){
         Intent intent = new Intent(this, clazz);
-        intent.putExtra(FieldParams.PHOTO_TYPE, isKTP?1:2);
+        intent.putExtra(SPKeyUtils.PHOTO_TYPE, isKTP?1:2);
         startActivity(intent);
     }
 

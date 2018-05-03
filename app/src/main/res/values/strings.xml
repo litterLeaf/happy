@@ -6,6 +6,17 @@
 
     <string name="title_personal_infor">Informasi Pribadi</string>
 
+    <!--build up -->
+    <string name="text_build_up_tip">Data anda telah dikembalikan karena alasan di bawah ini, silahkan perbaiki data
+        berikut dan ajukan kembali</string>
+    <string name="text_build_up_tip2">Silahkan perbaiki data anda berdasarkan feedback di atas</string>
+    <string name="text_build_up_title"> Data Dikembalikan</string>
+    <string name="text_build_up_btn">Ajukan Data</string>
+    <string name="build_up_modify_contact_info">Ubah info kontak</string>
+    <string name="build_up_upload_ktp">Upload ulang foto KTP</string>
+    <string name="build_up_upload_bank_info">Ubah info bank</string>
+    <string name="build_up_modify_job_info">Ubah info pekerjaan</string>
+
     <!--personal  infor -->
     <string name="edittext_personal_info_full_name">Nama Lengkap</string>
     <string name="edittext_personal_info_ktp_no">No KTP</string>

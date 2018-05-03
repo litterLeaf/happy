@@ -28,7 +28,7 @@ import com.yinshan.happycash.view.main.presenter.SplashPresenter;
 public class SplashActivity extends AppCompatActivity implements SplashContract.View{
      SplashContract.Presenter splashPresenter;
      LastLoanAppBean mLatestLoanAppBean;
-    private Handler           mHandler;
+    private Handler  mHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,15 +55,14 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
         mLatestLoanAppBean = latestLoanAppBean;
-        DateManager dateManager = DateManager.getInstance();
         if(mLatestLoanAppBean ==null){
             if(!TokenManager.getInstance().hasLogin()){
-                dateManager.putToCache(SPKeyUtils.APP_STATUES, AppLoanStatus.UNLOAN);
+                DateManager.setAPPStatus(AppLoanStatus.UNLOAN);
             }
         }else {
-            dateManager.putToCache(SPKeyUtils.LOANAPPBEAN,mLatestLoanAppBean);
-            dateManager.putToCache(SPKeyUtils.SERVER_STATUES, mLatestLoanAppBean.getStatus());
-            dateManager.putToCache(SPKeyUtils.APP_STATUES, StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
+            DateManager.putToCache(SPKeyUtils.LOANAPPBEAN,mLatestLoanAppBean);
+            DateManager.setServerStatus( mLatestLoanAppBean.getStatus());
+            DateManager.setAPPStatus(StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
             StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean);
         }
         Intent intent = new Intent(this,MainActivity.class);
@@ -73,7 +72,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void getStatusError(String message) {
-        DateManager.getInstance().putToCache(SPKeyUtils.APP_STATUES, AppLoanStatus.UNLOAN);
+        DateManager.setAPPStatus(AppLoanStatus.UNLOAN);
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         finish();

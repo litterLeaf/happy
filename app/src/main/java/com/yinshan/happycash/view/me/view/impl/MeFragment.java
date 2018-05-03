@@ -31,27 +31,30 @@ public class MeFragment extends BaseFragment{
         return R.layout.fragment_me;
     }
 
-    @OnClick({R.id.loanView,R.id.safeSettingView,R.id.helpCenterView,R.id.customHotLineView,R.id.aboutView})
+    @OnClick({R.id.loanView,R.id.safeSettingView,R.id.helpCenterView,R.id.customHotLineView,R.id.aboutView,R.id.loginView})
     public void onViewClicked(View view){
         switch (view.getId()){
             case R.id.loanView:
                 if(TextUtils.isEmpty(TokenManager.getInstance().getToken())||TokenManager.isExpired)
-                    startActivity(new Intent(getContext(), LoginActivity.class));
+                    mStartActivity(LoginActivity.class);
                 else
-                    startActivity(new Intent(getContext(), LoanListActivity.class));
+                mStartActivity(LoanListActivity.class);
                 break;
             case R.id.safeSettingView:
-                startActivity(new Intent(getContext(), SafeSettingActivity.class));
+                mStartActivity(SafeSettingActivity.class);
                 break;
             case R.id.helpCenterView:
-                startActivity(new Intent(getContext(), HelpCenterActivity.class));
+                mStartActivity(HelpCenterActivity.class);
                 break;
             case R.id.customHotLineView:
 //                Intent intent = mIMKit.getConversationActivityIntent();
 //                startActivity(intent);
                 break;
             case R.id.aboutView:
-                startActivity(new Intent(getContext(), AboutActivity.class));
+                mStartActivity(AboutActivity.class);
+                break;
+            case R.id.loginView:
+                mStartActivity(LoginActivity.class);
                 break;
         }
     }
