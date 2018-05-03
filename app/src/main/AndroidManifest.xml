@@ -133,6 +133,9 @@
             >
 
         </activity>
+        <activity android:name=".view.bindcard.view.impl.BindCardActivity"
+            >
+        </activity>
 
         <activity android:name=".view.information.view.impl.PersonalInformation"
         android:screenOrientation="portrait" >

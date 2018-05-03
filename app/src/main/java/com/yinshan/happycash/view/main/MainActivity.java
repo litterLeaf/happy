@@ -9,18 +9,22 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.SystemUtil;
 import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.fragments.BuildUpFragment;
 import com.yinshan.happycash.view.information.view.InformationFragment;
@@ -364,5 +368,13 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
+    public static void initImei() {
+        String imei = HappyAppSP.getInstance().getImei();
+        if (TextUtils.isEmpty(imei)) {
+            imei = SystemUtil.getInstance().getImei();
+            if (!TextUtils.isEmpty(imei)) {
+                HappyAppSP.getInstance().setImei(imei);
+            }
+        }
+    }
 }

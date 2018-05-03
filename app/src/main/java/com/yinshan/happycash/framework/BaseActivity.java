@@ -14,7 +14,11 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.analytic.event.MobAgent;
+import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.AppManager;
+import com.yinshan.happycash.widget.userdefined.BandaEditText;
+import com.yinshan.happycash.widget.userdefined.GoEditTextListener;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -168,5 +172,30 @@ public abstract class BaseActivity extends RxSupportActivity {
 
     public void showLoading(String message){
 
+    }
+
+    public void onFocusChange(View view,final String i){
+        view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    String mobAgent=i+ MobEvent.START;
+                    MobAgent.onEvent(mobAgent);
+                } else {
+                    String mobAgent=i+MobEvent.END;
+                    MobAgent.onEvent(mobAgent);
+                }
+            }
+        });
+    }
+
+    public void onPasteListener(BandaEditText view, final String i){
+        view.addListener(new GoEditTextListener() {
+            @Override
+            public void onPaste() {
+                String mobAgent=MobEvent.PASTE+i;
+                MobAgent.onEvent(mobAgent);
+            }
+        });
     }
 }

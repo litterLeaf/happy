@@ -488,29 +488,4 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
             jobConfirm.setAlpha(0.3f);
         }
     }
-
-    private void onFocusChange(View view, final String i) {
-        view.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    String mobAgent =  i+ MobEvent.START;
-                    MobAgent.onEvent(mobAgent);
-                } else {
-                    String mobAgent = i+MobEvent.END;
-                    MobAgent.onEvent(mobAgent);
-                }
-            }
-        });
-    }
-
-    private void onPasteListener(BandaEditText view,final String i){
-        view.addListener(new GoEditTextListener() {
-            @Override
-            public void onPaste() {
-                String mobAgent=MobEvent.PASTE+i;
-                MobAgent.onEvent(mobAgent);
-            }
-        });
-    }
 }

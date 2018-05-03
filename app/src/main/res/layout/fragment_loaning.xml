@@ -83,12 +83,12 @@
                         android:layout_marginLeft="@dimen/dp10"
                         android:src="@drawable/sub"/>
                     <TextView
+                        android:id="@+id/id_textview_repayment_amount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/sp35"
                         android:textStyle="bold"
-                        android:textColor="@color/hc_input_text"
-                        android:text="5,000.000"/>
+                        android:textColor="@color/hc_input_text"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -175,8 +175,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
 
@@ -191,6 +190,25 @@
                     />
                 <!--   app:eBackgroundDrawableRes="@drawable/shape_amount_selected"-->
                 <com.riven.library.TextViewExpand
+                    android:id="@+id/loan_bind_card"
+                    android:layout_width="match_parent"
+                    app:eBackgroundDrawableRes ="@drawable/shape_loaning_bindcard_bg"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/dp20"
+                    android:layout_marginLeft="@dimen/dp35"
+                    android:layout_marginRight="@dimen/dp35"
+                    app:eCenterTextSize="@dimen/sp14"
+                    app:eLineShow="none"
+                    app:eCenterTextString="@string/bind_card"
+                    app:eCenterTextColor="@color/hc_text"
+                    app:eLeftTextColor="@color/hc_text"
+                    app:eLeftTextSize="@dimen/sp14"
+                    app:eRightTextSize="@dimen/sp14"
+                    app:eRightTextColor="@color/hc_input_text"
+                    android:visibility="gone"
+                    />
+                <!--   app:eBackgroundDrawableRes="@drawable/shape_amount_selected"-->
+                <com.riven.library.TextViewExpand
                     android:id="@+id/loan_before_bind_card"
                     android:layout_width="match_parent"
                     app:eBackgroundDrawableRes ="@drawable/shape_loaning_bindcard_bg"
@@ -200,14 +218,9 @@
                     android:layout_marginRight="@dimen/dp35"
                     app:eCenterTextSize="@dimen/sp14"
                     app:eLineShow="none"
-                    app:eCenterTextString="34567890"
+                    app:eLeftIconRes="@drawable/add"
+                    app:eCenterTextString="@string/bind_card"
                     app:eCenterTextColor="@color/hc_text"
-                    app:eRightTextSize="@dimen/sp14"
-                    app:eLeftTextString="BCA"
-                    app:eLeftTextColor="@color/hc_text"
-                    app:eLeftTextSize="@dimen/sp14"
-                    app:eRightTextString="Ubah"
-                    app:eRightTextColor="@color/hc_input_text"
                     />
 
                 <com.riven.library.TextViewExpand
@@ -225,6 +238,7 @@
                     app:eCenterTextString="@string/textview_loaning_borrowing_reason"
                     app:eRightIconRes="@drawable/path_8_copy" />
                 <Button
+                    android:id="@+id/btnSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="@dimen/dp20"

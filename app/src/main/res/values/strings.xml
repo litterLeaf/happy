@@ -112,6 +112,7 @@
     <string name="return_clear">Dibayar</string>
     <string name="more_than_expected">Lebih dari yang diharapkan</string>
     <string name="button_logout">Log out</string>
+    <string name="add_bank_card">Tambahkan kartu bank</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>
@@ -205,6 +206,7 @@
     <string name="enum_salary_over_8b">Di atas 8.000.000</string>
 
     <string name="text_area_code">021</string>
+    <string name="bind_card">Rekening Penerima</string>
 
     <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
     <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
@@ -249,5 +251,160 @@ Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien denga
 Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
 Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
     <string name="hy_not_call_your_relative_please_write_cool">Happy Cash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
+
+    <string-array name="bankCardName1">
+        <item>BCA</item>
+        <item>MANDIRI</item>
+        <item>BRI</item>
+        <item>BNI</item>
+        <item>CIMB</item>
+    </string-array>
+    <string-array name="bankCardName2">
+        <item>DANAMON</item>
+        <item>PERMATA</item>
+        <item>PANIN</item>
+        <item>BII</item>
+        <item>ANGLOMAS</item>
+        <item>BANGKOK</item>
+        <item>AGRIS</item>
+        <item>SINARMAS</item>
+        <item>AGRONIAGA</item>
+        <item>ANDARA</item>
+        <item>ANTAR_DAERAH</item>
+        <item>ANZ</item>
+        <item>ARTHA</item>
+        <item>ARTOS</item>
+        <item>BISNIS_INTERNASIONAL</item>
+        <item>BJB</item>
+        <item>BJB_SYR</item>
+        <item>BNI_SYR</item>
+        <item>BNP_PARIBAS</item>
+        <item>BUKOPIN</item>
+        <item>BUMI_ARTA</item>
+        <item>CAPITAL</item>
+        <item>BCA_SYR</item>
+        <item>CHINATRUST</item>
+        <item>CIMB_UUS</item>
+        <item>COMMONWEALTH</item>
+        <item>DANAMON_UUS</item>
+        <item>DBS</item>
+        <item>DINAR_INDONESIA</item>
+        <item>DKI</item>
+        <item>DKI_UUS</item>
+        <item>EKONOMI_RAHARJA</item>
+        <item>FAMA</item>
+        <item>GANESHA</item>
+        <item>HANA</item>
+        <item>HARDA_INTERNASIONAL</item>
+        <item>HIMPUNAN_SAUDARA</item>
+        <item>ICBC</item>
+        <item>INA_PERDANA</item>
+        <item>INDEX_SELINDO</item>
+        <item>JASA_JAKARTA</item>
+        <item>KESEJAHTERAAN_EKONOMI</item>
+        <item>MASPION</item>
+        <item>MAYAPADA</item>
+        <item>MAYORA</item>
+        <item>MEGA</item>
+        <item>MESTIKA_DHARMA</item>
+        <item>METRO_EXPRESS</item>
+        <item>MIZUHO</item>
+        <item>MNC_INTERNASIONAL</item>
+        <item>MUAMALAT</item>
+        <item>MULTI_ARTA_SENTOSA</item>
+        <item>MUTIARA</item>
+        <item>NATIONALNOBU</item>
+        <item>NUSANTARA_PARAHYANGAN</item>
+        <item>OCBC</item>
+        <item>OCBC_UUS</item>
+        <item>BAML</item>
+        <item>BOC</item>
+        <item>RABOBANK</item>
+        <item>RESONA</item>
+        <item>ROYAL</item>
+        <item>SAHABAT_PURBA_DANARTA</item>
+        <item>SAHABAT_SAMPOERNA</item>
+        <item>SBI_INDONESIA</item>
+        <item>SINAR_HARAPAN_BALI</item>
+        <item>MITSUI</item>
+        <item>BRI_SYR</item>
+        <item>BUKOPIN_SYR</item>
+        <item>MANDIRI_SYR</item>
+        <item>MEGA_SYR</item>
+        <item>BTN</item>
+        <item>BTN_UUS</item>
+        <item>TABUNGAN_PENSIUNAN_NASIONAL</item>
+        <item>TABUNGAN_PENSIUNAN_NASIONAL_UUS</item>
+        <item>UOB</item>
+        <item>VICTORIA_INTERNASIONAL</item>
+        <item>VICTORIA_SYR</item>
+        <item>WINDU</item>
+        <item>WOORI</item>
+        <item>YUDHA_BHAKTI</item>
+        <item>ACEH</item>
+        <item>ACEH_UUS</item>
+        <item>BALI</item>
+        <item>BENGKULU</item>
+        <item>DAERAH_ISTIMEWA</item>
+        <item>DAERAH_ISTIMEWA_UUS</item>
+        <item>JAMBI</item>
+        <item>JAMBI_UUS</item>
+        <item>JAWA_TENGAH</item>
+        <item>JAWA_TENGAH_UUS</item>
+        <item>JAWA_TIMUR</item>
+        <item>JAWA_TIMUR_UUS</item>
+        <item>KALIMANTAN_BARAT</item>
+        <item>KALIMANTAN_BARAT_UUS</item>
+        <item>KALIMANTAN_SELATAN</item>
+        <item>KALIMANTAN_SELATAN_UUS</item>
+        <item>KALIMANTAN_TENGAH</item>
+        <item>KALIMANTAN_TIMUR</item>
+        <item>KALIMANTAN_TIMUR_UUS</item>
+        <item>LAMPUNG</item>
+        <item>MALUKU</item>
+        <item>NUSA_TENGGARA_BARAT</item>
+        <item>NUSA_TENGGARA_BARAT_UUS</item>
+        <item>NUSA_TENGGARA_TIMUR</item>
+        <item>PAPUA</item>\
+        <item>RIAU_DAN_KEPRI</item>
+        <item>RIAU_DAN_KEPRI_UUS</item>
+        <item>ARTA_NIAGA_KENCANA</item>
+        <item>EKSPOR_INDONESIA</item>
+        <item>MITRA_NIAGA</item>
+        <item>STANDARD_CHARTERED</item>
+        <item>RBS</item>
+        <item>PRIMA_MASTER</item>
+        <item>JPMORGAN</item>
+        <item>HSBC_UUS</item>
+        <item>HSBC</item>
+        <item>DEUTSCHE</item>
+        <item>CITIBANK</item>
+        <item>CENTRATAMA</item>
+        <item>SUMUT_UUS</item>
+        <item>SUMUT</item>
+        <item>SULAWESI</item>
+        <item>SULAWESI_TENGGARA</item>
+        <item>SULSELBAR</item>
+        <item>SULSELBAR_UUS</item>
+        <item>SULUT</item>
+        <item>SUMATERA_BARAT</item>
+        <item>SUMATERA_BARAT_UUS</item>
+        <item>SUMSEL_DAN_BABEL</item>
+        <item>SUMSEL_DAN_BABEL_UUS</item>
+        <item>INDIA</item>
+        <item>TOKYO</item>
+        <item>PANIN_SYR</item>
+        <item>PERMATA_UUS</item>
+        <item>PUNDI_INDONESIA</item>
+        <item>PUNDI_INDONESIA</item>
+        <item>QNB_KESAWAN</item>
+    </string-array>
+
+
+    <string name="loaning_fragment_bank_name">Mohon isi nama bank penerima</string>
+    <string name="loaning_fragment_bank_nuber">Mohon isi nama bank penerima</string>
+    <string name="loaning_fragment_name">Mohon isi nomor rekening penerima</string>
+    <string name="loaning_fragment_reason">Mohon isi tujuan pinjaman</string>
+    <string name="certification_goto_loannormal">Silahkan pilih jumlah dan jangka waktu pinjaman</string>
 
 </resources>

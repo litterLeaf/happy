@@ -57,7 +57,7 @@ public interface LoanApi {
      */
     @FormUrlEncoded
     @POST("loanapps")
-    rx.Observable<ApplyLoanAppsBean> applyLoanApp(@Field("loanType") String loanType,
+    Observable<ApplyLoanAppsBean> applyLoanApp(@Field("loanType") String loanType,
                                                   @Field("amount") String amount,
                                                   @Field("period") String period,
                                                   @Field("periodUnit") String periodUnit,
