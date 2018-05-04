@@ -79,6 +79,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
         idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(lMaxAmount));
         moneyAmount = lMaxAmount;
+        choosePeriod = 1;
 
         mPresenter = new LoaningPresenter(getActivity(),this);
         mPresenter.getBankCard();
@@ -195,7 +196,6 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }
 
         String loanType = "PAYDAY";
-        long amount = Long.valueOf(idTextviewRepaymentAmount.getText().toString().trim());
         long period = choosePeriod;
         String periodUnit = "M";
         String bankCode = bankCardName;
@@ -208,7 +208,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         String imie = HappyAppSP.getInstance().getImei();
         smsCode ="SMSCode";
 
-        mPresenter.submitLoanApp(loanType,String.valueOf(amount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
+        mPresenter.submitLoanApp(loanType,StringFormatUtils.moneyFormat(moneyAmount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
                 applyChannel,applyPlatform,imie,smsCode);
     }
 }
