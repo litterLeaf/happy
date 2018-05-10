@@ -15,4 +15,6 @@ public interface ILoaningView {
     void showBindBankCard(BandCardBean bean);
 
     void showPurpose(List<ApplyPurpose> list);
+
+    void submitLoanOk();
 }

@@ -115,6 +115,11 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         dialogPlus.show();
     }
 
+    @Override
+    public void submitLoanOk() {
+
+    }
+
     @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan})
     public void onClick(View view){
         switch (view.getId()){
@@ -208,7 +213,9 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         String imie = HappyAppSP.getInstance().getImei();
         smsCode ="SMSCode";
 
-        mPresenter.submitLoanApp(loanType,StringFormatUtils.moneyFormat(moneyAmount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
+        moneyAmount = 800000;
+
+        mPresenter.submitLoanApp(loanType,String.valueOf(moneyAmount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
                 applyChannel,applyPlatform,imie,smsCode);
     }
 }

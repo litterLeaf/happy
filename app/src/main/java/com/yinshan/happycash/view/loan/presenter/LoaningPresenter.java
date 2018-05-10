@@ -83,6 +83,8 @@ public class LoaningPresenter {
                     @Override
                     public void onNext(ApplyLoanAppsBean value) {
                         super.onNext(value);
+                        mView.submitLoanOk();
+                        Log.v("huxin","submit ok");
                     }
 
                     @Override
