@@ -54,7 +54,7 @@
             android:background="@null"
             android:gravity="center"
             android:hint="@string/edittext_personal_info_ktp_no"
-            android:inputType="text"
+            android:inputType="number"
             android:lines="1"
             android:textCursorDrawable="@drawable/cursor_color" />
 

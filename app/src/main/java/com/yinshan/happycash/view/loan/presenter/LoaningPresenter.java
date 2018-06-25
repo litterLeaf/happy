@@ -18,6 +18,7 @@ import com.yinshan.happycash.view.loan.view.ILoaningView;
 import java.lang.ref.SoftReference;
 import java.util.List;
 
+import retrofit2.HttpException;
 import retrofit2.http.Field;
 import retrofit2.http.Header;
 
