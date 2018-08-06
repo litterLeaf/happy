@@ -1,65 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context="com.yinshan.happycash.view.MainActivity">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 
     <FrameLayout
-        android:id="@+id/id_fragment_loan"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        >
+    </FrameLayout>
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.6"
+        android:background="@android:color/darker_gray"
         />
 
+    <!--<include layout="@layout/main_activity_bottom"/>-->
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/shape_main_tab_stroke"
-        android:orientation="horizontal">
+        android:baselineAligned="false">
+
+
         <!--Loan-->
         <LinearLayout
             android:id="@+id/id_linearlayout_loan"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="50dp"
             android:layout_weight="1"
-            android:clickable="true"
             android:gravity="center"
-            android:orientation="vertical">
+            android:clickable="true"
+            android:layout_height="50dp">
 
             <TextView
                 android:id="@+id/id_textview_tab_loan"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableTop="@drawable/ic_tab_loan_selector"
+                android:textSize="12dp"
                 android:gravity="center"
-                android:text="@string/textview_loan"
                 android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
+                android:text="@string/textview_loan"/>
 
         </LinearLayout>
 
         <!--Certification-->
         <LinearLayout
             android:id="@+id/id_linearlayout_certification"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/id_textview_tab_certification"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:clickable="true"
                 android:drawableTop="@drawable/ic_tab_cerification_selector"
+                android:textSize="12dp"
                 android:gravity="center"
-                android:text="@string/textview_certification"
+                android:clickable="true"
                 android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
+                android:text="@string/textview_certification"/>
 
         </LinearLayout>
 
@@ -67,23 +78,23 @@
         <!--Me-->
         <LinearLayout
             android:id="@+id/id_linearlayout_me"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
 
             <TextView
                 android:id="@+id/id_textview_tab_me"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:drawableTop="@drawable/ic_tab_me_selector"
                 android:gravity="center"
-                android:text="@string/textview_me"
+                android:textSize="12dp"
+                android:clickable="true"
                 android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
+                android:text="@string/textview_me"/>
 
         </LinearLayout>
 
@@ -91,23 +102,21 @@
         <!--Online Q&A-->
         <LinearLayout
             android:id="@+id/id_linearlayout_online_qa"
+            android:orientation="vertical"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:orientation="vertical">
-
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/id_textview_tab_online_qa"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
                 android:drawableTop="@drawable/ic_tab_onlineqa_serector"
+                android:textSize="12dp"
                 android:gravity="center"
-                android:text="@string/textview_online_QA"
+                android:clickable="true"
                 android:textColor="@color/tab_text_color_selector"
-                android:textSize="12dp" />
+                android:text="@string/textview_online_QA"/>
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

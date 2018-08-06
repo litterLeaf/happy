@@ -1,7 +1,13 @@
 package com.yinshan.happycash.network.common.base;
 
 
+import com.google.gson.Gson;
+import com.yinshan.happycash.network.common.support.QualityErrorBean;
+
+import java.io.IOException;
+
 import io.reactivex.Observer;
+import retrofit2.HttpException;
 
 /**
  * ┏┓　　　┏┓
@@ -30,8 +36,18 @@ import io.reactivex.Observer;
 public abstract class ErrorObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable e) {
-        if(e instanceof ApiException){
-            onError((ApiException)e);
+        if(e instanceof ApiException) {
+            onError((ApiException) e);
+        }else if(e instanceof HttpException){
+            HttpException httpException = (HttpException) e;
+            String errorBody = null;
+            try{
+                errorBody = httpException.response().errorBody().string();
+                int i=3;
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            onError(new ApiException(e,CodeException.E_201_ERROR,"201错误"));
         }else{
             onError(new ApiException(e,CodeException.UNKNOWN_ERROR,"未知错误"));
         }

@@ -29,6 +29,8 @@ package com.yinshan.happycash.network.common.base;
 public class CodeException {
 
     /*未知错误*/
+    public static final int E_201_ERROR = 201;
+    /*未知错误*/
     public static final int UNKNOWN_ERROR = 204;
     /*运行时异常-包含自定义异常*/
     public static final int RUNTIME_ERROR = 205;

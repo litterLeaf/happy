@@ -1,9 +1,421 @@
 <resources>
     <string name="app_name">happycash</string>
+    <string name="test">test</string>
+    <string name="test_desc">descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</string>
 
+
+    <string name="title_personal_infor">Informasi Pribadi</string>
+
+    <!--build up -->
+    <string name="text_build_up_tip">Data anda telah dikembalikan karena alasan di bawah ini, silahkan perbaiki data
+        berikut dan ajukan kembali</string>
+    <string name="text_build_up_tip2">Silahkan perbaiki data anda berdasarkan feedback di atas</string>
+    <string name="text_build_up_title"> Data Dikembalikan</string>
+    <string name="text_build_up_btn">Ajukan Data</string>
+    <string name="build_up_modify_contact_info">Ubah info kontak</string>
+    <string name="build_up_upload_ktp">Upload ulang foto KTP</string>
+    <string name="build_up_upload_bank_info">Ubah info bank</string>
+    <string name="build_up_modify_job_info">Ubah info pekerjaan</string>
+
+    <!--personal  infor -->
+    <string name="edittext_personal_info_full_name">Nama Lengkap</string>
+    <string name="edittext_personal_info_ktp_no">No KTP</string>
+    <string name="edittext_personal_info_family_name_in_law">Nama Gadis Ibu Kandung</string>
+    <string name="textview_personal_info_gender">Jenis Kelamin</string>
+    <string name="textview_personal_info_education">Edukasi</string>
+    <string name="textview_personal_info_marital_status">Status Perkawinan</string>
+    <string name="textview_personal_info_number_of_children">Jumlah Anak</string>
+    <string name="textview_personal_info_province_of_residence">Provinsi Tempat Tinggal</string>
+    <string name="textview_personal_info_city_of_residence">Kota Tempat Tinggal</string>
+    <string name="textview_personal_info_street_of_residence">Kecamatan </string>
+    <string name="textview_personal_info_area_of_residence">Kelurahan </string>
+    <string name="textview_personal_info_address">Alamat Lengkap</string>
+    <string name="textview_personal_info_duration_of_residence">Durasi Hunian</string>
+
+    <string name="textview_job_info_title">Informasi Pekerjaan</string>
+    <string name="textview_job_info_job_type">Tipe Pekerjaan</string>
+    <string name="textview_job_info_monthly_income">Pendapatan Bulanan</string>
+    <string name="edittext_job_info_company_name">Nama Perusahaan</string>
+    <string name="textview_job_info_province_of_company_located">Provinsi Perusahaan</string>
+    <string name="textview_job_info_city_of_company_located">Kota Perusahaan</string>
+    <string name="textview_job_info_street_of_company_located">Kecamatan Perusahaan</string>
+    <string name="textview_job_info_city_in_the_village">Kelurahan Perusahaan</string>
+    <string name="edittext_job_info_address">Alamat Lengkap</string>
+    <string name="edittext_job_info_tel_of_company">No Tel Perusahaan</string>
+
+
+    <!-- loaning的String-->
+    <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
+    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(hulan)</string>
+    <string name="textview_loaning_bind_card">Rekening Penerima</string>
+    <string name="textview_loaning_borrowing_reason">Tujuan Pinjaman</string>
+
+    <string name="how_to_borrow">Cara Meminjam</string>
+    <string name="borrowing_costs">Biaya Pinjaman</string>
+    <string name="how_to_return_the_loan">Cara Mengembalikan Pinjaman</string>
+    <string name="custom_service_hot_line">Hotline Layanan Pelanggan</string>
+    <string name="data_integrity">Integritas Data</string><!--数据完整性-->
+    <string name="loan_info">Info Pinjaman</string>
+    <string name="person_info">Informasi Pribadi</string>
+    <string name="employ_info">Informasi Pekerjaan</string>
+    <string name="contact_info">Info Kontak</string>
+    <string name="contact">Kontak</string>
+    <string name="telephone_number">Nomor telepon</string>
+    <string name="loan_count">Jumlah Pinjaman</string>
+    <string name="time_period">Jangka Waktu</string>
+    <string name="number_of_returns">Jumlah Pengembalian</string>
+    <string name="quit_login">keluar</string>
+    <string name="submit">Kirim</string>
+    <string name="ktp">KTP</string>
+    <string name="login_logout">Login/Daftar</string>
+    <string name="textview_online_QA">Livechat</string>
+    <string name="name">Nama</string>
+    <string name="name_of_beneficiary_bank">Nama Bank Penerima</string>
+    <string name="rule_number_receiver">Nomor Rek. Penerima</string>
+    <string name="auth">otentikasi</string>
+    <string name="hailed_auth">Otentikasi berhail</string><!--受到认证-->
+    <string name="my_loan">Pinjaman Saya</string>
+    <string name="safe_setting">Pengaturan Keamanan</string>
+    <string name="current_repay">Pembayaran saat ini</string>
     <string name="textview_loan">Prijam</string>
     <string name="textview_certification">Profil</string>
+    <string name="help_center">Pusat Bantuan</string>
+    <string name="status">Status</string>
     <string name="textview_me">Saya</string>
-    <string name="textview_online_QA">Livechat</string>
+    <string name="text_next">NEXT</string>
+    <string name="no_order">No.Order</string>
+    <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
+    <string name="button_obtain_code">Dapatkan\n Kode</string>
+    <string name="about_happy_cash">Tentang Happy Cash</string>
+    <string name="telephone">Telepon</string>
+    <string name="disbursement_date">Tanggal Pencairan</string>
+    <string name="due_date">Tanggal Jatuh Tempo</string>
+    <string name="date_of_return">Tanggal Pengembalian</string>
+    <string name="invite_friends">Undang Teman</string>
+    <string name="upload_photo">Upload Foto</string>
+    <string name="submit_time">Waktu Pengajuan</string>
+    <string name="borrowed_details">Rincian Pinjaman</string>
+    <string name="relative">Hubungan</string>
+    <string name="family_card">Halaman Depan KTP</string>
+    <string name="photo_worker_with_uniform">Foto Kartu Pekerja (Jika tidak ada anda dapat foto memakai seragam kerja)</string>
+    <string name="in_analysis_it_done_f">Dalam analisa, telah selesai %s</string>
+    <string name="full_repayment">Pelunasan Penuh</string>
+    <string name="pay">Bayar</string>
+    <string name="number_of_returns_for_this_period">Jumlah pengembalian periode ini(Rp)</string>
+    <string name="payment_date_f">Tanggai penbayaran %s</string>
+    <string name="payment_date_df">Tanggai penbayaran --</string>
+    <string name="number">Jumiah</string>
+    <string name="tenor">Tenor</string>
+    <string name="details">Rincian</string>
+    <string name="time_period2">Jumiah Periode</string>
+    <string name="rp_df">Rp--</string>
+    <string name="df">--</string>
+    <string name="change_the_pattern_password">Ubah password pola</string>
+    <string name="reload_id">Upload ulang KTP</string>
+    <string name="if_want_change_phone_please_call__">Jika anda ingin mengganti nomor ponsel , silahkan hubungi telepon layanan pelanggan: 622180679688</string>
+    <string name="you_can_repay_the_loan_in_the_following_ways">Anda dapat mengembalikan pinjaman dengan cara berikut:</string>
+    <string name="internet_banking">Internet Banking</string>
+    <string name="atm">ATM</string>
+    <string name="mobile_banking">Mobile Banking</string>
+    <string name="alfarmart_pay">Alfarmart Pay</string>
+    <string name="this_transaction_can_be_done_through_all">Transaksi ini dapat dilakukan melalui seluruh bank dan Alfamart</string>
+    <string name="not_return_clear">Belum lunas</string>
+    <string name="return_clear">Dibayar</string>
+    <string name="more_than_expected">Lebih dari yang diharapkan</string>
+    <string name="button_logout">Log out</string>
+    <string name="add_bank_card">Tambahkan kartu bank</string>
+
+    <string name="relation_parent">ORANGTUA</string>
+    <string name="relation_friend">TEMAN</string>
+    <string name="relation_spouse">PASANGAN</string>
+    <string name="relation_sibling">SAUDARA</string>
+    <string name="relation_colleague">REKAN</string>
+    <string name="relation_classmate">TEMAN KELAS</string>
+
+    <string name="apply_purpose_EDUCATION">BIAYA PENDIDIKAN</string>
+    <string name="apply_purpose_MEDICAL">BIAYA MEDIS</string>
+    <string name="apply_purpose_DAILY_PRODUCTS">PRODUK KEBUTUHAN SEHARI-HARI</string>
+    <string name="apply_purpose_BUSINESS_CAPITAL">MODAL BISNIS</string>
+    <string name="apply_purpose_ELECTRICITY_BILL">TAGIHAN LISTRIK</string>
+    <string name="apply_purpose_LOAN_PAYMENT">BAYAR PINJAMAN</string>
+    <string name="apply_purpose_ELECTRONICS_INSTALLMENT">CICILAN ELEKTRONIK</string>
+    <string name="apply_purpose_HOUSE_INSTALLMENT">CICILAN RUMAH</string>
+    <string name="apply_purpose_VEHICLE_INSTALLMENT">CICILAN KENDARAAN</string>
+    <string name="apply_purpose_VEHICLE_REPAIRMENT">PERBAIKAN KENDARAAN</string>
+    <string name="apply_purpose_VACATION">	LIBURAN</string>
+    <string name="apply_purpose_HOUSE_RENOVATION">RENOVASI RUMAH</string>
+    <string name="apply_purpose_APARTMENT_RENT">BAYAR KOS</string>
+    <string name="apply_purpose_WEDDING_EXPENSES">BIAYA PERNIKAHAN</string>
+    <string name="apply_purpose_TRANSPORTAION_FEE">BIAYA TRANSPORTASI</string>
+    <string name="apply_purpose_OTHERS">	LAIN-LAIN</string>
+
+    <string name="show_upload_failed">upload gagal</string>
+    <string name="show_upload_sucess">upload berhasil</string>
+    <string name="enum_period_three_month">TIGA_BULAN</string>
+    <string name="enum_period_six_month">ENAM_BULAN</string>
+    <string name="enum_period_one_year">SATU_TAHUN</string>
+    <string name="enum_period_two_year">DUA_TAHUN</string>
+    <string name="enum_period_over_two_year">DI_ATAS_DUA_TAHUN</string>
+    <string name="enum_gender_male">LAKI-LAKI</string>
+    <string name="enum_gender_female">PEREMPUAN</string>
+    <string name="enum_marriage_married">TELAH MENIKAH</string>
+    <string name="enum_marriage_single">SINGLE</string>
+    <string name="enum_marriage_divorced">CERAI</string>
+    <string name="enum_marriage_widowed">DUDA/JANDA</string>
+    <string name="enum_children_zero">NIHIL</string>
+    <string name="enum_children_one">SATU</string>
+    <string name="enum_children_two">DUA</string>
+    <string name="enum_children_three">TIGA</string>
+    <string name="enum_children_four">EMPAT</string>
+    <string name="enum_children_overfour">DI_ATAS_EMPAT</string>
+
+    <string name="enum_job_accounting">Accounting/Finance Officer</string>
+    <string name="enum_job_waiter">Customer service</string>
+    <string name="enum_job_engineer">Engineering</string>
+    <string name="enum_job_executive">Eksekutif</string>
+    <string name="enum_job_general_administration">Administrasi umum</string>
+    <string name="enum_job_information_technology">Teknologi Informasi</string>
+    <string name="enum_job_consultant">Konsultan/Analis</string>
+    <string name="enum_job_marketing">Marketing</string>
+    <string name="enum_job_teacher">Pengajar(Guru,Dosen)</string>
+    <string name="enum_job_military">Militer</string>
+    <string name="enum_job_retired">Pensiunan</string>
+    <string name="enum_job_student">Pelajar/Mahasiswa</string>
+    <string name="enum_job_entrepreneur">Wiraswasta</string>
+    <string name="enum_job_police">Polisi</string>
+    <string name="enum_job_farmer">Petani</string>
+    <string name="enum_job_fisherman">Nelayan</string>
+    <string name="enum_job_breeder">Peternak</string>
+    <string name="enum_job_doctor">Dokter</string>
+    <string name="enum_job_medical_personal">Tenaga Medis(Perawat,Bidan,dsb)</string>
+    <string name="enum_job_lawyer">Hukum(Pengacara, Notaris)</string>
+    <string name="enum_job_chef">Perhotelan&amp;Restoran(Koki,Bartender,dsb)</string>
+    <string name="enum_job_research">Peneliti</string>
+    <string name="enum_job_designer">Desainer</string>
+    <string name="enum_job_architect">Arsitek</string>
+    <string name="enum_job_workers_art">Pekerja Seni(Artis, Musisi, Pelukis, dsb)</string>
+    <string name="enum_job_security">Pengamanan</string>
+    <string name="enum_job_broker">Pialang/Broker</string>
+    <string name="enum_job_distributor">Distributor</string>
+    <string name="enum_job_air_transportation">Transportasi Udara (Pilot, Pramugari)</string>
+    <string name="enum_job_sea_transportation">Transportasi Laut (Nahkoda, ABK)</string>
+    <string name="enum_job_land_transportation">Transportasi Darat (Masinis, Sopir, Kondektur)</string>
+    <string name="enum_job_labor">Buruh(Buruh Pabrik, Buruh Bangunan, Buruh Tani)</string>
+    <string name="enum_job_craftsman">Pertukangan &amp; Pengrajin (Tukang Kayu, Pengrajin Kulit, dll)</string>
+    <string name="enum_job_housewife">Ibu Rumah Tangga</string>
+    <string name="enum_job_information_worker">Pekerja Informal (Asisten Rumah Tangga, Asongan, dll)</string>
+    <string name="enum_job_state_officials">Pejabat Negara/Penyelenggara Negara</string>
+    <string name="enum_job_government_employment">Pegawai Pemerintahan/Lembaga Negara (selain Pejabat/Penyelenggara Negara)</string>
+    <string name="enum_job_other">Lain-lain</string>
+
+    <string name="enum_salary_below_2b">Di bawah 2.000.000</string>
+    <string name="enum_salary_between_2b_4b">Antara 2.000.000 dan 4.000.000</string>
+    <string name="enum_salary_between_4b_8b">Antara 4.000.000 dan 8.000.000</string>
+    <string name="enum_salary_between_8b_12b">Antara 8.000.000 dan 12.000.000</string>
+    <string name="enum_salary_between_12b_20b">Antara 12.000.000 dan 20.000.000</string>
+    <string name="enum_salary_over_20b">Di atas 20.000.000</string>
+    <string name="enum_salary_over_8b">Di atas 8.000.000</string>
+
+    <string name="text_area_code">021</string>
+    <string name="bind_card">Rekening Penerima</string>
+
+    <string name="login_send_voice_sms">Tidak dapat kode verifikasi? Ayo coba kode verifikasi suara</string>
+    <string name="login_voice_sms_tip"> Anda tidak bisa mendapatkan kode baru sebelum hitung mundur selesai, silahkan menunggu</string>
+    <string name="login_voice_sms_tip_from"> Anda akan mendapatkan telepon kode verifikasi dari 6285574719927,mohon diangkat</string>
+    <string name="edittext_graphical_code">Kode Verifikasi Grafik</string>
+    <string name="button_login">Login</string>
+    <string name="login_statement"> Kebijakan Privasi</string>
+    <string name="login_statement1"><![CDATA[Syarat & Ketentuan]]></string>
+    <string name="button_bind_card">Tambah</string>
+    <string name="unloan_button"> Pinjam Sekarang</string>
+    <string name="with_ktp_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
+    <string name="with_job_photo">Foto halaman depan KTP</string>
+    <string name="photo_should_clear">Foto harus jelas</string>
+    <string name="must_self_photo_and_clear">Harus foto anda sendiri, pastikan foto jelas dan bisa dibaca</string>
+
+    <string name="start">Mulai</string>
+    <string name="show_generate_wrong">Rekaman gagal, silahkan coba lagi.</string>
+    <string name="loading_storing_img">loading gambar</string>
+    <string name="CAMERA">Kamera</string>
+    <string name="WRITE_EXTERNAL_STORAGE">Penyimpanan</string>
+    <string name="permissions_rationale">Demi kelancaran proses peminjaman Anda, Kami membutuhkan otorisasi dibawah ini:\n</string>
+    <string name="ok">"Oke"</string>
+    <string name="CAMERA_INVALID">Kamera tidak dapat digunakan, mohon ke pengaturan dan buka izin akses kamera</string>
+    <string name="STORAGE_INVALID">Tidak dapat menyimpan gambar, silahkan pergi ke Settings di hak penyimpanan terbuka</string>
+
+
+    <string name="years">tahun</string>
+    <string name="months">bulan</string>
+    <string name="days"> Hari</string>
+
+    <string name="text_cancel">Batal</string>
+
+    <string name="please_make_original_data_submit_can_done_after_all_data_is_completed">Mohon pastikan data asli,pengajuan bisa dilakukan setelah seluruh data dilengkapi</string>
+    <string name="help_1">Download Happy Cash di Google Play atau Android Market lainnya</string>
+    <string name="help_2">Di halaman utama app, pilih jumlah pinjaman dan tenor pinjaman</string>
+    <string name="help_3">Luangkan 5 menit untuk memverifikasi informasi anda</string>
+    <string name="help_4">Tunggu review pertama, mohon pastikan ponsel anda aktif</string>
+    <string name="help_5">Tunggu pencairan, pinjaman akan tiba dalam 5-10 menit</string>
+    <string name="about_desc">Happy Cash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
+Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
+Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
+Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
+Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
+    <string name="hy_not_call_your_relative_please_write_cool">Happy Cash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
+
+    <string-array name="bankCardName1">
+        <item>BCA</item>
+        <item>MANDIRI</item>
+        <item>BRI</item>
+        <item>BNI</item>
+        <item>CIMB</item>
+    </string-array>
+    <string-array name="bankCardName2">
+        <item>DANAMON</item>
+        <item>PERMATA</item>
+        <item>PANIN</item>
+        <item>BII</item>
+        <item>ANGLOMAS</item>
+        <item>BANGKOK</item>
+        <item>AGRIS</item>
+        <item>SINARMAS</item>
+        <item>AGRONIAGA</item>
+        <item>ANDARA</item>
+        <item>ANTAR_DAERAH</item>
+        <item>ANZ</item>
+        <item>ARTHA</item>
+        <item>ARTOS</item>
+        <item>BISNIS_INTERNASIONAL</item>
+        <item>BJB</item>
+        <item>BJB_SYR</item>
+        <item>BNI_SYR</item>
+        <item>BNP_PARIBAS</item>
+        <item>BUKOPIN</item>
+        <item>BUMI_ARTA</item>
+        <item>CAPITAL</item>
+        <item>BCA_SYR</item>
+        <item>CHINATRUST</item>
+        <item>CIMB_UUS</item>
+        <item>COMMONWEALTH</item>
+        <item>DANAMON_UUS</item>
+        <item>DBS</item>
+        <item>DINAR_INDONESIA</item>
+        <item>DKI</item>
+        <item>DKI_UUS</item>
+        <item>EKONOMI_RAHARJA</item>
+        <item>FAMA</item>
+        <item>GANESHA</item>
+        <item>HANA</item>
+        <item>HARDA_INTERNASIONAL</item>
+        <item>HIMPUNAN_SAUDARA</item>
+        <item>ICBC</item>
+        <item>INA_PERDANA</item>
+        <item>INDEX_SELINDO</item>
+        <item>JASA_JAKARTA</item>
+        <item>KESEJAHTERAAN_EKONOMI</item>
+        <item>MASPION</item>
+        <item>MAYAPADA</item>
+        <item>MAYORA</item>
+        <item>MEGA</item>
+        <item>MESTIKA_DHARMA</item>
+        <item>METRO_EXPRESS</item>
+        <item>MIZUHO</item>
+        <item>MNC_INTERNASIONAL</item>
+        <item>MUAMALAT</item>
+        <item>MULTI_ARTA_SENTOSA</item>
+        <item>MUTIARA</item>
+        <item>NATIONALNOBU</item>
+        <item>NUSANTARA_PARAHYANGAN</item>
+        <item>OCBC</item>
+        <item>OCBC_UUS</item>
+        <item>BAML</item>
+        <item>BOC</item>
+        <item>RABOBANK</item>
+        <item>RESONA</item>
+        <item>ROYAL</item>
+        <item>SAHABAT_PURBA_DANARTA</item>
+        <item>SAHABAT_SAMPOERNA</item>
+        <item>SBI_INDONESIA</item>
+        <item>SINAR_HARAPAN_BALI</item>
+        <item>MITSUI</item>
+        <item>BRI_SYR</item>
+        <item>BUKOPIN_SYR</item>
+        <item>MANDIRI_SYR</item>
+        <item>MEGA_SYR</item>
+        <item>BTN</item>
+        <item>BTN_UUS</item>
+        <item>TABUNGAN_PENSIUNAN_NASIONAL</item>
+        <item>TABUNGAN_PENSIUNAN_NASIONAL_UUS</item>
+        <item>UOB</item>
+        <item>VICTORIA_INTERNASIONAL</item>
+        <item>VICTORIA_SYR</item>
+        <item>WINDU</item>
+        <item>WOORI</item>
+        <item>YUDHA_BHAKTI</item>
+        <item>ACEH</item>
+        <item>ACEH_UUS</item>
+        <item>BALI</item>
+        <item>BENGKULU</item>
+        <item>DAERAH_ISTIMEWA</item>
+        <item>DAERAH_ISTIMEWA_UUS</item>
+        <item>JAMBI</item>
+        <item>JAMBI_UUS</item>
+        <item>JAWA_TENGAH</item>
+        <item>JAWA_TENGAH_UUS</item>
+        <item>JAWA_TIMUR</item>
+        <item>JAWA_TIMUR_UUS</item>
+        <item>KALIMANTAN_BARAT</item>
+        <item>KALIMANTAN_BARAT_UUS</item>
+        <item>KALIMANTAN_SELATAN</item>
+        <item>KALIMANTAN_SELATAN_UUS</item>
+        <item>KALIMANTAN_TENGAH</item>
+        <item>KALIMANTAN_TIMUR</item>
+        <item>KALIMANTAN_TIMUR_UUS</item>
+        <item>LAMPUNG</item>
+        <item>MALUKU</item>
+        <item>NUSA_TENGGARA_BARAT</item>
+        <item>NUSA_TENGGARA_BARAT_UUS</item>
+        <item>NUSA_TENGGARA_TIMUR</item>
+        <item>PAPUA</item>\
+        <item>RIAU_DAN_KEPRI</item>
+        <item>RIAU_DAN_KEPRI_UUS</item>
+        <item>ARTA_NIAGA_KENCANA</item>
+        <item>EKSPOR_INDONESIA</item>
+        <item>MITRA_NIAGA</item>
+        <item>STANDARD_CHARTERED</item>
+        <item>RBS</item>
+        <item>PRIMA_MASTER</item>
+        <item>JPMORGAN</item>
+        <item>HSBC_UUS</item>
+        <item>HSBC</item>
+        <item>DEUTSCHE</item>
+        <item>CITIBANK</item>
+        <item>CENTRATAMA</item>
+        <item>SUMUT_UUS</item>
+        <item>SUMUT</item>
+        <item>SULAWESI</item>
+        <item>SULAWESI_TENGGARA</item>
+        <item>SULSELBAR</item>
+        <item>SULSELBAR_UUS</item>
+        <item>SULUT</item>
+        <item>SUMATERA_BARAT</item>
+        <item>SUMATERA_BARAT_UUS</item>
+        <item>SUMSEL_DAN_BABEL</item>
+        <item>SUMSEL_DAN_BABEL_UUS</item>
+        <item>INDIA</item>
+        <item>TOKYO</item>
+        <item>PANIN_SYR</item>
+        <item>PERMATA_UUS</item>
+        <item>PUNDI_INDONESIA</item>
+        <item>PUNDI_INDONESIA</item>
+        <item>QNB_KESAWAN</item>
+    </string-array>
+
+
+    <string name="loaning_fragment_bank_name">Mohon isi nama bank penerima</string>
+    <string name="loaning_fragment_bank_nuber">Mohon isi nama bank penerima</string>
+    <string name="loaning_fragment_name">Mohon isi nomor rekening penerima</string>
+    <string name="loaning_fragment_reason">Mohon isi tujuan pinjaman</string>
+    <string name="certification_goto_loannormal">Silahkan pilih jumlah dan jangka waktu pinjaman</string>
 
 </resources>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hc_line_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp30"
+                android:gravity="center"
+                android:text="1.500.000"
+                android:textStyle="bold"
+                android:textColor="@color/hc_input_text"
+                android:textSize="@dimen/sp40" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp10"
+                android:gravity="center"
+                android:text="Jumlah Pinjaman(Rp)"
+                android:textColor="@color/hc_input_text"
+                android:textSize="@dimen/sp14" />
+
+            <SeekBar
+                android:id="@+id/unloan_seeker"
+                android:padding="@dimen/dp5"
+                style="?android:attr/seekBarStyle"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp30"
+                android:layout_marginRight="@dimen/dp30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:thumb="@drawable/button_1"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tenor Pinjaman(hulan)"
+                android:textColor="@color/hc_input_text"
+                android:layout_marginTop="@dimen/dp15"
+                android:layout_gravity="center"
+                android:textSize="12sp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp20"
+                android:layout_marginLeft="@dimen/dp40"
+                android:layout_marginRight="@dimen/dp40"
+                android:layout_marginBottom="@dimen/dp40"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/bt_period_1_unloan"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="45dp"
+                        android:layout_marginRight="45dp"
+                        android:background="@drawable/shape_unloan_bg"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/hc_input_text"
+                        android:textSize="@dimen/sp35"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/bt_period_3_unloan"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/shape_period_bg"
+                        android:text="3"
+                        android:gravity="center"
+                        android:textColor="@color/hc_input_text"
+                        android:textSize="@dimen/sp35"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_unloan_bg"
+            android:layout_marginTop="-25dip"
+            android:padding="@dimen/dp5">
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/payment_choic" />
+        </LinearLayout>
+        <!--下半部分-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/hc_line_bg"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp40"
+                            android:layout_marginRight="@dimen/dp40"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:gravity="center"
+                            android:padding="@dimen/dp5"
+                            android:text=" Jumlah pengembalian per bulan(Rp)"
+                            android:textColor="@color/hc_input_text"
+                            android:textSize="@dimen/sp14" />
+
+                        <TextView
+                            android:id="@+id/unloan_fee"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp40"
+                            android:layout_marginRight="@dimen/dp40"
+                            android:layout_marginBottom="@dimen/dp50"
+                            android:gravity="center"
+                            android:padding="@dimen/dp5"
+                            android:text=" 14000"
+                            android:textColor="@color/hc_input_text"
+                            android:textSize="@dimen/sp16" />
+
+                    </LinearLayout>
+                    <Button
+                        android:id="@+id/unloan_go_information"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="-25dip"
+                        android:layout_marginLeft="@dimen/dp35"
+                        android:layout_marginRight="@dimen/dp35"
+                        android:background="@drawable/shape_button"
+                        android:text="@string/unloan_button"
+                        android:gravity="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_button_text"
+                        android:textSize="16dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/hc_line_bg"
+                        android:layout_marginBottom="@dimen/dp10">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dp40"
+                            android:layout_marginRight="@dimen/dp40"
+                            android:layout_marginTop="@dimen/dp20"
+                            android:gravity="center"
+                            android:padding="@dimen/dp5"
+                            android:text="Hanya butuh 4 langkah, paling cepat cair dalam 5 menit"
+                            android:textColor="@color/hc_text"
+                            android:textSize="@dimen/sp14" />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

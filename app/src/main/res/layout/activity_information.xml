@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <!--  name-->
+    <LinearLayout
+        android:id="@+id/ll_personal_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/et_personal_name"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/edittext_personal_info_full_name"
+            android:inputType="text"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+    </LinearLayout>
+
+    <!--  ktp-->
+    <LinearLayout
+        android:id="@+id/ll_personal_ktp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15"
+        app:layout_constraintTop_toBottomOf="@+id/ll_personal_name"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/et_personal_ktp"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/edittext_personal_info_ktp_no"
+            android:inputType="number"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+    </LinearLayout>
+
+    <!--  family_name -->
+    <LinearLayout
+        android:id="@+id/ll_personal_family_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/et_personal_family_name"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/edittext_personal_info_family_name_in_law"
+            android:inputType="text"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--gender -->
+    <LinearLayout
+        android:id="@+id/ll_personal_gender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_gender"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_gender"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--education -->
+    <LinearLayout
+        android:id="@+id/ll_personal_education"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_education"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_education"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--married -->
+    <LinearLayout
+        android:id="@+id/ll_personal_marital"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_marital"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_marital_status"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--children_number -->
+    <LinearLayout
+        android:id="@+id/ll_personal_children_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_children_number"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_number_of_children"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_province -->
+    <LinearLayout
+        android:id="@+id/ll_personal_residence_province"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_residence_province"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_province_of_residence"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_city -->
+    <LinearLayout
+        android:id="@+id/ll_personal_residence_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_residence_city"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_city_of_residence"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_area -->
+    <LinearLayout
+        android:id="@+id/ll_personal_residence_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_residence_street"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_street_of_residence"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--residence_street -->
+    <LinearLayout
+        android:id="@+id/ll_personal_residence_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_residence_area"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_area_of_residence"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <!--  address-->
+    <LinearLayout
+        android:id="@+id/ll_personal_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15"
+        app:layout_constraintTop_toBottomOf="@+id/ll_personal_name"
+        tools:layout_editor_absoluteX="0dp">
+
+        <com.yinshan.happycash.widget.userdefined.BandaEditText
+            android:id="@+id/et_personal_address"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_address"
+            android:inputType="text"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+    </LinearLayout>
+
+    <!--duration_of_residence -->
+    <LinearLayout
+        android:id="@+id/ll_personal_duration_of_residence"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp15">
+
+        <TextView
+            android:id="@+id/tv_personal_duration_of_residence"
+            style="@style/info_color_style_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center"
+            android:hint="@string/textview_personal_info_duration_of_residence"
+            android:layout_marginRight="@dimen/dp40"
+            android:layout_marginLeft="@dimen/dp40"
+            android:drawableRight="@drawable/path_8_copy"
+            android:lines="1"
+            android:textCursorDrawable="@drawable/cursor_color" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp1"
+            android:layout_marginLeft="@dimen/dp20"
+            android:layout_marginRight="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp15"
+            android:background="#F6F6F6" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_personal_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="42dp"
+        android:layout_marginTop="@dimen/dp25"
+        android:layout_marginBottom="@dimen/dp25"
+        android:background="@drawable/bg_btn_gray">
+        <TextView
+            style="@style/text_wrap_layout"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:text="@string/submit"
+            />
+    </RelativeLayout>
+
+</LinearLayout>
