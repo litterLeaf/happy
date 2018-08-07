@@ -34,6 +34,7 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
 
     @Override
     protected void secondInit() {
+        mPresenter = new SafeSettingPresenter(this,this);
     }
 
     @OnClick({R.id.btnQuit})
