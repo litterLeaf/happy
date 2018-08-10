@@ -88,4 +88,7 @@ dependencies {
 
     implementation 'com.github.litterLeaf:TextViewExpand:1.0.1'
     implementation 'org.greenrobot:eventbus:3.0.0'
+
+    //apache
+    compile 'org.apache.commons:commons-lang3:3.6'
 }

@@ -1,7 +1,9 @@
 package com.yinshan.happycash.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 
 import com.yinshan.happycash.application.AppApplication;
 
@@ -10,16 +12,24 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.Set;
 
-public class SPUtils {
+public class SPUtils extends ConstantSharedPreferences{
+
+    private static SPUtils instance = null;
+    private SharedPreferences app = null;
+
     public SPUtils() {
         /* cannot be instantiated */
-        throw new UnsupportedOperationException("cannot be instantiated");
+        app = AppApplication.getInstance().getSharedPreferences(FILE_NAME, Activity.MODE_PRIVATE);
     }
 
-    /**
-     * 保存在手机里面的文件名
-     */
-    public static final String FILE_NAME = "hc_data";
+    public static SPUtils getInstance() {
+        if (instance == null) {
+            instance = new SPUtils();
+        }
+        return instance;
+    }
+
+
 
     /**
      * 查询键对应的值
@@ -316,6 +326,95 @@ public class SPUtils {
             }
             editor.commit();
         }
+    }
+
+    public String getImie(){
+        return app.getString(IMIE,"");
+    }
+
+    public boolean setImie(String imie){
+        return app.edit().putString(IMIE,imie).commit();
+    }
+
+    public int getIMIETimes(){
+        return app.getInt(IMEI_TIMES,0);
+    }
+
+    public boolean setIMIETimes(int times){
+        return app.edit().putInt(IMEI_TIMES,times).commit();
+    }
+
+    public String getUUID(){
+        return app.getString(UUID,"");
+    }
+
+    public boolean setUUID(String uuid){
+        return app.edit().putString(UUID,uuid).commit();
+    }
+
+
+    public static String getSID(){
+        String imie = SPUtils.getInstance().getImie();
+        if(TextUtils.isEmpty(imie)){
+            String uuid = SPUtils.getInstance().getUUID();
+            if(uuid.equals("")) {
+                String getUUID = AndroidUtils.getUUID();
+                SPUtils.getInstance().setUUID(getUUID);
+                return getUUID;
+            }else{
+                return uuid;
+            }
+        }else{
+            return imie;
+        }
+    }
+
+    public boolean getIsLogin(){
+        return app.getBoolean(IS_LOGIN,false);
+    }
+
+    public boolean setIsLogin(boolean flag){
+        return app.edit().putBoolean(IS_LOGIN,flag).commit();
+    }
+
+    public String getToken(){
+        return app.getString(TOKEN,"");
+    }
+
+    public boolean setToken(String token){
+        return app.edit().putString(TOKEN,token).commit();
+    }
+
+    public String getAction(){
+        return app.getString(ACTION,"");
+    }
+
+    public boolean setAction(String action){
+        return app.edit().putString(ACTION,action).commit();
+    }
+
+    public String getPassword(){
+        return app.getString(PASSWORD,"");
+    }
+
+    public boolean setPassword(String password){
+        return app.edit().putString(PASSWORD,password).commit();
+    }
+
+    public String getMobile(){
+        return app.getString(MOBILE,"");
+    }
+
+    public boolean setMobile(String mobile){
+        return app.edit().putString(MOBILE,mobile).commit();
+    }
+
+    public String getUsername(){
+        return app.getString(USER_NAME,"");
+    }
+
+    public boolean setUsername(String userName){
+        return app.edit().putString(USER_NAME,userName).commit();
     }
 
 }

@@ -256,17 +256,26 @@ public class MainActivity extends BaseActivity {
         }
 
         //meFragment
-        if (isMeFragment && null == meFrag) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.ME_TAB);
-            if (null != tab1) {
-                meFrag = (MeFragment) tab1;
-            } else {
-                meFrag = new MeFragment();
-                transaction.add(R.id.fragment_container, meFrag, SPKeyUtils.ME_TAB);
+        boolean isMeFirstReShow = false;
+        if (isMeFragment) {
+            if(null==meFrag){
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.ME_TAB);
+                if (null != tab1) {
+                    meFrag = (MeFragment) tab1;
+                    isMeFirstReShow = true;
+                } else {
+                    isMeFirstReShow = false;
+                    meFrag = new MeFragment();
+                    transaction.add(R.id.fragment_container, meFrag, SPKeyUtils.ME_TAB);
+                }
+            }else{
+                isMeFirstReShow = true;
             }
         }
         if (isMeFragment && null != meFrag) {
             transaction.show(meFrag);
+            if(isMeFirstReShow)
+                meFrag.resume();
         } else if (!isMeFragment && null != meFrag) {
             transaction.hide(meFrag);
         }
