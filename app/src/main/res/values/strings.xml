@@ -16,6 +16,7 @@
     <string name="build_up_upload_ktp">Upload ulang foto KTP</string>
     <string name="build_up_upload_bank_info">Ubah info bank</string>
     <string name="build_up_modify_job_info">Ubah info pekerjaan</string>
+    <string name="show_input_error">Kode salah, silahkan periksa dan coba lagi</string>
 
     <!--personal  infor -->
     <string name="edittext_personal_info_full_name">Nama Lengkap</string>
@@ -417,5 +418,8 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
     <string name="loaning_fragment_name">Mohon isi nomor rekening penerima</string>
     <string name="loaning_fragment_reason">Mohon isi tujuan pinjaman</string>
     <string name="certification_goto_loannormal">Silahkan pilih jumlah dan jangka waktu pinjaman</string>
+
+
+    <string name="login_success">Login Berhasil！</string>
 
 </resources>

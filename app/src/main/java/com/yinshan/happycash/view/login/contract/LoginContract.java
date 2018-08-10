@@ -32,7 +32,7 @@ import okhttp3.ResponseBody;
 public class LoginContract {
 
    public  interface View {
-        void signInSuccess(LoginTokenResponse tokenResponse);
+        void signInSuccess(String mobile, LoginTokenResponse tokenResponse);
 
         void signInError(String message);
 

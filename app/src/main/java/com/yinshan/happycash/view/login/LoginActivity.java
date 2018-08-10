@@ -6,29 +6,39 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.StringSignature;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
+import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.network.api.CaptchaApi;
 import com.yinshan.happycash.utils.MachineUtils;
+import com.yinshan.happycash.utils.MobileUtil;
+import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ToolsUtils;
 import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
+import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.logger.LogUtil;
 import com.yinshan.happycash.widget.userdefined.OnCheckInputResult;
 import com.yinshan.happycash.widget.userdefined.RupiahEditText;
 import com.yinshan.happycash.widget.userdefined.SmsEditText;
+
+import org.apache.commons.lang3.RandomStringUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -44,7 +54,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     int loginCount = 0;
 
     String mSmsCode;
-    String mCaptchaSid;
     String mCaptcha;
     String mMobile;
     String mInviteCode;
@@ -68,6 +77,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     //登录按钮
     @BindView(R.id.id_button_login)
     Button mBtnLogin;
+
+    @BindView(R.id.id_linearlayout_graphical_code)
+    LinearLayout mViewCaptcha;
+    @BindView(R.id.id_imageview_code)
+    ImageView mImageCaptcha;
+    @BindView(R.id.id_edittext_graphical_code)
+    EditText mTextCaptcha;
+    //图形验证码实际值
+    String mSid;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -97,21 +115,24 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         setFocusListener();
     }
 
-    @OnClick({R.id.id_button_login,R.id.btnSendSms})
+    @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code})
     public void onClick(View view){
         switch (view.getId()){
 
             case R.id.id_button_login:
                 mMobile = mEditMobile.getText().toString();
                 mSmsCode = getSmsCode();
-                mCaptchaSid = "";
                 mCaptcha = "";
                 mInviteCode = "";
-                mPresenter.signIn(mSmsCode,mCaptchaSid,mCaptcha,mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
+                mPresenter.signIn(mSmsCode,mSid,mTextCaptcha.getText().toString(),mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
                 break;
             case R.id.btnSendSms:
                 mMobile = mEditMobile.getText().toString();
                 mPresenter.sendSms(mMobile);
+                break;
+            case R.id.id_imageview_code:
+                MobAgent.onEvent(MobEvent.CLICK+MobEvent.REFRESH);
+                refreshCaptcha();
                 break;
         }
 
@@ -281,17 +302,59 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     };
 
     @Override
-    public void signInSuccess(LoginTokenResponse tokenResponse) {
+    public void signInSuccess(String mobile, LoginTokenResponse loginTokenResponse) {
+        loginCount = 0;
+        HappySnackBar.showSnackBar(mViewCaptcha, R.string.login_success, SPKeyUtils.SNACKBAR_TYPE_TIP);
+
+        String saveMobile = MobileUtil.trimMobile(mobile);
+        SPUtils.getInstance().setToken(loginTokenResponse.getToken());
+        SPUtils.getInstance().setAction(loginTokenResponse.getAction());
+        SPUtils.getInstance().setPassword(loginTokenResponse.getPassword());
+        SPUtils.getInstance().setMobile(saveMobile);
+
         finish();
     }
 
     @Override
     public void signInError(String message) {
+        loginCount++;
+        if(loginCount>=2){
+            mViewCaptcha.setVisibility(View.VISIBLE);
+            refreshCaptcha();
+        }
         LogUtil.getInstance().e(message);
+        HappySnackBar.showSnackBar(mViewCaptcha, R.string.show_input_error, SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 
     @Override
     public void getSMSCodeSuccess(ResponseBody responseBody) {
 
+    }
+
+    private void refreshCaptcha(){
+        mSid = RandomStringUtils.randomAlphanumeric(5);
+        Glide.with(this)
+                .load(CaptchaApi.formatCaptchaUrl(""+ mSid))
+                .fitCenter()
+                .signature(new StringSignature(""+System.currentTimeMillis()))
+                .into(mImageCaptcha);
+    }
+
+
+    /**
+     * 统计注册用户的埋点
+     *
+     * @param loginTokenResponse
+     */
+    private void pushAppFlyer(LoginTokenResponse loginTokenResponse) {
+//        String imei = BandaAppSP.getInstance().getImei();
+//        AppsFlyerLib.getInstance().setCustomerUserId(MachineUtils.getAndroidId(getApplicationContext()));
+//        if (!TextUtils.isEmpty(loginTokenResponse.getAction())) {
+//            if ("register".equals(loginTokenResponse.getAction())) {
+//                Map<String, Object> eventValue = new HashMap<String, Object>();
+//                eventValue.put("Register", "CustomerIMei:" + imei);
+//                AppsFlyerLib.getInstance().trackEvent(getApplicationContext(), "Register", eventValue);
+//            }
+//        }
     }
 }

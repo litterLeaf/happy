@@ -49,6 +49,10 @@ import butterknife.Unbinder;
 
 public class UnLoanFragment extends BaseFragment {
 
+    public static final int MIN_VALUE = 500000;
+    public static final int MAX_VALUE = 1500000;
+
+
     @BindView(R.id.unloan_seeker)
     SeekBar unloanSeeker;
     @BindView(R.id.bt_period_1_unloan)

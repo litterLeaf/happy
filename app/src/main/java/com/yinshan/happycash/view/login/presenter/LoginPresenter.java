@@ -43,7 +43,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     @Override
-    public void signIn(String smsCode, String captchaSid, String captcha, String mobile, String inviteCode, String andridId) {
+    public void signIn(String smsCode, String captchaSid, String captcha,final String mobile, String inviteCode, String andridId) {
         api.login(smsCode,
                 captchaSid,
                 captcha,
@@ -60,7 +60,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                     public void onNext(LoginTokenResponse loginTokenResponse) {
                         String token = loginTokenResponse.getToken();
                         TokenManager.getInstance().setToken(token);
-                        mvpView.signInSuccess(loginTokenResponse);
+                        mvpView.signInSuccess(mobile,loginTokenResponse);
                     }
 
                     @Override
