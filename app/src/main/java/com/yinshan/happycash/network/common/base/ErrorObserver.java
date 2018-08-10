@@ -1,9 +1,12 @@
 package com.yinshan.happycash.network.common.base;
 
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.yinshan.happycash.network.common.support.QualityErrorBean;
 
+import java.io.EOFException;
 import java.io.IOException;
 
 import io.reactivex.Observer;
@@ -36,19 +39,29 @@ import retrofit2.HttpException;
 public abstract class ErrorObserver<T> implements Observer<T> {
     @Override
     public void onError(Throwable e) {
+
         if(e instanceof ApiException) {
             onError((ApiException) e);
-        }else if(e instanceof HttpException){
+            Log.v("huxin","ApiException");
+        }else if(e instanceof HttpException) {
+            Log.v("huxin","HttpException ");
             HttpException httpException = (HttpException) e;
             String errorBody = null;
-            try{
+            try {
                 errorBody = httpException.response().errorBody().string();
-                int i=3;
+                int i = 3;
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
-            onError(new ApiException(e,CodeException.E_201_ERROR,"201错误"));
+            Log.v("huxin","HttpException "+((HttpException) e).code());
+            if (((HttpException) e).code() == 201)
+                onError(new ApiException(e, CodeException.E_201_ERROR, "201错误"));
+
+        }else if(e instanceof EOFException){
+            Log.v("huxin","EOFException");
+            onError(new ApiException(e, CodeException.E_EOF_ERROR, "EOF错误"));
         }else{
+            Log.v("huxin","other exception");
             onError(new ApiException(e,CodeException.UNKNOWN_ERROR,"未知错误"));
         }
     }

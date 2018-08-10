@@ -213,6 +213,7 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
 
     @Override
     public void submitPersonOk() {
+        setResult(RESULT_OK);
         finish();
     }
 

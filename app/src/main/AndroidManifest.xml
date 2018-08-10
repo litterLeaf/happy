@@ -149,6 +149,10 @@
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".view.liveness.view.impl.OliveStartActivity"
+            android:screenOrientation="portrait"
+            />
+
 
     </application>
 

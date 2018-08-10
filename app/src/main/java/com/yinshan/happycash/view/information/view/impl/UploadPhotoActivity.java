@@ -196,6 +196,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
         }
         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
             dismissLoading();
+            setResult(RESULT_OK);
             finish();
         }
     }

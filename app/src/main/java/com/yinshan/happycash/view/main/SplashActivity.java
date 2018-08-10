@@ -39,8 +39,10 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
         splashPresenter = new SplashPresenter(this);
         splashPresenter.attachView(this);
-        splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
-//        toGoMainActivity();
+        if(TokenManager.getInstance().hasLogin())
+            splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
+        else
+            toGoMainActivity();
     }
 
     private void toGoMainActivity() {

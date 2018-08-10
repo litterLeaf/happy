@@ -274,6 +274,7 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
 
     @Override
     public void submitOk() {
+        setResult(RESULT_OK);
         finish();
     }
 

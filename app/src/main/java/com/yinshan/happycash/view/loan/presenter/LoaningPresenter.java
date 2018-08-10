@@ -9,6 +9,7 @@ import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
+import com.yinshan.happycash.network.common.base.CodeException;
 import com.yinshan.happycash.network.common.base.RxTransformer;
 import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 import com.yinshan.happycash.view.loan.model.ApplyLoanAppsBean;
@@ -91,6 +92,10 @@ public class LoaningPresenter {
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+
+                        if(ex.getCode()== CodeException.E_201_ERROR||ex.getCode()==CodeException.E_EOF_ERROR)
+                            mView.submitLoanOk();
+                        Log.v("huxin","submit fail"+ex.getCode()+"  "+ex.toString());
                     }
                 });
     }
