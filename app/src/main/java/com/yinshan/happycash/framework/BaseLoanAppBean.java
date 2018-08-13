@@ -3,6 +3,7 @@ package com.yinshan.happycash.framework;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
  * @更新描述:${TODO}
  */
 
-public class BaseLoanAppBean implements Parcelable {
+public class BaseLoanAppBean implements Parcelable,Serializable {
 
     private float amount;
     private String bankCode;

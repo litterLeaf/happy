@@ -4,9 +4,15 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Base64;
 
 import com.yinshan.happycash.application.AppApplication;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -417,4 +423,57 @@ public class SPUtils extends ConstantSharedPreferences{
         return app.edit().putString(USER_NAME,userName).commit();
     }
 
+    public void setObject(String key,Object object){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream out = null;
+        try{
+            out = new ObjectOutputStream(baos);
+            out.writeObject(object);
+            String objectVal = new String(Base64.encode(baos.toByteArray(),Base64.DEFAULT));
+            SharedPreferences.Editor editor = app.edit();
+            editor.putString(key,objectVal);
+            editor.commit();
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                if(baos!=null){
+                    baos.close();
+                }
+                if(out!=null){
+                    out.close();
+                }
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public <T> T getObject(String key,Class<T> clazz){
+        if(app.contains(key)){
+            String objectVal = app.getString(key,null);
+            byte[] buffer = Base64.decode(objectVal,Base64.DEFAULT);
+            ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
+            ObjectInputStream ois = null;
+            try {
+                ois = new ObjectInputStream(bais);
+                T t = (T)ois.readObject();
+                return t;
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (bais != null)
+                        bais.close();
+                    if (ois != null)
+                        ois.close();
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
 }

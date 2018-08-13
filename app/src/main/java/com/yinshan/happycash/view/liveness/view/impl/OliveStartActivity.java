@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 
 /**
@@ -18,7 +19,7 @@ public class OliveStartActivity extends BaseActivity{
 
     @Override
     protected int bindLayout() {
-        return 0;
+        return R.layout.activity_olive_start;
     }
 
     @Override

@@ -15,6 +15,7 @@ import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.main.contract.SplashContract;
@@ -62,7 +63,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
                 DateManager.setAPPStatus(AppLoanStatus.UNLOAN);
             }
         }else {
-            DateManager.putToCache(SPKeyUtils.LOANAPPBEAN,mLatestLoanAppBean);
+            SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN,latestLoanAppBean);
             DateManager.setServerStatus( mLatestLoanAppBean.getStatus());
             DateManager.setAPPStatus(StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
             StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean);

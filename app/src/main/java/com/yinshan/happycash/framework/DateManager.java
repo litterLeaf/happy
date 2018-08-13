@@ -49,6 +49,7 @@ public class DateManager {
     public static void putToCache(String key, Object mLatestLoanAppBean) {
         SPUtils.put(AppApplication.appContext,key,mLatestLoanAppBean);
     }
+
     public static Object getMessage(String key) {
         return SPUtils.get(AppApplication.appContext,key,null);
 
