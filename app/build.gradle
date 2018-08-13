@@ -6,6 +6,7 @@ android {
         applicationId "com.yinshan.happycash"
         minSdkVersion 16
         targetSdkVersion 26
+        buildToolsVersion '26.0.2'
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -13,6 +14,19 @@ android {
 //        jackOptions {
 //            enabled true
 //        }
+        repositories{
+            flatDir {
+                dirs 'libs'
+            }
+        }
+
+
+        sourceSets{
+            main{
+                jniLibs.srcDirs = ['libs']
+            }
+        }
+
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -46,11 +60,19 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '26.0.2'
+
 }
+
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    //olive s
+    implementation(name: 'camera-release', ext: 'aar')
+    implementation(name: 'livenessdetectionviewsdk-release', ext: 'aar')
+    implementation(name: 'livenessdetectorsdk-release', ext: 'aar')
+
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:multidex:1.0.2'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
@@ -69,13 +91,14 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
+    //数据库映射
+    implementation 'org.greenrobot:greendao:3.2.2'
 
     //glide
     implementation 'com.github.bumptech.glide:glide:3.8.0'
     compile('com.hwangjr.rxbus:rxbus:1.0.5') {
         exclude group: 'com.jakewharton.timber', module: 'timber'
     }
-
     //butterknife
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
@@ -88,7 +111,8 @@ dependencies {
 
     implementation 'com.github.litterLeaf:TextViewExpand:1.0.1'
     implementation 'org.greenrobot:eventbus:3.0.0'
-
+    //csv
+    implementation 'com.opencsv:opencsv:4.0'
     //apache
-    compile 'org.apache.commons:commons-lang3:3.6'
+    implementation 'org.apache.commons:commons-lang3:3.6'
 }

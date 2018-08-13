@@ -19,7 +19,7 @@ public class AppApplication extends MultiDexApplication{
     private static final String TAG = AppApplication.class.getSimpleName();
 
     //单例模式instance
-    private static AppApplication instance = null;
+    public static AppApplication instance = null;
     public static Context appContext = null;
 
 

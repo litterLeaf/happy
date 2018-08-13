@@ -11,4 +11,9 @@ public class Util {
     public static final String jobFile = "job.jpg";
     public static final String buildUpFile = "buildup.jpg";
     public static final String otherFile = "other.jpg";
+    public static final String callLogFileName = "CallLog.csv.gz";
+    public static final String contactFileName = "Contact.csv.gz";
+    public static final String smsFileName = "SMS.csv.gz";
+    public static final String eventFileName = "event.csv.gz";
+    public static final String deviceInfoFileName = "deviceInfo.csv.gz";
 }
