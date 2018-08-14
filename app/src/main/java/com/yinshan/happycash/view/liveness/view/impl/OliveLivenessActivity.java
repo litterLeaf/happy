@@ -105,10 +105,16 @@ public class OliveLivenessActivity extends LivenessDetectionMainActivity{
         String callLog = AllReport.getInstance().uploadCallLog();
         String contact = AllReport.getInstance().uploadContact();
         String event = EventReport.getInstance().uploadEvent();
+//        String sms = "11";
+//        String callLog = "22";
+//        String contact = "33";
+//        String event = "44";
         /**controller_edit**/
         //String dev = DeviceInfoController.getInstance().uploadDeviceInfo();
         String dev = "";
         /**controller_edit**/
+//        String ww = "ds";
+//        livenessDetectionFrames.verificationPackageWithFanpaiFull = ww.getBytes();
         final String base64Data = Base64.encodeToString(livenessDetectionFrames.verificationPackageWithFanpaiFull, Base64.NO_WRAP);
         Log.d(TAG, "base64Data = " + base64Data);
         if (!TextUtils.isEmpty(loanAppId)) {
