@@ -9,6 +9,7 @@ android {
         buildToolsVersion '26.0.2'
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 //        jackOptions {
@@ -20,6 +21,9 @@ android {
             }
         }
 
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
 
         sourceSets{
             main{
@@ -115,4 +119,7 @@ dependencies {
     implementation 'com.opencsv:opencsv:4.0'
     //apache
     implementation 'org.apache.commons:commons-lang3:3.6'
+
+    //appsFlyer
+    compile 'com.appsflyer:af-android-sdk:4.8.11'
 }

@@ -99,6 +99,8 @@ public class MainActivity extends BaseActivity {
     private RejectFragment rejectFragment;
     private RepaymentFragment repaymentFragment;
 
+    public static int chooseIndex;
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;

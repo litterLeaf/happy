@@ -422,4 +422,13 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
 
     <string name="login_success">Login Berhasil！</string>
 
+
+    <string name="request_camera">Jika tidak membuka akses kamera, pinjaman anda tidak bisa diajukan!</string>
+    <string name="request_space">Mohon berikan akses untuk berkas penyimpanan anda agar app bisa berjalan dengan lancar</string>
+
+
+    <string name="apply_success">Anda diajakan mencoba mendapatkan uang secara lebih cepat,belasan juta berbulan dan tidak berbatas >></string>
+
+    <string name="result_success">Pemeriksaan sedang di proses dengan cepat, paling lambat 20 menit sebelum pencairan uang peminjaman.</string>
+
 </resources>

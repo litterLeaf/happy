@@ -102,4 +102,8 @@ public class MachineUtils {
                 ((ip >> 16) & 0xFF) + "." +
                 (ip >> 24 & 0xFF);
     }
+
+    public static   String getDeviceBrand() {
+        return android.os.Build.BRAND;
+    }
 }

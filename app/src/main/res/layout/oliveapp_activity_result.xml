@@ -1,0 +1,176 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f9f8"
+    android:paddingLeft="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingRight="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingTop="@dimen/oliveapp_activity_vertical_margin"
+    android:paddingBottom="@dimen/oliveapp_activity_vertical_margin">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/oliveappResultTextView"
+        android:text="This is result"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btn_retry"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="mencoba kembali"
+        android:textColor="#FFFFFF"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:background="@drawable/shape_button"
+        android:layout_below="@+id/oliveappResultTextView"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginTop="150dp" />
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_height="48dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/dp20"
+        android:layout_marginRight="@dimen/dp20"
+        android:text="kembali"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/shape_button"
+        android:layout_below="@+id/oliveappResultTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:id="@+id/image_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/oliveappResultTextView"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"
+        android:layout_marginBottom="@dimen/dp30"
+        app:srcCompat="@drawable/olive_yes" />
+
+    <LinearLayout
+        android:id="@+id/ll_result_success"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp45"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Pengajuan peminjaman sukse"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp16" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/repayment_success_bg" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="27dp"
+                android:layout_marginTop="@dimen/dp60"
+                android:background="@drawable/shape_8"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/dp48"
+                    android:text="Pengajuan peminjaman sukse"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp14"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/dp22"
+                    android:layout_marginLeft="@dimen/dp25"
+                    android:layout_marginRight="@dimen/dp25"
+                    android:layout_marginTop="@dimen/dp08"
+                    android:gravity="center"
+                    android:text="@string/result_success"
+                    android:textColor="#8BA799"
+                    android:textSize="@dimen/sp12" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp38"
+                android:scaleType="fitXY"
+                android:src="@drawable/repayment_success_dot" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/dp38"
+                android:scaleType="fitXY"
+                android:src="@drawable/tick" />
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/olive_confirm"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dp30"
+            android:layout_marginLeft="@dimen/dp14"
+            android:layout_marginRight="@dimen/dp14"
+            android:text="Cek pemingjaman saya"
+            android:textColor="@color/white"
+            android:background="#59d6d4"
+            android:textAllCaps="false"
+            android:textSize="@dimen/sp16"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/olive_to_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dp13"
+        android:layout_marginLeft="@dimen/dp17"
+        android:layout_marginRight="@dimen/dp17"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/float_button"/>
+        <TextView
+            android:id="@+id/olive_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apply_success"
+           android:layout_gravity="center_vertical"
+            android:textColor="#8BA799"
+            android:layout_marginLeft="@dimen/dp13"
+            android:textSize="@dimen/sp11"/>
+
+    </LinearLayout>
+</RelativeLayout>

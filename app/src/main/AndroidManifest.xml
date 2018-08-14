@@ -152,7 +152,15 @@
         <activity android:name=".view.liveness.view.impl.OliveStartActivity"
             android:screenOrientation="portrait"
             />
-
+        <activity android:name=".view.liveness.view.impl.OliveLivenessActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.liveness.view.impl.LivenessDetectionMainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.liveness.view.impl.OliveResultActivity"
+            android:screenOrientation="portrait"
+            />
 
     </application>
 
