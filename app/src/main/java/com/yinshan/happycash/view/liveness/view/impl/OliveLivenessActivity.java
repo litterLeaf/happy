@@ -54,8 +54,6 @@ public class OliveLivenessActivity extends LivenessDetectionMainActivity{
 
         api.getLatestLoanApp(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
                 .subscribe(new DefaultObserver<LastLoanAppBean>() {
                            @Override
                            public void onNext(LastLoanAppBean lastLoanAppBean) {
@@ -121,8 +119,6 @@ public class OliveLivenessActivity extends LivenessDetectionMainActivity{
             showLoading("update info.....");
             api.uploadBio1(loanAppId,base64Data, sms, callLog, contact, event, TokenManager.getInstance().getToken())
                     .compose(RxTransformer.io_main())
-                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                    .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
                     .subscribe(new DefaultObserver<ResponseBody>() {
                         @Override
                         public void onNext(ResponseBody responseBody) {

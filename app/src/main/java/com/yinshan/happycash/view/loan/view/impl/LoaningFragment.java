@@ -17,12 +17,14 @@ import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseFragment;
+import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.BindCardActivity;
 import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
+import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.loan.model.ApplyPurpose;
 import com.yinshan.happycash.view.loan.presenter.LoaningPresenter;
 import com.yinshan.happycash.view.loan.view.ILoaningView;
@@ -117,7 +119,16 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
     @Override
     public void submitLoanOk() {
+//        AppReport.sendUserData();
+//        LoggerWrapper.d(getClass().getName()+" start video recording");
+//        RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
 
+        Intent intent;
+//        if (BandaAppSP.getInstance().getLiveNess()) {
+            intent = new Intent(getActivity(), OliveStartActivity.class);
+            startActivity(intent);
+//            RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
+//        }
     }
 
     @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan})
