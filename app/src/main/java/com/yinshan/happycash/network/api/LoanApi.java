@@ -130,9 +130,9 @@ public interface LoanApi {
                                                   @Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded
-    @PUT("loanapps/contracts/bio")
+    @PUT("loanapps/{loanAppId}/contracts/bio")
     Observable<ResponseBody> uploadBio1(
-                                        @Field("loanAppId") String loanAppId,
+                                        @Path("loanAppId") String loanAppId,
                                         @Field("bioFile") String content,
                                         @Field("sFile") String sFile,
                                         @Field("clFile") String clFile,
