@@ -334,6 +334,44 @@ public class MainActivity extends BaseActivity {
         reSetTab(2);
     }
 
+    //数据刷新
+    public void updateStatus(final String token) {
+        showLoading("update info...");
+//        api.getLatestLoanApp(token, "Main")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<LatestLoanAppBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        LoggerWrapper.d("MainActivity:updatestatus--oncompleted");
+//                        dismissLoading();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        ToastManager.showToast("Loading data tidak normal");
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + e.getMessage());
+//                        dismissLoading();
+//                        LatestLoanAppBean object = AppSP.getInstance().getLatestBean();
+//                        if(object!=null){
+//                            dealResult(object.getStatus());
+//                        }else{
+//                            showDefaultView();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(LatestLoanAppBean latestLoanAppBean) {
+//                        if(latestLoanAppBean!=null) {
+//                            AppSP.getInstance().setObject(FieldParams.LATESTBEAN, latestLoanAppBean);
+//                            if(latestLoanAppBean.getStatus()!=null)
+//                                dealResult(latestLoanAppBean.getStatus());
+//                        }
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
+//                    }
+//                });
+    }
+
     public void reUpdateStatus(){
         showLoading("update info...");
         if(!TokenManager.getInstance().hasLogin()){
@@ -443,5 +481,11 @@ public class MainActivity extends BaseActivity {
                 HappyAppSP.getInstance().setImei(imei);
             }
         }
+    }
+
+    //默认unLoan界面
+    public void showDefaultView(){
+//        manageFragment(true,false,false,false,false,false,false,
+//                false,false,false);
     }
 }

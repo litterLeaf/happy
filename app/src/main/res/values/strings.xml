@@ -431,4 +431,26 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
 
     <string name="result_success">Pemeriksaan sedang di proses dengan cepat, paling lambat 20 menit sebelum pencairan uang peminjaman.</string>
 
+    <string name="process_status_issuing_content">Anda telah lolos proses verifikasi. Mohon menunggu pencairan dana.</string>
+    <string name="process_status_issuing_title">Menunggu Pencairan Dana</string>
+
+    <string name="process_status_supplement_content">Informasi anda telah diperbaharui, menunggu verifikasi berikutnya.</string>
+    <string name="process_status_supplement_title">Perubahan informasi telah berhasil</string>
+
+    <string name="process_status_finalview_content">Anda telah melalui tahap verifikasi akurasi. Mohon menunggu hasil verifikasi akhir.</string>
+    <string name="process_status_finalview_title">Penilaian Keseluruhan</string>
+
+    <string name="process_status_secondview_content">Anda telah melalui tahap penilaian kredit. Mohon untuk tetap mengaktifkan ponsel Anda.
+        Kami akan segera menghubungi Anda.</string>
+    <string name="process_status_secondview_title">Verifikasi Akurasi</string>
+
+    <string name="process_status_firstview_content">Anda telah lolos verifikasi model analisa risiko maha data. Kami sedang melakukan proses penilaian kredit.
+        Mohon menunggu.</string>
+    <string name="process_status_firstview_title">Proses Penilaian</string>
+
+    <string name="process_status_preview_content">Data Anda telah kami terima. RupiahPlus sedang memverifikasi data Anda menggunakan model
+        analisa risiko maha data.</string>
+    <string name="process_status_preview_title">Verifikasi Data</string>
+    <string name="process_point_tip">Dalam analisa,telah selesai</string>
+
 </resources>
