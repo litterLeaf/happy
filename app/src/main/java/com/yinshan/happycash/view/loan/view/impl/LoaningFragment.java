@@ -121,7 +121,6 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     public void submitLoanOk() {
 //        AppReport.sendUserData();
 //        LoggerWrapper.d(getClass().getName()+" start video recording");
-//        RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
 
         Intent intent;
 //        if (BandaAppSP.getInstance().getLiveNess()) {

@@ -14,6 +14,7 @@ import butterknife.BindView;
 
 /**
  * Created by huxin on 2018/4/3.
+ * 进度界面
  */
 
 public class ApplyFragment extends BaseFragment{
