@@ -3,11 +3,13 @@ package com.yinshan.happycash.framework;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 2017/8/11.
  */
 
-public class BaseStatusLogsBean implements Parcelable {
+public class BaseStatusLogsBean implements Parcelable ,Serializable{
     private String createTime;
     private String status;
 

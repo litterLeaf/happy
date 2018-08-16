@@ -66,7 +66,6 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
             SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN,latestLoanAppBean);
             DateManager.setServerStatus( mLatestLoanAppBean.getStatus());
             DateManager.setAPPStatus(StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
-            StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean);
         }
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);

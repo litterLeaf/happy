@@ -83,6 +83,7 @@
                             android:textColor="@color/text_blue"
                             android:textSize="18sp"
                             android:textStyle="bold"
+                            android:text="Rp --"
                             />
                         <TextView
                             style="@style/text_wrap_layout"
@@ -112,6 +113,7 @@
                             android:textColor="@color/text_blue"
                             android:textSize="18sp"
                             android:textStyle="bold"
+                            android:text="-- Hari"
                             />
                         <TextView
                             style="@style/text_wrap_layout"

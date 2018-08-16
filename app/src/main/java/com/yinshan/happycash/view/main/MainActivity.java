@@ -22,6 +22,7 @@ import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
@@ -34,6 +35,7 @@ import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -42,6 +44,9 @@ import org.greenrobot.eventbus.ThreadMode;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * ┏┓　　　┏┓
@@ -67,6 +72,7 @@ import butterknife.OnClick;
  */
 public class MainActivity extends BaseActivity {
 
+    boolean isFirstEnter = true;
 
     @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
@@ -119,12 +125,30 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         reSetTab(1);
-        String status = DateManager.getStatus();
-        if(status==null){
-            showFragment(AppLoanStatus.UNLOAN);
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if(object!=null&&object.getStatus()!=null){
+            dealResult(object);
         }else {
-            showFragment(status);
+            showFragment(AppLoanStatus.UNLOAN);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
+            if(!isFirstEnter){
+
+            }
+        }
+    }
+
+    private void dealResult(LastLoanAppBean bean){
+        if(bean==null||bean.getStatus()==null){
+            return;
+        }
+        String lastAppStatus = StatusManagementUtils.loanStatusClassify(bean);
+        showFragment(lastAppStatus);
     }
 
     /**
@@ -285,7 +309,6 @@ public class MainActivity extends BaseActivity {
     }
 
     private void showFragment(String status) {
-
         if (AppLoanStatus.UNLOAN.equals(status)) {
             manageFragament(true, false, false, false, false, false, false,
                     false);
@@ -311,6 +334,78 @@ public class MainActivity extends BaseActivity {
         reSetTab(2);
     }
 
+    //数据刷新
+    public void updateStatus(final String token) {
+        showLoading("update info...");
+//        api.getLatestLoanApp(token, "Main")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<LatestLoanAppBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        LoggerWrapper.d("MainActivity:updatestatus--oncompleted");
+//                        dismissLoading();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        ToastManager.showToast("Loading data tidak normal");
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + e.getMessage());
+//                        dismissLoading();
+//                        LatestLoanAppBean object = AppSP.getInstance().getLatestBean();
+//                        if(object!=null){
+//                            dealResult(object.getStatus());
+//                        }else{
+//                            showDefaultView();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onNext(LatestLoanAppBean latestLoanAppBean) {
+//                        if(latestLoanAppBean!=null) {
+//                            AppSP.getInstance().setObject(FieldParams.LATESTBEAN, latestLoanAppBean);
+//                            if(latestLoanAppBean.getStatus()!=null)
+//                                dealResult(latestLoanAppBean.getStatus());
+//                        }
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
+//                    }
+//                });
+    }
+
+    public void reUpdateStatus(){
+        showLoading("update info...");
+        if(!TokenManager.getInstance().hasLogin()){
+            dismissLoading();
+            return;
+        }
+//        mPres.getLatestLoanApp(TokenManager.getInstance().getToken(), "Main")
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Subscriber<LatestLoanAppBean>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        LoggerWrapper.d("MainActivity:updatestatus--oncompleted");
+//                        dismissLoading();
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        ToastManager.showToast("Loading data tidak normal");
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + e.getMessage());
+//                        dismissLoading();
+//                    }
+//
+//                    @Override
+//                    public void onNext(LatestLoanAppBean latestLoanAppBean) {
+//                        LatestLoanAppBean getObject = AppSP.getInstance().getLatestBean();
+//                        AppSP.getInstance().setObject(FieldParams.LATESTBEAN, latestLoanAppBean);
+//                        if(latestLoanAppBean!=null&&latestLoanAppBean.getStatus()!=null)
+//                            dealResult(latestLoanAppBean.getStatus());
+//                        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
+//                    }
+//                });
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
         manageFragament(false, false, false, true, false,
@@ -323,11 +418,11 @@ public class MainActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.id_textview_tab_loan:
                 reSetTab(1);
-                String status = DateManager.getStatus();
-                if(status==null){
-                    showFragment(AppLoanStatus.UNLOAN);
+                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+                if(object!=null&&object.getStatus()!=null){
+                    dealResult(SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN,LastLoanAppBean.class));
                 }else {
-                    showFragment(status);
+                    showFragment(AppLoanStatus.UNLOAN);
                 }
                 break;
             case R.id.id_textview_tab_certification:
@@ -386,5 +481,11 @@ public class MainActivity extends BaseActivity {
                 HappyAppSP.getInstance().setImei(imei);
             }
         }
+    }
+
+    //默认unLoan界面
+    public void showDefaultView(){
+//        manageFragment(true,false,false,false,false,false,false,
+//                false,false,false);
     }
 }
