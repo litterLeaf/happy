@@ -35,7 +35,7 @@ public class StatusManagementUtils {
         } else if(ServiceLoanStatus.CLOSED.equals(status)){
             mTempStatus = AppLoanStatus.UNLOAN;
         } else if(ServiceLoanStatus.REJECTED.equals(status)){
-            mTempStatus = AppLoanStatus.UNLOAN;
+            mTempStatus = AppLoanStatus.REJECT;
         }else {
             mTempStatus = AppLoanStatus.UNLOAN;
         }
