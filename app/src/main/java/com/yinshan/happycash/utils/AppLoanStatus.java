@@ -9,5 +9,6 @@ public interface AppLoanStatus {
         String  REVIEW = "REVIEW";
         String  REPAYMENT = "REPAYMENT";
         String  OVERDUE = "OVERDUE";
+        String  REJECT = "REJECTED";
         String REVIEW_SUPPLEMENT = "REVIEW_SUPPLEMENT";
 }

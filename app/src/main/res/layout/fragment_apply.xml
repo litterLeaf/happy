@@ -141,6 +141,23 @@
                             />
                     </RelativeLayout>
                 </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/viewDesc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="45dp"
+                    android:paddingRight="45dp"
+                    android:background="@color/white">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp">
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:text="@string/test"/>
+                    </RelativeLayout>
+                </LinearLayout>
                 <!--进度列表-->
                 <ListView
                     android:id="@+id/progressList"

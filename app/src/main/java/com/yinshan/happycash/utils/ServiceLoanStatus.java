@@ -8,11 +8,11 @@ public interface ServiceLoanStatus {
       String SUBMITTED = "SUBMITTED";
       String SUPPLEMENT = "SUPPLEMENT";
       String CURRENT   = "CURRENT";
-      String WITHDRAWN = "WITHDRAWN";
+      String WITHDRAWN = "WITHDRAWN";//取消状态
       String OVERDUE   = "OVERDUE";
       String PAID_OFF  = "PAID_OFF";
       String REJECTED     = "REJECTED";
-      String ISSUING     = "ISSUING";
+      String ISSUING     = "ISSUING";//等待放款状态
       String CLOSED     = "CLOSED";
       String PRE_REVIEW = "PRE_REVIEW";
       String FIRST_REVIEW = "FIRST_REVIEW";
