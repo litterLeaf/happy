@@ -73,6 +73,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/BaiduLBS_Android.jar')
 
     //olive s
     implementation(name: 'camera-release', ext: 'aar')
