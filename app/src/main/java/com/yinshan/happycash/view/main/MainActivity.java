@@ -165,7 +165,7 @@ public class MainActivity extends BaseActivity {
      */
 
     private void manageFragament(boolean isUnLoan, boolean isInfor, boolean isMeFragment, boolean isLoaning, boolean isProcess,
-                                 boolean isBuildUp, boolean isRepayment, boolean isReject) {
+                                 boolean isBuildUp, boolean isRepayment, boolean isExpiryRepayment, boolean isRollover, boolean isReject) {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
 
@@ -311,32 +311,36 @@ public class MainActivity extends BaseActivity {
     private void showFragment(String status) {
         if (AppLoanStatus.UNLOAN.equals(status)) {
             manageFragament(true, false, false, false, false, false, false,
-                    false);
+                    false,false,false);
         } else if (AppLoanStatus.REVIEW.equals(status)) {
             manageFragament(false, false, false, false, true, false, false,
-                    false);
+                    false,false,false);
         } else if (AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)) {
             manageFragament(false, false, false, false, false, true, false,
-                    false);
+                    false,false,false);
         } else if (AppLoanStatus.REPAYMENT.equals(status)) {
             manageFragament(false, false, false, false, false, false, true,
-                    false);
+                    false,false,false);
         } else if (AppLoanStatus.OVERDUE.equals(status)) {
             manageFragament(false, false, false, false, false, false, true,
-                    false);
+                    false,false,false);
+        }else if(AppLoanStatus.REJECT.equals(status)){
+            manageFragament(false, false, false, false, false, false, false,
+                    false,false,true);
         }
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void goInformationFragment(MessageEvent messageEvent) {
         manageFragament(false, true, false, false, false,
-                false, false, false);
+                false, false, false,false,false);
         reSetTab(2);
     }
 
     //数据刷新
     public void updateStatus(final String token) {
         showLoading("update info...");
+
 //        api.getLatestLoanApp(token, "Main")
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -409,7 +413,7 @@ public class MainActivity extends BaseActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
         manageFragament(false, false, false, true, false,
-                false, false, false);
+                false, false, false,false,false);
         reSetTab(1);
     }
 
@@ -428,12 +432,12 @@ public class MainActivity extends BaseActivity {
             case R.id.id_textview_tab_certification:
                 reSetTab(2);
                 manageFragament(false,true,false,false,false,
-                        false,false,false);
+                        false,false,false,false,false);
                 break;
             case R.id.id_textview_tab_me:
                 reSetTab(3);
                 manageFragament(false,false,true,false,false,
-                        false,false,false);
+                        false,false,false,false,false);
                 break;
             case R.id.id_textview_tab_online_qa:
                 if(TokenManager.getInstance().hasLogin()){

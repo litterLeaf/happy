@@ -8,8 +8,12 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:textColor="@color/hc_input_text"
-        android:text="RejectFragment" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="@string/reject_txt1" />
+
+
 </RelativeLayout>
