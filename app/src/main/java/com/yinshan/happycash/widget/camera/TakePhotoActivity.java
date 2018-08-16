@@ -37,7 +37,7 @@ import com.yinshan.happycash.support.takepicture.bean.PhotoInfo;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.Util;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
-import com.yinshan.happycash.view.main.MainActivity;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 
 import java.io.File;

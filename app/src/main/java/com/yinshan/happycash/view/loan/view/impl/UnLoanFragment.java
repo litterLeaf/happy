@@ -4,21 +4,16 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
-import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AndroidUtils;
@@ -27,15 +22,12 @@ import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.login.LoginActivity;
-import com.yinshan.happycash.view.main.MainActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 
 /**

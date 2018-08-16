@@ -1,4 +1,4 @@
-package com.yinshan.happycash.view.main;
+package com.yinshan.happycash.view.main.view.impl;
 
 
 import android.content.Context;
@@ -17,17 +17,16 @@ import android.widget.TextView;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseActivity;
-import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
+import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.SystemUtil;
-import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.information.view.InformationFragment;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
@@ -35,18 +34,18 @@ import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.view.main.QuestionActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
+import com.yinshan.happycash.view.main.view.IGetStatusView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
+import com.yinshan.happycash.widget.common.ToastManager;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * ┏┓　　　┏┓
@@ -70,7 +69,7 @@ import rx.schedulers.Schedulers;
  * @author admin
  *         on 2018/1/11
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements IGetStatusView {
 
     boolean isFirstEnter = true;
 
@@ -107,6 +106,8 @@ public class MainActivity extends BaseActivity {
 
     public static int chooseIndex;
 
+    private GetStatusPresenter mPresenter;
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;
@@ -125,6 +126,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         reSetTab(1);
+
+        mPresenter = new GetStatusPresenter(this,this);
+
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         if(object!=null&&object.getStatus()!=null){
             dealResult(object);
@@ -341,6 +345,8 @@ public class MainActivity extends BaseActivity {
     public void updateStatus(final String token) {
         showLoading("update info...");
 
+        if(TokenManager.getInstance().hasLogin())
+            mPresenter.getStatusInfo(token);
 //        api.getLatestLoanApp(token, "Main")
 //                .subscribeOn(Schedulers.io())
 //                .observeOn(AndroidSchedulers.mainThread())
@@ -491,5 +497,27 @@ public class MainActivity extends BaseActivity {
     public void showDefaultView(){
 //        manageFragment(true,false,false,false,false,false,false,
 //                false,false,false);
+    }
+
+    @Override
+    public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
+        if(latestLoanAppBean!=null) {
+            SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, latestLoanAppBean);
+            if(latestLoanAppBean.getStatus()!=null)
+                dealResult(latestLoanAppBean);
+        }
+        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
+    }
+
+    @Override
+    public void getStatusError(String displayMessage) {
+        ToastManager.showToast("Loading data tidak normal");
+        LoggerWrapper.d("MainActivity: updatestatus--" + displayMessage);
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if(object!=null){
+            dealResult(object);
+        }else{
+            showDefaultView();
+        }
     }
 }

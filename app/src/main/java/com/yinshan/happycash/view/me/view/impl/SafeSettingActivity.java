@@ -1,14 +1,13 @@
 package com.yinshan.happycash.view.me.view.impl;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.application.AppManager;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
 import com.yinshan.happycash.utils.SPUtils;
-import com.yinshan.happycash.view.main.MainActivity;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.presenter.SafeSettingPresenter;
 import com.yinshan.happycash.view.me.view.ISafeSettingView;
 
