@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
@@ -71,6 +73,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/BaiduLBS_Android.jar')
 
     //olive s
     implementation(name: 'camera-release', ext: 'aar')
@@ -122,4 +125,7 @@ dependencies {
 
     //appsFlyer
     compile 'com.appsflyer:af-android-sdk:4.8.11'
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

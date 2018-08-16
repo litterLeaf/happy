@@ -162,6 +162,7 @@
             android:screenOrientation="portrait"
             />
 
+        <service android:name=".analytic.collection.AlyService" />
     </application>
 
 </manifest>
