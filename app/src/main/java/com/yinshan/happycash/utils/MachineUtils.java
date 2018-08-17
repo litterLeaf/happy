@@ -1,12 +1,16 @@
 package com.yinshan.happycash.utils;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.util.Log;
 
 import com.yinshan.happycash.application.AppApplication;
 import com.yinshan.happycash.application.AppContext;
@@ -101,6 +105,57 @@ public class MachineUtils {
                 ((ip >> 8) & 0xFF) + "." +
                 ((ip >> 16) & 0xFF) + "." +
                 (ip >> 24 & 0xFF);
+    }
+
+    public static String getSID(){
+        String imie =initImei();
+        if(imie.equals("")){
+            String uuid = getGUID();
+            if(uuid.equals("")) {
+                return getUUID();
+            }else{
+                return uuid;
+            }
+        }else{
+            return imie;
+        }
+    }
+
+
+    private static String initImei() {
+        String imei =SPUtils.getInstance().getImei();
+        if (TextUtils.isEmpty(imei)) {
+            imei = SystemUtil.getInstance().getImei();
+            if (!TextUtils.isEmpty(imei)) {
+                SPUtils.getInstance().setImei(imei);
+            }
+        }
+        return imei;
+    }
+    private static String getUUID(){
+        return UUID.randomUUID().toString();
+    }
+
+    public static  String getAppVersionName(Context context,int type) {
+        String versionName = "";
+        int versioncode = 0;
+        try {
+            // ---get the package info---
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            versionName = pi.versionName;
+            versioncode = pi.versionCode;
+            if (versionName == null || versionName.length() <= 0) {
+                return "";
+            }
+        } catch (Exception e) {
+            Log.e("VersionInfo", "Exception", e);
+        }
+        if(type==0){
+            return versionName;
+        }else {
+            return String.valueOf(versioncode);
+        }
     }
 
     public static   String getDeviceBrand() {

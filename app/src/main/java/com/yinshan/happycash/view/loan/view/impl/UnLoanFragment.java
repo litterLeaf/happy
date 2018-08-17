@@ -128,7 +128,7 @@ public class UnLoanFragment extends BaseFragment {
             case 100:
                 for(int grant:grantResults){
                     if(grant== PackageManager.PERMISSION_GRANTED){
-                        SPUtils.getInstance().setImie(AndroidUtils.getIMIE(getActivity()));
+                        SPUtils.getInstance().setImei(AndroidUtils.getIMIE(getActivity()));
                     }
                 }
                 break;

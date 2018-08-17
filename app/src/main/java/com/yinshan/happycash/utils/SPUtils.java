@@ -334,12 +334,12 @@ public class SPUtils extends ConstantSharedPreferences{
         }
     }
 
-    public String getImie(){
+    public String getImei(){
         return app.getString(IMIE,"");
     }
 
-    public boolean setImie(String imie){
-        return app.edit().putString(IMIE,imie).commit();
+    public boolean setImei(String imei){
+        return app.edit().putString(IMIE,imei).commit();
     }
 
     public int getIMIETimes(){
@@ -359,8 +359,8 @@ public class SPUtils extends ConstantSharedPreferences{
     }
 
 
-    public static String getSID(){
-        String imie = SPUtils.getInstance().getImie();
+    public  String getSID(){
+        String imie =getImei();
         if(TextUtils.isEmpty(imie)){
             String uuid = SPUtils.getInstance().getUUID();
             if(uuid.equals("")) {
@@ -389,22 +389,6 @@ public class SPUtils extends ConstantSharedPreferences{
 
     public boolean setToken(String token){
         return app.edit().putString(TOKEN,token).commit();
-    }
-
-    public String getAction(){
-        return app.getString(ACTION,"");
-    }
-
-    public boolean setAction(String action){
-        return app.edit().putString(ACTION,action).commit();
-    }
-
-    public String getPassword(){
-        return app.getString(PASSWORD,"");
-    }
-
-    public boolean setPassword(String password){
-        return app.edit().putString(PASSWORD,password).commit();
     }
 
     public String getMobile(){
@@ -475,5 +459,75 @@ public class SPUtils extends ConstantSharedPreferences{
             }
         }
         return null;
+    }
+
+    public boolean getFirstStart() {
+        return app.getBoolean(SPKeyUtils.FIRST_START, true);
+    }
+
+    public void setFirstStart(boolean val) {
+        write(SPKeyUtils.FIRST_START, val);
+    }
+
+    public boolean getShowGuide() {
+        return app.getBoolean(SPKeyUtils.SHOW_GUIDE, true);
+    }
+
+    public void setShowGuide(boolean val) {
+        write(SPKeyUtils.SHOW_GUIDE, false);
+    }
+
+    public boolean getLiveNess() {
+        return app.getBoolean(SPKeyUtils.IS_LIVENESS, false);
+    }
+
+    public boolean  getInvitationEnable() {
+        return app.getBoolean(SPKeyUtils.IS_Invitation_Enable, false);
+    }
+
+    public void setInvitationEnable(boolean val) {
+        write(SPKeyUtils.IS_Invitation_Enable, val);
+    }
+
+    public void  setLiveNess(boolean val) {
+        write(SPKeyUtils.IS_LIVENESS, val);
+    }
+
+    private void write(Map<String, Object> map) {
+        SharedPreferences.Editor editor = app.edit();
+
+        for (String key : map.keySet()) {
+            Object object = map.get(key);
+            if (object instanceof Integer) {
+                editor.putInt(key, (int) object);
+            } else if (object instanceof String) {
+                editor.putString(key, (String) object);
+            } else if (object instanceof Boolean) {
+                editor.putBoolean(key, (Boolean) object);
+            } else if (object instanceof Long) {
+                editor.putLong(key, (Long) object);
+            }
+        }
+        editor.apply();
+    }
+    private void write(String key, String value) {
+        SharedPreferences.Editor editor = app.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
+    private void write(String key, boolean value) {
+        SharedPreferences.Editor editor = app.edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+    private void write(String key, int value) {
+        SharedPreferences.Editor editor = app.edit();
+        editor.putInt(key, value);
+        editor.apply();
+    }
+    private void write(String key, long value) {
+        SharedPreferences.Editor editor = app.edit();
+        editor.putLong(key, value);
+        editor.apply();
     }
 }
