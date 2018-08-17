@@ -3,7 +3,6 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
-import com.yinshan.happycash.view.main.MainActivity;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;

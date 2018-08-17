@@ -3,10 +3,8 @@ package com.yinshan.happycash.view.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -16,11 +14,11 @@ import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
-import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.presenter.SplashPresenter;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 
 /**
  * Created by admin on 2018/3/20.
