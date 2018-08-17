@@ -13,7 +13,7 @@ import com.appsflyer.AppsFlyerLib
 import com.yinshan.happycash.R
 import com.yinshan.happycash.utils.SPUtils
 import com.yinshan.happycash.utils.StringUtils
-import com.yinshan.happycash.view.main.MainActivity
+import com.yinshan.happycash.view.main.view.impl.MainActivity
 
 
 import java.util.HashMap
