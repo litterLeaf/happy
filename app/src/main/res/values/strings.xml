@@ -457,4 +457,6 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
     <string name="reject_txt1">Setelah melewati analisis data besar, sistem secara otomatis menyesuaikan produk pinjaman yang paling sesuai untuk Anda,
         100% dapat lulus. </string>
 
+    <string name="textview_bank_select_statement">Silahkan pilih bank untuk mengembalikan pinjaman</string>
+
 </resources>
