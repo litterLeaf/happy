@@ -77,7 +77,7 @@ public interface LoanApi {
     Observable<LoanDetailBean> getLoanDetail(@Header("X-AUTH-TOKEN") String token,
                                              @Path("loanAppId") long loanAppId);
 
-    @GET("loanapps/deposit/methods/v5")
+    @GET("loanapps/deposit/methods")
     Observable<DepositMethodsBean> getDepostMethods(@Header("X-AUTH-TOKEN") String token);
 
     @GET("loanapps/latest")
@@ -141,9 +141,8 @@ public interface LoanApi {
                                         @Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded
-    @POST("loanapps/deposit")
+    @POST("loanapps/{loanAppId}/deposit")
     Observable<DepositResponseBean> doDeposit(@Field("loanAppId") String loanAppId,
-                                              @Field("currency") String currency,
                                               @Field("depositMethod") String method,
                                               @Header("X-AUTH-TOKEN") String token);
 
