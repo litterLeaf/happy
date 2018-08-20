@@ -142,9 +142,14 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
         super.onResume();
         if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
             if(!isFirstEnter){
-
+                reUpdateStatus();
             }
+        }else if(chooseIndex==2||chooseIndex==3){
+            reSetTab(chooseIndex);
         }
+
+        if(isFirstEnter)
+            isFirstEnter = false;
     }
 
     private void dealResult(LastLoanAppBean bean){
@@ -326,8 +331,8 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
             manageFragament(false, false, false, false, false, false, true,
                     false,false,false);
         } else if (AppLoanStatus.OVERDUE.equals(status)) {
-            manageFragament(false, false, false, false, false, false, true,
-                    false,false,false);
+//            manageFragament(false, false, false, false, false, false, true,
+//                    false,false,false);
         }else if(AppLoanStatus.REJECT.equals(status)){
             manageFragament(false, false, false, false, false, false, false,
                     false,false,true);
@@ -347,39 +352,6 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
 
         if(TokenManager.getInstance().hasLogin())
             mPresenter.getStatusInfo(token);
-//        api.getLatestLoanApp(token, "Main")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<LatestLoanAppBean>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        LoggerWrapper.d("MainActivity:updatestatus--oncompleted");
-//                        dismissLoading();
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        ToastManager.showToast("Loading data tidak normal");
-//                        LoggerWrapper.d("MainActivity: updatestatus--" + e.getMessage());
-//                        dismissLoading();
-//                        LatestLoanAppBean object = AppSP.getInstance().getLatestBean();
-//                        if(object!=null){
-//                            dealResult(object.getStatus());
-//                        }else{
-//                            showDefaultView();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onNext(LatestLoanAppBean latestLoanAppBean) {
-//                        if(latestLoanAppBean!=null) {
-//                            AppSP.getInstance().setObject(FieldParams.LATESTBEAN, latestLoanAppBean);
-//                            if(latestLoanAppBean.getStatus()!=null)
-//                                dealResult(latestLoanAppBean.getStatus());
-//                        }
-//                        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
-//                    }
-//                });
     }
 
     public void reUpdateStatus(){
@@ -388,32 +360,6 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
             dismissLoading();
             return;
         }
-//        mPres.getLatestLoanApp(TokenManager.getInstance().getToken(), "Main")
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Subscriber<LatestLoanAppBean>() {
-//                    @Override
-//                    public void onCompleted() {
-//                        LoggerWrapper.d("MainActivity:updatestatus--oncompleted");
-//                        dismissLoading();
-//                    }
-//
-//                    @Override
-//                    public void onError(Throwable e) {
-//                        ToastManager.showToast("Loading data tidak normal");
-//                        LoggerWrapper.d("MainActivity: updatestatus--" + e.getMessage());
-//                        dismissLoading();
-//                    }
-//
-//                    @Override
-//                    public void onNext(LatestLoanAppBean latestLoanAppBean) {
-//                        LatestLoanAppBean getObject = AppSP.getInstance().getLatestBean();
-//                        AppSP.getInstance().setObject(FieldParams.LATESTBEAN, latestLoanAppBean);
-//                        if(latestLoanAppBean!=null&&latestLoanAppBean.getStatus()!=null)
-//                            dealResult(latestLoanAppBean.getStatus());
-//                        LoggerWrapper.d("MainActivity: updatestatus--" + "success");
-//                    }
-//                });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -495,8 +441,8 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
 
     //默认unLoan界面
     public void showDefaultView(){
-//        manageFragment(true,false,false,false,false,false,false,
-//                false,false,false);
+        manageFragament(true,false,false,false,false,false,false,
+                false,false,false);
     }
 
     @Override

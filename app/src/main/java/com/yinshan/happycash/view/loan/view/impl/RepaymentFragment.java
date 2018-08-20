@@ -125,8 +125,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     @Override
     public void getDepositOk(DepositResponseBean bean) {
         depositRB = bean;
-//        Intent intent = new Intent(getActivity(),RepaymentStrategyActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(),RepaymentStrategyActivity.class);
+        startActivity(intent);
     }
 
     @Override
