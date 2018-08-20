@@ -40,14 +40,14 @@ import butterknife.OnClick;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- * ┃　　　┃   神兽保佑
- * ┃　　　┃   代码无BUG！
- * ┃　　　┗━━━┓
- * ┃　　　　　　　┣┓
- * ┃　　　　　　　┏┛
- * ┗┓┓┏━┳┓┏┛
- * ┃┫┫　┃┫┫
- * ┗┻┛　┗┻┛
+ *        ┃　　　┃   神兽保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *            ┃┫┫　┃┫┫
+ *            ┗┻┛　┗┻┛
  *
  * @author admin
  *         on 2018/1/31
@@ -120,7 +120,7 @@ public class UnLoanFragment extends BaseFragment {
             case 100:
                 for(int grant:grantResults){
                     if(grant== PackageManager.PERMISSION_GRANTED){
-                        SPUtils.getInstance().setImie(AndroidUtils.getIMIE(getActivity()));
+                        SPUtils.getInstance().setImei(AndroidUtils.getIMIE(getActivity()));
                     }
                 }
                 break;

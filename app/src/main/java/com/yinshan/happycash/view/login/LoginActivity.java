@@ -24,7 +24,6 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.network.api.CaptchaApi;
 import com.yinshan.happycash.utils.MachineUtils;
-import com.yinshan.happycash.utils.MobileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ToolsUtils;
@@ -214,7 +213,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         }else if(TextUtils.isEmpty(mSmsCode) || mSmsCode.length()<4){
             result = false;
         }else{
-            return true;
+            result = true;
         }
         return result;
     }
@@ -305,13 +304,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     public void signInSuccess(String mobile, LoginTokenResponse loginTokenResponse) {
         loginCount = 0;
         HappySnackBar.showSnackBar(mViewCaptcha, R.string.login_success, SPKeyUtils.SNACKBAR_TYPE_TIP);
-
-        String saveMobile = MobileUtil.trimMobile(mobile);
         SPUtils.getInstance().setToken(loginTokenResponse.getToken());
-        SPUtils.getInstance().setAction(loginTokenResponse.getAction());
-        SPUtils.getInstance().setPassword(loginTokenResponse.getPassword());
-        SPUtils.getInstance().setMobile(saveMobile);
-
+        SPUtils.getInstance().setMobile(mMobile);
         finish();
     }
 
