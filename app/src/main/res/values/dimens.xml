@@ -162,5 +162,5 @@
     <dimen name="px_32" >16dp</dimen>
     <dimen name="px_100" >50dp</dimen>
 
-
+    <dimen name="bank_payment_left" >25dp</dimen>
 </resources>

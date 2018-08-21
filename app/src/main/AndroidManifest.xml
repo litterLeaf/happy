@@ -140,11 +140,14 @@
         <activity android:name=".view.information.view.impl.PersonalInformation"
         android:screenOrientation="portrait" >
 
-    </activity>
+        </activity>
         <activity android:name=".view.information.view.impl.JobInformation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.loan.view.impl.BankPaymentActivity"
+            android:screenOrientation="portrait">
 
         </activity>
+
         <activity android:name=".view.main.QuestionActivity"
             android:screenOrientation="portrait"
             />
