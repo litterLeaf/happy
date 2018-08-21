@@ -200,7 +200,8 @@
                         android:textColorHint="@color/login_phone_hint"
                         android:textColor="@color/hc_input_text"
                         android:textCursorDrawable="@drawable/cursor_color"
-                        android:textSize="12sp" />
+                        android:textSize="17sp"
+                        android:textStyle="bold"/>
 
                     <ImageView
                         android:id="@+id/id_imageview_code"

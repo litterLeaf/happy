@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.login;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -51,6 +52,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     LoginPresenter mPresenter;
     int loginCount = 0;
+
+    boolean isShowTip = false;
 
     String mSmsCode;
     String mCaptcha;
@@ -126,8 +129,10 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
                 mPresenter.signIn(mSmsCode,mSid,mTextCaptcha.getText().toString(),mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
                 break;
             case R.id.btnSendSms:
-                mMobile = mEditMobile.getText().toString();
-                mPresenter.sendSms(mMobile);
+                if(!isShowTip) {
+                    mMobile = mEditMobile.getText().toString();
+                    mPresenter.sendSms(mMobile);
+                }
                 break;
             case R.id.id_imageview_code:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.REFRESH);
@@ -322,6 +327,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void getSMSCodeSuccess(ResponseBody responseBody) {
+        new TimeCount(60000, 1000).start();
 
     }
 
@@ -350,5 +356,30 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 //                AppsFlyerLib.getInstance().trackEvent(getApplicationContext(), "Register", eventValue);
 //            }
 //        }
+    }
+
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+
+        @Override
+        public void onFinish() {
+            mBtnSendSms.setText(getResources().getText(R.string.button_obtain_code));
+            mBtnSendSms.setSelected(false);
+            mBtnSendSms.setClickable(true);
+            mBtnSendSms.setAlpha(0.8f);
+            isShowTip = false;
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mBtnSendSms.setSelected(true);
+            mBtnSendSms.setClickable(false);
+            mBtnSendSms.setAlpha(0.3f);
+            mBtnSendSms.setText(millisUntilFinished / 1000 + "s");
+            isShowTip = true;
+        }
     }
 }
