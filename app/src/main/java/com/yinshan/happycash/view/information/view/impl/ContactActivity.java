@@ -10,10 +10,8 @@ import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.view.Gravity;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -60,6 +58,8 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     TextView mHintPhone2;
     @BindView(R.id.textPhone2)
     TextView mPhone2;
+    @BindView(R.id.btnSubmit)
+    RelativeLayout mBtnSubmit;
 
     ContactPresenter mPresenter;
 
@@ -75,6 +75,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
 
     @Override
     protected void secondInit() {
+        isCanSubmit();
         mPresenter = new ContactPresenter(this,this);
         mPresenter.getContactInfo();
     }
@@ -196,12 +197,14 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mHintRelative1.setVisibility(View.INVISIBLE);
         mRelative1.setVisibility(View.VISIBLE);
         mRelative1.setText(str);
+        isCanSubmit();
     }
 
     private void showRelative2(String str){
         mHintRelative2.setVisibility(View.INVISIBLE);
         mRelative2.setVisibility(View.VISIBLE);
         mRelative2.setText(str);
+        isCanSubmit();
     }
 
     private void showContact1(String contact,String mobile){
@@ -215,6 +218,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             mPhone1.setVisibility(View.VISIBLE);
             mPhone1.setText(mobile);
         }
+        isCanSubmit();
     }
 
     private void showContact2(String contact,String mobile){
@@ -227,6 +231,18 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             mHintPhone2.setVisibility(View.INVISIBLE);
             mPhone2.setVisibility(View.VISIBLE);
             mPhone2.setText(mobile);
+        }
+        isCanSubmit();
+    }
+
+    private void isCanSubmit(){
+        if(!TextUtils.isEmpty(mRelative1.getText().toString())&&!TextUtils.isEmpty(mContact1.getText().toString())&&!TextUtils.isEmpty(mPhone1.getText().toString())
+                &&!TextUtils.isEmpty(mRelative2.getText().toString())&&!TextUtils.isEmpty(mContact2.getText().toString())&&!TextUtils.isEmpty(mPhone2.getText().toString())){
+            mBtnSubmit.setClickable(true);
+            mBtnSubmit.setAlpha(0.8f);
+        } else {
+            mBtnSubmit.setClickable(false);
+            mBtnSubmit.setAlpha(0.3f);
         }
     }
 }

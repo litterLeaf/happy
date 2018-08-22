@@ -37,54 +37,61 @@ public class JobPresenter {
     }
 
     public void getJobInfo(){
+        mView.showLoadingDialog();
         mApi.getEmploymentInfo(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<EmploymentBean>(new SoftReference(mContext)) {
                     @Override
                     public void onNext(EmploymentBean bean) {
+                        mView.dismissLoadingDialog();
                         mView.showInfo(bean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.dismissLoadingDialog();
                     }
                 });
     }
 
     public void getCityTel(int cityId){
+        mView.showLoadingDialog();
         mRegionApi.getTelephoneAreaCode(cityId)
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<List<String>>(new SoftReference(mContext)){
                     @Override
                     public void onNext(List<String> strs) {
                         mView.showTelList(strs);
+                        mView.dismissLoadingDialog();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.dismissLoadingDialog();
                     }
                 });
     }
 
     public void getRegion(String level,int id,final int index){
+        mView.showLoadingDialog();
         mRegionApi.getRegion(level,id)
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<RegionsBean>(new SoftReference(mContext)) {
                     @Override
                     public void onNext(RegionsBean bean) {
+                        mView.dismissLoadingDialog();
                         mView.showRegion(bean,index);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.dismissLoadingDialog();
                     }
                 });
     }
 
     public void submitJobInfo(EmploymentBean bean){
+        mView.showLoadingDialog();
         mApi.submitEmploymentInfo(bean.getCompanyName(),bean.getCompanyProvince(),bean.getCompanyCity(),bean.getCompanyDistrict()
                 ,bean.getCompanyArea(),bean.getCompanyAddress(),bean.getCompanyPhone(),bean.getProfession(),bean.getSalary(),bean.getSalaryDay(),
                 TokenManager.getInstance().getToken())
@@ -93,12 +100,14 @@ public class JobPresenter {
                     @Override
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.submitOk();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                     }
                 });
     }

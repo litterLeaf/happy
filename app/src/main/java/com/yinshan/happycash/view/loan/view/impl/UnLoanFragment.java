@@ -163,7 +163,6 @@ public class UnLoanFragment extends BaseFragment {
 
     }
 
-
     private void setChoose1Period(){
         choosePeriod = 1;
         periodOne.setBackgroundResource(R.drawable.shape_unloan_bg);

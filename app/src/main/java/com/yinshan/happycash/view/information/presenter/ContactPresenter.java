@@ -33,6 +33,7 @@ public class ContactPresenter {
     }
 
     public void getContactInfo(){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(RecordApi.class)
                 .getContactInfo(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -40,17 +41,20 @@ public class ContactPresenter {
                     @Override
                     public void onNext(List<ContactBean> value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.showContactInfo(value);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
+                        mView.dismissLoadingDialog();
                         super.onError(ex);
                     }
                 });
     }
 
     public void submitContactInfo(String name1,String mobile1,String relative1,String name2,String mobile2,String relative2){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(RecordApi.class)
                 .submitContactInfo(name1,mobile1,relative1,name2,mobile2,relative2,TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -58,11 +62,13 @@ public class ContactPresenter {
                     @Override
                     public void onNext(ResponseBody body) {
                         super.onNext(body);
+                        mView.dismissLoadingDialog();
                         mView.submitContactOk();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
+                        mView.dismissLoadingDialog();
                         super.onError(ex);
                     }
                 });
