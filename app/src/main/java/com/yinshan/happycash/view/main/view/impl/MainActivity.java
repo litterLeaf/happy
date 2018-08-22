@@ -348,18 +348,13 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
 
     //数据刷新
     public void updateStatus(final String token) {
-        showLoading("update info...");
-
         if(TokenManager.getInstance().hasLogin())
             mPresenter.getStatusInfo(token);
     }
 
     public void reUpdateStatus(){
-        showLoading("update info...");
-        if(!TokenManager.getInstance().hasLogin()){
-            dismissLoading();
-            return;
-        }
+        if(TokenManager.getInstance().hasLogin())
+            mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

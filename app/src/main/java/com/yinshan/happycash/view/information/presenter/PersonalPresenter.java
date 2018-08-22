@@ -36,38 +36,43 @@ public class PersonalPresenter {
     }
 
     public void getPersonInfo() {
+        mView.showLoadingDialog();
         mApi.getPersonalInfo(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<PersonalBean>(new SoftReference(mContext)) {
                     @Override
                     public void onNext(PersonalBean personalBean) {
                         mView.showInfo(personalBean);
+                        mView.dismissLoadingDialog();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.dismissLoadingDialog();
                     }
                 });
     }
 
     public void getRegion(String level,int id,final int index){
+        mView.showLoadingDialog();
         mRegionApi.getRegion(level,id)
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<RegionsBean>(new SoftReference(mContext)) {
                     @Override
                     public void onNext(RegionsBean bean) {
                         mView.showRegion(bean,index);
+                        mView.dismissLoadingDialog();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        mView.dismissLoadingDialog();
                     }
                 });
     }
 
     public void submitPersonalInfo(PersonalBean personalBean){
+        mView.showLoadingDialog();
         mApi.submitPersonalInfo(personalBean.getFullName(),personalBean.getCredentialNo(),personalBean.getFamilyNameInLaw(),
                 personalBean.getGender(),personalBean.getProvince(),personalBean.getCity(),personalBean.getDistrict(),personalBean.getArea(),
                 personalBean.getAddress(),personalBean.getLastEducation(),personalBean.getMaritalStatus(),personalBean.getChildrenNumber(),
@@ -79,11 +84,13 @@ public class PersonalPresenter {
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
                         mView.submitPersonOk();
+                        mView.dismissLoadingDialog();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                     }
                 });
     }

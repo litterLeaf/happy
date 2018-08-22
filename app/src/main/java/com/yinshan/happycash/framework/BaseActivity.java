@@ -1,11 +1,15 @@
 package com.yinshan.happycash.framework;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.AppManager;
+import com.yinshan.happycash.widget.inter.IBaseView;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
 import com.yinshan.happycash.widget.userdefined.GoEditTextListener;
 
@@ -53,7 +58,7 @@ import io.reactivex.disposables.Disposable;
  *
  */
 
-public abstract class BaseActivity extends RxSupportActivity {
+public abstract class BaseActivity extends RxSupportActivity implements IBaseView{
     /**
      * 当前Activity渲染的视图View
      **/
@@ -61,6 +66,12 @@ public abstract class BaseActivity extends RxSupportActivity {
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
 
+    private AlertDialog alertDialog;
+
+    /**
+     * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
+     */
+    protected boolean shouldHandleResponseData = true;
 
     @Subscribe
     @Override
@@ -115,7 +126,6 @@ public abstract class BaseActivity extends RxSupportActivity {
 //        disposables2Stop = new CompositeDisposable();
     }
 
-
     @CallSuper
     @Override
     protected void onDestroy() {
@@ -124,7 +134,9 @@ public abstract class BaseActivity extends RxSupportActivity {
             unbinder.unbind();
         if(EventBus.getDefault().isRegistered(this))
             EventBus.getDefault().unregister(this);
+        shouldHandleResponseData = false;
     }
+
     @Override
     public void finish() {
         super.finish();
@@ -166,12 +178,34 @@ public abstract class BaseActivity extends RxSupportActivity {
         startActivity(intent);
     }
 
-    public void dismissLoading() {
-
+    @Override
+    public void dismissLoadingDialog() {
+        if (null != alertDialog && alertDialog.isShowing()) {
+            alertDialog.dismiss();
+        }
     }
 
-    public void showLoading(String message){
+    @Override
+    public void showLoadingDialog() {
+        alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+        alertDialog.setCancelable(false);
+        alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_SEARCH || keyCode == KeyEvent.KEYCODE_BACK)
+                    return true;
+                return false;
+            }
+        });
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.loading_alert);
+        alertDialog.setCanceledOnTouchOutside(false);
+    }
 
+    @Override
+    public boolean isShouldHandleResponseData() {
+        return shouldHandleResponseData;
     }
 
     public void onFocusChange(View view,final String i){

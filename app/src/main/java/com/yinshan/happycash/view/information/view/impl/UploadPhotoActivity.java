@@ -195,7 +195,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
             upload(mJobFile,FileUploadType.EMPLOYMENT_PHOTO);
         }
         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
-            dismissLoading();
+            dismissLoadingDialog();
             setResult(RESULT_OK);
             finish();
         }
@@ -219,7 +219,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                         mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
                         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
                                 mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
-                            dismissLoading();
+                            dismissLoadingDialog();
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
                         }
@@ -228,12 +228,12 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                     @Override
                     public void onNext(Pair<Call<ResponseBody>, Response<ResponseBody>> callResponsePair) {
                         mFileStatus.put(fileUploadType, FileStatus.UPLOAD_SUCCESS);
-
+                        dismissLoadingDialog();
                         if ((mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED || mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_SUCCESS)
                                 && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
-                            dismissLoading();
+
                             SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
                             SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
                             UploadPhotoActivity.this.setResult(Activity.RESULT_OK);
@@ -242,7 +242,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                                 mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
                                         mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING
                                 ) {
-                            dismissLoading();
+
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
                         }
