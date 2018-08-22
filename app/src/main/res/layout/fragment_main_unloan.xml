@@ -18,11 +18,11 @@
             android:background="@color/colorPrimary">
 
             <TextView
+                android:id="@+id/chooseMoney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp30"
                 android:gravity="center"
-                android:text="1.500.000"
                 android:textStyle="bold"
                 android:textColor="@color/hc_input_text"
                 android:textSize="@dimen/sp40" />
@@ -45,7 +45,10 @@
                 android:layout_marginRight="@dimen/dp30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:progress="0"
+                android:progressDrawable="@drawable/seek_layer"
                 android:thumb="@drawable/button_1"
+
                 />
 
             <TextView
@@ -170,7 +173,6 @@
                             android:layout_marginBottom="@dimen/dp50"
                             android:gravity="center"
                             android:padding="@dimen/dp5"
-                            android:text=" 14000"
                             android:textColor="@color/hc_input_text"
                             android:textSize="@dimen/sp16" />
 

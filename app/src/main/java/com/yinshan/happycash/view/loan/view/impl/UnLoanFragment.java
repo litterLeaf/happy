@@ -17,6 +17,7 @@ import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AndroidUtils;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
@@ -55,24 +56,56 @@ import butterknife.OnClick;
 
 public class UnLoanFragment extends BaseFragment {
 
-    public static final int MIN_VALUE = 500000;
-    public static final int MAX_VALUE = 1500000;
+    private static final int MIN_VALUE = 2000000;
+    private static final int MAX_VALUE = 6000000;
+    private static final int MONEY_SEG = 4;
+    private static final int RATE = 8;
 
+    long loanMoney = MIN_VALUE;
+    int seg;
+    int choosePeriod = 1;
 
+    @BindView(R.id.chooseMoney)
+    TextView mChooseMoney;
+    @BindView(R.id.unloan_fee)
+    TextView mUnloanFee;
     @BindView(R.id.unloan_seeker)
     SeekBar unloanSeeker;
     @BindView(R.id.bt_period_1_unloan)
     Button periodOne;
+
+
+
     @BindView(R.id.bt_period_3_unloan)
     Button periodThree;
-    @BindView(R.id.unloan_fee)
-    TextView unloanFee;
     @BindView(R.id.unloan_go_information)
     Button goInformation;
 
     @Override
     protected void initView() {
+        unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if(i<3)
+                    seg = 0;
+                else
+                    seg = (i-1)/(100/MONEY_SEG)+1;
+                loanMoney = MIN_VALUE+(MAX_VALUE-MIN_VALUE)/MONEY_SEG*seg;
+                MyDebugUtils.v("the info is "+i+"   "+seg+"   "+loanMoney);
+                setComputeMoney();
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                unloanSeeker.setProgress(seg*100/MONEY_SEG);
+            }
+        });
+        setComputeMoney();
     }
 
     @Override
@@ -85,13 +118,12 @@ public class UnLoanFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_period_1_unloan:
-
-                periodThree.setBackground(getResources().getDrawable(R.drawable.shape_period_bg));
-                periodOne.setBackground(getResources().getDrawable(R.drawable.shape_unloan_bg));
+                setChoose1Period();
+                setComputeMoney();
                 break;
             case R.id.bt_period_3_unloan:
-                periodOne.setBackground(getResources().getDrawable(R.drawable.shape_period_bg));
-                periodThree.setBackground(getResources().getDrawable(R.drawable.shape_unloan_bg));
+                setChoose3Period();
+                setComputeMoney();
                 break;
             case R.id.unloan_go_information:
                 if(TokenManager.getInstance().hasLogin()){
@@ -129,5 +161,27 @@ public class UnLoanFragment extends BaseFragment {
                 break;
         }
 
+    }
+
+
+    private void setChoose1Period(){
+        choosePeriod = 1;
+        periodOne.setBackgroundResource(R.drawable.shape_unloan_bg);
+        periodThree.setBackgroundResource(R.drawable.shape_period_bg);
+    }
+
+    private void setChoose3Period(){
+        choosePeriod = 3;
+        periodOne.setBackgroundResource(R.drawable.shape_period_bg);
+        periodThree.setBackgroundResource(R.drawable.shape_unloan_bg);
+    }
+
+    private void setComputeMoney(){
+        mChooseMoney.setText(String.valueOf(loanMoney));
+        mUnloanFee.setText(String.valueOf(getLastMoney()));
+    }
+
+    private long getLastMoney(){
+        return loanMoney+loanMoney*RATE*choosePeriod/100;
     }
 }
