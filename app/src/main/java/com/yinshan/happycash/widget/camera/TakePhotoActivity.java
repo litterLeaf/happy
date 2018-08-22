@@ -254,7 +254,7 @@ public class TakePhotoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 btnCapture.setClickable(false);
-                showLoadingDialog();
+                //showLoadingDialog();
                 //showLoadingDialog(getString(R.string.loading_storing_img));
                 mCameraContainer.takePicture();
 
