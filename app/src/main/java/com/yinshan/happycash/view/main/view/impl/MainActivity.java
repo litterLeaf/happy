@@ -73,6 +73,15 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
 
     boolean isFirstEnter = true;
 
+    public static final int MIN_VALUE = 2000000;
+    public static final int MAX_VALUE = 6000000;
+    public static final int MONEY_SEG = 4;
+    public static final int RATE = 8;
+    public static int seg;
+
+    public static long loanMoney;
+    public static int choosePeriod;
+
     @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
     @BindView(R.id.id_textview_tab_loan)
@@ -460,5 +469,12 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
         }else{
             showDefaultView();
         }
+    }
+
+    public static void setSeg(int i){
+        if(i<3)
+            MainActivity.seg = 0;
+        else
+            seg = (i-1)/(100/MainActivity.MONEY_SEG)+1;
     }
 }

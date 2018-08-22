@@ -7,11 +7,13 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.riven.library.TextViewExpand;
+import com.squareup.haha.perflib.Main;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
@@ -28,6 +30,7 @@ import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.loan.model.ApplyPurpose;
 import com.yinshan.happycash.view.loan.presenter.LoaningPresenter;
 import com.yinshan.happycash.view.loan.view.ILoaningView;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 
@@ -44,10 +47,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
     @BindView(R.id.id_textview_repayment_amount)
     TextView idTextviewRepaymentAmount;
-    private final long lMaxAmount = 50000000;
-    private final long lMinAmount = 10000000;
     private final int subLength = 10;
-    long moneyAmount;
 
     @BindView(R.id.bt_period_1_unloan)
     Button choose1Period;
@@ -61,12 +61,16 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     @BindView(R.id.loan_reason)
     TextViewExpand borrowReason;
 
+    @BindView(R.id.add)
+    ImageView mAddButton;
+    @BindView(R.id.sub)
+    ImageView mSubButton;
+
     LoaningPresenter mPresenter;
     Dialog dialogPlus;
 
     private int mRequestCode = 1333;
 
-    int choosePeriod;
     private String smsCode;
 
     private String borrowReasonString;
@@ -79,12 +83,16 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         RxBus.get().register(this);
         MobAgent.onEvent(MobEvent.IN_LOANING_FRAGMENT);
 
-        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(lMaxAmount));
-        moneyAmount = lMaxAmount;
-        choosePeriod = 1;
+        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
 
         mPresenter = new LoaningPresenter(getActivity(),this);
         mPresenter.getBankCard();
+
+        if(MainActivity.choosePeriod==3){
+            setChoose3Period();
+        }else if(MainActivity.choosePeriod==1){
+            setChoose1Period();
+        }
     }
 
     @Override
@@ -130,7 +138,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 //        }
     }
 
-    @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan})
+    @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan,R.id.add,R.id.sub})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.loan_before_bind_card:
@@ -147,14 +155,24 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                 applyLoanAppSubmit();
                 break;
             case R.id.bt_period_1_unloan:
-                choosePeriod = 1;
-                choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
-                choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
+                setChoose1Period();
                 break;
             case R.id.bt_period_3_unloan:
-                choosePeriod = 3;
-                choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
-                choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+                setChoose3Period();
+                break;
+            case R.id.add:
+                if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
+                    long addValue = MainActivity.loanMoney+(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
+                    MainActivity.loanMoney = addValue;
+                    idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+                }
+                break;
+            case R.id.sub:
+                if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
+                    long subValue = MainActivity.loanMoney-(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
+                    MainActivity.loanMoney = subValue;
+                    idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+                }
                 break;
         }
     }
@@ -211,7 +229,6 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }
 
         String loanType = "PAYDAY";
-        long period = choosePeriod;
         String periodUnit = "M";
         String bankCode = bankCardName;
         String cardNo = bankCardNumber;
@@ -223,9 +240,20 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         String imie = HappyAppSP.getInstance().getImei();
         smsCode ="SMSCode";
 
-        moneyAmount = 800000;
 
-        mPresenter.submitLoanApp(loanType,String.valueOf(moneyAmount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
+        mPresenter.submitLoanApp(loanType,String.valueOf(MainActivity.loanMoney),String.valueOf(MainActivity.choosePeriod),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
                 applyChannel,applyPlatform,imie,smsCode);
+    }
+
+    private void setChoose1Period(){
+        MainActivity.choosePeriod = 1;
+        choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+        choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
+    }
+
+    private void setChoose3Period(){
+        MainActivity.choosePeriod = 3;
+        choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
+        choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
     }
 }
