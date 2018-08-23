@@ -142,7 +142,7 @@ public interface LoanApi {
 
     @FormUrlEncoded
     @POST("loanapps/{loanAppId}/deposit")
-    Observable<DepositResponseBean> doDeposit(@Field("loanAppId") String loanAppId,
+    Observable<DepositResponseBean> doDeposit(@Path("loanAppId") String loanAppId,
                                               @Field("depositMethod") String method,
                                               @Header("X-AUTH-TOKEN") String token);
 

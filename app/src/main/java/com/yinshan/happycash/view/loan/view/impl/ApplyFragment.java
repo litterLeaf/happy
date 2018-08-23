@@ -3,7 +3,9 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -16,9 +18,12 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
+import com.yinshan.happycash.view.loan.presenter.ApplyPresenter;
+import com.yinshan.happycash.view.loan.view.IApplyView;
 import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.me.model.LoanDetailBean;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
@@ -26,13 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/4/3.
- * 进度界面
+ * 进度被审核界面
  */
-
-public class ApplyFragment extends BaseFragment{
+public class ApplyFragment extends BaseFragment implements IApplyView{
 
     @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
@@ -49,7 +54,29 @@ public class ApplyFragment extends BaseFragment{
     @BindView(R.id.textTime)
     TextView mTextTime;
 
+    @BindView(R.id.viewDown)
+    RelativeLayout mViewDown;
+    @BindView(R.id.viewUp)
+    RelativeLayout mViewUp;
+    @BindView(R.id.viewDesc)
+    LinearLayout mViewDesc;
+
+    @BindView(R.id.createTime)
+    TextView mCreateTime;
+    @BindView(R.id.ktp)
+    TextView mKtp;
+    @BindView(R.id.submitFee)
+    TextView mSubmitFee;
+    @BindView(R.id.returnPerPeriod)
+    TextView mReturnPerPeriod;
+    @BindView(R.id.recipientBankName)
+    TextView mRecipientBankName;
+    @BindView(R.id.recipientAccountNo)
+    TextView mRecipientAccountNo;
+
     private List<BaseStatusLogsBean> statusLogs = new ArrayList<>();
+
+    ApplyPresenter mPresenter;
 
     @Override
     protected void initView() {
@@ -66,6 +93,11 @@ public class ApplyFragment extends BaseFragment{
 
         setListViewHeightBasedOnChildren(progressList);
 
+        mPresenter = new ApplyPresenter(getActivity(),this);
+        refresh();
+
+        shrinkageView();
+
     }
 
     @Override
@@ -75,11 +107,28 @@ public class ApplyFragment extends BaseFragment{
 
     public void mResume(){
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if(object!=null)
+        if(object!=null) {
             getRefreshData(object);
+
+        }
+    }
+
+    @OnClick({R.id.viewUp,R.id.viewDown})
+    public void onViewClick(View view){
+        switch (view.getId()){
+            case R.id.viewUp:
+                shrinkageView();
+                break;
+            case R.id.viewDown:
+                expandView();
+                break;
+        }
     }
 
     private void getRefreshData(LastLoanAppBean loanAppBean) {
+        if(loanAppBean!=null&&loanAppBean.getLoanAppId()!=null){
+
+        }
         showData(loanAppBean);
         refreshLayout.setRefreshListener(()-> {
             refreshLayout.refreshComplete();
@@ -91,14 +140,14 @@ public class ApplyFragment extends BaseFragment{
 
     private void showData(LastLoanAppBean loanAppBean){
         if(loanAppBean!=null){
-            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,loanAppBean.getStatus());
-            mTextProgress.setText(word);
-
-            String period =loanAppBean.getPeriod() + " "+loanAppBean.getPeriodUnit();
-            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getTotalAmount());
-            String  amount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getAmount());
-            mTextMoney.setText(totalAmount);
-            mTextTime.setText(period);
+//            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,loanAppBean.getStatus());
+//            mTextProgress.setText(word);
+//
+//            String period =loanAppBean.getPeriod() + " "+loanAppBean.getPeriodUnit();
+//            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getTotalAmount());
+//            String  amount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getAmount());
+//            mTextMoney.setText(totalAmount);
+//            mTextTime.setText(period);
 
             mAdapter.setStatusList(loanAppBean.getStatusLogs());
             mAdapter.notifyDataSetChanged();
@@ -118,7 +167,12 @@ public class ApplyFragment extends BaseFragment{
 
     //刷新的方法
     private void refresh() {
-        ((MainActivity)getActivity()).updateStatus(TokenManager.getInstance().getToken());
+        ((MainActivity) getActivity()).updateStatus(TokenManager.getInstance().getToken());
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if (object != null) {
+            if (object.getLoanAppId() != null)
+                mPresenter.getDetail(Long.valueOf(object.getLoanAppId()));
+        }
     }
 
     public static String getORMWord(Context context, int type, String status){
@@ -162,5 +216,46 @@ public class ApplyFragment extends BaseFragment{
         }else {
             return "";
         }
+    }
+
+    @Override
+    public void showDetailOk(LoanDetailBean bean) {
+        if(bean!=null){
+            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,bean.getStatus());
+            mTextProgress.setText(word);
+
+            String period =bean.getPeriod() + " "+bean.getPeriodUnit();
+            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(bean.getPrincipalAmount());
+            mTextMoney.setText(totalAmount);
+            mTextTime.setText(period);
+
+
+            mCreateTime.setText(bean.getCreateTime());
+            mKtp.setText(bean.getCredentialNo());
+            mSubmitFee.setText(String.valueOf(bean.getPrincipalAmount()));
+            mReturnPerPeriod.setText(String.valueOf(bean.getPrincipalAmount()/bean.getPeriod()));
+            mRecipientBankName.setText(bean.getBankCode());
+            mRecipientAccountNo.setText(bean.getCardNo());
+
+//            mAdapter.setStatusList(bean.getLpayDtoList());
+//            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void showDetailFail(String displayMessage) {
+
+    }
+
+    private void expandView(){
+        mViewDown.setVisibility(View.GONE);
+        mViewDesc.setVisibility(View.VISIBLE);
+        mViewUp.setVisibility(View.VISIBLE);
+    }
+
+    private void shrinkageView(){
+        mViewDown.setVisibility(View.VISIBLE);
+        mViewDesc.setVisibility(View.GONE);
+        mViewUp.setVisibility(View.GONE);
     }
 }

@@ -70,6 +70,9 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" android:protectionLevel="signature"/>
+
     <application
         android:name=".application.AppApplication"
         android:allowBackup="true"
@@ -140,11 +143,14 @@
         <activity android:name=".view.information.view.impl.PersonalInformation"
         android:screenOrientation="portrait" >
 
-    </activity>
+        </activity>
         <activity android:name=".view.information.view.impl.JobInformation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.loan.view.impl.BankPaymentActivity"
+            android:screenOrientation="portrait">
 
         </activity>
+
         <activity android:name=".view.main.QuestionActivity"
             android:screenOrientation="portrait"
             />

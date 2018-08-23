@@ -24,7 +24,7 @@
 
     <color name="app_bg">#f6f6f6</color>
     <color name="app_white">#ffffff</color>
-    <color name="app_yellow">#ffe232</color>
+    <color name="app_yellow">#FFE232</color>
     <color name="app_orange">#f5a623</color>
     <color name="app_blue">#9187F6</color>
     <color name="app_brown">#4A2E09</color>
@@ -32,7 +32,7 @@
     <color name="f6f6f6">#f6f6f6</color>
     <color name="text_white">#ffffff</color>
     <color name="text_blue">#9187f6</color>
-    <color name="text_red">#fca849</color>
+    <color name="text_orange">#fca849</color>
     <color name="text_d6d6d6">#d6d6d6</color>
     <color name="line">#d6d6d6</color>
     <color name="line2">#f6f6f6</color>

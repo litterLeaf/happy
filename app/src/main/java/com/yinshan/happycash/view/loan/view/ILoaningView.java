@@ -17,4 +17,6 @@ public interface ILoaningView {
     void showPurpose(List<ApplyPurpose> list);
 
     void submitLoanOk();
+
+    void submitFail(String displayMessage);
 }

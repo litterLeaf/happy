@@ -76,6 +76,7 @@
                     android:padding="@dimen/dp5"
                     >
                     <ImageView
+                        android:id="@+id/sub"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -91,6 +92,7 @@
                         android:textColor="@color/hc_input_text"/>
 
                     <ImageView
+                        android:id="@+id/add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"

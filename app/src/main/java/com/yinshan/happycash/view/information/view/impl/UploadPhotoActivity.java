@@ -1,7 +1,13 @@
 package com.yinshan.happycash.view.information.view.impl;
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,13 +31,16 @@ import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
 import com.yinshan.happycash.view.information.view.impl.support.UploadJobPhotoDialog;
 import com.yinshan.happycash.view.information.view.impl.support.UploadKtpPhotoDialog;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.ZQImageViewRoundOval;
 import com.yinshan.happycash.widget.camera.TakePhotoActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -61,6 +70,14 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     UploadKtpPhotoDialog mKtpDialog;
     UploadJobPhotoDialog mJobDialog;
+
+    private final static int PERMISSION_CODE = 110;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkPermission();
+    }
 
     @Override
     protected String bindTitle() {
@@ -105,12 +122,21 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     @OnClick({R.id.btnKtp,R.id.btnJob,R.id.btnInfoSubmit})
     public void onCLick(View view){
+        boolean hasPermission1 = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.CAMERA);
+        boolean hasPermission2 = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         switch (view.getId()){
             case R.id.btnKtp:
-                takePhotoKtp();
+                if(hasPermission1&&hasPermission2)
+                    takePhotoKtp();
+                else
+                    checkPermission();
                 break;
             case R.id.btnJob:
-                showJobDialog();
+                if(hasPermission1&&hasPermission2)
+                    showJobDialog();
+                else
+                    checkPermission();
+
                 break;
             case R.id.btnInfoSubmit:
                 uploadImages();
@@ -195,7 +221,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
             upload(mJobFile,FileUploadType.EMPLOYMENT_PHOTO);
         }
         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
-            dismissLoading();
+            dismissLoadingDialog();
             setResult(RESULT_OK);
             finish();
         }
@@ -219,7 +245,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                         mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
                         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
                                 mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
-                            dismissLoading();
+                            dismissLoadingDialog();
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
                         }
@@ -228,12 +254,12 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                     @Override
                     public void onNext(Pair<Call<ResponseBody>, Response<ResponseBody>> callResponsePair) {
                         mFileStatus.put(fileUploadType, FileStatus.UPLOAD_SUCCESS);
-
+                        dismissLoadingDialog();
                         if ((mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED || mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_SUCCESS)
                                 && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
-                            dismissLoading();
+
                             SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
                             SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
                             UploadPhotoActivity.this.setResult(Activity.RESULT_OK);
@@ -242,11 +268,92 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                                 mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
                                         mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING
                                 ) {
-                            dismissLoading();
+
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
                         }
                     }
                 });
+    }
+
+    private void checkPermission() {
+        final List<String> permissionsList = new ArrayList<>();
+        final List<String> permissionsNeeded = new ArrayList<>();
+        boolean hasPermission = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.CAMERA);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(UploadPhotoActivity.this, Manifest.permission.CAMERA)) {
+                permissionsNeeded.add(getString(R.string.CAMERA));
+            }
+            permissionsList.add(Manifest.permission.CAMERA);
+        } else {
+        }
+
+        hasPermission = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                permissionsNeeded.add(getString(R.string.WRITE_EXTERNAL_STORAGE));
+            }
+            permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+
+        if (permissionsList.size() > 0) {
+            if (permissionsNeeded.size() > 0) {
+                StringBuilder sb = new StringBuilder(getString(R.string.permissions_rationale));
+                sb.append(permissionsNeeded.get(0));
+                for (int i = 1; i < permissionsNeeded.size(); i++) {
+                    sb.append(",");
+                    sb.append(permissionsNeeded.get(i));
+                }
+
+                showMessageOK(sb.toString(), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        ActivityCompat.requestPermissions(UploadPhotoActivity.this,
+                                permissionsList.toArray(new String[permissionsList.size()]),
+                                PERMISSION_CODE);
+                    }
+                });
+            } else {
+                ActivityCompat.requestPermissions(UploadPhotoActivity.this,
+                        permissionsList.toArray(new String[permissionsList.size()]),
+                        PERMISSION_CODE);
+            }
+        }
+    }
+
+    private void showMessageOK(String message, DialogInterface.OnClickListener listener) {
+        new AlertDialog.Builder(UploadPhotoActivity.this)
+                .setMessage(message)
+                .setPositiveButton(getString(R.string.ok), listener)
+                .setCancelable(false)
+                .create()
+                .show();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_CODE:
+                for (int i = 0; i < grantResults.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (grantResult != PackageManager.PERMISSION_GRANTED) {
+                        if (Manifest.permission.CAMERA.equals(permission)) {
+
+                            return;
+                        }
+
+                        if (Manifest.permission.WRITE_EXTERNAL_STORAGE.equals(permission)) {
+
+                            return;
+                        }
+                    }
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
     }
 }

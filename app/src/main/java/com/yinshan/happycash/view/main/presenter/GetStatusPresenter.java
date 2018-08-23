@@ -28,17 +28,20 @@ public class GetStatusPresenter {
     }
 
     public void getStatusInfo(String token){
+        mView.showLoadingDialog();
         mApi.getLatestLoanApp(token)
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<LastLoanAppBean>(new SoftReference(mContext)){
                     @Override
                     public void onNext(LastLoanAppBean value) {
+                        mView.dismissLoadingDialog();
                         super.onNext(value);
                         mView.getStatusSuccess(value);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
+                        mView.dismissLoadingDialog();
                         super.onError(ex);
                         mView.getStatusError(ex.getDisplayMessage());
                     }

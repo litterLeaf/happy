@@ -13,7 +13,7 @@ public class StatusManagementUtils {
     public static String loanStatusClassify(BaseLoanAppBean bean) {
         String status = bean.getStatus();
         if ( ServiceLoanStatus.OVERDUE.equals(status)) {
-            mTempStatus = AppLoanStatus.OVERDUE;
+            mTempStatus = AppLoanStatus.REPAYMENT;
         }  else if (ServiceLoanStatus.SUBMITTED.equals(status)) {
             mTempStatus = AppLoanStatus.UNLOAN;
         } else if(ServiceLoanStatus.SUPPLEMENT.equals(status)){

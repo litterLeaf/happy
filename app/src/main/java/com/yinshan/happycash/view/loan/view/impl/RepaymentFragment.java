@@ -34,6 +34,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * 待还款界面
  * Created by huxin on 2018/2/1.
  */
 
@@ -125,8 +126,9 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     @Override
     public void getDepositOk(DepositResponseBean bean) {
         depositRB = bean;
-//        Intent intent = new Intent(getActivity(),RepaymentStrategyActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(getActivity(),BankPaymentActivity.class);
+        
+        startActivity(intent);
     }
 
     @Override
@@ -155,4 +157,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         }
         mPresenter.doDeposit(appId,str);
     }
+
+
+
 }

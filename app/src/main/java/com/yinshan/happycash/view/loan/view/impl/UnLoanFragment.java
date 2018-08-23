@@ -17,12 +17,14 @@ import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AndroidUtils;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -55,24 +57,46 @@ import butterknife.OnClick;
 
 public class UnLoanFragment extends BaseFragment {
 
-    public static final int MIN_VALUE = 500000;
-    public static final int MAX_VALUE = 1500000;
 
 
+    @BindView(R.id.chooseMoney)
+    TextView mChooseMoney;
+    @BindView(R.id.unloan_fee)
+    TextView mUnloanFee;
     @BindView(R.id.unloan_seeker)
     SeekBar unloanSeeker;
     @BindView(R.id.bt_period_1_unloan)
     Button periodOne;
+
     @BindView(R.id.bt_period_3_unloan)
     Button periodThree;
-    @BindView(R.id.unloan_fee)
-    TextView unloanFee;
     @BindView(R.id.unloan_go_information)
     Button goInformation;
 
     @Override
     protected void initView() {
+        MainActivity.loanMoney = MainActivity.MIN_VALUE;
+        MainActivity.choosePeriod = 1;
+        unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                MainActivity.setSeg(i);
+                MainActivity.loanMoney = MainActivity.MIN_VALUE+(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG*MainActivity.seg;
+                MyDebugUtils.v("the info is "+i+"   "+MainActivity.seg+"   "+MainActivity.loanMoney);
+                setComputeMoney();
+            }
 
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                unloanSeeker.setProgress(MainActivity.seg*100/MainActivity.MONEY_SEG);
+            }
+        });
+        setComputeMoney();
     }
 
     @Override
@@ -85,13 +109,12 @@ public class UnLoanFragment extends BaseFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_period_1_unloan:
-
-                periodThree.setBackground(getResources().getDrawable(R.drawable.shape_period_bg));
-                periodOne.setBackground(getResources().getDrawable(R.drawable.shape_unloan_bg));
+                setChoose1Period();
+                setComputeMoney();
                 break;
             case R.id.bt_period_3_unloan:
-                periodOne.setBackground(getResources().getDrawable(R.drawable.shape_period_bg));
-                periodThree.setBackground(getResources().getDrawable(R.drawable.shape_unloan_bg));
+                setChoose3Period();
+                setComputeMoney();
                 break;
             case R.id.unloan_go_information:
                 if(TokenManager.getInstance().hasLogin()){
@@ -129,5 +152,26 @@ public class UnLoanFragment extends BaseFragment {
                 break;
         }
 
+    }
+
+    private void setChoose1Period(){
+        MainActivity.choosePeriod = 1;
+        periodOne.setBackgroundResource(R.drawable.shape_unloan_bg);
+        periodThree.setBackgroundResource(R.drawable.shape_period_bg);
+    }
+
+    private void setChoose3Period(){
+        MainActivity.choosePeriod = 3;
+        periodOne.setBackgroundResource(R.drawable.shape_period_bg);
+        periodThree.setBackgroundResource(R.drawable.shape_unloan_bg);
+    }
+
+    private void setComputeMoney(){
+        mChooseMoney.setText(String.valueOf(MainActivity.loanMoney));
+        mUnloanFee.setText(String.valueOf(getLastMoney()));
+    }
+
+    private long getLastMoney(){
+        return MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
     }
 }
