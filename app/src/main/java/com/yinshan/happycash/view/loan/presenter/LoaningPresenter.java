@@ -95,6 +95,8 @@ public class LoaningPresenter {
 
                         if(ex.getCode()== CodeException.E_201_ERROR||ex.getCode()==CodeException.E_EOF_ERROR)
                             mView.submitLoanOk();
+                        else
+                            mView.submitFail(ex.getDisplayMessage());
                         Log.v("huxin","submit fail"+ex.getCode()+"  "+ex.toString());
                     }
                 });

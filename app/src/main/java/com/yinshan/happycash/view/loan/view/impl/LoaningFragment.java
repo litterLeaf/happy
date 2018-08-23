@@ -13,13 +13,11 @@ import android.widget.TextView;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.riven.library.TextViewExpand;
-import com.squareup.haha.perflib.Main;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseFragment;
-import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.BindCardActivity;
@@ -41,6 +39,7 @@ import butterknife.OnClick;
 
 /**
  * Created by admin on 2018/2/1.
+ * 提交申请付款页面
  */
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
@@ -128,7 +127,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     @Override
     public void submitLoanOk() {
 //        AppReport.sendUserData();
-//        LoggerWrapper.d(getClass().getName()+" start video recording");
+//        Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to get scan results
 
         Intent intent;
 //        if (BandaAppSP.getInstance().getLiveNess()) {
@@ -136,6 +135,11 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
             startActivity(intent);
 //            RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
 //        }
+    }
+
+    @Override
+    public void submitFail(String displayMessage) {
+        HappySnackBar.showSnackBar(mAddButton,displayMessage, SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 
     @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan,R.id.add,R.id.sub})
