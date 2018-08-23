@@ -32,7 +32,7 @@ public class BankPaymentAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return 7;
+        return mList.size();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder.bottomLine.setVisibility(View.VISIBLE);
         }
 
-        viewHolder.text.setText("dsdsd");
+        viewHolder.text.setText(mList.get(position));
 
         return view;
     }

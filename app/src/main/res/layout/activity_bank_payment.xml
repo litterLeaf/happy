@@ -186,7 +186,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1">
                         <TextView
-                            android:id="@+id/account"
+                            android:id="@+id/va"
                             style="@style/text_wrap_layout"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="33dp"
