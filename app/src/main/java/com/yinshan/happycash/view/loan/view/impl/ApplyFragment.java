@@ -16,9 +16,12 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
+import com.yinshan.happycash.view.loan.presenter.ApplyPresenter;
+import com.yinshan.happycash.view.loan.view.IApplyView;
 import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.me.model.LoanDetailBean;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
@@ -29,10 +32,9 @@ import butterknife.BindView;
 
 /**
  * Created by huxin on 2018/4/3.
- * 进度界面
+ * 进度被审核界面
  */
-
-public class ApplyFragment extends BaseFragment{
+public class ApplyFragment extends BaseFragment implements IApplyView{
 
     @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
@@ -51,6 +53,8 @@ public class ApplyFragment extends BaseFragment{
 
     private List<BaseStatusLogsBean> statusLogs = new ArrayList<>();
 
+    ApplyPresenter mPresenter;
+
     @Override
     protected void initView() {
 
@@ -66,6 +70,9 @@ public class ApplyFragment extends BaseFragment{
 
         setListViewHeightBasedOnChildren(progressList);
 
+        mPresenter = new ApplyPresenter(getActivity(),this);
+        refresh();
+
     }
 
     @Override
@@ -75,11 +82,16 @@ public class ApplyFragment extends BaseFragment{
 
     public void mResume(){
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if(object!=null)
+        if(object!=null) {
             getRefreshData(object);
+
+        }
     }
 
     private void getRefreshData(LastLoanAppBean loanAppBean) {
+        if(loanAppBean!=null&&loanAppBean.getLoanAppId()!=null){
+
+        }
         showData(loanAppBean);
         refreshLayout.setRefreshListener(()-> {
             refreshLayout.refreshComplete();
@@ -91,14 +103,14 @@ public class ApplyFragment extends BaseFragment{
 
     private void showData(LastLoanAppBean loanAppBean){
         if(loanAppBean!=null){
-            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,loanAppBean.getStatus());
-            mTextProgress.setText(word);
-
-            String period =loanAppBean.getPeriod() + " "+loanAppBean.getPeriodUnit();
-            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getTotalAmount());
-            String  amount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getAmount());
-            mTextMoney.setText(totalAmount);
-            mTextTime.setText(period);
+//            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,loanAppBean.getStatus());
+//            mTextProgress.setText(word);
+//
+//            String period =loanAppBean.getPeriod() + " "+loanAppBean.getPeriodUnit();
+//            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getTotalAmount());
+//            String  amount= "Rp" + StringFormatUtils.moneyFormat(loanAppBean.getAmount());
+//            mTextMoney.setText(totalAmount);
+//            mTextTime.setText(period);
 
             mAdapter.setStatusList(loanAppBean.getStatusLogs());
             mAdapter.notifyDataSetChanged();
@@ -118,7 +130,12 @@ public class ApplyFragment extends BaseFragment{
 
     //刷新的方法
     private void refresh() {
-        ((MainActivity)getActivity()).updateStatus(TokenManager.getInstance().getToken());
+        ((MainActivity) getActivity()).updateStatus(TokenManager.getInstance().getToken());
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if (object != null) {
+            if (object.getLoanAppId() != null)
+                mPresenter.getDetail(Long.valueOf(object.getLoanAppId()));
+        }
     }
 
     public static String getORMWord(Context context, int type, String status){
@@ -162,5 +179,26 @@ public class ApplyFragment extends BaseFragment{
         }else {
             return "";
         }
+    }
+
+    @Override
+    public void showDetailOk(LoanDetailBean bean) {
+        if(bean!=null){
+            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,bean.getStatus());
+            mTextProgress.setText(word);
+
+            String period =bean.getPeriod() + " "+bean.getPeriodUnit();
+            String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(bean.getPrincipalAmount());
+            mTextMoney.setText(totalAmount);
+            mTextTime.setText(period);
+
+//            mAdapter.setStatusList(bean.getLpayDtoList());
+//            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void showDetailFail(String displayMessage) {
+
     }
 }

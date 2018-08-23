@@ -89,6 +89,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     //图形验证码实际值
     String mSid;
 
+    CountDownTimer mTimer;
+
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
         init();
@@ -115,6 +117,13 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         updateSendSmsState();
         updateLoginState();
         setFocusListener();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mTimer!=null)
+            mTimer.cancel();
     }
 
     @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code})
@@ -327,8 +336,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void getSMSCodeSuccess(ResponseBody responseBody) {
-        new TimeCount(60000, 1000).start();
-
+        mTimer = new TimeCount(60000, 1000).start();
     }
 
     private void refreshCaptcha(){
@@ -366,6 +374,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
         @Override
         public void onFinish() {
+            if(mTimer!=null)
+                mTimer.cancel();
             mBtnSendSms.setText(getResources().getText(R.string.button_obtain_code));
             mBtnSendSms.setSelected(false);
             mBtnSendSms.setClickable(true);

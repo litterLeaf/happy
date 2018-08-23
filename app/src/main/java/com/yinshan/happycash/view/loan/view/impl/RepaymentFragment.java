@@ -34,6 +34,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
+ * 待还款界面
  * Created by huxin on 2018/2/1.
  */
 
