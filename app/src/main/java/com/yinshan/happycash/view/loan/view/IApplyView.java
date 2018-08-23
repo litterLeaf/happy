@@ -6,8 +6,11 @@ import com.yinshan.happycash.view.me.model.LoanDetailBean; /**
 
 public interface IApplyView {
 
-
     void showDetailOk(LoanDetailBean value);
 
     void showDetailFail(String displayMessage);
+
+    void cancelOk();
+
+    void cancelFail();
 }

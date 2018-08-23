@@ -113,7 +113,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
         }
     }
 
-    @OnClick({R.id.viewUp,R.id.viewDown})
+    @OnClick({R.id.viewUp,R.id.viewDown,R.id.cancel})
     public void onViewClick(View view){
         switch (view.getId()){
             case R.id.viewUp:
@@ -121,6 +121,13 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
                 break;
             case R.id.viewDown:
                 expandView();
+                break;
+            case R.id.cancel:
+                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+                if(object!=null) {
+                    mPresenter.cancel(Long.valueOf(object.getLoanAppId()));
+                }
+
                 break;
         }
     }
@@ -244,6 +251,16 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
     @Override
     public void showDetailFail(String displayMessage) {
+
+    }
+
+    @Override
+    public void cancelOk() {
+        ((MainActivity) getActivity()).updateStatus(TokenManager.getInstance().getToken());
+    }
+
+    @Override
+    public void cancelFail() {
 
     }
 

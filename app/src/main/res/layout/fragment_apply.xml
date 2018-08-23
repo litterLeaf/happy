@@ -19,6 +19,7 @@
             android:text="@string/my_loan"
             />
         <TextView
+            android:id="@+id/cancel"
             style="@style/text_wrap_layout"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
