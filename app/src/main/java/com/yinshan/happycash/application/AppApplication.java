@@ -50,7 +50,7 @@ public class AppApplication extends MultiDexApplication{
                 .getDisplayMetrics();
         AppApplication.mScreenWidth = mDisplayMetrics.widthPixels;
         AppApplication.mScreenHeight = mDisplayMetrics.heightPixels;
-
+//        SyncAccount.addAccount(this);
         //内存泄漏检测
 //        if (LeakCanary.isInAnalyzerProcess(this)) {
 //

@@ -60,17 +60,19 @@ import butterknife.OnClick;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- * ┃　　　┃   神兽保佑
- * ┃　　　┃   代码无BUG！
- * ┃　　　┗━━━┓
- * ┃　　　　　　　┣┓
- * ┃　　　　　　　┏┛
- * ┗┓┓┏━┳┓┏┛
- * ┃┫┫　┃┫┫
- * ┗┻┛　┗┻┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
  *
- * @author admin
- *         on 2018/1/11
+ *    描述：          贷款状态机+
+ *    创建人：     admin
+ *    创建时间：2018/1/11 
+ *
  */
 public class MainActivity extends BaseActivity implements IGetStatusView {
 

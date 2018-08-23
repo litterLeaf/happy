@@ -19,6 +19,7 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.BindCardActivity;
 import com.yinshan.happycash.view.bindcard.model.BandCardBean;
@@ -38,8 +39,28 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by admin on 2018/2/1.
- * 提交申请付款页面
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：提交申请付款页面
+ *    创建人：     admin
+ *    创建时间：2018/2/01
+ *
  */
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
@@ -130,11 +151,10 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 //        Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to get scan results
 
         Intent intent;
-//        if (BandaAppSP.getInstance().getLiveNess()) {
+        if (SPUtils.getInstance().getLiveNess()||true) {
             intent = new Intent(getActivity(), OliveStartActivity.class);
             startActivity(intent);
-//            RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
-//        }
+        }
     }
 
     @Override
