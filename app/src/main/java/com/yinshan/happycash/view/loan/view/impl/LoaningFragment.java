@@ -19,6 +19,7 @@ import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.BindCardActivity;
 import com.yinshan.happycash.view.bindcard.model.BandCardBean;
@@ -37,7 +38,28 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by admin on 2018/2/1.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：
+ *    创建人：     admin
+ *    创建时间：2018/2/01 
+ *
  */
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
@@ -119,15 +141,11 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
     @Override
     public void submitLoanOk() {
-//        AppReport.sendUserData();
-//        LoggerWrapper.d(getClass().getName()+" start video recording");
-
         Intent intent;
-//        if (BandaAppSP.getInstance().getLiveNess()) {
+        if (SPUtils.getInstance().getLiveNess()||true) {
             intent = new Intent(getActivity(), OliveStartActivity.class);
             startActivity(intent);
-//            RxBus.get().post(new LoginActivity.ReSetLoanStatusEvent());
-//        }
+        }
     }
 
     @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan})

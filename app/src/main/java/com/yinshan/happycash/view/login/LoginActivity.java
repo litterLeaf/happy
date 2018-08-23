@@ -44,7 +44,28 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 /**
- * Created by admin on 2018/1/31.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：         登录+发送验证码（文字和语音）
+ *    创建人：     admin
+ *    创建时间：2018/1/31 
+ *
  */
 
 public class LoginActivity extends BaseActivity implements LoginContract.View{
