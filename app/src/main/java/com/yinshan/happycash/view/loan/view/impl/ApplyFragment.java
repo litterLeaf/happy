@@ -3,7 +3,9 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/4/3.
@@ -50,6 +53,26 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     TextView mTextMoney;
     @BindView(R.id.textTime)
     TextView mTextTime;
+
+    @BindView(R.id.viewDown)
+    RelativeLayout mViewDown;
+    @BindView(R.id.viewUp)
+    RelativeLayout mViewUp;
+    @BindView(R.id.viewDesc)
+    LinearLayout mViewDesc;
+
+    @BindView(R.id.createTime)
+    TextView mCreateTime;
+    @BindView(R.id.ktp)
+    TextView mKtp;
+    @BindView(R.id.submitFee)
+    TextView mSubmitFee;
+    @BindView(R.id.returnPerPeriod)
+    TextView mReturnPerPeriod;
+    @BindView(R.id.recipientBankName)
+    TextView mRecipientBankName;
+    @BindView(R.id.recipientAccountNo)
+    TextView mRecipientAccountNo;
 
     private List<BaseStatusLogsBean> statusLogs = new ArrayList<>();
 
@@ -73,6 +96,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
         mPresenter = new ApplyPresenter(getActivity(),this);
         refresh();
 
+        shrinkageView();
+
     }
 
     @Override
@@ -85,6 +110,18 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
         if(object!=null) {
             getRefreshData(object);
 
+        }
+    }
+
+    @OnClick({R.id.viewUp,R.id.viewDown})
+    public void onViewClick(View view){
+        switch (view.getId()){
+            case R.id.viewUp:
+                shrinkageView();
+                break;
+            case R.id.viewDown:
+                expandView();
+                break;
         }
     }
 
@@ -192,6 +229,14 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
             mTextMoney.setText(totalAmount);
             mTextTime.setText(period);
 
+
+            mCreateTime.setText(bean.getCreateTime());
+            mKtp.setText(bean.getCredentialNo());
+            mSubmitFee.setText(String.valueOf(bean.getPrincipalAmount()));
+            mReturnPerPeriod.setText(String.valueOf(bean.getPrincipalAmount()/bean.getPeriod()));
+            mRecipientBankName.setText(bean.getBankCode());
+            mRecipientAccountNo.setText(bean.getCardNo());
+
 //            mAdapter.setStatusList(bean.getLpayDtoList());
 //            mAdapter.notifyDataSetChanged();
         }
@@ -200,5 +245,17 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     @Override
     public void showDetailFail(String displayMessage) {
 
+    }
+
+    private void expandView(){
+        mViewDown.setVisibility(View.GONE);
+        mViewDesc.setVisibility(View.VISIBLE);
+        mViewUp.setVisibility(View.VISIBLE);
+    }
+
+    private void shrinkageView(){
+        mViewDown.setVisibility(View.VISIBLE);
+        mViewDesc.setVisibility(View.GONE);
+        mViewUp.setVisibility(View.GONE);
     }
 }

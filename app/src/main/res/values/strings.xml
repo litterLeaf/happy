@@ -129,6 +129,10 @@
     <string name="more_than_expected">Lebih dari yang diharapkan</string>
     <string name="button_logout">Log out</string>
     <string name="add_bank_card">Tambahkan kartu bank</string>
+    <string name="submit_fee">Biaya Pengajuan</string>
+    <string name="returns_per_period">Pengembalian per periode</string>
+    <string name="recipient_bank_name">Nama Bank Penerima</string>
+    <string name="recipient_account_no">No Rekening Penerima</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>
