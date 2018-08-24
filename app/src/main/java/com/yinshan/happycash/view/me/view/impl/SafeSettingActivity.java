@@ -2,15 +2,18 @@ package com.yinshan.happycash.view.me.view.impl;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.application.AppManager;
 import com.yinshan.happycash.framework.BaseSingleNoScrollActivity;
+import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.presenter.SafeSettingPresenter;
 import com.yinshan.happycash.view.me.view.ISafeSettingView;
 
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -18,6 +21,11 @@ import butterknife.OnClick;
  */
 
 public class SafeSettingActivity extends BaseSingleNoScrollActivity implements ISafeSettingView{
+
+    @BindView(R.id.name)
+    TextView mName;
+    @BindView(R.id.phone)
+    TextView mPhone;
 
     SafeSettingPresenter mPresenter;
 
@@ -34,6 +42,7 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
     @Override
     protected void secondInit() {
         mPresenter = new SafeSettingPresenter(this,this);
+        mPhone.setText(SPUtils.getInstance().getMobile());
     }
 
     @OnClick({R.id.btnQuit})
