@@ -13,6 +13,8 @@ import com.yinshan.happycash.view.me.model.LoanDetailBean;
 
 import java.lang.ref.SoftReference;
 
+import okhttp3.ResponseBody;
+
 /**
  * Created by huxin on 2018/8/23.
  */
@@ -41,6 +43,25 @@ public class ApplyPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.showDetailFail(ex.getDisplayMessage());
+                    }
+                });
+    }
+
+    public void cancel(long appId){
+        RxHttpUtils.getInstance().createApi(LoanApi.class)
+                .cancelLoanApp(appId,TokenManager.getInstance().getToken())
+                .compose(RxTransformer.io_main())
+                .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
+                    @Override
+                    public void onNext(ResponseBody value) {
+                        super.onNext(value);
+                        mView.cancelOk();
+                    }
+
+                    @Override
+                    protected void onError(ApiException ex) {
+                        super.onError(ex);
+                        mView.cancelFail();
                     }
                 });
     }

@@ -15,10 +15,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.callLog.CallLogDBController;
 import com.yinshan.happycash.analytic.contacts.ContactDBController;
@@ -33,6 +35,7 @@ import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
+import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
@@ -191,6 +194,48 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         if(bean==null||bean.getStatus()==null){
             return;
         }
+
+        String loanStatus = bean.getStatus();
+        if (loanStatus == null) {
+            return;
+        } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
+            ToastManager.showToast("Pinjaman berhasil");
+//            if(bean!=null){
+//                String isShow = bean.getCurrentDialogStatus();
+//                if(null==isShow){
+//
+//                    showTipsDialog("CURRENT", AppSP.getInstance().getLatestBean().getLoanType(), loanAppId);
+//                    //mPresenter.tipUpdate(bean.getLoanAppId(), AppDataConfig.CURRENT_SUCCESS);
+//                }
+//            }
+//            //FaceBook事件埋点  Current
+//            AppEventsLogger logger = AppEventsLogger.newLogger(MainActivity.this);
+//            Bundle parameters = new Bundle();
+//            parameters.putString(AppEventsConstants.EVENT_NAME_PURCHASED, "CustomerIMei:" + BandaAppSP.getInstance().getImei());
+//            logger.logEvent(AppEventsConstants.EVENT_NAME_PURCHASED, parameters);
+        } else if (loanStatus.equals("NOLOANAPP") ||
+                loanStatus.equals("CANCELED") ||
+                loanStatus.equals("PAID_OFF")
+                ) {//没有贷款，取消？？   还款成功
+            ToastManager.showToast("Akhiri pinjaman ini");
+//            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
+//                if(bean!=null){
+//                    String isShow = bean.getPiadOffDialogStatus();
+//                    if(null==isShow){
+//                        mPresenter.tipUpdate(bean.getLoanAppId(), AppDataConfig.PAID_OFF_SUCCESS);
+//                    }
+//                }
+//            }
+        } else if (loanStatus.equals("CLOSED")) {//后台关闭，不同于拒绝
+            ToastManager.showToast("Akhiri pinjaman ini");
+//            String loanAppId = bean.getLoanAppId();
+//            String asString = ACache.get(this).getAsString(FieldParams.LOANRESULT);
+//            if (loanAppId != null && !TextUtils.equals(loanAppId, asString)) {
+//                showTipsDialog("CLOSED", loanAppId);
+//            }
+        }
+
+
         String lastAppStatus = StatusManagementUtils.loanStatusClassify(bean);
         showFragment(lastAppStatus);
     }
