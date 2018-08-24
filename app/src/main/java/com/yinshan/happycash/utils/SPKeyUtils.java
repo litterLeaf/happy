@@ -65,6 +65,12 @@ public interface SPKeyUtils {
     //跳转的提示
     int SNACKBAR_TYPE_INTEENT = 3;
 
+    /**
+     * dialog 的type
+     */
+    int DIALOG_GPS = 1;
+    int DIALOG_SETTING = 2;
+    int DIALOG_NULL = 3;
 
     String SP_APPINFO_FILENAME = "appInformation";
     String IMEI = "imei";
@@ -72,4 +78,5 @@ public interface SPKeyUtils {
     String SHOW_GUIDE = "show_guide";
     String IS_LIVENESS = "is_liveness";
     String IS_Invitation_Enable = "is_invitation_enable";
+    String REPAYMENT_LOAN_DETAIL = "repayment_Loan_detail";
 }

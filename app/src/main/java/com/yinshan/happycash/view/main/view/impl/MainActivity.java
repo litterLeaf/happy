@@ -1,9 +1,14 @@
 package com.yinshan.happycash.view.main.view.impl;
 
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -15,6 +20,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.analytic.callLog.CallLogDBController;
+import com.yinshan.happycash.analytic.contacts.ContactDBController;
+import com.yinshan.happycash.analytic.event.MobAgent;
+import com.yinshan.happycash.analytic.event.MobEvent;
+import com.yinshan.happycash.analytic.sms.SmsDBController;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.MessageEvent;
@@ -40,9 +50,14 @@ import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
 import com.yinshan.happycash.widget.common.ToastManager;
+import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
+import com.yinshan.happycash.widget.dialog.PerGuideDialogFragment;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -66,12 +81,12 @@ import butterknife.OnClick;
  *           ┃┫┫　┃┫┫
  *           ┗┻┛　┗┻┛
  *
- *    描述：          贷款状态机+
+ *    描述：          贷款状态机+权限申请
  *    创建人：     admin
  *    创建时间：2018/1/11 
  *
  */
-public class MainActivity extends BaseActivity implements IGetStatusView {
+public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView {
 
     boolean isFirstEnter = true;
 
@@ -118,6 +133,8 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
     public static int chooseIndex;
 
     private GetStatusPresenter mPresenter;
+    private ArrayList<String> permissionsList;
+    private ArrayList<String> permissionsNeeded;
 
     @Override
     protected int bindLayout() {
@@ -145,6 +162,13 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
             dealResult(object);
         }else {
             showFragment(AppLoanStatus.UNLOAN);
+        }
+        if (SPUtils.getInstance().getShowGuide()) {
+            PerGuideDialogFragment fragment = new PerGuideDialogFragment();
+            fragment.setCancelable(false);
+            fragment.show(getSupportFragmentManager(), "guide");
+        } else {
+            checkPermissons();
         }
     }
 
@@ -425,6 +449,127 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
         }
     }
 
+    //危险权限和权限组
+    private final static int PERMISSION_CODE = 100;
+    private void checkPermissons() {
+        permissionsList = new ArrayList<>();
+        permissionsNeeded = new ArrayList<>();
+
+        //地理位置信息权限
+        boolean hasPermission = hasSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.ACCESS_FINE_LOCATION)) {
+                permissionsNeeded.add(getString(R.string.GPS));
+            }
+            permissionsList.add(android.Manifest.permission.ACCESS_FINE_LOCATION);
+        } else {
+            switchGps();
+        }
+
+        //联系人相关权限
+        hasPermission = hasSelfPermission(this, android.Manifest.permission.READ_CONTACTS);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_CONTACTS)) {
+                permissionsNeeded.add(getString(R.string.contacts));
+            }
+            permissionsList.add(Manifest.permission.READ_CONTACTS);
+        } else {
+            ContactDBController.getInstance().gainContacts();
+        }
+
+        //用于电话功能相关的权限
+        hasPermission = hasSelfPermission(this, android.Manifest.permission.READ_PHONE_STATE);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_PHONE_STATE)) {
+                permissionsNeeded.add(getString(R.string.phone_status));
+            }
+            permissionsList.add(Manifest.permission.READ_PHONE_STATE);
+        } else {
+            initImei();
+//            initAppsFlyer();
+        }
+
+        //calllog相关的权限
+        hasPermission =hasSelfPermission(this, Manifest.permission.READ_CALL_LOG);
+        if(!hasPermission){
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CALL_LOG)){
+                permissionsNeeded.add(getString(R.string.call_log));
+            }
+            permissionsList.add(Manifest.permission.READ_CALL_LOG);
+        }else {
+            CallLogDBController.getInstance().gainCallLogs();
+        }
+
+        //用于用户的SMS信息相关的运行时权限
+        hasPermission = hasSelfPermission(this, android.Manifest.permission.READ_SMS);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.READ_SMS)) {
+                permissionsNeeded.add(getString(R.string.SMS));
+            }
+            permissionsList.add(Manifest.permission.READ_SMS);
+        } else {
+            SmsDBController.getInstance().gainMessages();
+        }
+        //文件写的权限
+        hasPermission = hasSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                permissionsNeeded.add(getString(R.string.WRITE_EXTERNAL_STORAGE));
+            }
+            permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        }
+        if (permissionsList.size() > 0) {
+            if (permissionsNeeded.size() > 0) {
+                StringBuilder sb = new StringBuilder(getString(R.string.permissions_rationale));
+                sb.append("1." + permissionsNeeded.get(0) + "\n");
+                for (int i = 1; i < permissionsNeeded.size(); i++) {
+                    sb.append(i + 1 + "." + permissionsNeeded.get(i) + "\n");
+                }
+
+                String content = sb.toString();
+                showPermisionDialog(content, SPKeyUtils.DIALOG_NULL, false);
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        permissionsList.toArray(new String[permissionsList.size()]),
+                        PERMISSION_CODE);
+            }
+        }
+
+    }
+
+    //位置信息设置
+    private void switchGps() {
+        if (!SystemUtil.isGpsOpen(this)) {
+
+            String content = getString(R.string.open_gps);
+            showPermisionDialog(content, SPKeyUtils.DIALOG_GPS, false);
+        }
+    }
+
+    private void gotoGpsSetting() {
+        try {
+            Intent localIntent = new Intent();
+            localIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            localIntent.setAction(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(localIntent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //去设置未开放的权限
+    private void gotoPermissionSetting() {
+        try {
+            Intent intent = new Intent();
+            intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            Uri uri = Uri.fromParts("package", getPackageName(), null);
+            intent.setData(uri);
+            startActivity(intent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     //crash 中出现Lenov的某机型会出现RuntimeExeception错误，应该是他们的底层做了修改
     //暂时先catch出来，后续找找解决方案
     public static boolean hasSelfPermission(Context context, String permission) {
@@ -434,6 +579,28 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
             return false;
         }
     }
+
+    private void showPermisionDialog(String content, final int type, boolean showCancel) {
+        CheckPermissionDialog dialog = new CheckPermissionDialog(this, ()->{
+            switch (type) {
+                case SPKeyUtils.DIALOG_GPS:
+                    gotoGpsSetting();
+                    break;
+                case SPKeyUtils.DIALOG_SETTING:
+                    gotoPermissionSetting();
+                    break;
+                case SPKeyUtils.DIALOG_NULL:
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            permissionsList.toArray(new String[permissionsList.size()]),
+                            PERMISSION_CODE);
+                    break;
+            }
+        });
+        dialog.show();
+        dialog.setMessageText(content);
+        dialog.setCancelShow(showCancel);
+    }
+
 
     public static void initImei() {
         String imei = HappyAppSP.getInstance().getImei();
@@ -478,5 +645,74 @@ public class MainActivity extends BaseActivity implements IGetStatusView {
             MainActivity.seg = 0;
         else
             seg = (i-1)/(100/MainActivity.MONEY_SEG)+1;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_CODE:
+                final List<String> permissionsNeeded = new ArrayList<>();
+                for (int i = 0; i < grantResults.length; i++) {
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                        if (Manifest.permission.ACCESS_FINE_LOCATION.equals(permission)) {
+                            switchGps();
+                        } else if (Manifest.permission.READ_PHONE_STATE.equals(permission)) {
+                            initImei();
+//                            initAppsFlyer();
+                            CallLogDBController.getInstance().gainCallLogs();
+                        } else if (Manifest.permission.READ_CONTACTS.equals(permission)) {
+                            ContactDBController.getInstance().gainContacts();
+                        } else if (Manifest.permission.READ_SMS.equals(permission)) {
+                            SmsDBController.getInstance().gainMessages();
+                        }
+                    } else {
+                        if (Manifest.permission.ACCESS_FINE_LOCATION.equals(permission)) {
+                            permissionsNeeded.add(getString(R.string.GPS));
+                            MobAgent.onEvent(MobEvent.CLICK + MobEvent.PERMISSION_REJECT_LOCATION);
+                        } else if (Manifest.permission.READ_PHONE_STATE.equals(permission)) {
+                            permissionsNeeded.add(getString(R.string.call_log));
+//                            initAppsFlyer();
+                            MobAgent.onEvent(MobEvent.CLICK + MobEvent.PERMISSION_REJECT_PHONE);
+                        } else if (Manifest.permission.READ_CONTACTS.equals(permission)) {
+                            permissionsNeeded.add(getString(R.string.contacts));
+                            MobAgent.onEvent(MobEvent.CLICK + MobEvent.PERMISSION_REJECT_CONTACT);
+                        } else if (Manifest.permission.READ_SMS.equals(permission)) {
+                            permissionsNeeded.add(getString(R.string.SMS));
+                            MobAgent.onEvent(MobEvent.CLICK + MobEvent.PERMISSION_REJECT_SMS);
+                        }
+                    }
+                }
+                if (permissionsNeeded.size() > 0) {
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(permissionsNeeded.get(0));
+                    for (int i = 1; i < permissionsNeeded.size(); i++) {
+                        sb.append(",");
+                        sb.append(permissionsNeeded.get(i));
+                    }
+                    String content = getString(R.string.permission_lzin_new, sb.toString());
+                    showPermisionDialog(content, SPKeyUtils.DIALOG_SETTING, true);
+                }
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+    }
+
+    @Override
+    public void guide() {
+        SPUtils.getInstance().setShowGuide(false);
+        permissionsList = new ArrayList<>();
+        permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        permissionsList.add(Manifest.permission.READ_CONTACTS);
+        permissionsList.add(Manifest.permission.READ_PHONE_STATE);
+        permissionsList.add(Manifest.permission.READ_SMS);
+        permissionsList.add(Manifest.permission.READ_CALL_LOG);
+        permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        ActivityCompat.requestPermissions(MainActivity.this,
+                permissionsList.toArray(new String[permissionsList.size()]),
+                PERMISSION_CODE);
     }
 }

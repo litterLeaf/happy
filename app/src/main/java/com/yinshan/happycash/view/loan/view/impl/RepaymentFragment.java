@@ -82,6 +82,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     @Override
     public void showDetail(LoanDetailBean detail) {
         if(detail.getLpayDtoList()!=null||detail.getLpayDtoList().size()>0){
+//            SPUtils.getInstance().setObject("REPAYMENT_LOAN_DETAIL",d);
             String stage = TimeManager.getRpTime(detail.getPeriodUnit());
             int count = 0;
             int firstActive = -1;
