@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.callLog.CallLogDBController;
 import com.yinshan.happycash.analytic.contacts.ContactDBController;
@@ -56,8 +57,6 @@ import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
 import com.yinshan.happycash.widget.dialog.PerGuideDialogFragment;
 
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -156,6 +155,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        RxBus.get().register(this);
         reSetTab(1);
 
         MainActivity.choosePeriod = 3;
@@ -421,7 +421,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     public void goInformationFragment(MessageEvent messageEvent) {
         manageFragament(false, true, false, false, false,
                 false, false, false,false,false);
@@ -439,7 +439,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
+    @Subscribe
     public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
         manageFragament(false, false, false, true, false,
                 false, false, false,false,false);
