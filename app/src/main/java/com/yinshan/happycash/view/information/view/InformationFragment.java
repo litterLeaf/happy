@@ -108,28 +108,28 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
                 break;
             case R.id.view_finish_person:
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
                 break;
             case R.id.view_not_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
                 break;
             case R.id.view_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
                 break;
             case R.id.view_not_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
                 break;
             case R.id.view_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
                 break;
             case R.id.view_not_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
                 break;
             case R.id.view_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
                 break;
             case R.id.submit:
                 RxBus.get().post(new InfoUploadEvent());
