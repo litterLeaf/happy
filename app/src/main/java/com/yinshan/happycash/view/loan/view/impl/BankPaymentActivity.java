@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
+import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
 
 import java.util.List;
@@ -56,9 +57,8 @@ public class BankPaymentActivity extends BaseActivity{
             mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
         }
 
-        mAdapter = new BankPaymentAdapter(this);
+        mAdapter = new BankPaymentAdapter(this, PaymentMethodManager.getPaymentStepsLayout(RepaymentFragment.depositRB));
         mListStep.setAdapter(mAdapter);
-
         setListViewHeightBasedOnChildren(mListStep);
     }
 }

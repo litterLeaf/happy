@@ -1,6 +1,7 @@
 package com.yinshan.happycash.view.loan.presenter;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
@@ -52,6 +53,7 @@ public class RepaymentPresenter {
     }
 
     public void doDeposit(String loanAppId,String method) {
+        Log.d("doDeposit",method);
         mApi.doDeposit(loanAppId,method,TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<DepositResponseBean>(new SoftReference(mContext)){

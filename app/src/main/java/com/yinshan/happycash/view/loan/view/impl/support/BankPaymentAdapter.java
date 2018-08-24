@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -20,15 +22,16 @@ public class BankPaymentAdapter extends BaseAdapter{
     List<String> mList;
     Context mContext;
 
-    public BankPaymentAdapter(Context context){
+    public BankPaymentAdapter(Context context,int layout){
         mContext = context;
         mList = new ArrayList<>();
+        mList = Arrays.asList(context.getResources().getStringArray(layout));
     }
 
-    public void setList(List<String> list){
-        mList.clear();
-        mList.addAll(list);
-    }
+//    public void setList(List<String> list){
+//        mList.clear();
+//        mList.addAll(list);
+//    }
 
     @Override
     public int getCount() {
@@ -69,7 +72,6 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder.topLine.setVisibility(View.VISIBLE);
             viewHolder.bottomLine.setVisibility(View.VISIBLE);
         }
-
         viewHolder.text.setText(mList.get(position));
 
         return view;

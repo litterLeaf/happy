@@ -81,4 +81,7 @@ public interface SPKeyUtils {
     String REPAYMENT_LOAN_DETAIL = "repayment_Loan_detail";
     String  DEPOSITMETHODS_METHODS= "DepositMethodsBean";
 
+    String CHANNEL_FASPAY= "FASPAY";
+    String CHANNEL_XENDIT= "XENDIT";
+
 }

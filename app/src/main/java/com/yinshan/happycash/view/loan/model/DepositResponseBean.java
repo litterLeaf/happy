@@ -90,4 +90,17 @@ public class DepositResponseBean {
         this.productId = productId;
     }
 
+    @Override
+    public String toString() {
+        return "DepositResponseBean{" +
+                "currency='" + currency + '\'' +
+                ", depositChannel='" + depositChannel + '\'' +
+                ", depositId='" + depositId + '\'' +
+                ", depositMethod='" + depositMethod + '\'' +
+                ", operatorId='" + operatorId + '\'' +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", price=" + price +
+                ", productId='" + productId + '\'' +
+                '}';
+    }
 }

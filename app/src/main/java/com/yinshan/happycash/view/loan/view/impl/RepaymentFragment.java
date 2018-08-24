@@ -13,6 +13,7 @@ import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.utils.DebugUtil;
 import com.yinshan.happycash.utils.MyDebugUtils;
+import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
@@ -129,8 +130,9 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     @Override
     public void getDepositOk(DepositResponseBean bean) {
         depositRB = bean;
-
+        int depositRBType = PaymentMethodManager.getPaymentStepsLayout(bean);
         Intent intent = new Intent(getActivity(),BankPaymentActivity.class);
+        intent.putExtra("Steps",depositRBType);
         startActivity(intent);
     }
 

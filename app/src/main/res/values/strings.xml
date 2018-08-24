@@ -1006,6 +1006,14 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
         Masukan jumlah transfer Anda Rp  “%1$s” , Anda boleh mengabaikan nomor referensi lalu tekan Next
     </string>
 
+
+    <!-- string array  other_bank_new_atm-->
+    <string-array name="other_bank_new_atm">
+        <item>Masukan Kartu ATM dan Masukan nomor PIN ATM</item>
+        <item> Pilih menu “Transaksi Lain” > “Transfer”> “Bank Lain”</item>
+        <item>  Masukan kode bank Permata  “013” di ikuti dengan (%1$s) , Tekan “BENAR”</item>
+    </string-array>
+
     <string name="other_bank_new_atm1">
         Masukan Kartu ATM dan Masukan nomor PIN ATM
     </string>
