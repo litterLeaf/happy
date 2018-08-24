@@ -29,6 +29,7 @@ public class ApplyPresenter {
     }
 
     public void getDetail(long appId){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .getDetail(appId, TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -36,18 +37,21 @@ public class ApplyPresenter {
                     @Override
                     public void onNext(LoanDetailBean value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.showDetailOk(value);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                         mView.showDetailFail(ex.getDisplayMessage());
                     }
                 });
     }
 
     public void cancel(long appId){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .cancelLoanApp(appId,TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -55,12 +59,14 @@ public class ApplyPresenter {
                     @Override
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.cancelOk();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                         mView.cancelFail();
                     }
                 });

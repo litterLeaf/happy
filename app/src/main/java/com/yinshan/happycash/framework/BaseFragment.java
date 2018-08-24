@@ -1,8 +1,12 @@
 package com.yinshan.happycash.framework;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +14,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 
+import com.yinshan.happycash.R;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.widget.inter.IBaseView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -41,11 +47,19 @@ import butterknife.Unbinder;
  */
 
 
-public abstract class BaseFragment extends RxSupportFragment  {
+public abstract class BaseFragment extends RxSupportFragment  implements IBaseView{
 
 
     private static final int LOGIN_INTERCEPT = 1005;
     private Unbinder unbinder;
+
+    private AlertDialog alertDialog;
+
+    /**
+     * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
+     */
+    protected boolean shouldHandleResponseData = true;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -143,4 +157,35 @@ public abstract class BaseFragment extends RxSupportFragment  {
     public boolean isLogin(){
         return TokenManager.getInstance().hasLogin();
     }
+
+    @Override
+    public void dismissLoadingDialog() {
+        if (null != alertDialog && alertDialog.isShowing()) {
+            alertDialog.dismiss();
+        }
+    }
+
+    @Override
+    public void showLoadingDialog() {
+        alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+        alertDialog.setCancelable(false);
+        alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_SEARCH || keyCode == KeyEvent.KEYCODE_BACK)
+                    return true;
+                return false;
+            }
+        });
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.loading_alert);
+        alertDialog.setCanceledOnTouchOutside(false);
+    }
+
+    @Override
+    public boolean isShouldHandleResponseData() {
+        return shouldHandleResponseData;
+    }
+
 }

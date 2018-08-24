@@ -28,6 +28,7 @@ public class InformationPresenter {
     }
 
     public void getProgress(){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(RecordApi.class)
                 .progress(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -35,12 +36,14 @@ public class InformationPresenter {
                     @Override
                     public void onNext(ProgressBean bean) {
                         super.onNext(bean);
+                        mView.dismissLoadingDialog();
                         mView.showProgress(bean);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                     }
                 });
     }

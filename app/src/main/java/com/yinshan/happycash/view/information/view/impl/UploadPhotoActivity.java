@@ -228,6 +228,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
     }
 
     private void upload(File mKTPFile, final FileUploadType fileUploadType) {
+        showLoadingDialog();
         FileUploadUtil.uploadPhotoFile(
                 fileUploadType,
                 mKTPFile,
@@ -242,10 +243,11 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
                     @Override
                     public void onError(Throwable e) {
+                        dismissLoadingDialog();
                         mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
                         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
                                 mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
-                            dismissLoadingDialog();
+
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
                         }

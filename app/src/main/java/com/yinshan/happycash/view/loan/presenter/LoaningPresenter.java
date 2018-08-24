@@ -42,35 +42,41 @@ public class LoaningPresenter {
     }
 
     public void getBankCard(){
+        mView.showLoadingDialog();
         mApi.getBindCard(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<BandCardBean>(new SoftReference(mContext)){
                     @Override
                     public void onNext(BandCardBean bean) {
                         super.onNext(bean);
+                        mView.dismissLoadingDialog();
                         mView.showBindBankCard(bean);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                         Log.e("bankCardDto","bindCard"+ex);
                     }
                 });
     }
 
     public void getPurpose(){
+        mView.showLoadingDialog();
         mLoanApi.getApplyPurposes(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<List<ApplyPurpose>>(new SoftReference(mContext)){
                     @Override
                     public void onNext(List<ApplyPurpose> list) {
                         super.onNext(list);
+                        mView.dismissLoadingDialog();
                         mView.showPurpose(list);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
+                        mView.dismissLoadingDialog();
                         super.onError(ex);
                     }
                 });
