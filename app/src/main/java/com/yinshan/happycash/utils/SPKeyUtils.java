@@ -79,4 +79,6 @@ public interface SPKeyUtils {
     String IS_LIVENESS = "is_liveness";
     String IS_Invitation_Enable = "is_invitation_enable";
     String REPAYMENT_LOAN_DETAIL = "repayment_Loan_detail";
+    String  DEPOSITMETHODS_METHODS= "DepositMethodsBean";
+
 }

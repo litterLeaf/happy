@@ -17,6 +17,7 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.utils.TimeManager;
+import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
 import com.yinshan.happycash.view.loan.model.DepositMethodsBean;
 import com.yinshan.happycash.view.loan.model.DepositResponseBean;
@@ -115,26 +116,27 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     @Override
     public void getRepaymentListOk(DepositMethodsBean bean) {
+        SPUtils.getInstance().setObject(SPKeyUtils.DEPOSITMETHODS_METHODS,bean);
         mDialog = new RepaymentDialog(getActivity(),bean);
         mDialog.show();
     }
 
     @Override
     public void getRepaymentListFail(ApiException ex) {
-
+        ToastUtils.showShort(ex.getMessage());
     }
 
     @Override
     public void getDepositOk(DepositResponseBean bean) {
         depositRB = bean;
+
         Intent intent = new Intent(getActivity(),BankPaymentActivity.class);
-        
         startActivity(intent);
     }
 
     @Override
     public void getDepositFail(ApiException ex) {
-
+        ToastUtils.showShort(ex.getMessage());
     }
 
 
