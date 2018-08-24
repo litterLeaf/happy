@@ -117,7 +117,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     @Override
     public void getRepaymentListOk(DepositMethodsBean bean) {
-        SPUtils.getInstance().setObject(SPKeyUtils.DEPOSITMETHODS_METHODS,bean);
+//        SPUtils.getInstance().setObject(SPKeyUtils.DEPOSITMETHODS_METHODS,bean);
         mDialog = new RepaymentDialog(getActivity(),bean);
         mDialog.show();
     }

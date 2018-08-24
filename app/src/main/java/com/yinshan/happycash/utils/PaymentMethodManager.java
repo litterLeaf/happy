@@ -1,11 +1,17 @@
 package com.yinshan.happycash.utils;
 
+import android.support.annotation.NonNull;
+
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.view.loan.model.DepositResponseBean;
 
+import org.apache.commons.collections.map.HashedMap;
+
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * ┏┓　　　┏┓
@@ -33,7 +39,7 @@ import java.util.Map;
 public class PaymentMethodManager {
     private  static String method;
     private  static String channel;
-    private   static HashMap<String, Integer> hashMaps ;
+    private   static HashMap<String, Integer> maps ;
     public static  PaymentMethodManager instance;
 
 
@@ -54,17 +60,25 @@ public class PaymentMethodManager {
 
 
     private static int getlayout(String  method){
-//        int layout = R.array.other_bank_new_atm;
-
-
-
-        return R.array.other_bank_new_atm;
+        for (String key : getHashMaps().keySet()) {
+            if(key.equals(method)){
+                return getHashMaps().get(key);
+            }
+        }
+        return 0;
     }
 
-    private  HashMap<String,Integer> getHashMaps(){
-            hashMaps.put("",R.array.other_bank_new_atm);
-        hashMaps.put("",R.array.other_bank_new_atm);
-
-        return  hashMaps;
+    /**
+     * ALFAMART, MANDIRI, BNI, BRI, OTHERS
+     * @return  maps
+     */
+    private static HashMap<String,Integer> getHashMaps(){
+        maps =new HashMap();
+        maps.put("OTHERS",R.array.other_bank_new_atm);
+        maps.put("ALFAMART",R.array.fas_pay_in_alfamart);
+        maps.put("MANDIRI",R.array.other_bank_new_atm);
+        maps.put("BNI",R.array.bni_atm);
+        maps.put("BRI",R.array.bri_atm);
+        return  maps;
     }
 }
