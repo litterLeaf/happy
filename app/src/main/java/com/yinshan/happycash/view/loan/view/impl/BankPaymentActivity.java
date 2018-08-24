@@ -30,7 +30,7 @@ public class BankPaymentActivity extends BaseActivity{
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
-        init();
+
     }
 
     @Override
@@ -45,14 +45,16 @@ public class BankPaymentActivity extends BaseActivity{
 
     @Override
     protected void secondInit() {
-
+        init();
     }
 
 
 
     private void init(){
-        mMoney.setText(RepaymentFragment.depositRB.getPrice());
-        mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
+        if(RepaymentFragment.depositRB!=null) {
+            mMoney.setText(RepaymentFragment.depositRB.getPrice());
+            mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
+        }
 
         mAdapter = new BankPaymentAdapter(this);
         mListStep.setAdapter(mAdapter);
