@@ -483,6 +483,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         tabLoan.setSelected(false);
         tabInformation.setSelected(false);
         tabMe.setSelected(false);
+        chooseIndex = tab;
         switch (tab){
             case  1:
                 tabLoan.setSelected(true);
