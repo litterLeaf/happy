@@ -1,12 +1,13 @@
 package com.yinshan.happycash.view.loan.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by huxin on 2018/4/19.
  */
 
-public class DepositMethodsBean {
+public class DepositMethodsBean implements Serializable{
 
     private List<String> depositMethods;
 

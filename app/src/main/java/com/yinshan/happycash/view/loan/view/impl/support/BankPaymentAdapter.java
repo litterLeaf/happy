@@ -25,7 +25,11 @@ public class BankPaymentAdapter extends BaseAdapter{
     public BankPaymentAdapter(Context context,int layout){
         mContext = context;
         mList = new ArrayList<>();
-        mList = Arrays.asList(context.getResources().getStringArray(layout));
+        if(layout!=0){
+            mList = Arrays.asList(context.getResources().getStringArray(layout));
+        }else {
+            mList = new ArrayList<>();
+        }
     }
 
 //    public void setList(List<String> list){
