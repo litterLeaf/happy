@@ -33,7 +33,9 @@ import java.util.Map;
 public class PaymentMethodManager {
     private  static String method;
     private  static String channel;
-    private   static List<HashMap<String, Integer>> hashMaps  ;
+    private   static HashMap<String, Integer> hashMaps ;
+    public static  PaymentMethodManager instance;
+
 
     public  static int getPaymentStepsLayout(DepositResponseBean bean){
         if(bean==null){
@@ -47,7 +49,6 @@ public class PaymentMethodManager {
         }else if(SPKeyUtils.CHANNEL_XENDIT.equals(channel)){
             return   getlayout(method);
         }
-
         return  0;
     }
 
@@ -56,7 +57,14 @@ public class PaymentMethodManager {
 //        int layout = R.array.other_bank_new_atm;
 
 
+
         return R.array.other_bank_new_atm;
     }
 
+    private  HashMap<String,Integer> getHashMaps(){
+            hashMaps.put("",R.array.other_bank_new_atm);
+        hashMaps.put("",R.array.other_bank_new_atm);
+
+        return  hashMaps;
+    }
 }
