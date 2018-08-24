@@ -158,6 +158,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     protected void initView(View view, Bundle savedInstanceState) {
         reSetTab(1);
 
+        MainActivity.choosePeriod = 3;
+
         mPresenter = new GetStatusPresenter(this,this);
 
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);

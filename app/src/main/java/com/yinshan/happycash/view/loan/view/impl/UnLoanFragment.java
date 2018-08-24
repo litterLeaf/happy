@@ -76,7 +76,13 @@ public class UnLoanFragment extends BaseFragment {
     @Override
     protected void initView() {
         MainActivity.loanMoney = MainActivity.MIN_VALUE;
-        MainActivity.choosePeriod = 1;
+
+        if(MainActivity.choosePeriod==1)
+            setChoose1Period();
+        else
+            setChoose3Period();
+        setComputeMoney();
+
         unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
