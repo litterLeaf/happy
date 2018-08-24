@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
@@ -20,7 +21,6 @@ import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
 
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -94,6 +94,8 @@ public class InformationFragment extends BaseFragment implements IInfoView{
 
         mPresenter = new InformationPresenter(getActivity(),this);
         mPresenter.getProgress();
+
+        RxBus.get().register(this);
     }
 
     @Override
@@ -130,7 +132,7 @@ public class InformationFragment extends BaseFragment implements IInfoView{
                 changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
                 break;
             case R.id.submit:
-                EventBus.getDefault().post(new InfoUploadEvent());
+                RxBus.get().post(new InfoUploadEvent());
                 break;
         }
     }

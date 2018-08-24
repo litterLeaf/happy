@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.MessageEvent;
@@ -25,8 +26,6 @@ import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,7 +75,15 @@ public class UnLoanFragment extends BaseFragment {
     @Override
     protected void initView() {
         MainActivity.loanMoney = MainActivity.MIN_VALUE;
-        MainActivity.choosePeriod = 1;
+
+        RxBus.get().register(this);
+
+        if(MainActivity.choosePeriod==1)
+            setChoose1Period();
+        else
+            setChoose3Period();
+        setComputeMoney();
+
         unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -128,7 +135,7 @@ public class UnLoanFragment extends BaseFragment {
                             startActivity(new Intent(getActivity(),OliveStartActivity.class));
                         }
                     }else{
-                        EventBus.getDefault().post(new MessageEvent());
+                        RxBus.get().post(new MessageEvent());
                     }
                 }else {
                     mStartActivity( LoginActivity.class);

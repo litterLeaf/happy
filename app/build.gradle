@@ -3,6 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.yinshan.happycash"
@@ -119,7 +124,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation 'com.github.litterLeaf:TextViewExpand:1.0.1'
-    implementation 'org.greenrobot:eventbus:3.0.0'
     //csv
     implementation 'com.opencsv:opencsv:4.0'
     //apache

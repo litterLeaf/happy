@@ -25,8 +25,6 @@ import com.yinshan.happycash.widget.inter.IBaseView;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
 import com.yinshan.happycash.widget.userdefined.GoEditTextListener;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -73,7 +71,6 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
      */
     protected boolean shouldHandleResponseData = true;
 
-    @Subscribe
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,7 +85,6 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
         secondLayout();
 
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
         unbinder = ButterKnife.bind(this, mContextView);
         initView(mContextView, savedInstanceState);
 
@@ -132,8 +128,6 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
         super.onDestroy();
         if (unbinder != null)
             unbinder.unbind();
-        if(EventBus.getDefault().isRegistered(this))
-            EventBus.getDefault().unregister(this);
         shouldHandleResponseData = false;
     }
 
