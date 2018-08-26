@@ -18,6 +18,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.EmploymentBean;
 import com.yinshan.happycash.view.information.model.JobStatus;
@@ -277,12 +278,19 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         setResult(RESULT_OK);
         finish();
     }
+    int times=0;
 
     @Subscribe
     public void onSelected(InfoAdapterEnum.ItemSelectedEvent<InfoAdapterEnum.InfoItem> event){
+        times++;
+        MyDebugUtils.v("click event enter "+times);
         if(dialogPlus!=null&&dialogPlus.isShowing()){
             dialogPlus.dismiss();
         }
+        MyDebugUtils.v("click event 1 "+event.data);
+        MyDebugUtils.v("click event 2 "+event.data.getInfoStr());
+        MyDebugUtils.v("click event 3 "+event.data.getValueStr());
+        MyDebugUtils.v("click event 4 "+jobWorkType);
         if(event.data.getType()==InfoType.JOBTYPE){
             jobWorkType.setText(event.data.getInfoStr());
             mBean.setProfession(event.data.getValueStr());

@@ -93,7 +93,8 @@ public class InformationFragment extends BaseFragment implements IInfoView{
         resetProgress();
 
         mPresenter = new InformationPresenter(getActivity(),this);
-        mPresenter.getProgress();
+        if(TokenManager.getInstance().hasLogin())
+            mPresenter.getProgress();
 
         RxBus.get().register(this);
     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.view.information.model.InfoValueType;
 
 import java.util.ArrayList;
@@ -80,7 +81,10 @@ public class InfoAdapterEnum extends BaseAdapter implements InfoAdapter{
         holder.panelView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MyDebugUtils.v("view event  "+position);
+                MyDebugUtils.v("view event     "+mItemInfo);
+                MyDebugUtils.v("view event     "+mItemInfo.get(position));
+                MyDebugUtils.v("view event     "+mItemInfo.get(position).getInfoStr()+" "+mItemInfo.get(position).getValueStr());
                 ItemSelectedEvent<InfoItem> event = new ItemSelectedEvent(position, mItemInfo.get(position));
                 RxBus.get().post(event);
             }
