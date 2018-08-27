@@ -5,6 +5,7 @@ import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.appsflyer.AppsFlyerLib;
 import com.yinshan.happycash.config.AppEnvConfig;
 import com.yinshan.happycash.config.AppNetConfig;
 import com.yinshan.happycash.config.AppSdkConfig;
@@ -59,6 +60,8 @@ public class AppApplication extends MultiDexApplication{
 
 //        LeakCanary.install(this);
 
+        //AF初始化
+        AppsFlyerLib.getInstance().startTracking(AppApplication.instance, "ynLJnCRQMzbG8ncHcBWnwh");
     }
 
     public static AppApplication getInstance() {
