@@ -124,6 +124,7 @@ public class TakePhotoActivity extends BaseActivity {
                     System.gc();
                     out.flush();
                     out.close();
+                    dismissLoadingDialog();
                 } catch (FileNotFoundException e) {
                     dismissLoadingDialog();
                     Log.d("In Saving File", e + "");
