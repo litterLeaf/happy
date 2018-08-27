@@ -396,7 +396,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         } else if (!isMeFragment && null != meFrag) {
             transaction.hide(meFrag);
         }
-        transaction.commit();
+        transaction.commitAllowingStateLoss();
     }
 
     private void showFragment(String status) {
