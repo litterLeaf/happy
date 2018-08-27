@@ -124,13 +124,13 @@ public class TakePhotoActivity extends BaseActivity {
                     System.gc();
                     out.flush();
                     out.close();
-                    dismissLoadingDialog();
+//                    dismissLoadingDialog();
                 } catch (FileNotFoundException e) {
-                    dismissLoadingDialog();
+//                    dismissLoadingDialog();
                     Log.d("In Saving File", e + "");
                     subscriber.onError(e);
                 } catch (IOException e) {
-                    dismissLoadingDialog();
+//                    dismissLoadingDialog();
                     Log.d("In Saving File", e + "");
                     subscriber.onError(e);
                 }

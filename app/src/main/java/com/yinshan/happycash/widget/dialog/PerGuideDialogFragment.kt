@@ -2,16 +2,24 @@ package com.yinshan.happycash.widget.dialog
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.app.DialogFragment
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.support.annotation.Nullable
 import android.support.v7.app.AppCompatDialogFragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import butterknife.BindView
 import butterknife.ButterKnife
 import butterknife.OnClick
 import butterknife.Unbinder
 import com.yinshan.happycash.R
+
+
 
 /**
  * ┏┓　　　┏┓
@@ -43,6 +51,30 @@ class PerGuideDialogFragment : AppCompatDialogFragment() {
 
     interface GuideListener {
         fun guide()
+    }
+
+    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dialog.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        return super.onCreateView(inflater, container, savedInstanceState)
+    }
+
+    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //是否需要全屏，方法自定义
+            setStyle()
+    }
+
+    fun setStyle() {
+        setStyle(DialogFragment.STYLE_NO_TITLE, R.style.dialog)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val window = dialog.window
+        val windowParams = window!!.attributes
+        windowParams.dimAmount = 0.0f
+
+        window.attributes = windowParams
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
