@@ -53,9 +53,13 @@ import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
+import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
 import com.yinshan.happycash.widget.dialog.PerGuideDialogFragment;
+import com.yinshan.happycash.widget.dialog.PowerDialog;
+
+import android.app.DialogFragment;
 
 
 import java.util.ArrayList;
@@ -169,9 +173,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             showFragment(AppLoanStatus.UNLOAN);
         }
         if (SPUtils.getInstance().getShowGuide()) {
-            PerGuideDialogFragment fragment = new PerGuideDialogFragment();
-            fragment.setCancelable(false);
-            fragment.show(getSupportFragmentManager(), "guide");
+            PowerDialog powerDialog = new PowerDialog(MainActivity.this,new PowerListener());
+            powerDialog.setCancelable(false);
+            powerDialog.show();
+//            PerGuideDialogFragment fragment = new PerGuideDialogFragment();
+//            fragment.setStyle(DialogFragment.STYLE_NO_TITLE, R.style.DialogTheme);
+//            fragment.setCancelable(false);
+//            fragment.show(getSupportFragmentManager(), "guide");
         } else {
             checkPermissons();
         }
@@ -762,5 +770,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         ActivityCompat.requestPermissions(MainActivity.this,
                 permissionsList.toArray(new String[permissionsList.size()]),
                 PERMISSION_CODE);
+    }
+
+    class PowerListener implements CommonClickListener{
+
+        @Override
+        public void onClick() {
+            guide();
+        }
     }
 }
