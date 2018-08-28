@@ -319,6 +319,21 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         }
     };
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+            if (mSmsCode4.isFocused() && mSmsCode4.length() == 0) {
+                mSmsCode3.requestFocus();
+            } else if (mSmsCode3.isFocused() && mSmsCode3.length() == 0) {
+                mSmsCode2.requestFocus();
+            } else if (mSmsCode2.isFocused() && mSmsCode2.length() == 0) {
+                mSmsCode1.requestFocus();
+            }
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
     //点击软键盘回车键的处理
     private TextView.OnEditorActionListener mEditorListener = new TextView.OnEditorActionListener() {
         @Override

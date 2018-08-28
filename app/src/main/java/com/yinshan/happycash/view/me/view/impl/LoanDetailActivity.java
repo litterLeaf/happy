@@ -1,6 +1,5 @@
 package com.yinshan.happycash.view.me.view.impl;
 
-import android.text.TextUtils;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
@@ -44,7 +43,7 @@ public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetai
 
     @Override
     protected void secondInit() {
-        lowestBg.setBackgroundColor(getResources().getColor(R.color.app_yellow));
+        mLowestBg.setBackgroundColor(getResources().getColor(R.color.app_yellow));
         mAdapter = new LoanDetailAdapter();
         mListView.setAdapter(mAdapter);
 

@@ -169,7 +169,7 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
     public void showLoadingDialog() {
         alertDialog = new AlertDialog.Builder(getActivity()).create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
-        alertDialog.setCancelable(false);
+        alertDialog.setCancelable(true);
         alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {

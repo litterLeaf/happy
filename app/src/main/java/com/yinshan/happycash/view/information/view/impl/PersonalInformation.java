@@ -16,6 +16,7 @@ import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.ChildrenNumStatus;
 import com.yinshan.happycash.view.information.model.DurationStatus;
@@ -297,6 +298,8 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
     private void checkAndSubmit(){
         if(PersonalKtp.getText().toString().trim().length()!=16){
             PersonalKtp.setTextColor(Color.RED);
+            mScrollView.scrollTo(0,0);
+            HappySnackBar.showSnackBar(PersonalKtp, R.string.please_input_full_ktp_info, SPKeyUtils.SNACKBAR_TYPE_TIP);
             //HappySnackBar.showSnackBar();
         }else if(isCheckedField()){
             mBean.setFullName(personalName.getText().toString().trim());
@@ -321,8 +324,6 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         addTextChangeEvent(personalName);
         addTextChangeEvent(PersonalKtp);
         addTextChangeEvent(personalFamilyName);
-        addTextChangeEvent(PersonalKtp);
-        addTextChangeEvent(PersonalKtp);
     }
 
     private void initInputCheck(){

@@ -1,12 +1,9 @@
 package com.yinshan.happycash.view.me.view.impl;
 
 import android.support.v4.content.ContextCompat;
-import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
-
-import butterknife.BindView;
 
 /**
  * Created by huxin on 2018/3/20.
@@ -26,6 +23,6 @@ public class AboutActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
-        lowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.app_yellow));
+        mLowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.app_yellow));
     }
 }

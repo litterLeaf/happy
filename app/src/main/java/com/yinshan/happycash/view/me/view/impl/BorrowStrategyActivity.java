@@ -23,6 +23,6 @@ public class BorrowStrategyActivity extends BaseSingleActivity{
 
     @Override
     protected void secondInit() {
-        lowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
+        mLowestBg.setBackgroundColor(ContextCompat.getColor(this,R.color.white));
     }
 }

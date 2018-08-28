@@ -447,6 +447,9 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
     <string name="login_success">Login Berhasil！</string>
 
 
+    <string name="please_input_full_ktp_info">Silakan lengkapi informasi KTP！</string>
+
+
     <string name="request_camera">Jika tidak membuka akses kamera, pinjaman anda tidak bisa diajukan!</string>
     <string name="request_space">Mohon berikan akses untuk berkas penyimpanan anda agar app bisa berjalan dengan lancar</string>
 

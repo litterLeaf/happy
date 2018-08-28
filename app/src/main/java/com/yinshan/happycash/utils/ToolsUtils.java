@@ -28,6 +28,8 @@ public class ToolsUtils {
         if (TextUtils.isEmpty(wording)) {
             return false;
         }
+        if(wording.equals("0"))
+            return true;
         String rule= "^(8|08)\\d{0,12}$";
         if(wording.matches(rule)){
             return true;
