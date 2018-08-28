@@ -179,6 +179,8 @@ public class UnLoanFragment extends BaseFragment {
     }
 
     private long getLastMoney(){
-        return MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
+        return Math.round(ceil);
     }
 }

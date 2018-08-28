@@ -47,7 +47,7 @@
 
     <!-- loaning的String-->
     <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
-    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(hulan)</string>
+    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(bulan)</string>
     <string name="textview_loaning_bind_card">Rekening Penerima</string>
     <string name="textview_loaning_borrowing_reason">Tujuan Pinjaman</string>
 
@@ -69,7 +69,7 @@
     <string name="submit">Kirim</string>
     <string name="ktp">KTP</string>
     <string name="login_logout">Login/Daftar</string>
-    <string name="textview_online_QA">Livechat</string>
+    <string name="textview_online_QA">Layanan Online</string>
     <string name="name">Nama</string>
     <string name="name_of_beneficiary_bank">Nama Bank Penerima</string>
     <string name="rule_number_receiver">Nomor Rek. Penerima</string>
@@ -78,14 +78,14 @@
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
     <string name="current_repay">Pembayaran saat ini</string>
-    <string name="textview_loan">Prijam</string>
+    <string name="textview_loan">Pinjam</string>
     <string name="textview_certification">Profil</string>
     <string name="help_center">Pusat Bantuan</string>
     <string name="status">Status</string>
     <string name="textview_me">Saya</string>
     <string name="text_next">NEXT</string>
     <string name="no_order">No.Order</string>
-    <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
+    <string name="edittext_phone_number_hint">Silakan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
     <string name="about_happy_cash">Tentang Happy Cash</string>
     <string name="telephone">Telepon</string>

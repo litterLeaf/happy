@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tenor Pinjaman(hulan)"
+                android:text="Tenor Pinjaman(bulan)"
                 android:textColor="@color/hc_input_text"
                 android:layout_marginTop="@dimen/dp15"
                 android:layout_gravity="center"
