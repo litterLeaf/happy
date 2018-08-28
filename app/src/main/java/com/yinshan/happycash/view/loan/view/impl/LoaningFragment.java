@@ -168,6 +168,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
             case R.id.loan_before_bind_card:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.BIND_BANK_CARD);
                 Intent intent = new Intent(getActivity(), BindCardActivity.class);
+                MainActivity.isNotResume = true;
                 startActivityForResult(intent,mRequestCode);
                 break;
             case R.id.loan_reason:

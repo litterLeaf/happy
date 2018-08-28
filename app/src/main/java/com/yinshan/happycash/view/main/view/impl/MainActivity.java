@@ -95,6 +95,7 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView {
 
     boolean isFirstEnter = true;
+    public static boolean isNotResume = false;
 
     public static final int MIN_VALUE = 2000000;
     public static final int MAX_VALUE = 6000000;
@@ -190,7 +191,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         super.onResume();
         if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
             if(!isFirstEnter){
-                reUpdateStatus();
+                if(!isNotResume)
+                    reUpdateStatus();
             }
         }else if(chooseIndex==2||chooseIndex==3){
             reSetTab(chooseIndex);

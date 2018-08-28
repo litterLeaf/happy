@@ -19,6 +19,7 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.support.BankCardNameAdapter;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
@@ -151,6 +152,7 @@ public class BindCardActivity  extends BaseActivity {
         intent.putExtra(BIND_USERNAME,bindUserName.getText().toString().trim());
         intent.putExtra(BIND_BANKNUMBER,bindBankNumber.getText().toString().trim());
         BindCardActivity.this.setResult(Activity.RESULT_OK,intent);
+        MainActivity.isNotResume = false;
         finish();
     }
 
