@@ -36,6 +36,7 @@ import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.ZQImageViewRoundOval;
 import com.yinshan.happycash.widget.camera.TakePhotoActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
+import com.yinshan.happycash.widget.common.ToastManager;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -212,14 +213,19 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
     }
 
     private void uploadImages(){
+        boolean isUpload = false;
         if(mFileStatus.get(FileUploadType.KTP_PHOTO)==FileStatus.FILE_ADDED|| mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_FAILED){
             mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.UPLOADING);
+            isUpload = true;
             upload(mKTPFile,FileUploadType.KTP_PHOTO);
         }
         if(mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO)==FileStatus.FILE_ADDED|| mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_FAILED){
             mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO, FileStatus.UPLOADING);
+            isUpload = true;
             upload(mJobFile,FileUploadType.EMPLOYMENT_PHOTO);
         }
+        if(isUpload==false)
+            ToastManager.showToast(getResources().getString(R.string.had_upload_these_photo_please_re_photo));
         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
             dismissLoadingDialog();
             setResult(RESULT_OK);
@@ -261,7 +267,10 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                                 && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
 //                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
                             HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
-
+                            if(fileUploadType==FileUploadType.KTP_PHOTO)
+                                mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.DOWNLOADED);
+                            else if(fileUploadType==FileUploadType.EMPLOYMENT_PHOTO)
+                                mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO, FileStatus.DOWNLOADED);
                             SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
                             SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
                             UploadPhotoActivity.this.setResult(Activity.RESULT_OK);

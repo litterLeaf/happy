@@ -11,11 +11,16 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.view.information.model.PersonalBean;
+import com.yinshan.happycash.view.information.presenter.PersonalPresenter;
+import com.yinshan.happycash.view.information.view.IPersonalView;
 import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.view.me.view.IGetPersonView;
 import com.yinshan.happycash.view.me.view.impl.AboutActivity;
 import com.yinshan.happycash.view.me.view.impl.HelpCenterActivity;
 import com.yinshan.happycash.view.me.view.impl.LoanListActivity;
 import com.yinshan.happycash.view.me.view.impl.SafeSettingActivity;
+import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -24,7 +29,7 @@ import butterknife.OnClick;
  * Created by huxin on 2018/3/13.
  */
 
-public class MeFragment extends BaseFragment{
+public class MeFragment extends BaseFragment implements IGetPersonView{
 
     @BindView(R.id.loginView)
     RelativeLayout mLoginView;
@@ -35,9 +40,12 @@ public class MeFragment extends BaseFragment{
     @BindView(R.id.userMobile)
     TextView mUserMobile;
 
+    GetPersonInfoPresenter mGetPersonPresenter;
+
     @Override
     protected void initView() {
 //        mIMKit = YWAPI.getIMKitInstance("", "");
+        mGetPersonPresenter = new GetPersonInfoPresenter(getActivity(),this);
         resume();
     }
 
@@ -45,8 +53,11 @@ public class MeFragment extends BaseFragment{
         if(isLogin()){
             mLoginView.setVisibility(View.GONE);
             mInfoView.setVisibility(View.VISIBLE);
-            if(TextUtils.isEmpty(SPUtils.getInstance().getUsername()))
+            if(TextUtils.isEmpty(SPUtils.getInstance().getUsername())) {
                 mUserName.setText(SPUtils.getInstance().getUsername());
+            }else{
+                mGetPersonPresenter.getPersonInfo();
+            }
             mUserMobile.setText(SPUtils.getInstance().getMobile());
         }
     }
@@ -81,6 +92,14 @@ public class MeFragment extends BaseFragment{
             case R.id.loginView:
                 mStartActivity(LoginActivity.class);
                 break;
+        }
+    }
+
+    @Override
+    public void showInfo(PersonalBean personalBean) {
+        if(personalBean!=null&&personalBean.getFullName()!=null){
+            SPUtils.getInstance().setUsername(personalBean.getFullName());
+            mUserName.setText(personalBean.getFullName());
         }
     }
 }

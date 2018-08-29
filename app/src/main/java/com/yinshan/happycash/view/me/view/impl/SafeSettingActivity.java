@@ -42,6 +42,7 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
     @Override
     protected void secondInit() {
         mPresenter = new SafeSettingPresenter(this,this);
+        mName.setText(SPUtils.getInstance().getUsername());
         mPhone.setText(SPUtils.getInstance().getMobile());
     }
 

@@ -46,7 +46,7 @@
 
 
     <!-- loaning的String-->
-    <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
+    <string name="textview_loaning_text1">Melalui analisa mahadata, jumlah maksimal pinjaman Anda (Rp)</string>
     <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(bulan)</string>
     <string name="textview_loaning_bind_card">Rekening Penerima</string>
     <string name="textview_loaning_borrowing_reason">Tujuan Pinjaman</string>
@@ -133,6 +133,8 @@
     <string name="returns_per_period">Pengembalian per periode</string>
     <string name="recipient_bank_name">Nama Bank Penerima</string>
     <string name="recipient_account_no">No Rekening Penerima</string>
+    <string name="had_upload_these_photo_please_re_photo">Kedua gambar ini telah diunggah, silakan rekam ulang</string>
+    <string name="every_pay">Jumlah pembayaran per bulan Rp</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>

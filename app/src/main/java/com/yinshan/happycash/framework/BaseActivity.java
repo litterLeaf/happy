@@ -181,6 +181,9 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
 
     @Override
     public void showLoadingDialog() {
+        if(alertDialog!=null&&alertDialog.isShowing()){
+            return;
+        }
         alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
         alertDialog.setCancelable(true);
