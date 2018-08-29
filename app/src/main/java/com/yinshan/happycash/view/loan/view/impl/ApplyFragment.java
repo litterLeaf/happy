@@ -18,6 +18,7 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
+import com.yinshan.happycash.utils.TimeManager;
 import com.yinshan.happycash.view.loan.presenter.ApplyPresenter;
 import com.yinshan.happycash.view.loan.view.IApplyView;
 import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
@@ -231,15 +232,19 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
             String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,bean.getStatus());
             mTextProgress.setText(word);
 
-            String period =bean.getPeriod() + " "+bean.getPeriodUnit();
+            String pUnit = "Bulan";
+            if(bean.getPeriodUnit().equals("M"))
+                pUnit = "Bulan";
+            String period =bean.getPeriod() + " "+pUnit;
             String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(bean.getPrincipalAmount());
             mTextMoney.setText(totalAmount);
             mTextTime.setText(period);
 
 
-            mCreateTime.setText(bean.getCreateTime());
+            mCreateTime.setText(TimeManager.convertTime(bean.getCreateTime()));
             mKtp.setText(bean.getCredentialNo());
-            mSubmitFee.setText(String.valueOf(bean.getPrincipalAmount()));
+            mSubmitFee.setText(String.valueOf(Math.round(bean.getPrincipalAmount())));
+            MainActivity.getLastMoney(bean.getPrincipalAmount(),bean.getPeriod());
             mReturnPerPeriod.setText(String.valueOf(Math.ceil(bean.getPrincipalAmount()/bean.getPeriod())));
             mRecipientBankName.setText(bean.getBankCode());
             mRecipientAccountNo.setText(bean.getCardNo());

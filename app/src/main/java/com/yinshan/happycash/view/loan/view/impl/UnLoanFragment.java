@@ -175,12 +175,6 @@ public class UnLoanFragment extends BaseFragment {
 
     private void setComputeMoney(){
         mChooseMoney.setText(String.valueOf(MainActivity.loanMoney));
-        mUnloanFee.setText(String.valueOf(getLastMoney()));
-    }
-
-    private long getLastMoney(){
-        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
-        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
-        return Math.round(ceil);
+        mUnloanFee.setText(String.valueOf(MainActivity.getLastMoney()));
     }
 }

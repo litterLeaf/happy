@@ -152,7 +152,7 @@ public class BindCardActivity  extends BaseActivity {
         intent.putExtra(BIND_USERNAME,bindUserName.getText().toString().trim());
         intent.putExtra(BIND_BANKNUMBER,bindBankNumber.getText().toString().trim());
         BindCardActivity.this.setResult(Activity.RESULT_OK,intent);
-        MainActivity.isNotResume = false;
+
         finish();
     }
 

@@ -277,19 +277,13 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         MainActivity.choosePeriod = 1;
         choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
-        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+getLastMoney());
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
     }
 
     private void setChoose3Period(){
         MainActivity.choosePeriod = 3;
         choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
-        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+getLastMoney());
-    }
-
-    private long getLastMoney(){
-        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
-        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
-        return Math.round(ceil);
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
     }
 }

@@ -191,8 +191,12 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         super.onResume();
         if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
             if(!isFirstEnter){
-                if(!isNotResume)
+                if(!isNotResume) {
                     reUpdateStatus();
+                }else{
+                    MainActivity.isNotResume = false;
+                }
+
             }
         }else if(chooseIndex==2||chooseIndex==3){
             reSetTab(chooseIndex);
@@ -780,5 +784,17 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         public void onClick() {
             guide();
         }
+    }
+
+    public static long getLastMoney(){
+        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
+        return Math.round(ceil);
+    }
+
+    public static long getLastMoney(double money,int period){
+        long sum = (long) (money+money*MainActivity.RATE*period/100);
+        double ceil = Math.ceil(sum / period);
+        return Math.round(ceil);
     }
 }

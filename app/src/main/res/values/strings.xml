@@ -273,7 +273,7 @@
     <string name="CAMERA_INVALID">Kamera tidak dapat digunakan, mohon ke pengaturan dan buka izin akses kamera</string>
     <string name="RECORD_AUTO_INVALID">Tidak dapat menggunakan fungsi perekaman, silahkan ke izin ini ditetapkan untuk membuka</string>
     <string name="STORAGE_INVALID">Tidak dapat menyimpan gambar, silahkan pergi ke Settings di hak penyimpanan terbuka</string>
-    <string name="permission_lzin_new">Silahkan ke [Pengaturan]-[Aplikasi]-[RupiahPlus]-[Izin] Untuk mengotorisasi %s dan melanjutkan pengajuan Anda.</string>
+    <string name="permission_lzin_new">Silahkan ke [Pengaturan]-[Aplikasi]-[HappyCash]-[Izin] Untuk mengotorisasi %s dan melanjutkan pengajuan Anda.</string>
     <string name="open_gps"> Pastikan anda telah membuka izin untuk mengakses GPS</string>
 
 
@@ -479,7 +479,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
         Mohon menunggu.</string>
     <string name="process_status_firstview_title">Proses Penilaian</string>
 
-    <string name="process_status_preview_content">Data Anda telah kami terima. RupiahPlus sedang memverifikasi data Anda menggunakan model
+    <string name="process_status_preview_content">Data Anda telah kami terima. HappyCash sedang memverifikasi data Anda menggunakan model
         analisa risiko maha data.</string>
     <string name="process_status_preview_title">Verifikasi Data</string>
     <string name="process_point_tip">Dalam analisa,telah selesai</string>
@@ -499,7 +499,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     <string-array name="fas_indomaret">
         <item>Pergi ke Gerai Indomaret terdekat</item>
         <item>Pastikan kode pembayaran Anda masih valid, kode pembayaran Anda akan berlaku selama 24 jam sejak pertama kali Anda dapatkan.</item>
-        <item>Katakan kepada kasir Anda ingin melakukan pembayaran tagihan RUPIAHPLUS, sebutikan kode
+        <item>Katakan kepada kasir Anda ingin melakukan pembayaran tagihan HappyCash, sebutikan kode
          pembayaran (%1$s) dan jumlah tagihan (%2$s) kepada kasir.</item>
         <item>Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar.</item>
         <item>Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya.</item>
@@ -605,7 +605,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     <string-array name="fas_pay_in_alfamart">
         <item>Pergi ke Alfa Group (Alfamart, Alfamidi, AlfaExpress, Lawson).</item>
         <item>Pastikan kode pembayaran Anda masih valid, kode pembayaran Anda akan berlaku selama 24 jam sejak pertama kali Anda dapatkan.</item>
-        <item>Katakan kepada kasir Anda ingin melakukan pembayaran transaksi online pembayaran Faspay, kemudian sebutkan RupiahPlus, sebutkan kode transaksi (%1$s)
+        <item>Katakan kepada kasir Anda ingin melakukan pembayaran transaksi online pembayaran Faspay, kemudian sebutkan HappyCash, sebutkan kode transaksi (%1$s)
         dan jumlah tagihan (%2$s )  kepada kasir.</item>
         <item>Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar.</item>
         <item>Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya.</item>
