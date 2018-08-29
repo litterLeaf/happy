@@ -40,7 +40,7 @@
                     android:textColor="@color/text_blue"
                     android:textStyle="bold"
                     android:textSize="17sp"
-                    android:text="@string/with_job_photo"
+                    android:text="@string/with_person_photo"
                     />
                 <TextView
                     style="@style/text_wrap_layout"

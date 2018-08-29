@@ -87,7 +87,7 @@
     <string name="no_order">No.Order</string>
     <string name="edittext_phone_number_hint">Silakan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
-    <string name="about_happy_cash">Tentang Happy Cash</string>
+    <string name="about_happy_cash">Tentang HappyCash</string>
     <string name="telephone">Telepon</string>
     <string name="disbursement_date">Tanggal Pencairan</string>
     <string name="due_date">Tanggal Jatuh Tempo</string>
@@ -238,7 +238,9 @@
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
     <string name="with_ktp_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
-    <string name="with_job_photo">Foto halaman depan KTP</string>
+    <string name="with_person_photo">Foto halaman depan KTP</string>
+    <string name="with_job_photo">foto dengan seragam kerja atau bersama tanda pengenal pekerja</string>
+
     <string name="photo_should_clear">Foto harus jelas</string>
     <string name="must_self_photo_and_clear">Harus foto anda sendiri, pastikan foto jelas dan bisa dibaca</string>
 
@@ -276,17 +278,17 @@
     <string name="text_cancel">Batal</string>
 
     <string name="please_make_original_data_submit_can_done_after_all_data_is_completed">Mohon pastikan data asli,pengajuan bisa dilakukan setelah seluruh data dilengkapi</string>
-    <string name="help_1">Download Happy Cash di Google Play atau Android Market lainnya</string>
+    <string name="help_1">Download HappyCash di Google Play atau Android Market lainnya</string>
     <string name="help_2">Di halaman utama app, pilih jumlah pinjaman dan tenor pinjaman</string>
     <string name="help_3">Luangkan 5 menit untuk memverifikasi informasi anda</string>
     <string name="help_4">Tunggu review pertama, mohon pastikan ponsel anda aktif</string>
     <string name="help_5">Tunggu pencairan, pinjaman akan tiba dalam 5-10 menit</string>
-    <string name="about_desc">Happy Cash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
-Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
-Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
+    <string name="about_desc">HappyCash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
+HappyCash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
+Pinjaman angsuran HappyCash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
 Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
-Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
-    <string name="hy_not_call_your_relative_please_write_cool">Happy Cash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
+HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
+    <string name="hy_not_call_your_relative_please_write_cool">HappyCash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
 
     <string-array name="bankCardName1">
         <item>BCA</item>
