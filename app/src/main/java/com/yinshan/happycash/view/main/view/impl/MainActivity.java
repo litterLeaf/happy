@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -143,6 +144,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     private ArrayList<String> permissionsList;
     private ArrayList<String> permissionsNeeded;
 
+    private String[] mustPermission = {
+            Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS,Manifest.permission.READ_PHONE_STATE
+            ,Manifest.permission.READ_SMS,Manifest.permission.READ_CALL_LOG,Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;
@@ -173,7 +179,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }else {
             showFragment(AppLoanStatus.UNLOAN);
         }
-        if (SPUtils.getInstance().getShowGuide()) {
+        if (!judgeMustPermission()) {
             PowerDialog powerDialog = new PowerDialog(MainActivity.this,new PowerListener());
             powerDialog.setCancelable(false);
             powerDialog.show();
@@ -765,14 +771,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     public void guide() {
-        SPUtils.getInstance().setShowGuide(false);
+//        SPUtils.getInstance().setShowGuide(false);
         permissionsList = new ArrayList<>();
-        permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        permissionsList.add(Manifest.permission.READ_CONTACTS);
-        permissionsList.add(Manifest.permission.READ_PHONE_STATE);
-        permissionsList.add(Manifest.permission.READ_SMS);
-        permissionsList.add(Manifest.permission.READ_CALL_LOG);
-        permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        for(int i=0;i<mustPermission.length;i++){
+            permissionsList.add(mustPermission[i]);
+        }
         ActivityCompat.requestPermissions(MainActivity.this,
                 permissionsList.toArray(new String[permissionsList.size()]),
                 PERMISSION_CODE);
@@ -796,5 +799,15 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         long sum = (long) (money+money*MainActivity.RATE*period/100);
         double ceil = Math.ceil(sum / period);
         return Math.round(ceil);
+    }
+
+    private boolean judgeMustPermission(){
+        for(int i=0;i<mustPermission.length;i++){
+            if(ContextCompat.checkSelfPermission(this,
+                    mustPermission[i])
+                    != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
     }
 }

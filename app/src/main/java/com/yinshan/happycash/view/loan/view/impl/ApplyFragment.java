@@ -250,7 +250,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
             mKtp.setText(bean.getCredentialNo());
             mSubmitFee.setText(String.valueOf(Math.round(bean.getPrincipalAmount())));
             MainActivity.getLastMoney(bean.getPrincipalAmount(),bean.getPeriod());
-            mReturnPerPeriod.setText(String.valueOf(Math.ceil(bean.getPrincipalAmount()/bean.getPeriod())));
+            mReturnPerPeriod.setText(String.valueOf(Math.round(Math.ceil(bean.getPrincipalAmount()/bean.getPeriod()))));
             mRecipientBankName.setText(bean.getBankCode());
             mRecipientAccountNo.setText(bean.getCardNo());
 
