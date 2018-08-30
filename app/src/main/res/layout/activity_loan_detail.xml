@@ -40,6 +40,8 @@
             android:layout_marginRight="@dimen/normal_left"
             android:divider="@null"
             android:scrollbars="none"
+            android:background="@null"
+            android:listSelector="@android:color/transparent"
             >
         </ListView>
         <View

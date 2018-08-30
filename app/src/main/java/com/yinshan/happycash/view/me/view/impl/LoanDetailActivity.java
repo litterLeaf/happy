@@ -1,10 +1,12 @@
 package com.yinshan.happycash.view.me.view.impl;
 
+import android.text.TextUtils;
 import android.widget.ListView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.config.inner.AppInnerConfig;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.StatusManagerUtil;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.utils.TimeManager;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
@@ -53,11 +55,17 @@ public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetai
 
     @Override
     public void showDetail(LoanDetailBean bean) {
+        if(bean==null)
+            return;
         List<NameDescData> list = new ArrayList<>();
         list.add(new NameDescData(getResources().getString(R.string.submit_time),checkIsNullTime(bean.getCreateTime())));
         list.add(new NameDescData(getResources().getString(R.string.no_order),String.valueOf(bean.getLoanAppId())));
         list.add(new NameDescData(getResources().getString(R.string.ktp),String.valueOf(bean.getCredentialNo())));
-        list.add(new NameDescData(getResources().getString(R.string.time_period),String.valueOf(bean.getPeriod())+" Hari"));
+        String periodUnit = bean.getPeriodUnit();
+        String lastUnit = "Bulan";
+        if(periodUnit.equals("M"))
+            lastUnit = "Bulan";
+        list.add(new NameDescData(getResources().getString(R.string.time_period),String.valueOf(bean.getPeriod())+" "+lastUnit));
         list.add(new NameDescData(getResources().getString(R.string.name_of_beneficiary_bank),bean.getBankCode()));
         list.add(new NameDescData(getResources().getString(R.string.rule_number_receiver),bean.getCardNo()));
         list.add(new NameDescData(getResources().getString(R.string.disbursement_date),checkIsNullTime(bean.getIssueDate())));
@@ -71,11 +79,11 @@ public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetai
         }
         list.add(new NameDescData(getResources().getString(R.string.current_repay),"Rp"+ StringFormatUtils.moneyFormat(currentRepay)));
         String lastStatus = "";
-//        if(bean.getPaidOffMode()!=null&&!TextUtils.isEmpty(bean.getPaidOffMode())){
-//            lastStatus = StatusManagerUtil.getExplainStatus(bean.getStatus(),bean.getPaidOffMode());
-//        }else {
-//            lastStatus = StatusManagerUtil.getExplainStatus(bean.getStatus()));
-//        }
+        if(bean.getPaidOffMode()!=null&&!TextUtils.isEmpty(bean.getPaidOffMode())){
+            lastStatus = StatusManagerUtil.getExplainStatus(bean.getStatus(),bean.getPaidOffMode());
+        }else {
+            lastStatus = StatusManagerUtil.getExplainStatus(bean.getStatus());
+        }
         list.add(new NameDescData(getResources().getString(R.string.status),lastStatus));
         mAdapter.addList(list);
         mAdapter.notifyDataSetChanged();

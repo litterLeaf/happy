@@ -1161,4 +1161,20 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     </string>
 
 
+    <string name="rollover">Pinjaman telah diperpanjang</string>
+    <string name="FIRST_REVIEW"> Sedang dianalisa, mohon tunggu</string>
+    <string name="Approved">Disetujui, menunggu pencairan</string>
+    <string name="Rejected">Ditolak oleh sistem</string>
+    <string name="Closed">Ditutup oleh sistem</string>
+    <string name="Withdrawn">Anda telah membatalkan aplikasi</string>
+    <string name="Ready_to_issue">Menunggu Pencairan Dana</string>
+    <string name="Issuing">Menunggu Pencairan Dana</string>
+    <string name="Current">Pencairan berhasil, pinjaman aktif</string>
+    <string name="Issue_Failed">Pencairan gagal</string>
+    <string name="Paid_Off">Pinjaman lunas, terima kasih</string>
+    <string name="Grace_Period">Masa keterlambatan, segera bayar</string>
+    <string name="Overdue">Masa keterlambatan terakhir, segera bayar</string>
+    <string name="bad_debt">Segera bayar, memasuki jalur hukum</string>
+
+
 </resources>
