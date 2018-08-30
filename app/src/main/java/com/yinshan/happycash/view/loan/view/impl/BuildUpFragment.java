@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.gson.Gson;
@@ -127,6 +128,11 @@ public class BuildUpFragment extends BaseFragment {
             else if(buildUpReasonModel.getCode().startsWith(WORK_PRE_STR))
                 addLineList(BuildUpLineModel.BuildUpLineType.JOB,R.drawable.back4,R.string.build_up_modify_job_info);
         }
+
+    }
+
+    @Override
+    protected void initUIValue(View view) {
 
     }
 

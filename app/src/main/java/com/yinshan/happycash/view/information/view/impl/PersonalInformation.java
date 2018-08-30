@@ -65,59 +65,32 @@ s *
  *
  */
 public class PersonalInformation extends BaseSingleActivity implements IPersonalView{
-    @BindView(R.id.et_personal_name)
     BandaEditText personalName;
-    @BindView(R.id.ll_personal_name)
     LinearLayout llPersonalName;
-    @BindView(R.id.et_personal_ktp)
     BandaEditText PersonalKtp;
-    @BindView(R.id.ll_personal_ktp)
     LinearLayout llPersonalKtp;
-    @BindView(R.id.et_personal_family_name)
     BandaEditText personalFamilyName;
-    @BindView(R.id.ll_personal_family_name)
     LinearLayout llPersonalFamilyName;
-    @BindView(R.id.tv_personal_gender)
     TextView personalGender;
-    @BindView(R.id.ll_personal_gender)
     LinearLayout llPersonalGender;
-    @BindView(R.id.tv_personal_education)
     TextView personalEducation;
-    @BindView(R.id.ll_personal_education)
     LinearLayout llPersonalEducation;
-    @BindView(R.id.tv_personal_marital)
     TextView personalMarital;
-    @BindView(R.id.ll_personal_marital)
     LinearLayout llPersonalMarital;
-    @BindView(R.id.tv_personal_children_number)
     TextView personalChildrenNumber;
-    @BindView(R.id.ll_personal_children_number)
     LinearLayout llPersonalChildrenNumber;
-    @BindView(R.id.tv_personal_residence_province)
     TextView personalResidenceProvince;
-    @BindView(R.id.ll_personal_residence_province)
     LinearLayout llPersonalResidenceProvince;
-    @BindView(R.id.tv_personal_residence_city)
     TextView personalResidenceCity;
-    @BindView(R.id.ll_personal_residence_city)
     LinearLayout llPersonalResidenceCity;
-    @BindView(R.id.tv_personal_residence_street)
     TextView personalResidenceStreet;
-    @BindView(R.id.ll_personal_residence_street)
     LinearLayout llPersonalResidenceStreet;
-    @BindView(R.id.tv_personal_residence_area)
     TextView personalResidenceArea;
-    @BindView(R.id.ll_personal_residence_area)
     LinearLayout llPersonalResidenceArea;
-    @BindView(R.id.et_personal_address)
     BandaEditText personalAddress;
-    @BindView(R.id.ll_personal_address)
     LinearLayout llPersonalAddress;
-    @BindView(R.id.tv_personal_duration_of_residence)
     TextView personalDurationOfResidence;
-    @BindView(R.id.ll_personal_duration_of_residence)
     LinearLayout llPersonalDurationOfResidence;
-    @BindView(R.id.rl_personal_confirm)
     RelativeLayout confirm;
 
     PersonalPresenter mPresenter;
@@ -148,6 +121,8 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
 
     @Override
     protected void secondInit() {
+        initUI();
+
         RxBus.get().register(this);
 
         mBean = new PersonalBean();
@@ -545,5 +520,40 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         areaAdapter.addItem(DurationStatus.TWO_YEAR, InfoType.DURATION);
         areaAdapter.addItem(DurationStatus.OVER_TWO_YEAR, InfoType.DURATION);
         return areaAdapter;
+    }
+
+    private void initUI() {
+        personalName = (BandaEditText)findViewById(R.id.et_personal_name);
+        llPersonalName = (LinearLayout)findViewById(R.id.ll_personal_name);
+        PersonalKtp = (BandaEditText)findViewById(R.id.et_personal_ktp);
+        llPersonalKtp = (LinearLayout)findViewById(R.id.ll_personal_ktp);
+        personalFamilyName = (BandaEditText)findViewById(R.id.et_personal_family_name);
+
+        llPersonalFamilyName = (LinearLayout)findViewById(R.id.ll_personal_family_name);
+        personalGender = (TextView)findViewById(R.id.tv_personal_gender);
+        llPersonalGender = (LinearLayout)findViewById(R.id.ll_personal_gender);
+        personalEducation = (TextView)findViewById(R.id.tv_personal_education);
+        llPersonalEducation = (LinearLayout)findViewById(R.id.ll_personal_education);
+        personalMarital = (TextView)findViewById(R.id.tv_personal_marital);
+
+        llPersonalMarital = (LinearLayout)findViewById(R.id.ll_personal_marital);
+        personalChildrenNumber = (TextView)findViewById(R.id.tv_personal_children_number);
+        llPersonalChildrenNumber = (LinearLayout)findViewById(R.id.ll_personal_children_number);
+        personalResidenceProvince = (TextView)findViewById(R.id.tv_personal_residence_province);
+        llPersonalResidenceProvince = (LinearLayout)findViewById(R.id.ll_personal_residence_province);
+
+        personalResidenceCity = (TextView)findViewById(R.id.tv_personal_residence_city);
+        llPersonalResidenceCity = (LinearLayout)findViewById(R.id.ll_personal_residence_city);
+        personalResidenceStreet = (TextView)findViewById(R.id.tv_personal_residence_street);
+        llPersonalResidenceStreet = (LinearLayout)findViewById(R.id.ll_personal_residence_street);
+        personalResidenceArea = (TextView)findViewById(R.id.tv_personal_residence_area);
+
+        llPersonalResidenceArea = (LinearLayout)findViewById(R.id.ll_personal_residence_area);
+        personalAddress = (BandaEditText)findViewById(R.id.et_personal_address);
+        llPersonalAddress = (LinearLayout)findViewById(R.id.ll_personal_address);
+        personalDurationOfResidence = (TextView)findViewById(R.id.tv_personal_duration_of_residence);
+        llPersonalDurationOfResidence = (LinearLayout)findViewById(R.id.ll_personal_duration_of_residence);
+
+        confirm = (RelativeLayout)findViewById(R.id.rl_personal_confirm);
     }
 }

@@ -69,7 +69,22 @@ public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetai
         list.add(new NameDescData(getResources().getString(R.string.name_of_beneficiary_bank),bean.getBankCode()));
         list.add(new NameDescData(getResources().getString(R.string.rule_number_receiver),bean.getCardNo()));
         list.add(new NameDescData(getResources().getString(R.string.disbursement_date),checkIsNullTime(bean.getIssueDate())));
-        list.add(new NameDescData(getResources().getString(R.string.due_date),checkIsNullTime(bean.getDueDate())));
+
+
+
+        String dueDate = "";
+        if(bean.getLpayDtoList().size()>0){
+            int index = -1;
+            for(int i=0;i<bean.getLpayDtoList().size();i++){
+                StageBean stageBean = bean.getLpayDtoList().get(i);
+                if(stageBean.getStatus().equals("ACTIVE"))
+                    index = i;
+            }
+            if(index!=-1)
+                dueDate = checkIsNullTime(bean.getLpayDtoList().get(index).getDueDate());
+        }
+
+        list.add(new NameDescData(getResources().getString(R.string.due_date),dueDate));
         list.add(new NameDescData(getResources().getString(R.string.date_of_return),checkIsNullTime(bean.getPaidOffDate())));
         list.add(new NameDescData(getResources().getString(R.string.borrowing_costs),"Rp"+ StringFormatUtils.moneyFormat(bean.getPrincipalAmount())));
         double currentRepay = 0f;

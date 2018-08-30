@@ -67,6 +67,7 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
         // Inflate the layout for this fragment
         View view = inflater.inflate(bindLayout(), container, false);
         unbinder = ButterKnife.bind(this, view);
+        initUIValue(view);
         return view;
     }
 
@@ -77,6 +78,8 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
     }
 
     protected abstract void initView();
+
+    protected abstract void initUIValue(View view);
 
     @Override
     public void onDestroyView() {

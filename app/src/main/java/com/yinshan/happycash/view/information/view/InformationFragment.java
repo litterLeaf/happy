@@ -2,9 +2,13 @@ package com.yinshan.happycash.view.information.view;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.SpannableStringBuilder;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -52,27 +56,16 @@ import butterknife.Unbinder;
 
 public class InformationFragment extends BaseFragment implements IInfoView{
 
-    @BindView(R.id.progressView)
     ProfilProgressView mProgressView;
-    @BindView(R.id.progressText)
     TextView mProgressText;
-    @BindView(R.id.textView)
     TextView textView;
-    @BindView(R.id.view_not_finish_person)
     RelativeLayout notFinishPerson;
-    @BindView(R.id.view_finish_person)
     RelativeLayout finishPerson;
-    @BindView(R.id.view_not_finish_employ)
     RelativeLayout notFinishEmploy;
-    @BindView(R.id.view_finish_employ)
     RelativeLayout finishEmploy;
-    @BindView(R.id.view_not_finish_contact)
     RelativeLayout notFinishContact;
-    @BindView(R.id.view_finish_contact)
     RelativeLayout finishContact;
-    @BindView(R.id.view_not_finish_upload_photo)
     RelativeLayout notFinishUploadPhoto;
-    @BindView(R.id.view_finish_upload_photo)
     RelativeLayout finishUploadPhoto;
     Unbinder unbinder;
 
@@ -89,6 +82,8 @@ public class InformationFragment extends BaseFragment implements IInfoView{
 
     @Override
     protected void initView() {
+
+
 
         resetProgress();
 
@@ -234,4 +229,23 @@ public class InformationFragment extends BaseFragment implements IInfoView{
             }
         }
     }
+
+    @Override
+    protected void initUIValue(View view){
+
+        mProgressView = (ProfilProgressView)view.findViewById(R.id.progressView);
+        mProgressText = (TextView)view.findViewById(R.id.progressText);
+        textView = (TextView)view.findViewById(R.id.textView);
+        notFinishPerson = (RelativeLayout)view.findViewById(R.id.view_not_finish_person);
+        finishPerson = (RelativeLayout)view.findViewById(R.id.view_finish_person);
+        notFinishEmploy = (RelativeLayout)view.findViewById(R.id.view_not_finish_employ);
+
+        finishEmploy = (RelativeLayout)view.findViewById(R.id.view_finish_employ);
+        notFinishContact = (RelativeLayout)view.findViewById(R.id.view_not_finish_contact);
+        finishContact = (RelativeLayout)view.findViewById(R.id.view_finish_contact);
+        notFinishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_not_finish_upload_photo);
+        finishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_finish_upload_photo);
+    }
+
+
 }

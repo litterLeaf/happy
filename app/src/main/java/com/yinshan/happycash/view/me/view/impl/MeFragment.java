@@ -49,6 +49,11 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
         resume();
     }
 
+    @Override
+    protected void initUIValue(View view) {
+
+    }
+
     public void resume(){
         if(isLogin()){
             mLoginView.setVisibility(View.GONE);

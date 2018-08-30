@@ -107,6 +107,11 @@ public class UnLoanFragment extends BaseFragment {
     }
 
     @Override
+    protected void initUIValue(View view) {
+
+    }
+
+    @Override
     protected int bindLayout() {
         return R.layout.fragment_main_unloan;
     }

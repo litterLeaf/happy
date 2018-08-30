@@ -102,6 +102,11 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     }
 
     @Override
+    protected void initUIValue(View view) {
+
+    }
+
+    @Override
     protected int bindLayout() {
         return R.layout.fragment_apply;
     }

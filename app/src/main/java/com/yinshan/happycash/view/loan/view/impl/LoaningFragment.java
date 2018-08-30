@@ -119,6 +119,11 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     }
 
     @Override
+    protected void initUIValue(View view) {
+
+    }
+
+    @Override
     protected int bindLayout() {
         return R.layout.fragment_loaning;
     }

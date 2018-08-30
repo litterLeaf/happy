@@ -1,5 +1,7 @@
 package com.yinshan.happycash.view.loan.view.impl;
 
+import android.view.View;
+
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 
@@ -10,6 +12,11 @@ import com.yinshan.happycash.framework.BaseFragment;
 public class RejectFragment extends BaseFragment {
     @Override
     protected void initView() {
+
+    }
+
+    @Override
+    protected void initUIValue(View view) {
 
     }
 

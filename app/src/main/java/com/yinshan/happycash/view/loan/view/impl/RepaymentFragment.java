@@ -78,6 +78,11 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     }
 
     @Override
+    protected void initUIValue(View view) {
+
+    }
+
+    @Override
     protected int bindLayout() {
         return R.layout.fragment_repayment;
     }
