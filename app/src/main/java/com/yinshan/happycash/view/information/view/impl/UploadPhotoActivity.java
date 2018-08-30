@@ -58,11 +58,8 @@ import rx.schedulers.Schedulers;
 
 public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPhotoView{
 
-    @BindView(R.id.ktpImage)
     ZQImageViewRoundOval mKtpImage;
-    @BindView(R.id.jobImage)
     ZQImageViewRoundOval mJobImage;
-    @BindView(R.id.btnInfoSubmit)
     RelativeLayout mBtnInfoSubmit;
 
     private File mKTPFile;
@@ -92,6 +89,10 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     @Override
     protected void secondInit() {
+        mKtpImage = (ZQImageViewRoundOval)findViewById(R.id.ktpImage);
+        mJobImage = (ZQImageViewRoundOval)findViewById(R.id.jobImage);
+        mBtnInfoSubmit = (RelativeLayout)findViewById(R.id.btnInfoSubmit);
+
         mKtpImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
         mJobImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
 
