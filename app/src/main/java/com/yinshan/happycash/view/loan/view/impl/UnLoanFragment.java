@@ -56,20 +56,12 @@ import butterknife.OnClick;
 
 public class UnLoanFragment extends BaseFragment {
 
-
-
-    @BindView(R.id.chooseMoney)
     TextView mChooseMoney;
-    @BindView(R.id.unloan_fee)
     TextView mUnloanFee;
-    @BindView(R.id.unloan_seeker)
     SeekBar unloanSeeker;
-    @BindView(R.id.bt_period_1_unloan)
     Button periodOne;
 
-    @BindView(R.id.bt_period_3_unloan)
     Button periodThree;
-    @BindView(R.id.unloan_go_information)
     Button goInformation;
 
     @Override
@@ -108,7 +100,13 @@ public class UnLoanFragment extends BaseFragment {
 
     @Override
     protected void initUIValue(View view) {
+        mChooseMoney = (TextView)view.findViewById(R.id.chooseMoney);
+        mUnloanFee = (TextView)view.findViewById(R.id.unloan_fee);
+        unloanSeeker = (SeekBar)view.findViewById(R.id.unloan_seeker);
+        periodOne = (Button)view.findViewById(R.id.bt_period_1_unloan);
 
+        periodThree = (Button)view.findViewById(R.id.bt_period_3_unloan);
+        goInformation = (Button)view.findViewById(R.id.unloan_go_information);
     }
 
     @Override

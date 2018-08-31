@@ -69,7 +69,6 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     RelativeLayout finishUploadPhoto;
     Unbinder unbinder;
 
-    @BindView(R.id.submit)
     RelativeLayout mSubmit;
 
     InformationPresenter mPresenter;
@@ -245,7 +244,7 @@ public class InformationFragment extends BaseFragment implements IInfoView{
         finishContact = (RelativeLayout)view.findViewById(R.id.view_finish_contact);
         notFinishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_not_finish_upload_photo);
         finishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_finish_upload_photo);
+
+        mSubmit = (RelativeLayout)view.findViewById(R.id.submit);
     }
-
-
 }

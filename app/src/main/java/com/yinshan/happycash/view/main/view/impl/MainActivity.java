@@ -107,23 +107,14 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public static long loanMoney;
     public static int choosePeriod;
 
-    @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
-    @BindView(R.id.id_textview_tab_loan)
     TextView tabLoan;
-    @BindView(R.id.id_linearlayout_loan)
     LinearLayout idLinearlayoutLoan;
-    @BindView(R.id.id_textview_tab_certification)
     TextView tabInformation;
-    @BindView(R.id.id_linearlayout_certification)
     LinearLayout idLinearlayoutCertification;
-    @BindView(R.id.id_textview_tab_me)
     TextView tabMe;
-    @BindView(R.id.id_linearlayout_me)
     LinearLayout idLinearlayoutMe;
-    @BindView(R.id.id_textview_tab_online_qa)
     TextView abOnlineQa;
-    @BindView(R.id.id_linearlayout_online_qa)
     LinearLayout idLinearlayoutOnlineQa;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
@@ -166,6 +157,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        initUI();
         RxBus.get().register(this);
         reSetTab(1);
 
@@ -809,5 +801,18 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 return false;
         }
         return true;
+    }
+
+    private void initUI(){
+        fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
+        tabLoan = (TextView)findViewById(R.id.id_textview_tab_loan);
+        idLinearlayoutLoan = (LinearLayout)findViewById(R.id.id_linearlayout_loan);
+        tabInformation = (TextView)findViewById(R.id.id_textview_tab_certification);
+
+        idLinearlayoutCertification = (LinearLayout)findViewById(R.id.id_linearlayout_certification);
+        tabMe = (TextView)findViewById(R.id.id_textview_tab_me);
+        idLinearlayoutMe = (LinearLayout)findViewById(R.id.id_linearlayout_me);
+        abOnlineQa = (TextView)findViewById(R.id.id_textview_tab_online_qa);
+        idLinearlayoutOnlineQa = (LinearLayout)findViewById(R.id.id_linearlayout_online_qa);
     }
 }
