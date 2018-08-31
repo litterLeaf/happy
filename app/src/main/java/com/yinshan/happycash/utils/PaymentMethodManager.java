@@ -74,11 +74,11 @@ public class PaymentMethodManager {
      */
     private static HashMap<String,Integer> getHashMaps(){
         maps =new HashMap();
-        maps.put("OTHERS",R.array.other_bank_new_atm);
-        maps.put("ALFAMART",R.array.fas_pay_in_alfamart);
-        maps.put("MANDIRI",R.array.other_bank_new_atm);
-        maps.put("BNI",R.array.bni_atm);
-        maps.put("BRI",R.array.bri_atm);
+        maps.put("OTHERS",R.array.alfamart_xendit);
+        maps.put("ALFAMART",R.array.alfamart_xendit);
+        maps.put("MANDIRI",R.array.alfamart_xendit);
+        maps.put("BNI",R.array.alfamart_xendit);
+        maps.put("BRI",R.array.alfamart_xendit);
         return  maps;
     }
 }

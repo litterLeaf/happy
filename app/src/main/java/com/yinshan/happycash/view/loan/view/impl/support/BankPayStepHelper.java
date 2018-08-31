@@ -11,27 +11,27 @@ public class BankPayStepHelper {
             {
                     //alfamart
                     {
-//                        {-1,-1,R.array.alfmart_fas_bank},//faspay
-                        {1,2,3}//xendit
+                        {R.array.alfamart_xendit,-1,-1},//XENDIT
+//                        {1,2,3}//xendit
                     },
                     //mandiri
                     {
-//                        {1,2,3},//faspay
+                        {1,2,3},//XENDIT
                         {1,2,3}//xendit
                     },
                     //bni
                     {
-//                        {-1,R.array.bni_faspay_online,R.array.bni_fas_bank},//faspay
+                        {-1,R.array.alfamart_xendit,R.array.alfamart_xendit},//XENDIT
                         {1,2,3}//xendit
                     },
                     //bri
                     {
-//                        {1,2,3},//faspay
+                        {1,2,3},//XENDIT
                         {1,2,3}//xendit
                     },
                     //others
                     {
-//                        {1,2,3},//faspay
+                        {1,2,3},//XENDIT
                         {1,2,3}//xendit
                     }
             };
