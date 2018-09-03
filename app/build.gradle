@@ -39,6 +39,9 @@ android {
             }
         }
 
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -87,6 +90,8 @@ dependencies {
     implementation(name: 'livenessdetectorsdk-release', ext: 'aar')
     //环信
     implementation project(':kefu-easeui')
+    //社保SDK
+    implementation(name: 'android-shujumohe-sdk-beta-20180827-1081', ext: 'aar')
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:multidex:1.0.2'
@@ -139,4 +144,7 @@ dependencies {
 
     //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //社保SDK附加架包
+    compile 'com.alibaba:fastjson:1.1.58.android'
 }

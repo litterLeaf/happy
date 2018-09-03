@@ -11,6 +11,8 @@ import com.yinshan.happycash.config.AppNetConfig;
 import com.yinshan.happycash.config.AppSdkConfig;
 import com.yinshan.happycash.widget.logger.LogUtil;
 
+import cn.fraudmetrix.octopus.aspirit.main.OctopusManager;
+
 /**
  * Created by huxin on 2018/3/2.
  */
@@ -62,6 +64,8 @@ public class AppApplication extends MultiDexApplication{
 
         //AF初始化
         AppsFlyerLib.getInstance().startTracking(AppApplication.instance, "ynLJnCRQMzbG8ncHcBWnwh");
+
+        OctopusManager.getInstance().init(this,"rupiahplus_yn","19fcd231389146a2818af90bc22329ff");
     }
 
     public static AppApplication getInstance() {
