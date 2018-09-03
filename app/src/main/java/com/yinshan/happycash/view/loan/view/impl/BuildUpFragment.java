@@ -38,13 +38,9 @@ import butterknife.OnClick;
  */
 
 public class BuildUpFragment extends BaseFragment {
-    @BindView(R.id.reasonList)
     RecyclerView mReasonList;
-    @BindView(R.id.togoList)
     RecyclerView togoList;
-    @BindView(R.id.build_up_submit_btn)
     Button buildUpSubmitBtn;
-    @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
     List<BuildUpReasonModel> reasonList;
     List<BuildUpLineModel> lineList;
@@ -133,7 +129,10 @@ public class BuildUpFragment extends BaseFragment {
 
     @Override
     protected void initUIValue(View view) {
-
+        mReasonList = (RecyclerView)view.findViewById(R.id.reasonList);
+        togoList = (RecyclerView)view.findViewById(R.id.togoList);
+        buildUpSubmitBtn = (Button)view.findViewById(R.id.build_up_submit_btn);
+        refreshLayout = (RefreshLayout)view.findViewById(R.id.refreshLayout);
     }
 
     @OnClick(R.id.build_up_submit_btn)

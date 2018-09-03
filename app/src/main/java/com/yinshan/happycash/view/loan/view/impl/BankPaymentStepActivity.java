@@ -18,13 +18,9 @@ import butterknife.OnClick;
  */
 public class BankPaymentStepActivity extends BaseActivity {
 
-    @BindView(R.id.money)
     TextView mMoney;
-    @BindView(R.id.va)
     TextView mVa;
 
-
-    @BindView(R.id.listStep)
     ListView mListStep;
 
     BankPaymentAdapter mAdapter;
@@ -52,6 +48,7 @@ public class BankPaymentStepActivity extends BaseActivity {
 
 
     private void init(){
+        initUI();
         if(RepaymentFragment.depositRB!=null) {
             mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getPrice()));
             mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
@@ -61,6 +58,7 @@ public class BankPaymentStepActivity extends BaseActivity {
         mListStep.setAdapter(mAdapter);
         setListViewHeightBasedOnChildren(mListStep);
     }
+
 
     @OnClick({R.id.viewATM,R.id.viewOnline,R.id.viewManking})
     public void onClick(View view){
@@ -74,5 +72,11 @@ public class BankPaymentStepActivity extends BaseActivity {
             case R.id.viewManking:
                 break;
         }
+    }
+
+    private void initUI() {
+        mMoney = (TextView)findViewById(R.id.money);
+        mVa = (TextView)findViewById(R.id.va);
+        mListStep = (ListView)findViewById(R.id.listStep);
     }
 }

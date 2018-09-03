@@ -81,31 +81,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     String mMobile;
     String mInviteCode;
 
-    @BindView(R.id.mobileLayout)
     LinearLayout mMobileLayout;
-    @BindView(R.id.id_edittext_phone_number)
     RupiahEditText mEditMobile;
-    @BindView(R.id.login_edit1)
     SmsEditText mSmsCode1;
-    @BindView(R.id.login_edit2)
     SmsEditText mSmsCode2;
-    @BindView(R.id.login_edit3)
     SmsEditText mSmsCode3;
-    @BindView(R.id.login_edit4)
     SmsEditText mSmsCode4;
 
     //发送短信验证码按钮
-    @BindView(R.id.btnSendSms)
     Button mBtnSendSms;
     //登录按钮
-    @BindView(R.id.id_button_login)
     Button mBtnLogin;
 
-    @BindView(R.id.id_linearlayout_graphical_code)
     LinearLayout mViewCaptcha;
-    @BindView(R.id.id_imageview_code)
     ImageView mImageCaptcha;
-    @BindView(R.id.id_edittext_graphical_code)
     EditText mTextCaptcha;
     //图形验证码实际值
     String mSid;
@@ -133,12 +122,14 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     }
 
     private void init(){
+        initUI();
         mPresenter = new LoginPresenter(this);
         mPresenter.attachView(this);
         updateSendSmsState();
         updateLoginState();
         setFocusListener();
     }
+
 
     @Override
     protected void onDestroy() {
@@ -427,5 +418,20 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             mBtnSendSms.setText(millisUntilFinished / 1000 + "s");
             isShowTip = true;
         }
+    }
+
+    private void initUI() {
+        mMobileLayout = (LinearLayout)findViewById(R.id.mobileLayout);
+        mEditMobile = (RupiahEditText)findViewById(R.id.id_edittext_phone_number);
+        mSmsCode1 = (SmsEditText)findViewById(R.id.login_edit1);
+        mSmsCode2 = (SmsEditText)findViewById(R.id.login_edit2);
+        mSmsCode3 = (SmsEditText)findViewById(R.id.login_edit3);
+        mSmsCode4 = (SmsEditText)findViewById(R.id.login_edit4);
+
+        mBtnSendSms = (Button)findViewById(R.id.btnSendSms);
+        mBtnLogin = (Button)findViewById(R.id.id_button_login);
+        mViewCaptcha = (LinearLayout)findViewById(R.id.id_linearlayout_graphical_code);
+        mImageCaptcha = (ImageView)findViewById(R.id.id_imageview_code);
+        mTextCaptcha = (EditText)findViewById(R.id.id_edittext_graphical_code);
     }
 }

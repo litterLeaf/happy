@@ -40,39 +40,24 @@ import butterknife.OnClick;
  */
 public class ApplyFragment extends BaseFragment implements IApplyView{
 
-    @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
-    @BindView(R.id.progressView)
     View progressView;
-    @BindView(R.id.progressList)
     ListView progressList;
     ApplyAdapter mAdapter;
 
-    @BindView(R.id.textProgress)
     TextView mTextProgress;
-    @BindView(R.id.textMoney)
     TextView mTextMoney;
-    @BindView(R.id.textTime)
     TextView mTextTime;
 
-    @BindView(R.id.viewDown)
     RelativeLayout mViewDown;
-    @BindView(R.id.viewUp)
     RelativeLayout mViewUp;
-    @BindView(R.id.viewDesc)
     LinearLayout mViewDesc;
 
-    @BindView(R.id.createTime)
     TextView mCreateTime;
-    @BindView(R.id.ktp)
     TextView mKtp;
-    @BindView(R.id.submitFee)
     TextView mSubmitFee;
-    @BindView(R.id.returnPerPeriod)
     TextView mReturnPerPeriod;
-    @BindView(R.id.recipientBankName)
     TextView mRecipientBankName;
-    @BindView(R.id.recipientAccountNo)
     TextView mRecipientAccountNo;
 
     private List<BaseStatusLogsBean> statusLogs = new ArrayList<>();
@@ -103,7 +88,23 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
     @Override
     protected void initUIValue(View view) {
+        refreshLayout = (RefreshLayout)view.findViewById(R.id.refreshLayout);
+        progressView = (View)view.findViewById(R.id.progressView);
+        progressList = (ListView)view.findViewById(R.id.progressList);
 
+        mTextProgress = (TextView)view.findViewById(R.id.textProgress);
+        mTextMoney = (TextView)view.findViewById(R.id.textMoney);
+        mTextTime = (TextView)view.findViewById(R.id.textTime);
+        mViewDown = (RelativeLayout)view.findViewById(R.id.viewDown);
+        mViewUp = (RelativeLayout)view.findViewById(R.id.viewUp);
+        mViewDesc = (LinearLayout)view.findViewById(R.id.viewDesc);
+
+        mCreateTime = (TextView)view.findViewById(R.id.createTime);
+        mKtp = (TextView)view.findViewById(R.id.ktp);
+        mSubmitFee = (TextView)view.findViewById(R.id.submitFee);
+        mReturnPerPeriod = (TextView)view.findViewById(R.id.returnPerPeriod);
+        mRecipientBankName = (TextView)view.findViewById(R.id.recipientBankName);
+        mRecipientAccountNo = (TextView)view.findViewById(R.id.recipientAccountNo);
     }
 
     @Override
