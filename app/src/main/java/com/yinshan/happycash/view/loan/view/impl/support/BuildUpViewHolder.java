@@ -16,14 +16,14 @@ import butterknife.ButterKnife;
 
 public class BuildUpViewHolder extends RecyclerView.ViewHolder{
 
-    @BindView(R.id.tv_reason)
     TextView reason;
-    @BindView(R.id.tv_check_number)
     TextView checkDesc;
 
 
     public BuildUpViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this,itemView);
+        reason = (TextView)itemView.findViewById(R.id.tv_reason);
+        checkDesc = (TextView)itemView.findViewById(R.id.tv_check_number);
     }
 }

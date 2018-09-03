@@ -31,13 +31,9 @@ import butterknife.OnClick;
 
 public class MeFragment extends BaseFragment implements IGetPersonView{
 
-    @BindView(R.id.loginView)
     RelativeLayout mLoginView;
-    @BindView(R.id.infoView)
     LinearLayout mInfoView;
-    @BindView(R.id.userName)
     TextView mUserName;
-    @BindView(R.id.userMobile)
     TextView mUserMobile;
 
     GetPersonInfoPresenter mGetPersonPresenter;
@@ -51,7 +47,10 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
 
     @Override
     protected void initUIValue(View view) {
-
+        mLoginView = (RelativeLayout)view.findViewById(R.id.loginView);
+        mInfoView = (LinearLayout)view.findViewById(R.id.infoView);
+        mUserName = (TextView)view.findViewById(R.id.userName);
+        mUserMobile = (TextView)view.findViewById(R.id.userMobile);
     }
 
     public void resume(){

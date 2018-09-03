@@ -22,9 +22,7 @@ import butterknife.OnClick;
 
 public class SafeSettingActivity extends BaseSingleNoScrollActivity implements ISafeSettingView{
 
-    @BindView(R.id.name)
     TextView mName;
-    @BindView(R.id.phone)
     TextView mPhone;
 
     SafeSettingPresenter mPresenter;
@@ -41,6 +39,8 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
 
     @Override
     protected void secondInit() {
+        mName = (TextView)findViewById(R.id.name);
+        mPhone = (TextView)findViewById(R.id.phone);
         mPresenter = new SafeSettingPresenter(this,this);
         mName.setText(SPUtils.getInstance().getUsername());
         mPhone.setText(SPUtils.getInstance().getMobile());

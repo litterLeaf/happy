@@ -43,19 +43,13 @@ import butterknife.OnClick;
 
 public class RepaymentFragment extends BaseFragment implements ILoanDetailView,IRepaymentView{
 
-    @BindView(R.id.listView)
     ListView listView;
     RepaymentAdapter mAdapter;
 
-    @BindView(R.id.currentReturn)
     TextView mCurrentReturn;
-    @BindView(R.id.paymentDate)
     TextView mPaymentDate;
-    @BindView(R.id.money)
     TextView mMoney;
-    @BindView(R.id.tenor)
     TextView mTenor;
-    @BindView(R.id.titlePeriod)
     TextView mTitlePeriod;
 
     LoanDetailPresenter mDetailPresenter;
@@ -79,7 +73,12 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     @Override
     protected void initUIValue(View view) {
-
+        listView = (ListView)view.findViewById(R.id.listView);
+        mCurrentReturn = (TextView)view.findViewById(R.id.currentReturn);
+        mPaymentDate = (TextView)view.findViewById(R.id.paymentDate);
+        mMoney = (TextView)view.findViewById(R.id.money);
+        mTenor = (TextView)view.findViewById(R.id.tenor);
+        mTitlePeriod = (TextView)view.findViewById(R.id.titlePeriod);
     }
 
     @Override

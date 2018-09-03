@@ -27,7 +27,6 @@ import butterknife.BindView;
 
 public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetailView{
 
-    @BindView(R.id.listView)
     ListView mListView;
     LoanDetailAdapter mAdapter;
 
@@ -45,6 +44,7 @@ public class LoanDetailActivity extends BaseSingleActivity implements ILoanDetai
 
     @Override
     protected void secondInit() {
+        mListView = (ListView)findViewById(R.id.listView);
         mLowestBg.setBackgroundColor(getResources().getColor(R.color.app_yellow));
         mAdapter = new LoanDetailAdapter();
         mListView.setAdapter(mAdapter);

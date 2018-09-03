@@ -65,28 +65,19 @@ import butterknife.OnClick;
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
 
-    @BindView(R.id.id_textview_repayment_amount)
     TextView idTextviewRepaymentAmount;
     private final int subLength = 10;
 
-    @BindView(R.id.bt_period_1_unloan)
     Button choose1Period;
-    @BindView(R.id.bt_period_3_unloan)
     Button choose3Period;
 
-    @BindView(R.id.loan_before_bind_card)
     TextViewExpand beforeBindCard;
-    @BindView(R.id.loan_bind_card)
     TextViewExpand bindCard;
-    @BindView(R.id.loan_reason)
     TextViewExpand borrowReason;
 
-    @BindView(R.id.add)
     ImageView mAddButton;
-    @BindView(R.id.sub)
     ImageView mSubButton;
 
-    @BindView(R.id.everyPay)
     TextView mEveryPay;
 
     LoaningPresenter mPresenter;
@@ -120,7 +111,17 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
     @Override
     protected void initUIValue(View view) {
+        idTextviewRepaymentAmount = (TextView)view.findViewById(R.id.id_textview_repayment_amount);
+        choose1Period = (Button)view.findViewById(R.id.bt_period_1_unloan);
+        choose3Period = (Button)view.findViewById(R.id.bt_period_3_unloan);
 
+        beforeBindCard = (TextViewExpand)view.findViewById(R.id.loan_before_bind_card);
+        bindCard = (TextViewExpand)view.findViewById(R.id.loan_bind_card);
+        borrowReason = (TextViewExpand)view.findViewById(R.id.loan_reason);
+
+        mAddButton = (ImageView)view.findViewById(R.id.add);
+        mSubButton = (ImageView)view.findViewById(R.id.sub);
+        mEveryPay = (TextView)view.findViewById(R.id.everyPay);
     }
 
     @Override

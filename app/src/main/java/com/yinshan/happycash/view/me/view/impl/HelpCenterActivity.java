@@ -19,7 +19,6 @@ import butterknife.OnClick;
 
 public class HelpCenterActivity extends BaseSingleNoScrollActivity{
 
-    @BindView(R.id.listView)
     ListView mListView;
     HelpCenterAdapter mAdapter;
 
@@ -35,6 +34,7 @@ public class HelpCenterActivity extends BaseSingleNoScrollActivity{
 
     @Override
     protected void secondInit() {
+        mListView =(ListView)findViewById(R.id.listView);
         lowestBg.setBackgroundColor(getResources().getColor(R.color.app_white));
         mAdapter = new HelpCenterAdapter();
         mAdapter.addList("User seperti apa yang dapat mengajukan pinjaman?","HappyCash tidak membatasi pekerjaan, pendapatan, atau syarat lainnya. Selama umur anda sudah mencapai 21 tahun dan anda memiliki pendapatan dan nomor ponsel yang tetap, anda dapat mengajukan pinjaman kepada HappyCash.");

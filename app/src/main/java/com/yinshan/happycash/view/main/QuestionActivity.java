@@ -15,7 +15,7 @@ import butterknife.ButterKnife;
  */
 
 public class QuestionActivity extends BaseActivity {
-    @BindView(R.id.textView2)
+
     TextView textView2;
 
     @Override
@@ -35,7 +35,7 @@ public class QuestionActivity extends BaseActivity {
 
     @Override
     protected void secondInit() {
-
+        textView2 = (TextView)findViewById(R.id.textView2);
     }
 
     @Override
