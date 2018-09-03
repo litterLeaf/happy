@@ -47,4 +47,6 @@
 
     <color name="color_expiry_red">#F46262</color>
 
+    <color name="snackbar_bg">#fffcec</color>
+
 </resources>
