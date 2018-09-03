@@ -31,6 +31,7 @@ import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
 import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterString;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
 import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
@@ -140,8 +141,10 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         String msg = "成功";
         if(code == 0){//code为0表示成功，f⾮非0表示失败
 //只有code为0时taskid才会有值。msg+=taskId;
+            ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
         }else {
             msg = "失败："+code;
+            HappySnackBar.showSnackBar(confirm,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi",SPKeyUtils.SNACKBAR_TYPE_WORN);
         }
     }
     };
