@@ -147,6 +147,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
                 mSmsCode = getSmsCode();
                 mCaptcha = "";
                 mInviteCode = "";
+                showLoadingDialog();
                 mPresenter.signIn(mSmsCode,mSid,mTextCaptcha.getText().toString(),mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
                 break;
             case R.id.btnSendSms:
@@ -343,6 +344,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void signInSuccess(String mobile, LoginTokenResponse loginTokenResponse) {
+        dismissLoadingDialog();
         loginCount = 0;
         HappySnackBar.showSnackBar(mViewCaptcha, R.string.login_success, SPKeyUtils.SNACKBAR_TYPE_TIP);
         SPUtils.getInstance().setToken(loginTokenResponse.getToken());
@@ -352,6 +354,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void signInError(String message) {
+        dismissLoadingDialog();
         loginCount++;
         if(loginCount>=2){
             mViewCaptcha.setVisibility(View.VISIBLE);

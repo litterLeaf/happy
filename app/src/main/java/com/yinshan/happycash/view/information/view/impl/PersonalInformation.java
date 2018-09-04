@@ -136,19 +136,6 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         addEditListener();
     }
 
-    private OctopusTaskCallBack octopusTaskCallBack = new OctopusTaskCallBack() { @Override
-    public void onCallBack(int code, String taskId) {
-        String msg = "成功";
-        if(code == 0){//code为0表示成功，f⾮非0表示失败
-//只有code为0时taskid才会有值。msg+=taskId;
-            ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
-        }else {
-            msg = "失败："+code;
-            HappySnackBar.showSnackBar(confirm,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi",SPKeyUtils.SNACKBAR_TYPE_WORN);
-        }
-    }
-    };
-
     @OnClick({ R.id.ll_personal_gender, R.id.ll_personal_education, R.id.ll_personal_marital, R.id.ll_personal_children_number,
             R.id.ll_personal_residence_province, R.id.ll_personal_residence_city, R.id.ll_personal_residence_street, R.id.ll_personal_residence_area,
             R.id.ll_personal_duration_of_residence, R.id.rl_personal_confirm})
@@ -156,18 +143,6 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         switch (view.getId()) {
             case R.id.ll_personal_gender:
                 showGenderDialog();
-
-//                OctopusParam param = new OctopusParam();
-////                param.passbackarams=“*****”//选填;
-//                param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
-//
-//                OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
-//                OctopusManager.getInstance().setPrimaryColorResId(R.color.app_yellow);
-////                OctopusManager.getInstance().setTitleColorResId(R.color.app_yellow);
-////                OctopusManager.getInstance().setTitleSize(14);
-//                OctopusManager.getInstance().setShowWarnDialog(true);
-//                OctopusManager.getInstance().setStatusBarBg(R.color.app_yellow);
-//                OctopusManager.getInstance().getChannel(this,"105002",param,octopusTaskCallBack);
                 break;
             case R.id.ll_personal_education:
                 showEducationDialog();

@@ -16,19 +16,25 @@ import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.information.model.ProgressBean;
+import com.yinshan.happycash.view.information.presenter.BpjsPresenter;
 import com.yinshan.happycash.view.information.presenter.InformationPresenter;
 import com.yinshan.happycash.view.information.view.impl.ContactActivity;
 import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
+import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
 
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.fraudmetrix.octopus.aspirit.main.OctopusManager;
+import cn.fraudmetrix.octopus.aspirit.main.OctopusTaskCallBack;
 
 
 /**
@@ -54,7 +60,7 @@ import butterknife.Unbinder;
  *         on 2018/1/31
  */
 
-public class InformationFragment extends BaseFragment implements IInfoView{
+public class InformationFragment extends BaseFragment implements IInfoView,IBpjsView{
 
     ProfilProgressView mProgressView;
     TextView mProgressText;
@@ -72,6 +78,8 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     RelativeLayout mSubmit;
 
     InformationPresenter mPresenter;
+    BpjsPresenter mBpjsPresenter;
+
     private ProgressBean mProgressBean;
 
     private static final int REQUEST_PERSONAL     = 1100;
@@ -87,6 +95,8 @@ public class InformationFragment extends BaseFragment implements IInfoView{
         resetProgress();
 
         mPresenter = new InformationPresenter(getActivity(),this);
+        mBpjsPresenter = new BpjsPresenter(getActivity(),this);
+
         if(TokenManager.getInstance().hasLogin())
             mPresenter.getProgress();
 
@@ -103,6 +113,7 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
+//                doBpjsAction();
                 changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
                 break;
             case R.id.view_finish_person:
@@ -247,4 +258,41 @@ public class InformationFragment extends BaseFragment implements IInfoView{
 
         mSubmit = (RelativeLayout)view.findViewById(R.id.submit);
     }
+
+    private void doBpjsAction(){
+//        OctopusParam param = new OctopusParam();
+////                param.passbackarams=“*****”//选填;
+//        param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
+
+        OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
+        OctopusManager.getInstance().setPrimaryColorResId(R.color.app_yellow);
+//                OctopusManager.getInstance().setTitleColorResId(R.color.app_yellow);
+//                OctopusManager.getInstance().setTitleSize(14);
+        OctopusManager.getInstance().setShowWarnDialog(true);
+        OctopusManager.getInstance().setStatusBarBg(R.color.app_yellow);
+        OctopusManager.getInstance().getChannel(getActivity(),"105002",null,octopusTaskCallBack);
+    }
+
+    @Override
+    public void bpjsOk() {
+        ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
+    }
+
+    @Override
+    public void bpjsFail() {
+        HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
+    }
+
+    private OctopusTaskCallBack octopusTaskCallBack = new OctopusTaskCallBack() { @Override
+        public void onCallBack(int code, String taskId) {
+            String msg = "成功";
+            if(code == 0){//code为0表示成功，f⾮非0表示失败
+    //只有code为0时taskid才会有值。msg+=taskId;
+                mBpjsPresenter.initBpjs(taskId);
+            }else {
+                msg = "失败："+code;
+                HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
+            }
+        }
+    };
 }

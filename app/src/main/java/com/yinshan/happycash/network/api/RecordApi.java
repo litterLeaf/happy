@@ -101,6 +101,7 @@ public interface RecordApi {
     @GET("record/rating")
     Observable<RatingBean> getRatingInfo(@Header("X-AUTH-TOKEN") String token);
 
+    @FormUrlEncoded
     @PUT("record/bpjsInit")
     Observable<ResponseBody> initBpjs(@Header("X-AUTH-TOKEN") String token,@Field("thirdpartyTaskID") String taskID);
 }
