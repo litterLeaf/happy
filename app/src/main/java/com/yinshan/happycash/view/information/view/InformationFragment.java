@@ -33,6 +33,7 @@ import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.fraudmetrix.octopus.aspirit.bean.OctopusParam;
 import cn.fraudmetrix.octopus.aspirit.main.OctopusManager;
 import cn.fraudmetrix.octopus.aspirit.main.OctopusTaskCallBack;
 
@@ -113,8 +114,8 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.view_not_finish_person:
-//                doBpjsAction();
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
+                doBpjsAction();
+//                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
                 break;
             case R.id.view_finish_person:
                 changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
@@ -263,6 +264,8 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 //        OctopusParam param = new OctopusParam();
 ////                param.passbackarams=“*****”//选填;
 //        param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
+        OctopusParam param = new OctopusParam();
+        param.identityCode = "3273186312790002";//必填，作为唯⼀一标识关联多数据源数据;
 
         OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
         OctopusManager.getInstance().setPrimaryColorResId(R.color.app_yellow);
@@ -270,7 +273,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 //                OctopusManager.getInstance().setTitleSize(14);
         OctopusManager.getInstance().setShowWarnDialog(true);
         OctopusManager.getInstance().setStatusBarBg(R.color.app_yellow);
-        OctopusManager.getInstance().getChannel(getActivity(),"105002",null,octopusTaskCallBack);
+        OctopusManager.getInstance().getChannel(getActivity(),"105002",param,octopusTaskCallBack);
     }
 
     @Override

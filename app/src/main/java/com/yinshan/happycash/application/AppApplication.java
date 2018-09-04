@@ -65,7 +65,7 @@ public class AppApplication extends MultiDexApplication{
         //AF初始化
         AppsFlyerLib.getInstance().startTracking(AppApplication.instance, "ynLJnCRQMzbG8ncHcBWnwh");
 
-        OctopusManager.getInstance().init(this,"rupiahplus_yn","19fcd231389146a2818af90bc22329ff");
+        OctopusManager.getInstance().init(this,"rupiahp_hw_mohe","89e4461bb0034c53945afaf617b3624f");
     }
 
     public static AppApplication getInstance() {
