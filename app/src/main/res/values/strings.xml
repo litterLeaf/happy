@@ -576,5 +576,10 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     <string name="Overdue">Masa keterlambatan terakhir, segera bayar</string>
     <string name="bad_debt">Segera bayar, memasuki jalur hukum</string>
 
+    <string name="remaining_loan_principal">Sisa pokok pinjaman </string>
+    <string name="interest">Bunga</string>
+    <string name="penalty_interest">Penalti bunga</string>
+    <string name="total">Total</string>
+
 
 </resources>
