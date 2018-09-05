@@ -100,7 +100,7 @@
                 />
         </RelativeLayout>
         <RelativeLayout
-            android:id="@+id/viewManking"
+            android:id="@+id/viewBanking"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">

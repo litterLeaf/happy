@@ -492,18 +492,19 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
 
 
 
-
-
-
     <!-- string array  alfamart_xendit-->
     <string-array name="alfamart_xendit">
-        <item>Kunjungi Alfamart terdekat sebelum waktu tertera pada invoice berakhir.</item>
-        <item>Informasikan Kasir untuk melakukan membayar ke "XENDIT".</item>
-        <item>Apabila Kasir tidak mengenali "XENDIT", maka tunjukkanlah nama "XENDIT" kepada Kasir tersebut.</item>
-        <item>Beritahu atau tunjukkan kode pembayaran tertera di invoice kepada Kasir.</item>
-        <item>Lakukanlah pembayaran sesuai dengan jumlah yang tertera di invoice.</item>
-        <item>Terimalah tanda terima pembayaran dari Alfamart sebagai bukti pembayaran.</item>
-        <item>Selamat! Pembayaran sudah selesai.</item>
+        <item>Pastikan mengunakan Kode Pembayaran yang terbaru , karena kode pembayaran Alfamart akan berubah setiap 6 Jam dan waktu offline Alfamart adalah pukul 21:00 – 09:00.</item>
+        <item>Pergi ke Alfa Group (Alfamart, Alfamidi, Lawson).</item>
+        <item>Katakan kepada kasir anda ingin melakukan pembayaran transaksi online BLUEPAY DOKU, sebutkan jumlah tagihan (%1$s)  dan kode transaksi (%2$s) kepada kasir.</item>
+        <item>Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar.</item>
+        <item>Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya.</item>
+    </string-array>
+    <string-array name="alfamart_xendit_insert_str_index">
+        <item>2</item>
+    </string-array>
+    <string-array name="alfamart_xendit_insert_str">
+        <item>amount,virtual_account</item>
     </string-array>
 
     <!-- string array  mandiri_xendit-->
@@ -513,13 +514,25 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
         <item>Pilih menu “BAYAR/BELI”.</item>
         <item>Pilih menu “MULTI PAYMENT”.</item>
         <item>Ketik kode perusahaan, yaitu "88608" (Xendit 88608), tekan "BENAR".</item>
-        <item>Masukkan nomor Virtual Account.</item>
-        <item>Isi NOMINAL, kemudian tekan "BENAR".</item>
+        <item>Masukkan nomor Virtual Account(%1$s).</item>
+        <item>Isi NOMINAL（%1$s）, kemudian tekan "BENAR".</item>
         <item>Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, kemudian tekan "YA".</item>
         <item>Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran.</item>
         <item>Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank Mandiri.</item>
         <item>Transaksi Anda sudah selesai.</item>
     </string-array>
+    <string-array name="mandiri_xendit_atm_insert_str_index">
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+    <string-array name="mandiri_xendit_atm_insert_str">
+        <item>amount</item>
+        <item>virtual_account</item>
+    </string-array>
+
+
+
+
     <string-array name="mandiri_xendit_online">
         <item>Kunjungi website Mandiri Internet Banking: https://ibank.bankmandir i.co.id/retail3/.</item>
         <item>Login dengan memasukkan USER ID dan PIN.</item>
@@ -528,36 +541,207 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
         <item>Pilih "No Rekening Anda".</item>
         <item>Pilih Penyedia Jasa "Xendit 88608".</item>
         <item>Pilih "No Virtual Account".</item>
-        <item>Masukkan nomor Virtual Account anda.</item>
+        <item>8.Masukkan nomor Virtual Account anda（%1$s）.</item>
         <item>Masuk ke halaman konfirmasi 1.</item>
         <item>Apabila benar/sesuai, klik tombol tagihan TOTAL, kemudian klik "Lanjutkan".</item>
         <item>Masuk ke halaman konfirmasi 2.</item>
         <item>Masukkan Challenge Code yang dikirimkan ke Token Internet Banking Anda, kemudian klik "Kirim".</item>
         <item>Anda akan masuk ke halaman konfirmasi jika pembayaran telah selesai.</item>
     </string-array>
-    <string-array name="x">
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
-        <item>aa</item>
+    <string-array name="mandiri_xendit_online_insert_str_index">
+        <item>7</item>
+    </string-array>
+    <string-array name="mandiri_xendit_online_insert_str">
+        <item>virtual_account</item>
+    </string-array>
+
+    <string-array name="mandiri_xendit_bank">
+        <item>1.Log in Mobile Banking Mandiri Online
+(Install Mandiri Online by PT. Bank Mandiri (Persero Tbk.)
+dari App Store: https://itunes.apple.com/id/ap p/mandiri-online/id111731290 8?mt=8
+atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri.mandirionline&amp;hl=en).</item>
+        <item>2.Klik “Icon Menu” di sebelah kiri atas.</item>
+        <item>3.Pilih menu “Pembayaran”.</item>
+        <item>4.Pilih “Buat Pembayaran Baru”.</item>
+        <item>5.Pilih “Multi Payment”.</item>
+        <item>6.Pilih Penyedia Jasa “Xendit 88608”.</item>
+        <item>7.Pilih “No. Virtual”.</item>
+        <item>8.Masukkan no virtual account dengan kode（%1$s） perusahaan “88608” lalu pilih “Tambah Sebagai Nomor Baru”.</item>
+        <item>9.Masukkan “Nominal”（%1$s） lalu pilih “Konfirmasi”.</item>
+        <item>10.Pilih “Lanjut”.</item>
+        <item>11.Muncul tampilan konfirmasi pembayaran.</item>
+        <item>12.Scroll ke bawah di tampilan konfirmasi pembayaran lalu pilih “Konfirmasi”.</item>
+    </string-array>
+    <string-array name="mandiri_xendit_bank_insert_str_index">
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+    <string-array name="mandiri_xendit_bank_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
+    </string-array>
+
+    <string-array name="bni_xendit_atm">
+        <item>Pilih "Menu Lainnya".</item>
+        <item>Pilih "Transfer".</item>
+        <item>Pilih “TRANSAKSI LAINNYA”.</item>
+        <item>Pilih ke “ REKENING BNI”.</item>
+        <item>Masukkan nomor Virtual Account（%1$s） , lalu tekan “BENAR”.</item>
+        <item>Isi NOMINAL（%1$s）, kemudian tekan ”YA".</item>
+        <item>Konfirmasi transaksi telah selesai, tekan “TIDAK” untuk menyelesaikan transaksi.</item>
+    </string-array>
+    <string-array name="bni_xendit_atm_insert_str_index">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="bni_xendit_atm_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
+    </string-array>
+
+    <string-array name="bni_xendit_online">
+        <item>Pilih “ Transaksi”.</item>
+        <item>Pilih “INFO &amp; ADMINISTRASI TRANSFER”.</item>
+        <item>Pilih “ATUR REKENING TUJUAN”.</item>
+        <item>Tambah rekening tujuan lalu klik “OK”.</item>
+        <item>Isi data rekening（%1$s） lalu tekan “LANJUTKAN”.</item>
+        <item>Akan muncul detail konfirmasi, apabila sudah benar dan sesuai, masukkan 8 digit angka yang dihasilkan dari APPLI 2 pada token BNI anda lalu klik ”PROSES”.</item>
+        <item>Rekening tujuan berhasil ditambahkan.</item>
+        <item>Pilih “TRANSFER”.</item>
+        <item>Pilih “Transfer antar rek BNI”</item>
+        <item>Lengkapi semua data akun penerima, lalu klik “LANJUTKAN”.</item>
+        <item>Transaksi anda telah berhasil.</item>
+    </string-array>
+    <string-array name="bni_xendit_online_insert_str_index">
+        <item>4</item>
+    </string-array>
+    <string-array name="bni_xendit_online_insert_str">
+        <item>virtual_account</item>
+    </string-array>
+
+    <string-array name="bni_xendit_bank">
+        <item>Log in Mobile Banking.</item>
+        <item>Pilih menu “TRANSFER”.</item>
+        <item>Pilih “WITHIN BANK”.</item>
+        <item>Isi kolom “DEBIT ACCOUNT” kemudian klik menu “ TO ACCOUNT”.</item>
+        <item>Pilih menu ”AD HOC BENEFICIARY”.</item>
+        <item>Lengkapi datanya dengan mengisi: NICKNAME, NOMOR VIRTUAL ACCOUNT(%1$s), DAN BENEFICIARY EMAIL ADDRESS.</item>
+        <item>Konfirmasi akan muncul lalu klik “CONTINUE”.</item>
+        <item>Isi semua form yang ada setelah itu klik “CONTINUE”.</item>
+        <item>Detail konfirmasi muncul dengan meminta password transaksi.</item>
+        <item>Setelah dilengkapi, klik “CONTINUE”.</item>
+        <item>Transaksi anda telah berhasil.</item>
+    </string-array>
+    <string-array name="bni_xendit_bank_insert_str_index">
+        <item>5</item>
+    </string-array>
+    <string-array name="bni_xendit_bank_insert_str">
+        <item>virtual_account</item>
+    </string-array>
+
+    <string-array name="bri_xendit_atm">
+        <item>Pilih menu Transaksi Lain.</item>
+        <item>Pilih menu Lainnya.</item>
+        <item>Pilih menu Pembayaran.</item>
+        <item>Pilih menu Lainnya.</item>
+        <item>Pilih menu BRIVA.</item>
+        <item>Masukkan Nomor BRI Virtual Account (%1$s), lalu tekan“Benar”.</item>
+        <item>Konfirmasi pembayaran, tekan “Ya”bila sesuai.</item>
+    </string-array>
+    <string-array name="bri_xendit_atm_insert_str_index">
+        <item>5</item>
+    </string-array>
+    <string-array name="bri_xendit_atm_insert_str">
+        <item>virtual_account</item>
+    </string-array>
+
+    <string-array name="bri_xendit_online">
+        <item>Masukan User ID dan Password.</item>
+        <item>Pilih menu Pembayaran.</item>
+        <item>Pilih menu BRIVA.</item>
+        <item>Pilih rekening Pembayar.</item>
+        <item>Masukkan Nomor Virtual Account BRI Anda (%1$s).</item>
+        <item>Masukkan nominal（%1$s），yang akan dibayar.</item>
+        <item>Masukkan password dan Mtoken anda.</item>
+    </string-array>
+    <string-array name="bri_xendit_online_insert_str_index">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="bri_xendit_online_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
+    </string-array>
+
+    <string-array name="bri_xendit_bank">
+        <item>Log in ke Mobile Banking.</item>
+        <item>Pilih menu Pembayaran.</item>
+        <item>Pilih menu BRIVA.</item>
+        <item>Masukkan nomor BRI Virtual Account（%1$s） dan jumlah（%2$s）pembayaran.</item>
+        <item>Masukkan nomor PIN anda.</item>
+        <item>Tekan “OK” untuk  melanjutkan transaksi.</item>
+        <item>Transaksi berhasil.</item>
+        <item>SMS konfirmasi akan masuk ke nomor telepon anda.</item>
+    </string-array>
+    <string-array name="bri_xendit_bank_insert_str_index">
+        <item>3</item>
+    </string-array>
+    <string-array name="bri_xendit_bank_insert_str">
+        <item>virtual_account,amount</item>
+    </string-array>
+
+    <string-array name="others_xendit_atm">
+        <item>Pilih Menu lain.</item>
+        <item>Pilih Transfer.</item>
+        <item>Pilih dari rekening tabungan.</item>
+        <item>Pilih ke rek. Bank lain.</item>
+        <item>Masukkan kode bank dilanjutkan dengan nomor Virtual Account anda (%1$s).</item>
+        <item>Input Nominal（%1$s） yang ditagihkan sebagai Nominal Transfer.</item>
+        <item>Selesai, transaksi berhasil.</item>
+    </string-array>
+    <string-array name="others_xendit_atm_insert_str_index">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="others_xendit_atm_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
+    </string-array>
+
+    <string-array name="others_xendit_online">
+        <item>Masukan User ID dan Password.</item>
+        <item>Pilih Transfer.</item>
+        <item>Pilih ke rek. Bank lain.</item>
+        <item>Pilih bank tujuan.</item>
+        <item>Masukkan nomor Virtual Account anda (%1$s).</item>
+        <item>Input Nominal（%1$s）yang ditagihkan sebagai Nominal Transfer.</item>
+        <item>Selesai, transaksi berhasil.</item>
+    </string-array>
+    <string-array name="others_xendit_online_insert_str_index">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="others_xendit_online_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
+    </string-array>
+
+    <string-array name="others_xendit_bank">
+        <item>Masukan User ID dan Password.</item>
+        <item>Pilih Transfer.</item>
+        <item>Pilih ke rek. Bank lain.</item>
+        <item>Pilih bank tujuan.</item>
+        <item>Masukkan nomor Virtual Account anda (%1$s).</item>
+        <item>Input Nominal（%1$s） yang ditagihkan sebagai Nominal Transfer.</item>
+        <item>Selesai, transaksi berhasil.</item>
+    </string-array>
+    <string-array name="others_xendit_bank_insert_str_index">
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+    <string-array name="others_xendit_bank_insert_str">
+        <item>virtual_account</item>
+        <item>amount</item>
     </string-array>
 
 

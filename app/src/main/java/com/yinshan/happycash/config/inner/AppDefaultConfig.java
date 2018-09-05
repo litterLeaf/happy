@@ -5,4 +5,6 @@ package com.yinshan.happycash.config.inner;
  */
 
 public class AppDefaultConfig {
+
+    public static int DEFAULT_INDEX = -1;
 }
