@@ -6,6 +6,9 @@
 
     <string name="title_personal_infor">Informasi Pribadi</string>
 
+    <!--环信  chatClient -->
+    <string name="show_not_login_yet">Belum Login</string>
+
     <!--build up -->
     <string name="text_build_up_tip">Data anda telah dikembalikan karena alasan di bawah ini, silahkan perbaiki data
         berikut dan ajukan kembali</string>
