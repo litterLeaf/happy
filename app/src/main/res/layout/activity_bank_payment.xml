@@ -30,7 +30,7 @@
     </RelativeLayout>
     
     <LinearLayout
-        android:id="@+id/view"
+        android:id="@+id/viewChoose"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:orientation="horizontal"
@@ -139,11 +139,12 @@
         android:layout_height="0.5dp"
         android:background="@color/white"/>
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -248,16 +249,16 @@
             <ListView
                 android:id="@+id/listStep"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="@dimen/bank_payment_left"
                 android:layout_marginRight="@dimen/bank_payment_left"
-                android:background="@null"
-                android:listSelector="@null"
                 android:dividerHeight="0dp"
                 android:divider="@null"
+                android:scrollbars="none"
+                android:background="@null"
+                android:listSelector="@android:color/transparent"
                 />
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>

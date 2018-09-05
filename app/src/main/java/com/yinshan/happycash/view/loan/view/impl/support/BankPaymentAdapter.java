@@ -22,6 +22,11 @@ public class BankPaymentAdapter extends BaseAdapter{
     List<String> mList;
     Context mContext;
 
+    public BankPaymentAdapter(Context context){
+        mContext = context;
+        mList = new ArrayList<>();
+    }
+
     public BankPaymentAdapter(Context context,int layout){
         mContext = context;
         mList = new ArrayList<>();

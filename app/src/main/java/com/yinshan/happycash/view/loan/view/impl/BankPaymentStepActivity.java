@@ -2,8 +2,10 @@ package com.yinshan.happycash.view.loan.view.impl;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -29,6 +31,8 @@ public class BankPaymentStepActivity extends BaseActivity {
     TextView mMoney;
     TextView mVa;
 
+    LinearLayout mViewChoose;
+    ScrollView mScrollView;
     RelativeLayout mViewATM;
     RelativeLayout mViewOnline;
     RelativeLayout mViewBank;
@@ -166,6 +170,13 @@ public class BankPaymentStepActivity extends BaseActivity {
         init();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setListViewHeightBasedOnChildren(mListStep);
+        mScrollView.invalidate();
+    }
+
     private void init(){
         initUI();
         if(RepaymentFragment.depositRB!=null) {
@@ -176,21 +187,51 @@ public class BankPaymentStepActivity extends BaseActivity {
             getIndexs = null;
             if(channelIndex!=-1&&methodIndex!=-1){
                 getIndexs = STEP_INDEX[methodIndex][channelIndex];
-//                if(getIndexs[]!= AppDefaultConfig.DEFAULT_INDEX){
-//
-//                }
+                boolean isShow = false;
+                int showCount = 0;
+                if(getIndexs[REPAYMENT_ATM]== AppDefaultConfig.DEFAULT_INDEX){
+                    mViewATM.setVisibility(View.GONE);
+                }else{
+                    showCount++;
+                    mAdapter.setNewArray(getIndexs[REPAYMENT_ATM]);
+                    isShow = true;
+                }
+                if(getIndexs[REPAYMENT_ONLINE]==AppDefaultConfig.DEFAULT_INDEX){
+                    mViewOnline.setVisibility(View.GONE);
+                }else{
+                    showCount++;
+                    if(!isShow) {
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE]);
+                        isShow = true;
+                    }
+                }
+                if(getIndexs[REPAYMENT_BANK]==AppDefaultConfig.DEFAULT_INDEX){
+                    mViewBank.setVisibility(View.GONE);
+                }else{
+                    showCount++;
+                    if(!isShow) {
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_BANK]);
+                        isShow = true;
+                    }
+                }
+                if(showCount==1)
+                    mViewChoose.setVisibility(View.GONE);
+                mAdapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren(mListStep);
             }
         }
 
-        mAdapter = new BankPaymentAdapter(this, PaymentMethodManager.getPaymentStepsLayout(RepaymentFragment.depositRB));
+
         mListStep.setAdapter(mAdapter);
-        //setListViewHeightBasedOnChildren(mListStep);
     }
 
     private void initUI() {
         mMoney = (TextView)findViewById(R.id.money);
         mVa = (TextView)findViewById(R.id.va);
         mListStep = (ListView)findViewById(R.id.listStep);
+        mAdapter = new BankPaymentAdapter(this);
+        mViewChoose = (LinearLayout)findViewById(R.id.viewChoose);
+        mScrollView = (ScrollView)findViewById(R.id.scrollView);
         mViewATM = (RelativeLayout)findViewById(R.id.viewATM);
         mViewOnline = (RelativeLayout)findViewById(R.id.viewOnline);
         mViewBank = (RelativeLayout)findViewById(R.id.viewBanking);
@@ -198,7 +239,29 @@ public class BankPaymentStepActivity extends BaseActivity {
         mViewATM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ATM]);
+                mAdapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.invalidate();
 
+            }
+        });
+        mViewOnline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE]);
+                mAdapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.invalidate();
+            }
+        });
+        mViewBank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdapter.setNewArray(getIndexs[REPAYMENT_BANK]);
+                mAdapter.notifyDataSetChanged();
+                setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.invalidate();
             }
         });
     }
