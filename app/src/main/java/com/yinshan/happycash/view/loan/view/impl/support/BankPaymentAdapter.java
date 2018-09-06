@@ -12,6 +12,7 @@ import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.utils.StringUtils;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
+import com.yinshan.happycash.widget.custom.CustomTextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,7 +85,7 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder = new ViewHolder();
             viewHolder.topLine = (View)view.findViewById(R.id.topLine);
             viewHolder.bottomLine = (View)view.findViewById(R.id.bottomLine);
-            viewHolder.text = (TextView)view.findViewById(R.id.text);
+            viewHolder.text = (CustomTextView)view.findViewById(R.id.text);
             view.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)view.getTag();
@@ -134,6 +135,6 @@ public class BankPaymentAdapter extends BaseAdapter{
     class ViewHolder{
         View bottomLine;
         View topLine;
-        TextView text;
+        CustomTextView text;
     }
 }

@@ -179,6 +179,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setListViewHeightBasedOnChildren(mListStep);
+        mScrollView.scrollTo(0,0);
         mScrollView.invalidate();
     }
 
