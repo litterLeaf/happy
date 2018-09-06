@@ -179,7 +179,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setListViewHeightBasedOnChildren(mListStep);
-        mScrollView.scrollTo(0,0);
+        mScrollView.smoothScrollTo(0,0);
         mScrollView.invalidate();
     }
 
@@ -272,6 +272,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ATM], getIndexs[REPAYMENT_ATM]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.smoothScrollTo(0,0);
                 mScrollView.invalidate();
             }
         });
@@ -282,6 +283,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.smoothScrollTo(0,0);
                 mScrollView.invalidate();
             }
         });
@@ -292,6 +294,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 mAdapter.setNewArray(getIndexs[REPAYMENT_BANK], getInserStrIndexIndexs[REPAYMENT_BANK], getIndexs[REPAYMENT_BANK]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
+                mScrollView.smoothScrollTo(0,0);
                 mScrollView.invalidate();
             }
         });
