@@ -53,7 +53,7 @@ public class BankPaymentActivity extends BaseActivity{
     private void init(){
         initUI();
         if(RepaymentFragment.depositRB!=null) {
-            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getPrice()));
+            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getAmount()));
             mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
         }
 

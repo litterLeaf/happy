@@ -29,6 +29,18 @@ import butterknife.OnClick;
  */
 public class BankPaymentStepActivity extends BaseActivity {
 
+    TextView mTitle;
+    RelativeLayout mBackBtn;
+    TextView mClickATM;
+    TextView mNormalATM;
+    View mLineATM;
+    TextView mClickOnline;
+    TextView mNormalOnline;
+    View mLineOnline;
+    TextView mClickBank;
+    TextView mNormalBank;
+    View mLineBank;
+
     TextView mMoney;
     TextView mVa;
 
@@ -181,7 +193,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     private void init(){
         initUI();
         if(RepaymentFragment.depositRB!=null) {
-            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getPrice()));
+            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getAmount()));
             mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
             int channelIndex = getChannelIndex(RepaymentFragment.depositRB.getDepositChannel());
             int methodIndex = getMethodIndex(RepaymentFragment.depositRB.getDepositMethod());
@@ -222,11 +234,23 @@ public class BankPaymentStepActivity extends BaseActivity {
             }
         }
 
-
         mListStep.setAdapter(mAdapter);
     }
 
     private void initUI() {
+        mBackBtn = (RelativeLayout)findViewById(R.id.btnBack);
+        mTitle = (TextView)findViewById(R.id.title);
+
+        mClickATM = (TextView)findViewById(R.id.clickATM);
+        mNormalATM = (TextView)findViewById(R.id.normalATM);
+        mLineATM = (View) findViewById(R.id.lineATM);
+        mClickOnline = (TextView)findViewById(R.id.clickOnline);
+        mNormalOnline = (TextView)findViewById(R.id.normalOnline);
+        mLineOnline = (View) findViewById(R.id.lineOnline);
+        mClickBank = (TextView)findViewById(R.id.clickBanking);
+        mNormalBank = (TextView)findViewById(R.id.normalBanking);
+        mLineBank = (View) findViewById(R.id.lineManking);
+
         mMoney = (TextView)findViewById(R.id.money);
         mVa = (TextView)findViewById(R.id.va);
         mListStep = (NoScrollListView)findViewById(R.id.listStep);
@@ -237,19 +261,27 @@ public class BankPaymentStepActivity extends BaseActivity {
         mViewOnline = (RelativeLayout)findViewById(R.id.viewOnline);
         mViewBank = (RelativeLayout)findViewById(R.id.viewBanking);
 
+        mBackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        mTitle.setText("Pembayaran "+RepaymentFragment.depositRB.getDepositMethod());
         mViewATM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickIndex(0);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ATM]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
                 mScrollView.invalidate();
-
             }
         });
         mViewOnline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickIndex(1);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
@@ -259,6 +291,7 @@ public class BankPaymentStepActivity extends BaseActivity {
         mViewBank.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clickIndex(2);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_BANK]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
@@ -285,5 +318,17 @@ public class BankPaymentStepActivity extends BaseActivity {
         else if(method.equals(AppDataConfig.METHOD_OTHERS))
             return METHOD_OTHERS_INDEX;
         return -1;
+    }
+
+    private void clickIndex(int index){
+        mClickATM.setVisibility(index==0?View.VISIBLE:View.GONE);
+        mNormalATM.setVisibility(index!=0?View.VISIBLE:View.GONE);
+        mLineATM.setVisibility(index==0?View.VISIBLE:View.GONE);
+        mClickOnline.setVisibility(index==1?View.VISIBLE:View.GONE);
+        mNormalOnline.setVisibility(index!=1?View.VISIBLE:View.GONE);
+        mLineOnline.setVisibility(index==1?View.VISIBLE:View.GONE);
+        mClickBank.setVisibility(index==2?View.VISIBLE:View.GONE);
+        mNormalBank.setVisibility(index!=2?View.VISIBLE:View.GONE);
+        mLineBank.setVisibility(index==2?View.VISIBLE:View.GONE);
     }
 }
