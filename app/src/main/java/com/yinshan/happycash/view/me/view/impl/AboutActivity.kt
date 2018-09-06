@@ -4,7 +4,7 @@ import android.support.v4.content.ContextCompat
 
 import com.yinshan.happycash.R
 import com.yinshan.happycash.framework.BaseSingleActivity
-
+import kotlinx.android.synthetic.main.activity_single_base.*
 
 /**
  * Created by huxin on 2018/3/20.
@@ -21,6 +21,6 @@ class AboutActivity : BaseSingleActivity() {
     }
 
     override fun secondInit() {
-        lowestBg.setBackgroundColor(ContextCompat.getColor(this, R.color.app_yellow))
+        lowest_bg.setBackgroundColor(ContextCompat.getColor(this, R.color.app_yellow))
     }
 }

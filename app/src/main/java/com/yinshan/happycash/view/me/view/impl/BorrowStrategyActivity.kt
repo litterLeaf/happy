@@ -5,6 +5,7 @@ import android.view.View
 
 import com.yinshan.happycash.R
 import com.yinshan.happycash.framework.BaseSingleActivity
+import kotlinx.android.synthetic.main.activity_single_base.*
 
 /**
  * Created by huxin on 2018/3/30.
@@ -21,7 +22,7 @@ class BorrowStrategyActivity : BaseSingleActivity(), View.OnClickListener {
     }
 
     override fun secondInit() {
-        lowestBg.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
+        lowest_bg.setBackgroundColor(ContextCompat.getColor(this, R.color.white))
     }
 
     override fun onClick(v: View) {
