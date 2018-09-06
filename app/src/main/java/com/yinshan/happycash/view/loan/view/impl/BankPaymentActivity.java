@@ -53,7 +53,7 @@ public class BankPaymentActivity extends BaseActivity{
     private void init(){
         initUI();
         if(RepaymentFragment.depositRB!=null) {
-            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getPrice()));
+            mMoney.setText(String.valueOf(RepaymentFragment.depositRB.getAmount()));
             mVa.setText(RepaymentFragment.depositRB.getPaymentCode());
         }
 
@@ -62,7 +62,7 @@ public class BankPaymentActivity extends BaseActivity{
         setListViewHeightBasedOnChildren(mListStep);
     }
 
-    @OnClick({R.id.viewATM,R.id.viewOnline,R.id.viewManking})
+    @OnClick({R.id.viewATM,R.id.viewOnline,R.id.viewBanking})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.viewATM:
@@ -71,7 +71,7 @@ public class BankPaymentActivity extends BaseActivity{
                 break;
             case R.id.viewOnline:
                 break;
-            case R.id.viewManking:
+            case R.id.viewBanking:
                 break;
         }
     }

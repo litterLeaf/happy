@@ -147,6 +147,10 @@
             android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".view.loan.view.impl.BankPaymentStepActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
 
         <activity android:name=".view.main.QuestionActivity"
             android:screenOrientation="portrait"
