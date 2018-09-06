@@ -40,12 +40,34 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     TextView mContact1;
     TextView mHintPhone1;
     TextView mPhone1;
+
     TextView mHintRelative2;
     TextView mRelative2;
     TextView mHintContact2;
     TextView mContact2;
     TextView mHintPhone2;
     TextView mPhone2;
+
+    TextView mHintRelative3;
+    TextView mRelative3;
+    TextView mHintContact3;
+    TextView mContact3;
+    TextView mHintPhone3;
+    TextView mPhone3;
+
+    TextView mHintRelative4;
+    TextView mRelative4;
+    TextView mHintContact4;
+    TextView mContact4;
+    TextView mHintPhone4;
+    TextView mPhone4;
+
+    TextView mHintRelative5;
+    TextView mRelative5;
+    TextView mHintContact5;
+    TextView mContact5;
+    TextView mHintPhone5;
+    TextView mPhone5;
     RelativeLayout mBtnSubmit;
 
     ContactPresenter mPresenter;
@@ -68,7 +90,9 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mPresenter.getContactInfo();
     }
 
-    @OnClick({R.id.btnRelative1,R.id.btnContact1,R.id.btnRelative2,R.id.btnContact2,R.id.btnSubmit})
+    @OnClick({R.id.btnRelative1,R.id.btnContact1,R.id.btnRelative2,R.id.btnContact2,
+            R.id.btnRelative3,R.id.btnContact3,R.id.btnRelative4,R.id.btnContact4,
+            R.id.btnRelative5,R.id.btnContact5, R.id.btnSubmit})
     public void onViewClicked(View view){
         switch (view.getId()){
             case R.id.btnRelative1:
@@ -83,12 +107,6 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                     }
                 };
                 listDialog.show();
-//                DisplayMetrics dm = getResources().getDisplayMetrics();
-//                int displayWidth = dm.widthPixels;
-//                android.view.WindowManager.LayoutParams lp = listDialog.getWindow().getAttributes(); //获取对话框当前的参数值
-//                lp.width = displayWidth;
-//                listDialog.getWindow().setAttributes(lp);
-//                listDialog.getWindow().setGravity(Gravity.CENTER);
                 break;
             case R.id.btnContact1:
                 getContactInfo(0);
@@ -109,11 +127,66 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             case R.id.btnContact2:
                 getContactInfo(1);
                 break;
+            case R.id.btnRelative3:
+                List<String> relativeList3 = new ArrayList<>();
+                relativeList3.add(getResources().getString(RelationStatus.PARENT.getShowString()));
+                relativeList3.add(getResources().getString(RelationStatus.SPOUSE.getShowString()));
+                relativeList3.add(getResources().getString(RelationStatus.SIBLING.getShowString()));
+                ListDialog listDialog3 = new ListDialog(this,R.style.DialogTheme,relativeList3){
+                    @Override
+                    public void clickIndex(int index) {
+                        showRelative3(relativeList3.get(index));
+                    }
+                };
+                listDialog3.show();
+                break;
+            case R.id.btnContact3:
+                getContactInfo(2);
+                break;
+            case R.id.btnRelative4:
+                List<String> relativeList4 = new ArrayList<>();
+                relativeList4.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
+                relativeList4.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
+                relativeList4.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
+                ListDialog listDialog4 = new ListDialog(this,R.style.DialogTheme,relativeList4){
+                    @Override
+                    public void clickIndex(int index) {
+                        showRelative4(relativeList4.get(index));
+                    }
+                };
+                listDialog4.show();
+                break;
+            case R.id.btnContact4:
+                getContactInfo(3);
+                break;
+            case R.id.btnRelative5:
+                List<String> relativeList5 = new ArrayList<>();
+                relativeList5.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
+                relativeList5.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
+                relativeList5.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
+                ListDialog listDialog5 = new ListDialog(this,R.style.DialogTheme,relativeList5){
+                    @Override
+                    public void clickIndex(int index) {
+                        showRelative5(relativeList5.get(index));
+                    }
+                };
+                listDialog5.show();
+                break;
+            case R.id.btnContact5:
+                getContactInfo(4);
+                break;
+
             case R.id.btnSubmit:
                 String firstRelation = showRelationStatus(mRelative1.getText().toString());
                 String secondRelation = showRelationStatus(mRelative2.getText().toString());
+                String thirdRelation = showRelationStatus(mRelative3.getText().toString());
+                String fourthRelation = showRelationStatus(mRelative4.getText().toString());
+                String fifthRelation = showRelationStatus(mRelative5.getText().toString());
                 mPresenter.submitContactInfo(mContact1.getText().toString(),mPhone1.getText().toString(),firstRelation,
-                        mContact2.getText().toString(),mPhone2.getText().toString(),secondRelation
+                        mContact2.getText().toString(),mPhone2.getText().toString(),secondRelation,
+                        mContact3.getText().toString(),mPhone3.getText().toString(),thirdRelation,
+                        mContact4.getText().toString(),mPhone4.getText().toString(),fourthRelation,
+                        mContact5.getText().toString(),mPhone5.getText().toString(),fifthRelation
                         );
                 break;
         }
@@ -136,6 +209,28 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                 showRelative2(contactBean.getRelation());
             }
             showContact2(contactBean.getName(),contactBean.getMobile());
+        }
+
+        if(list.size()>=3){
+            ContactBean contactBean = list.get(2);
+            if(!TextUtils.isEmpty(contactBean.getRelation())){
+                showRelative3(contactBean.getRelation());
+            }
+            showContact3(contactBean.getName(),contactBean.getMobile());
+        }
+        if(list.size()>=4){
+            ContactBean contactBean = list.get(3);
+            if(!TextUtils.isEmpty(contactBean.getRelation())){
+                showRelative4(contactBean.getRelation());
+            }
+            showContact4(contactBean.getName(),contactBean.getMobile());
+        }
+        if(list.size()>=5){
+            ContactBean contactBean = list.get(4);
+            if(!TextUtils.isEmpty(contactBean.getRelation())){
+                showRelative5(contactBean.getRelation());
+            }
+            showContact5(contactBean.getName(),contactBean.getMobile());
         }
     }
 
@@ -161,6 +256,12 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                             showContact1(name,phone);
                         }else if(requestCode==1){
                             showContact2(name,phone);
+                        } else if(requestCode==2){
+                            showContact3(name,phone);
+                        } else if(requestCode==3){
+                            showContact4(name,phone);
+                        } else if(requestCode==4){
+                            showContact5(name,phone);
                         }
                     }
                 }finally {
@@ -196,6 +297,24 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mRelative2.setText(str);
         isCanSubmit();
     }
+    private void showRelative3(String str){
+        mHintRelative3.setVisibility(View.INVISIBLE);
+        mRelative3.setVisibility(View.VISIBLE);
+        mRelative3.setText(str);
+        isCanSubmit();
+    }
+    private void showRelative4(String str){
+        mHintRelative4.setVisibility(View.INVISIBLE);
+        mRelative4.setVisibility(View.VISIBLE);
+        mRelative4.setText(str);
+        isCanSubmit();
+    }
+    private void showRelative5(String str){
+        mHintRelative5.setVisibility(View.INVISIBLE);
+        mRelative5.setVisibility(View.VISIBLE);
+        mRelative5.setText(str);
+        isCanSubmit();
+    }
 
     private void showContact1(String contact,String mobile){
         if(!TextUtils.isEmpty(contact)){
@@ -225,9 +344,54 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         isCanSubmit();
     }
 
+    private void showContact3(String contact,String mobile){
+        if(!TextUtils.isEmpty(contact)){
+            mHintContact3.setVisibility(View.INVISIBLE);
+            mContact3.setVisibility(View.VISIBLE);
+            mContact3.setText(contact);
+        }
+        if(!TextUtils.isEmpty(mobile)){
+            mHintPhone3.setVisibility(View.INVISIBLE);
+            mPhone3.setVisibility(View.VISIBLE);
+            mPhone3.setText(mobile);
+        }
+        isCanSubmit();
+    }
+    private void showContact4(String contact,String mobile){
+        if(!TextUtils.isEmpty(contact)){
+            mHintContact4.setVisibility(View.INVISIBLE);
+            mContact4.setVisibility(View.VISIBLE);
+            mContact4.setText(contact);
+        }
+        if(!TextUtils.isEmpty(mobile)){
+            mHintPhone4.setVisibility(View.INVISIBLE);
+            mPhone4.setVisibility(View.VISIBLE);
+            mPhone4.setText(mobile);
+        }
+        isCanSubmit();
+    }
+    private void showContact5(String contact,String mobile){
+        if(!TextUtils.isEmpty(contact)){
+            mHintContact5.setVisibility(View.INVISIBLE);
+            mContact5.setVisibility(View.VISIBLE);
+            mContact5.setText(contact);
+        }
+        if(!TextUtils.isEmpty(mobile)){
+            mHintPhone5.setVisibility(View.INVISIBLE);
+            mPhone5.setVisibility(View.VISIBLE);
+            mPhone5.setText(mobile);
+        }
+        isCanSubmit();
+    }
+
+
     private void isCanSubmit(){
         if(!TextUtils.isEmpty(mRelative1.getText().toString())&&!TextUtils.isEmpty(mContact1.getText().toString())&&!TextUtils.isEmpty(mPhone1.getText().toString())
-                &&!TextUtils.isEmpty(mRelative2.getText().toString())&&!TextUtils.isEmpty(mContact2.getText().toString())&&!TextUtils.isEmpty(mPhone2.getText().toString())){
+                &&!TextUtils.isEmpty(mRelative2.getText().toString())&&!TextUtils.isEmpty(mContact2.getText().toString())&&!TextUtils.isEmpty(mPhone2.getText().toString())
+                &&!TextUtils.isEmpty(mRelative3.getText().toString())&&!TextUtils.isEmpty(mContact3.getText().toString())&&!TextUtils.isEmpty(mPhone3.getText().toString())
+                &&!TextUtils.isEmpty(mRelative4.getText().toString())&&!TextUtils.isEmpty(mContact4.getText().toString())&&!TextUtils.isEmpty(mPhone4.getText().toString())
+                &&!TextUtils.isEmpty(mRelative5.getText().toString())&&!TextUtils.isEmpty(mContact5.getText().toString())&&!TextUtils.isEmpty(mPhone5.getText().toString())
+                ){
             mBtnSubmit.setClickable(true);
             mBtnSubmit.setAlpha(0.8f);
         } else {
@@ -286,17 +450,37 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mHintRelative1 = (TextView)findViewById(R.id.hintRelative1);
         mRelative1 = (TextView)findViewById(R.id.textRelative1);
         mHintContact1 = (TextView)findViewById(R.id.hintContact1);
-
         mContact1 = (TextView)findViewById(R.id.textContact1);
         mHintPhone1 = (TextView)findViewById(R.id.hintPhone1);
         mPhone1 = (TextView)findViewById(R.id.textPhone1);
+
         mHintRelative2 = (TextView)findViewById(R.id.hintRelative2);
         mRelative2 = (TextView)findViewById(R.id.textRelative2);
-
         mHintContact2 = (TextView)findViewById(R.id.hintContact2);
         mContact2 = (TextView)findViewById(R.id.textContact2);
         mHintPhone2 = (TextView)findViewById(R.id.hintPhone2);
         mPhone2 = (TextView)findViewById(R.id.textPhone2);
+
+        mHintRelative3 = (TextView)findViewById(R.id.hintRelative3);
+        mRelative3 = (TextView)findViewById(R.id.textRelative3);
+        mHintContact3 = (TextView)findViewById(R.id.hintContact3);
+        mContact3 = (TextView)findViewById(R.id.textContact3);
+        mHintPhone3 = (TextView)findViewById(R.id.hintPhone3);
+        mPhone3 = (TextView)findViewById(R.id.textPhone3);
+
+        mHintRelative4 = (TextView)findViewById(R.id.hintRelative4);
+        mRelative4 = (TextView)findViewById(R.id.textRelative4);
+        mHintContact4 = (TextView)findViewById(R.id.hintContact4);
+        mContact4 = (TextView)findViewById(R.id.textContact4);
+        mHintPhone4 = (TextView)findViewById(R.id.hintPhone4);
+        mPhone4 = (TextView)findViewById(R.id.textPhone4);
+
+        mHintRelative5 = (TextView)findViewById(R.id.hintRelative5);
+        mRelative5 = (TextView)findViewById(R.id.textRelative5);
+        mHintContact5 = (TextView)findViewById(R.id.hintContact5);
+        mContact5 = (TextView)findViewById(R.id.textContact5);
+        mHintPhone5 = (TextView)findViewById(R.id.hintPhone5);
+        mPhone5 = (TextView)findViewById(R.id.textPhone5);
         mBtnSubmit = (RelativeLayout)findViewById(R.id.btnSubmit);
     }
 }
