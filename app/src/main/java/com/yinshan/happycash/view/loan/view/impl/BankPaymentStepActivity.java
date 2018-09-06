@@ -15,6 +15,7 @@ import com.yinshan.happycash.config.inner.AppInnerConfig;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
+import com.yinshan.happycash.widget.custom.NoScrollListView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,7 +38,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     RelativeLayout mViewOnline;
     RelativeLayout mViewBank;
 
-    ListView mListStep;
+    NoScrollListView mListStep;
 
     BankPaymentAdapter mAdapter;
 
@@ -228,7 +229,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     private void initUI() {
         mMoney = (TextView)findViewById(R.id.money);
         mVa = (TextView)findViewById(R.id.va);
-        mListStep = (ListView)findViewById(R.id.listStep);
+        mListStep = (NoScrollListView)findViewById(R.id.listStep);
         mAdapter = new BankPaymentAdapter(this);
         mViewChoose = (LinearLayout)findViewById(R.id.viewChoose);
         mScrollView = (ScrollView)findViewById(R.id.scrollView);

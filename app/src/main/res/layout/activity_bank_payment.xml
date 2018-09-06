@@ -246,7 +246,7 @@
                 android:textSize="17sp"
                 android:text="@string/payment_step"
                 />
-            <ListView
+            <com.yinshan.happycash.widget.custom.NoScrollListView
                 android:id="@+id/listStep"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
