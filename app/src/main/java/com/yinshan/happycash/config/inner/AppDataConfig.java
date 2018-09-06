@@ -14,4 +14,8 @@ public interface AppDataConfig {
     public static final String METHOD_OTHERS = "OTHERS";
 
 
+
+    public static final String DATA_AMOUNT = "amount";
+    public static final String DATA_VIRTUAL_ACCOUNT = "virtual_account";
+
 }

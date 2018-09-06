@@ -3,7 +3,6 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -11,18 +10,9 @@ import android.widget.TextView;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.config.inner.AppDefaultConfig;
-import com.yinshan.happycash.config.inner.AppInnerConfig;
 import com.yinshan.happycash.framework.BaseActivity;
-import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
 import com.yinshan.happycash.widget.custom.NoScrollListView;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/8/31.
@@ -162,6 +152,8 @@ public class BankPaymentStepActivity extends BaseActivity {
 
     //Map<Integer,List<String>> ALFMART_INSERT_STR = new HashMap<>()
     int[] getIndexs;
+    int[] getInserStrIndexIndexs;
+    int[] getInsertStrIndexs;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -198,15 +190,19 @@ public class BankPaymentStepActivity extends BaseActivity {
             int channelIndex = getChannelIndex(RepaymentFragment.depositRB.getDepositChannel());
             int methodIndex = getMethodIndex(RepaymentFragment.depositRB.getDepositMethod());
             getIndexs = null;
+            getInserStrIndexIndexs = null;
+            getInsertStrIndexs = null;
             if(channelIndex!=-1&&methodIndex!=-1){
                 getIndexs = STEP_INDEX[methodIndex][channelIndex];
+                getInserStrIndexIndexs = STEP_INSERT_STR_INDEX_INDEX[methodIndex][channelIndex];
+                getInsertStrIndexs = STEP_INSERT_STR_INDEX[methodIndex][channelIndex];
                 boolean isShow = false;
                 int showCount = 0;
                 if(getIndexs[REPAYMENT_ATM]== AppDefaultConfig.DEFAULT_INDEX){
                     mViewATM.setVisibility(View.GONE);
                 }else{
                     showCount++;
-                    mAdapter.setNewArray(getIndexs[REPAYMENT_ATM]);
+                    mAdapter.setNewArray(getIndexs[REPAYMENT_ATM],getInserStrIndexIndexs[REPAYMENT_ATM],getInsertStrIndexs[REPAYMENT_ATM]);
                     isShow = true;
                 }
                 if(getIndexs[REPAYMENT_ONLINE]==AppDefaultConfig.DEFAULT_INDEX){
@@ -214,7 +210,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 }else{
                     showCount++;
                     if(!isShow) {
-                        mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE]);
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
                         isShow = true;
                     }
                 }
@@ -223,7 +219,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 }else{
                     showCount++;
                     if(!isShow) {
-                        mAdapter.setNewArray(getIndexs[REPAYMENT_BANK]);
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
                         isShow = true;
                     }
                 }
@@ -272,7 +268,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(0);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_ATM]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ATM], getIndexs[REPAYMENT_ATM]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
                 mScrollView.invalidate();
@@ -282,7 +278,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(1);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
                 mScrollView.invalidate();
@@ -292,7 +288,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(2);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_BANK]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_BANK], getInserStrIndexIndexs[REPAYMENT_BANK], getIndexs[REPAYMENT_BANK]);
                 mAdapter.notifyDataSetChanged();
                 setListViewHeightBasedOnChildren(mListStep);
                 mScrollView.invalidate();
