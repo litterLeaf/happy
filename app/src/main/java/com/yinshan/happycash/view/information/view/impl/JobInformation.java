@@ -48,43 +48,24 @@ import butterknife.OnClick;
  */
 
 public class JobInformation extends BaseSingleActivity implements IJobView{
-    @BindView(R.id.tv_job_work_type)
     TextView jobWorkType;
-    @BindView(R.id.ll_job_work_type)
     LinearLayout llJobWorkType;
-    @BindView(R.id.tv_job_monthly_income)
     TextView jobMonthlyIncome;
-    @BindView(R.id.ll_job_monthly_income)
     LinearLayout llJobMonthlyIncome;
-    @BindView(R.id.tv_job_company_name)
     BandaEditText jobCompanyName;
-    @BindView(R.id.ll_job_company_name)
     LinearLayout llJobCompanyName;
-    @BindView(R.id.tv_job_company_province)
     TextView jobCompanyProvince;
-    @BindView(R.id.ll_job_company_provice)
     LinearLayout llCompanyProvice;
-    @BindView(R.id.tv_job_company_city)
     TextView jobCompanyCity;
-    @BindView(R.id.ll_job_company_city)
     LinearLayout llJobCompanyCity;
-    @BindView(R.id.tv_job_company_street)
     TextView jobCompanyStreet;
-    @BindView(R.id.ll_job_company_street)
     LinearLayout llJobCompanyStreet;
-    @BindView(R.id.tv_job_company_in_the_village)
     TextView jobCompanyInTheVillage;
-    @BindView(R.id.ll_job_company_in_the_village)
     LinearLayout llJobCompanyInTheVillage;
-    @BindView(R.id.et_job_company_address)
     BandaEditText jobCompanyAddress;
-    @BindView(R.id.ll_job_company_address)
     LinearLayout llJobCompanyAddress;
-    @BindView(R.id.bdlv_job_info_telpre)
     DropListView mbdlv;
-    @BindView(R.id.id_edittext_job_info_tel)
     BandaEditText edittextJobInfoTel;
-    @BindView(R.id.rl_job_confirm)
     RelativeLayout jobConfirm;
 
     JobPresenter mPresenter;
@@ -110,6 +91,7 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
 
     @Override
     protected void secondInit() {
+        initUI();
         mPresenter = new JobPresenter(this,this);
         mPresenter.getJobInfo();
 
@@ -496,5 +478,30 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
             jobConfirm.setClickable(false);
             jobConfirm.setAlpha(0.3f);
         }
+    }
+
+    private void initUI(){
+        jobWorkType = (TextView)findViewById(R.id.tv_job_work_type);
+        llJobWorkType = (LinearLayout)findViewById(R.id.ll_job_work_type);
+        jobMonthlyIncome = (TextView)findViewById(R.id.tv_job_monthly_income);
+        llJobMonthlyIncome = (LinearLayout)findViewById(R.id.ll_job_monthly_income);
+
+        jobCompanyName = (BandaEditText)findViewById(R.id.tv_job_company_name);
+        llJobCompanyName = (LinearLayout)findViewById(R.id.ll_job_company_name);
+        jobCompanyProvince = (TextView)findViewById(R.id.tv_job_company_province);
+        llCompanyProvice = (LinearLayout)findViewById(R.id.ll_job_company_provice);
+        jobCompanyCity = (TextView)findViewById(R.id.tv_job_company_city);
+
+        llJobCompanyCity = (LinearLayout)findViewById(R.id.ll_job_company_city);
+        jobCompanyStreet = (TextView)findViewById(R.id.tv_job_company_street);
+        llJobCompanyStreet = (LinearLayout)findViewById(R.id.ll_job_company_street);
+        jobCompanyInTheVillage = (TextView)findViewById(R.id.tv_job_company_in_the_village);
+        llJobCompanyInTheVillage = (LinearLayout)findViewById(R.id.ll_job_company_in_the_village);
+
+        jobCompanyAddress = (BandaEditText)findViewById(R.id.et_job_company_address);
+        llJobCompanyAddress = (LinearLayout)findViewById(R.id.ll_job_company_address);
+        mbdlv = (DropListView)findViewById(R.id.bdlv_job_info_telpre);
+        edittextJobInfoTel = (BandaEditText)findViewById(R.id.id_edittext_job_info_tel);
+        jobConfirm = (RelativeLayout)findViewById(R.id.rl_job_confirm);
     }
 }

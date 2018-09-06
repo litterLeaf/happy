@@ -33,6 +33,7 @@ public class RepaymentPresenter {
     }
 
     public void getRepaymentList(){
+        mView.showLoadingDialog();
         mApi.getDepostMethods(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<DepositMethodsBean>(new SoftReference(mContext)) {
@@ -40,12 +41,14 @@ public class RepaymentPresenter {
                     @Override
                     public void onNext(DepositMethodsBean bean) {
                         super.onNext(bean);
+                        mView.dismissLoadingDialog();
                         mView.getRepaymentListOk(bean);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                         mView.getRepaymentListFail(ex);
                     }
                 });

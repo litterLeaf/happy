@@ -12,7 +12,7 @@ public class LoanDetailBean {
     private String cardNo;
     private String createTime;
     private String credentialNo;
-    private String dueDate;
+//    private String dueDate;
     private String issueDate;
     private long loanAppId;
     private String paidOffDate;
@@ -55,13 +55,13 @@ public class LoanDetailBean {
         this.credentialNo = credentialNo;
     }
 
-    public String getDueDate() {
-        return dueDate;
-    }
+//    public String getDueDate() {
+//        return dueDate;
+//    }
 
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
+//    public void setDueDate(String dueDate) {
+//        this.dueDate = dueDate;
+//    }
 
     public String getIssueDate() {
         return issueDate;

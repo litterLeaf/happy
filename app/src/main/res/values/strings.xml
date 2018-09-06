@@ -49,8 +49,8 @@
 
 
     <!-- loaning的String-->
-    <string name="textview_loaning_text1">Melalui analisa mahadate,jumlah maksimum pinjama anda(Rp)</string>
-    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(hulan)</string>
+    <string name="textview_loaning_text1">Melalui analisa mahadata, jumlah maksimal pinjaman Anda (Rp)</string>
+    <string name="textview_loaning_text2">Silahkan pilih tenor cicilan(bulan)</string>
     <string name="textview_loaning_bind_card">Rekening Penerima</string>
     <string name="textview_loaning_borrowing_reason">Tujuan Pinjaman</string>
 
@@ -72,7 +72,7 @@
     <string name="submit">Kirim</string>
     <string name="ktp">KTP</string>
     <string name="login_logout">Login/Daftar</string>
-    <string name="textview_online_QA">Livechat</string>
+    <string name="textview_online_QA">Layanan Online</string>
     <string name="name">Nama</string>
     <string name="name_of_beneficiary_bank">Nama Bank Penerima</string>
     <string name="rule_number_receiver">Nomor Rek. Penerima</string>
@@ -81,16 +81,16 @@
     <string name="my_loan">Pinjaman Saya</string>
     <string name="safe_setting">Pengaturan Keamanan</string>
     <string name="current_repay">Pembayaran saat ini</string>
-    <string name="textview_loan">Prijam</string>
+    <string name="textview_loan">Pinjam</string>
     <string name="textview_certification">Profil</string>
     <string name="help_center">Pusat Bantuan</string>
     <string name="status">Status</string>
     <string name="textview_me">Saya</string>
     <string name="text_next">NEXT</string>
     <string name="no_order">No.Order</string>
-    <string name="edittext_phone_number_hint">Silahkan masukkan no ponsel anda</string>
+    <string name="edittext_phone_number_hint">Silakan masukkan no ponsel anda</string>
     <string name="button_obtain_code">Dapatkan\n Kode</string>
-    <string name="about_happy_cash">Tentang Happy Cash</string>
+    <string name="about_happy_cash">Tentang HappyCash</string>
     <string name="telephone">Telepon</string>
     <string name="disbursement_date">Tanggal Pencairan</string>
     <string name="due_date">Tanggal Jatuh Tempo</string>
@@ -136,6 +136,8 @@
     <string name="returns_per_period">Pengembalian per periode</string>
     <string name="recipient_bank_name">Nama Bank Penerima</string>
     <string name="recipient_account_no">No Rekening Penerima</string>
+    <string name="had_upload_these_photo_please_re_photo">Kedua gambar ini telah diunggah, silakan rekam ulang</string>
+    <string name="every_pay">Jumlah pembayaran per bulan Rp</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>
@@ -241,7 +243,9 @@
     <string name="button_bind_card">Tambah</string>
     <string name="unloan_button"> Pinjam Sekarang</string>
     <string name="with_ktp_photo">Foto dengan seragam kerja atau bersama tanda pengenal kerja</string>
-    <string name="with_job_photo">Foto halaman depan KTP</string>
+    <string name="with_person_photo">Foto halaman depan KTP</string>
+    <string name="with_job_photo">foto dengan seragam kerja atau bersama tanda pengenal pekerja</string>
+
     <string name="photo_should_clear">Foto harus jelas</string>
     <string name="must_self_photo_and_clear">Harus foto anda sendiri, pastikan foto jelas dan bisa dibaca</string>
 
@@ -272,24 +276,24 @@
     <string name="CAMERA_INVALID">Kamera tidak dapat digunakan, mohon ke pengaturan dan buka izin akses kamera</string>
     <string name="RECORD_AUTO_INVALID">Tidak dapat menggunakan fungsi perekaman, silahkan ke izin ini ditetapkan untuk membuka</string>
     <string name="STORAGE_INVALID">Tidak dapat menyimpan gambar, silahkan pergi ke Settings di hak penyimpanan terbuka</string>
-    <string name="permission_lzin_new">Silahkan ke [Pengaturan]-[Aplikasi]-[RupiahPlus]-[Izin] Untuk mengotorisasi %s dan melanjutkan pengajuan Anda.</string>
+    <string name="permission_lzin_new">Silahkan ke [Pengaturan]-[Aplikasi]-[HappyCash]-[Izin] Untuk mengotorisasi %s dan melanjutkan pengajuan Anda.</string>
     <string name="open_gps"> Pastikan anda telah membuka izin untuk mengakses GPS</string>
 
 
     <string name="text_cancel">Batal</string>
 
     <string name="please_make_original_data_submit_can_done_after_all_data_is_completed">Mohon pastikan data asli,pengajuan bisa dilakukan setelah seluruh data dilengkapi</string>
-    <string name="help_1">Download Happy Cash di Google Play atau Android Market lainnya</string>
+    <string name="help_1">Download HappyCash di Google Play atau Android Market lainnya</string>
     <string name="help_2">Di halaman utama app, pilih jumlah pinjaman dan tenor pinjaman</string>
     <string name="help_3">Luangkan 5 menit untuk memverifikasi informasi anda</string>
     <string name="help_4">Tunggu review pertama, mohon pastikan ponsel anda aktif</string>
     <string name="help_5">Tunggu pencairan, pinjaman akan tiba dalam 5-10 menit</string>
-    <string name="about_desc">Happy Cash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
-Happy Cash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
-Pinjaman angsuran Happy Cash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
+    <string name="about_desc">HappyCash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
+HappyCash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
+Pinjaman angsuran HappyCash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
 Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
-Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
-    <string name="hy_not_call_your_relative_please_write_cool">Happy Cash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
+HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
+    <string name="hy_not_call_your_relative_please_write_cool">HappyCash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
 
     <string-array name="bankCardName1">
         <item>BCA</item>
@@ -450,6 +454,9 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
     <string name="login_success">Login Berhasil！</string>
 
 
+    <string name="please_input_full_ktp_info">Silakan lengkapi informasi KTP！</string>
+
+
     <string name="request_camera">Jika tidak membuka akses kamera, pinjaman anda tidak bisa diajukan!</string>
     <string name="request_space">Mohon berikan akses untuk berkas penyimpanan anda agar app bisa berjalan dengan lancar</string>
 
@@ -475,7 +482,7 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
         Mohon menunggu.</string>
     <string name="process_status_firstview_title">Proses Penilaian</string>
 
-    <string name="process_status_preview_content">Data Anda telah kami terima. RupiahPlus sedang memverifikasi data Anda menggunakan model
+    <string name="process_status_preview_content">Data Anda telah kami terima. HappyCash sedang memverifikasi data Anda menggunakan model
         analisa risiko maha data.</string>
     <string name="process_status_preview_title">Verifikasi Data</string>
     <string name="process_point_tip">Dalam analisa,telah selesai</string>
@@ -491,670 +498,91 @@ Happy Cash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan I
 
 
 
-    <!-- string array  other_bank_new_atm-->
-    <string-array name="fas_indomaret">
-        <item>Pergi ke Gerai Indomaret terdekat</item>
-        <item>Pastikan kode pembayaran Anda masih valid, kode pembayaran Anda akan berlaku selama 24 jam sejak pertama kali Anda dapatkan.</item>
-        <item>Katakan kepada kasir Anda ingin melakukan pembayaran tagihan RUPIAHPLUS, sebutikan kode
-         pembayaran (%1$s) dan jumlah tagihan (%2$s) kepada kasir.</item>
-        <item>Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar.</item>
-        <item>Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya.</item>
-        <item>Simpan bukti pembayaran Anda sewaktu-waktu diperlukan jika terjadi kendala transaksi</item>
+    <!-- string array  alfamart_xendit-->
+    <string-array name="alfamart_xendit">
+        <item>Kunjungi Alfamart terdekat sebelum waktu tertera pada invoice berakhir.</item>
+        <item>Informasikan Kasir untuk melakukan membayar ke "XENDIT".</item>
+        <item>Apabila Kasir tidak mengenali "XENDIT", maka tunjukkanlah nama "XENDIT" kepada Kasir tersebut.</item>
+        <item>Beritahu atau tunjukkan kode pembayaran tertera di invoice kepada Kasir.</item>
+        <item>Lakukanlah pembayaran sesuai dengan jumlah yang tertera di invoice.</item>
+        <item>Terimalah tanda terima pembayaran dari Alfamart sebagai bukti pembayaran.</item>
+        <item>Selamat! Pembayaran sudah selesai.</item>
+    </string-array>
+
+    <!-- string array  mandiri_xendit-->
+    <string-array name="mandiri_xendit_atm">
+        <item>Masukkan kartu ATM dan pilih "Bahasa Indonesia".</item>
+        <item>Ketik nomor PIN dan tekan BENAR.</item>
+        <item>Pilih menu “BAYAR/BELI”.</item>
+        <item>Pilih menu “MULTI PAYMENT”.</item>
+        <item>Ketik kode perusahaan, yaitu "88608" (Xendit 88608), tekan "BENAR".</item>
+        <item>Masukkan nomor Virtual Account.</item>
+        <item>Isi NOMINAL, kemudian tekan "BENAR".</item>
+        <item>Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, kemudian tekan "YA".</item>
+        <item>Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran.</item>
+        <item>Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank Mandiri.</item>
+        <item>Transaksi Anda sudah selesai.</item>
+    </string-array>
+    <string-array name="mandiri_xendit_online">
+        <item>Kunjungi website Mandiri Internet Banking: https://ibank.bankmandir i.co.id/retail3/.</item>
+        <item>Login dengan memasukkan USER ID dan PIN.</item>
+        <item>Pilih "Pembayaran".</item>
+        <item>Pilih "Multi Payment".</item>
+        <item>Pilih "No Rekening Anda".</item>
+        <item>Pilih Penyedia Jasa "Xendit 88608".</item>
+        <item>Pilih "No Virtual Account".</item>
+        <item>Masukkan nomor Virtual Account anda.</item>
+        <item>Masuk ke halaman konfirmasi 1.</item>
+        <item>Apabila benar/sesuai, klik tombol tagihan TOTAL, kemudian klik "Lanjutkan".</item>
+        <item>Masuk ke halaman konfirmasi 2.</item>
+        <item>Masukkan Challenge Code yang dikirimkan ke Token Internet Banking Anda, kemudian klik "Kirim".</item>
+        <item>Anda akan masuk ke halaman konfirmasi jika pembayaran telah selesai.</item>
+    </string-array>
+    <string-array name="x">
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
+        <item>aa</item>
     </string-array>
 
 
+    <string name="rollover">Pinjaman telah diperpanjang</string>
+    <string name="FIRST_REVIEW"> Sedang dianalisa, mohon tunggu</string>
+    <string name="Approved">Disetujui, menunggu pencairan</string>
+    <string name="Rejected">Ditolak oleh sistem</string>
+    <string name="Closed">Ditutup oleh sistem</string>
+    <string name="Withdrawn">Anda telah membatalkan aplikasi</string>
+    <string name="Ready_to_issue">Menunggu Pencairan Dana</string>
+    <string name="Issuing">Menunggu Pencairan Dana</string>
+    <string name="Current">Pencairan berhasil, pinjaman aktif</string>
+    <string name="Issue_Failed">Pencairan gagal</string>
+    <string name="Paid_Off">Pinjaman lunas, terima kasih</string>
+    <string name="Grace_Period">Masa keterlambatan, segera bayar</string>
+    <string name="Overdue">Masa keterlambatan terakhir, segera bayar</string>
+    <string name="bad_debt">Segera bayar, memasuki jalur hukum</string>
 
-
-    <!-- faspay danamon atm -->
-    <string-array name="fas_danamon_atm">
-        <item>Masukkan kartu ATM</item>
-        <item>Kemudian pilih BAHASA INDONESIA</item>
-        <item>Ketik nomor PIN kartu ATM, kemudian tekan ENTER</item>
-        <item>Pilih menu “PEMBAYARAN” > “Lainnya”</item>
-        <item>Pilih menu “Virtual Account”</item>
-        <item>Masukkan 16 digit nomor Virtual Account (virtual account number) Anda/</item>
-        <item>Periksa jumlah tagihan dan konfirmasi pembayaran.</item>
-    </string-array>
-
-    <!-- faspay  permata atm -->
-    <string-array name="fas_permata_atm">
-        <item>Masukkan kartu ATM</item>
-        <item>Kemudian pilih BAHASA INDONESIA</item>
-        <item>Ketik nomor PIN kartu ATM, kemudian tekan ENTER</item>
-        <item>Pilih “Transaksi Lainnya”</item>
-        <item>Pilih menu “Pembayaran” > “Pembayaran Lainnya”</item>
-        <item>Pilih menu “Virtual Account”</item>
-        <item>Lalu masukan Nomor Virtual Account Anda (%1$s), kemudian tekan BENAR</item>
-        <item>Pilih rekening yang menjadi sumber dana yang akan didebet, lalu tekan “YA” untuk konfirmasi transaksi</item>
-        <item>Bukti Pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank</item>
-    </string-array>
-
-    <!-- faspay  permata  online-->
-    <string-array name="fas_permata_online">
-        <item>Login ke Permata Net https://new.permatanet.com</item>
-        <item>Pilih “Pembayaran Tagihan” > “Virtual Account”</item>
-        <item>Masukkan nomor Virtual Account Anda (%1$s)</item>
-        <item>Masukkan nominal (%1$s) yang akan dibayar</item>
-        <item>Muncul Konfirmasi pembayaran</item>
-        <item>Masukkan otentikasi transaksi/token</item>
-        <item>Transaksi selesai</item>
-    </string-array>
-
-    <!-- faspay  permata mbank -->
-    <string-array name="fas_permata_mbank">
-        <item>Buka aplikasi PermataMobile Internet (Android/iPhone)</item>
-        <item><![CDATA[Masukkan User ID & Password Anda]]></item>
-        <item>Pilih “Pembayaran Tagihan” > “Virtual Account”</item>
-        <item>Masukkan nomor Virtual Account Anda (%1$s)</item>
-        <item>Masukkan nominal (%1$s) yang akan dibayar</item>
-        <item>Muncul Konfirmasi pembayaran</item>
-        <item>Masukkan otentikasi transaksi/token</item>
-        <item>Transaksi selesai</item>
-    </string-array>
-
-    <!-- faspay  maybank  atm-->
-    <string-array name="fas_maybank_atm">
-        <item>Masukkan kartu ATM</item>
-        <item>Kemudian pilih BAHASA INDONESIA</item>
-        <item>Ketik nomor PIN kartu ATM, kemudian tekan ENTER</item>
-        <item>Pilih “PEMBAYARAN/TOP UP PULSA” atau “TRANSFER”</item>
-        <item>Pilih menu Virtual Account</item>
-        <item>Masukkan nomor Virtual Account (%1$s) yang tertera pada halaman Konfirmasi</item>
-        <item>Pilih “YA” untuk menyetujui pembayaran tersebut.</item>
-    </string-array>
-
-    <!-- faspay  maybank  online-->
-    <string-array name="fas_maybank_online">
-        <item>Login ke Maybank Internet Banking dengan alamat https://m2u.maybank.co.id/</item>
-        <item>Pilih menu “Rekening dan Transaksi”</item>
-        <item>Kemudian pilih “Maybank Virtual Account”</item>
-        <item>Masukkan nomor rekening dengan nomor Virtual Account (%1$s)</item>
-        <item>Masukkan jumlah pembayaran (total of bill) pada halaman konfirmasi</item>
-        <item>Masukkan SMS Token (TAC) dan klik “Setuju”</item>
-    </string-array>
-
-    <string-array name="pay_in_alfamart">
-        <item>Pastikan mengunakan Kode Pembayaran yang terbaru , karena kode pembayaran Alfamart akan berubah setiap 6 Jam dan waktu offline Alfamart adalah pukul 21:00 – 09:00</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="pay_in_alfamart0">
-   Pastikan mengunakan Kode Pembayaran yang terbaru , karena kode pembayaran Alfamart akan berubah setiap 6 Jam dan waktu offline Alfamart adalah pukul 21:00 – 09:00
-   </string>
-    <string name="pay_in_alfamart1">
-     Pergi ke Alfa Group (Alfamart, Alfamidi, Lawson,\n DAN+DAN)
-    </string>
-    <string name="pay_in_alfamart2">
-       Katakan kepada kasir anda ingin melakukan pembayaran transaksi online BLUEPAY DOKU, sebutkan jumlah tagihan (%2$s)  dan kode transaksi (%1$s) kepada kasir
-    </string>
-    <string name="pay_in_alfamart3">
-       Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar
-    </string>
-    <string name="pay_in_alfamart4">
-       Nama yang tertera adalah “BluePay”
-    </string>
-    <string name="pay_in_alfamart5">
-       Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya
-    </string>
-
-    <!-- FasPay-->
-    <string-array name="fas_pay_in_alfamart">
-        <item>Pergi ke Alfa Group (Alfamart, Alfamidi, AlfaExpress, Lawson).</item>
-        <item>Pastikan kode pembayaran Anda masih valid, kode pembayaran Anda akan berlaku selama 24 jam sejak pertama kali Anda dapatkan.</item>
-        <item>Katakan kepada kasir Anda ingin melakukan pembayaran transaksi online pembayaran Faspay, kemudian sebutkan RupiahPlus, sebutkan kode transaksi (%1$s)
-        dan jumlah tagihan (%2$s )  kepada kasir.</item>
-        <item>Kasir akan melakukan konfirmasi dan menyebutkan nominal yang harus dibayar.</item>
-        <item>Berikan pembayaran kepada kasir dan dapatkan struk pembayarannya.</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-
-    <!--BCA-->
-    <string-array name="bca_atm">
-        <item>Silahkan melakukan pembayaran sebelum pukul 22:00 untuk menghndari keterlambatan</item>
-        <item>Masukkan Kartu ATM BCA Anda</item>
-        <item>Masukkan PIN </item>
-        <item>Pilih “Transaksi Lainnya”</item>
-        <item>Pilih “Transfer” > “ Ke BCA Virtual Account”</item>
-        <item>Masukkan nomor virtual account (%1$s) yang Anda terima, kemudian pilih “BENAR”</item>
-        <item>Pastikan data virtual account Anda benar, kemudian masukkan nominal, yang perlu Anda bayarkan (%1$s ), kemudian pilih “BENAR” </item>
-        <item>Pastikan semua data di layar sudah benar dan tekan “YA“</item>
-    </string-array>
-
-    <string-array name="bca_virtual_account_mobile_banking">
-        <item>Dianjurkan pembayaran diterima sebelum pukul 22:00 guna menghindari bank offline</item>
-        <item>Buka Aplikasi BCA Mobile</item>
-        <item>Pilih “m-BCA”  >  “m-Transfer” >  “BCA Virtual Account”</item>
-        <item>Masukkan nomor virtual account ( %1$s ) , lalu pilih “OK”</item>
-        <item>Masukkan PIN Anda untuk meng-otorisasi transaksi</item>
-        <item>Transaksi selesai</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-
-    <!-- Fas  bca   online-->
-    <string-array name="fas_bca_online">
-        <item>Login ke KlikBCA Individual</item>
-        <item>Pilih “Transfer”</item>
-        <item>Pilih “Transfer ke BCA Virtual Account”</item>
-        <item>Masukkan nomor virtual account ( %1$s) yang Anda terima</item>
-        <item>Pilih “Lanjutkan” untuk melanjutkan pembayaran</item>
-        <item>Masukkan “RESPON KEYBCA APPLI 1” yang muncul pada Token BCA Anda,lalu klik tombol “Kirim”</item>
-    </string-array>
-
-
-    <string-array name="bca_virtual_account_online">
-        <item>Silahkan melakukan pembayaran sebelum pukul 22:00 untuk menghndari keterlambatan</item>
-        <item>Login ke KlikBCA Individual</item>
-        <item>Pilih “Transfer”</item>
-        <item>Pilih “Transfer ke BCA Virtual Account”</item>
-        <item>Masukkan nomor virtual account (%1$s) yang Anda terima,kemudian pilih “Lanjutkan” untuk melanjutkan pembayaran.</item>
-        <item>Masukkan Jumlah yang harus dibayarkan (%1$s)</item>
-        <item>Pilih “Lanjutkan” untuk melanjutkan pembayaran</item>
-        <item>Masukkan “RESPON KEYBCA APPLI 1” yang muncul pada Token BCA Anda, lalu klik tombol “Kirim”</item>
-    </string-array>
-
-    <!--bni-->
-    <string-array name="bni_mbanking">
-        <item>Login ke BNI Mobile Banking Anda</item>
-        <item>Pilih menu “Transfer” > “Antar Rekening BNI”</item>
-        <item>Pilih “Rekening Tujuan”, lalu pilih “Input Rekening Baru” kemudian isi dengan nomor Virtual Account
-        Anda (%1$s) dan klik “Lanjut”</item>
-        <item>Masukkan nominal pembayaran tagihan Anda (%1$s), kemudian klik “Lanjutkan”</item>
-        <item>Masukkan nominal pembayaran tagihan Anda (%1$s), kemudian klik “Benar”</item>
-        <item>Pastikan data transaksi Anda sudah benar</item>
-        <item>Masukkan “Password Transaksi” kemudian klik “Lanjut”</item>
-        <item>Transaksi Anda telah berhasil</item>
-    </string-array>
-
-    <string-array name="bni_atm">
-        <item>Masukkan kartu ATM</item>
-        <item>Kemudian pilih BAHASA INDONESIA</item>
-        <item>P</item>
-    </string-array>
-    <string name="bni_atm1">Masukkan kartu ATM</string>
-    <string name="bni_atm2">Kemudian pilih BAHASA INDONESIA</string>
-    <string name="bni_atm3">Ketik nomor PIN kartu ATM, kemudian tekan ENTER</string>
-    <string name="bni_atm4">Pilih “Menu Lainnya” </string>
-    <string name="bni_atm5">Pilih menu Transfer > TRANSAKSI LAINNYA</string>
-    <string name="fas_bni_atm5">Pilih menu Transfer > Rekening Tabungan</string>
-    <string name="bni_atm6">Pilih ke “REKENING BNI” </string>
-    <string name="bni_atm7">Lalu masukkan Kode Virtual Anda (%1$s), kemudian tekan BENAR</string>
-    <string name="bni_atm8">Isi NOMINAL (%1$s), kemudian tekan YA </string>
-    <string name="bni_atm9">Konfirmasi transaksi telah selesai, tekan “TIDAK” untuk menyelesaikan transaksi</string>
-    <string name="bni_atm10">Bukti Pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank   </string>
-
-    <string-array name="bni_online">
-        <item>Login ke BNI Internet Banking dengan alamat https://ibank.bni.co.id/</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="bni_online">Login ke BNI Internet Banking dengan alamat https://ibank.bni.co.id/</string>
-    <string name="bni_online1">Pilih “Transaksi”</string>
-    <string name="bni_online2"><![CDATA[Pilih “INFO & ADMINISTRASI TRANSFER” > “ATUR REKENING TUJUAN”]]></string>
-    <string name="bni_online3">Tambah rekening tujuan lalu klik “OK”</string>
-    <string name="bni_online4">Isi data rekening (%1$s) lalu tekan “LANJUTKAN”</string>
-    <string name="bni_online5">Akan muncul detail konfirmasi, apabila sudah benar dan sesuai, masukkan 8 digit angka yang dihasilkan dari APPLY 2 pada token BNI
-        anda lalu klik “PROSES”</string>
-    <string name="bni_online6">Rekening tujuan berhasil ditambahkan</string>
-    <string name="bni_online7">Pilih “TRANSFER”</string>
-    <string name="bni_online8">Pilih “Transfer Antar Rekening BNI”, Lalu pilih “Rekening Tujuan” yang sudah Anda daftarkan, lalu klik “LANJUTKAN”</string>
-    <string name="bni_online9">Pilih Rekening Debit dan masukkan nominal (%1$s), lalu masukkan kode otentikasi token</string>
-    <string name="bni_online10">Transaksi anda telah berhasil</string>
-
-    <string-array name="fas_bni_online">
-        <item>Login ke BNI Internet Banking dengan alamat https://ibank.bni.co.id/</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="fas_bni_online1">Login ke BNI Internet Banking dengan alamat https://ibank.bni.co.id/</string>
-    <string name="fas_bni_online2">Pilih “TRANSFER”, kemudian “TAMBAH REKENING FAVORIT”, jika menggunakan Desktop/PC, klik “Transaksi” > “Atur
-        Rekening Tujuan” > “Tambah Rekening Tujuan”</string>
-    <string name="fas_bni_online3">Isi data rekening (%1$s) lalu tekan “LANJUTKAN”</string>
-    <string name="fas_bni_online4">Masukkan kode otentikasi TOKEN</string>
-    <string name="fas_bni_online5">Nomor Rekening Tujuan Berhasil Ditambahkan</string>
-    <string name="fas_bni_online6">Kembali ke menu “TRANSFER”</string>
-    <string name="fas_bni_online7">Pilih “Transfer Antar Rekening BNI”, Lalu pilih “Rekening Tujuan” yang sudah Anda daftarkan, lalu klik “LANJUTKAN”</string>
-    <string name="fas_bni_online8">Pilih Rekening Debit dan masukkan nominal (%1$s), lalu masukkan kode otentikasi token</string>
-    <string name="fas_bni_online9">Transaksi anda telah berhasil</string>
-
-    <!-- BRI-->
-    <string-array name="bri_atm">
-        <item>Masukkan kartu AT</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="bri_atm1">Masukkan kartu ATM</string>
-    <string name="bri_atm2">Kemudian pilih BAHASA INDONESIA </string>
-    <string name="bri_atm3">Ketik nomor PIN kartu ATM, kemudian tekan ENTER</string>
-    <string name="bri_atm4">Pilih “Transaksi Lain”  </string>
-    <string name="bri_atm5">Pilih menu Lainnya > Pembayaran</string>
-    <string name="bri_atm6">Pilih menu “BRIVA”  </string>
-    <string name="bri_atm7">Lalu masukan Nomor Virtual Account BRI Anda (%1$s), kemudian tekan BENAR</string>
-    <string name="bri_atm8">Konfirmasi pembayaran, tekan “YA” bila transaksi anda sesuai</string>
-    <string name="bri_atm9">Bukti Pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank  </string>
-
-    <string-array name="bri_online">
-        <item>Login ke BRI Internet Banking dengan alamat https://ib.bri.co.id/</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="bri_online1">Login ke BRI Internet Banking dengan alamat https://ib.bri.co.id/</string>
-    <string name="bri_online2">Pilih menu “Pembayaran”</string>
-    <string name="bri_online3">Pilih menu “BRIVA”</string>
-    <string name="bri_online4">Pilih rekening Pembayaran</string>
-    <string name="bri_online5">Masukkan nomor Virtual Account BRI Anda (%1$s)</string>
-    <string name="bri_online6">Masukkan nominal (%1$s), yang akan dibayar</string>
-    <string name="bri_online7">Masukkan password dan Mtoken Anda</string>
-    <string name="bri_online8">Transaksi anda telah berhasil</string>
-
-
-    <string-array name="bri_mbanking">
-        <item>Login ke BRI Mobile Banking Anda</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="bri_mbanking1">Login ke BRI Mobile Banking Anda</string>
-    <string name="bri_mbanking2">Pilih menu “Pembayaran”</string>
-    <string name="bri_mbanking3">Pilih menu “BRIVA”</string>
-    <string name="bri_mbanking4">Masukkan nomor Virtual Account BRI Anda (%1$s) dan jumlah pembayaran (%2$s)</string>
-    <string name="bri_mbanking5">Masukkan PIN</string>
-    <string name="fas_bri_mbanking5">Masukkan PIN Mobile BRI Anda</string>
-    <string name="bri_mbanking6">Tekan “OK” untuk melanjutkan transaksi</string>
-    <string name="bri_mbanking7">Transaksi berhasil</string>
-    <string name="bri_mbanking8">SMS Konfirmasi akan masuk ke nomor telepon Anda</string>
-
-
-    <!--mandiri-->
-    <string-array name="mandiri_online">
-        <item>Login ke  Mandiri Internet Banking dengan alamat https://ib.bankmandiri.co.id/</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="mandiri_online1">
-    Login ke  Mandiri Internet Banking dengan alamat https://ib.bankmandiri.co.id/
-    </string>
-    <string name="mandiri_online2">
-        Di bagian menu , pilih BAYAR > Multi Payment
-    </string>
-    <string name="mandiri_online3">
-        Pilih Penyedia Jasa “XENDIT 88608”
-    </string>
-    <string name="fas_mandiri_online3">
-        Pilih Penyedia Jasa “FASPAY”
-    </string>
-
-    <string name="mandiri_online4">
-         Pilih “No Virtual Account”
-    </string>
-    <string name="mandiri_online5">
-        Masukan Kode Virtual anda (%1$s)
-    </string>
-    <string name="fas_mandiri_online5">
-        Masukkan nomor virtual account Anda (%1$s) dan nominal yang akan dibayarakan (%2$s)
-    </string>
-    <string name="mandiri_online6">
-        Pastikan total tagihan sesuai lalu klik “ Lanjutkan”
-    </string>
-    <string name="mandiri_online7">
-        Ikuti intruksi untuk menyelesaikan transaksi anda
-    </string>
-
-    <string-array name="mandiri_mbank">
-        <item>Login ke Mandiri Mobile Banking Anda</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="mandiri_mbank1">
-   	Login ke Mandiri Mobile Banking Anda
-    </string>
-    <string name="mandiri_mbank2">
-        Klik “Icon Menu” di sebelah kiri atas
-    </string>
-    <string name="mandiri_mbank3">
-        Pilih menu “Pembayaran” > “Buat Pembayaran Baru” > Pilih “Multi Payment”
-    </string>
-    <string name="mandiri_mbank4">
-        Pilih Penyedia Jasa “XENDIT 88608”
-    </string>
-    <string name="fas_mandiri_mbank4">
-       Pilih Penyedia Jasa “FASPAY”
-    </string>
-    <string name="mandiri_mbank5">
-        Pilih “No. Virtual Account”
-    </string>
-    <string name="mandiri_mbank6">
-        Masukan nomor virtual account Anda (%1$s) dengan kode perusahaan “88608” lalu pilih “Tambah Sebagai Nomor Baru”
-    </string>
-    <string name="fas_mandiri_mbank6">
-        Masukan nomor virtual account Anda (%1$s)
-    </string>
-
-    <string name="mandiri_mbank7">
-       Masukkan NOMINAL (%1$s) lalu pilih “Konfirmasi” lalu Pilih “Lanjut”
-    </string>
-    <string name="mandiri_mbank8">
-     	Muncul tampilan konfirmasi pembayaran
-    </string>
-    <string name="mandiri_mbank9">
-        Scroll ke bawah di tampilan konfirmasi pembayaran lalu pilih “Konfirmasi”
-    </string>
-    <string name="mandiri_mbank10">
-       Masukkan “PIN” dan transaksi Anda telah selesai
-    </string>
-
-    <string-array name="mandiri_atm">
-        <item>Dianjurkan pembayaran diterima sebelum pukul 22:00 guna menghindari bank offline</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="mandiri_atm0">
-    Dianjurkan pembayaran diterima sebelum pukul 22:00 guna menghindari bank offline
-    </string>
-
-    <string name="mandiri_atm1">
-       Masukkan kartu ATM
-    </string>
-    <string name="mandiri_atm_new">
-        Kemudian pilih BAHASA INDONESIA
-     </string>
-    <string name="mandiri_atm2">
-       Ketik nomor PIN kartu ATM, kemudian tekan ENTER
-    </string>
-    <string name="mandiri_atm3">
-       Pilih menu “Lainnya” (jika tidak tersedia, lanjutkan ke proses selanjutnya)
-    </string>
-    <string name="mandiri_atm4">
-       Ketik Kode Perusahaan, yaitu ”88608” (XENDIT 88608), tekan BENAR
-    </string>
-    <string name="fas_mandiri_atm4">
-      Ketik Kode Perusahaan, yaitu ”88308”, tekan BENAR
-    </string>
-    <string name="mandiri_atm_new2">
-       Pilih menu BAYAR/BELI > MULTI PAYMENT
-    </string>
-
-    <string name="mandiri_atm5">
-       Lalu Masukan Kode Virtual anda (%1$s), kemudian tekan BENAR
-    </string>
-    <string name="mandiri_atm6">
-       Isi NOMINAL (%1$s), kemudian tekan BENAR
-    </string>
-    <string name="mandiri_atm7">
-       Muncul konfirmasi  pembayaran. Tekan nomor “1” apabila semua data sudah benar, kemudian tekan YA
-    </string>
-    <string name="mandiri_atm8">
-       Pembayaran selesai. Bukti Pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank  .
-    </string>
-
-    <string-array name="other_banks_atm">
-        <item>Pergi ke ATM bank apa saja dan masukkan kartu ATM anda, pilih “Transaksi Lain” -> “Transfer” -> “Bank Lain”</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_banks_atm1">
-        Pergi ke ATM bank apa saja dan masukkan kartu ATM anda, pilih “Transaksi Lain” -> “Transfer” -> “Bank Lain”
-    </string>
-    <string name="other_banks_atm2">
-        Masukkan kode bank “013” dan pilih “Benar”
-    </string>
-    <string name="other_banks_atm3">
-       Masukkan jumlah transfer (%1$s)
-    </string>
-    <string name="other_banks_atm4">
-       Masukkan kode transaksi: (%1$s)
-    </string>
-    <string name="other_banks_atm5">
-        Pilih “benar” untuk konfirmasi transfer
-    </string>
-    <string name="other_banks_atm6">
-        Bukti Pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank
-    </string>
-
-    <string-array name="other_banks_online">
-        <item>Login ke webiste Online Banking anda di komputer atau ponsel</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_banks_online1">
-        Login ke webiste Online Banking anda di komputer atau ponsel
-    </string>
-    <string name="other_banks_online2">
-        Pilih transfer -> transfer online ke bank lain
-    </string>
-    <string name="other_banks_online3">
-        Isi Jumlah transfer (%2$s) anda boleh mengabaikan “nomor referensi” pilih “Bank Permata” dalam akun penerima , masukan kode transaksi (%1$s) di nomor akun ( anda dapat mengabaikan berita dan email penerima) , Klik Next
-    </string>
-    <string name="other_banks_online4">
-       Ikuti langkah selanjutnya sampai transaksi di nyatakan berhasil
-    </string>
-
-
-    <string-array name="other_banks_mbanking">
-        <item>Login ke Aplikasi Mobile banking Anda</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_banks_mbanking1">
-        Login ke Aplikasi Mobile banking Anda
-    </string>
-    <string name="other_banks_mbanking2">
-        Masuk ke menu "Transfer"-> "Online"
-    </string>
-    <string name="other_banks_mbanking3">
-        Klik “Destinasi Akun” , Masukan kode transaksi “%1$s”
-    </string>
-    <string name="other_banks_mbanking4">
-        Klik “Pilih Bank”, kemudian pilih “Permata Bank”
-    </string>
-    <string name="other_banks_mbanking5">
-        Masukan jumlah transfer Anda Rp  “%1$s” , Anda boleh mengabaikan nomor referensi lalu tekan Next
-    </string>
-
-
-    <!-- string array  other_bank_new_atm-->
-    <string-array name="other_bank_new_atm">
-        <item>Masukan Kartu ATM dan Masukan nomor PIN ATM</item>
-        <item> Pilih menu “Transaksi Lain” > “Transfer”> “Bank Lain”</item>
-        <item>  Masukan kode bank Permata  “013” di ikuti dengan (%1$s) , Tekan “BENAR”</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_bank_new_atm1">
-        Masukan Kartu ATM dan Masukan nomor PIN ATM
-    </string>
-
-    <string name="other_bank_new_atm2">
-        Pilih menu “Transaksi Lain” > “Transfer”> “Bank Lain”
-    </string>
-    <string name="other_bank_new_atm3">
-        Masukan kode bank Permata  “013” di ikuti dengan (%1$s) , Tekan “BENAR”
-    </string>
-    <string name="other_bank_new_atm4">
-        Isi Nominal Pembayaran (%1$s), Kemudian tekan “BENAR”
-    </string>
-    <string name="other_bank_new_atm5">
-        Pastikan Konfirmasi yang ada pada layar Benar , dan Tekan “YA” untuk melakukan pembayaran.
-    </string>
-
-    <string-array name="other_bank_new_online">
-        <item>Kunjungi Website Internet Banking Anda</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_bank_new_online1">
-        Kunjungi Website Internet Banking Anda
-    </string>
-    <string name="other_bank_new_online2">
-        Login Mengunakan USER ID dan PIN
-    </string>
-    <string name="other_bank_new_online3">
-        Pilih menu “Transaksi Lain” > “Transfer”> “Bank Lain”
-    </string>
-    <string name="other_bank_new_online4">
-        Masukan kode bank Permata “013” di ikuti dengan  (%1$s), Tekan “BENAR”
-    </string>
-    <string name="other_bank_new_online5">
-       Isi Nominal (%1$s)
-    </string>
-    <string name="other_bank_new_online6">
-        Pilih “ Nomor Rekening Anda”
-    </string>
-    <string name="other_bank_new_online7">
-        Masukan Challenge Code yang ada pada Token Internet Banking Anda
-    </string>
-    <string name="other_bank_new_online8">
-       Tekan “Kirim” dan Pembayaran selesai
-    </string>
-
-    <string-array name="other_bank_new_mobile">
-        <item>Buka Aplikasi Mobile Banking Anda dan Login</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-        <item>P</item>
-    </string-array>
-    <string name="other_bank_new_mobile1">
-        Buka Aplikasi Mobile Banking Anda dan Login
-    </string>
-    <string name="other_bank_new_mobile2">
-        Masuk ke menu “Transfer” > “ Antar Bank”
-    </string>
-    <string name="other_bank_new_mobile3">
-        Ketik Kode Permata  “013” Lalu di ikuti dengan  (%1$s)
-    </string>
-    <string name="other_bank_new_mobile4">
-        Isi Nominal  (%1$s) , lalu tekan “SEND”
-    </string>
-    <string name="other_bank_new_mobile5">
-       Konfirmasi kembali untuk  penerima dan nominal yang di masukan
-    </string>
-    <string name="other_bank_new_mobile6">
-        Jika sudah benar , tekan “OK” dan di lanjutkan dengan memasukan Pin M-Banking Anda
-    </string>
+    <string name="remaining_loan_principal">Sisa pokok pinjaman </string>
+    <string name="interest">Bunga</string>
+    <string name="penalty_interest">Penalti bunga</string>
+    <string name="total">Total</string>
 
 
 </resources>

@@ -19,6 +19,7 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.support.BankCardNameAdapter;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
@@ -36,13 +37,9 @@ import butterknife.OnClick;
 
 public class BindCardActivity  extends BaseActivity {
 
-    @BindView(R.id.bind_bank_name)
     TextView bindBankName;
-    @BindView(R.id.bind_user_name)
     BandaEditText bindUserName;
-    @BindView(R.id.bind_bank_number)
     BandaEditText bindBankNumber;
-    @BindView(R.id.bind_add_bank_name_rl)
     RelativeLayout addBankCardName;
 
     private Dialog dialogPlus;
@@ -51,9 +48,9 @@ public class BindCardActivity  extends BaseActivity {
     public static final String BIND_USERNAME = "bindUserName";
     public static final String BIND_BANKNUMBER = "bindBankNumber";
 
-
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        initUI();
         RxBus.get().register(this);
         MobAgent.onEvent(MobEvent.IN_BIND_BANK_CARD_ACTIVITY);
         addBankCardName.setFocusable(true);
@@ -151,6 +148,7 @@ public class BindCardActivity  extends BaseActivity {
         intent.putExtra(BIND_USERNAME,bindUserName.getText().toString().trim());
         intent.putExtra(BIND_BANKNUMBER,bindBankNumber.getText().toString().trim());
         BindCardActivity.this.setResult(Activity.RESULT_OK,intent);
+
         finish();
     }
 
@@ -170,5 +168,12 @@ public class BindCardActivity  extends BaseActivity {
         super.onDestroy();
         RxBus.get().unregister(this);
         MobAgent.onEvent(MobEvent.BIND_BANK_CARD_BACK);
+    }
+
+    private void initUI(){
+        bindBankName = (TextView)findViewById(R.id.bind_bank_name);
+        bindUserName = (BandaEditText)findViewById(R.id.bind_user_name);
+        bindBankNumber = (BandaEditText)findViewById(R.id.bind_bank_number);
+        addBankCardName = (RelativeLayout)findViewById(R.id.bind_add_bank_name_rl);
     }
 }

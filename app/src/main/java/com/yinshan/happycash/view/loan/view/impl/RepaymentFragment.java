@@ -24,13 +24,16 @@ import com.yinshan.happycash.view.loan.model.DepositMethodsBean;
 import com.yinshan.happycash.view.loan.model.DepositResponseBean;
 import com.yinshan.happycash.view.loan.presenter.RepaymentPresenter;
 import com.yinshan.happycash.view.loan.view.IRepaymentView;
+import com.yinshan.happycash.view.loan.view.impl.support.FullRepaymentDialog;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentAdapter;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentDialog;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
+import com.yinshan.happycash.view.me.model.StageBean;
 import com.yinshan.happycash.view.me.presenter.LoanDetailPresenter;
 import com.yinshan.happycash.view.me.view.ILoanDetailView;
 import com.yinshan.happycash.view.me.view.impl.RepaymentStrategyActivity;
+import com.yinshan.happycash.widget.common.CommonClickListener;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -42,19 +45,15 @@ import butterknife.OnClick;
 
 public class RepaymentFragment extends BaseFragment implements ILoanDetailView,IRepaymentView{
 
-    @BindView(R.id.listView)
     ListView listView;
     RepaymentAdapter mAdapter;
 
-    @BindView(R.id.currentReturn)
+    TextView mClickFullPay;
+
     TextView mCurrentReturn;
-    @BindView(R.id.paymentDate)
     TextView mPaymentDate;
-    @BindView(R.id.money)
     TextView mMoney;
-    @BindView(R.id.tenor)
     TextView mTenor;
-    @BindView(R.id.titlePeriod)
     TextView mTitlePeriod;
 
     LoanDetailPresenter mDetailPresenter;
@@ -63,6 +62,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     RepaymentDialog mDialog;
 
     public static DepositResponseBean depositRB;
+
+    LoanDetailBean mDetail;
 
     @Override
     protected void initView() {
@@ -77,14 +78,43 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     }
 
     @Override
+    protected void initUIValue(View view) {
+        mClickFullPay = (TextView)view.findViewById(R.id.clickFullPay);
+
+        listView = (ListView)view.findViewById(R.id.listView);
+        mCurrentReturn = (TextView)view.findViewById(R.id.currentReturn);
+        mPaymentDate = (TextView)view.findViewById(R.id.paymentDate);
+        mMoney = (TextView)view.findViewById(R.id.money);
+        mTenor = (TextView)view.findViewById(R.id.tenor);
+        mTitlePeriod = (TextView)view.findViewById(R.id.titlePeriod);
+
+        mClickFullPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mDetail!=null&&mDetail.getLpayDtoList()!=null||mDetail.getLpayDtoList().size()>0){
+                    FullRepaymentDialog dialog = new FullRepaymentDialog(getActivity(), new CommonClickListener() {
+                        @Override
+                        public void onClick() {
+                            mPresenter.getRepaymentList();
+                        }
+                    },mDetail);
+                    dialog.show();
+                }
+            }
+        });
+    }
+
+    @Override
     protected int bindLayout() {
         return R.layout.fragment_repayment;
     }
 
     @Override
     public void showDetail(LoanDetailBean detail) {
+        mDetail = detail;
         if(detail.getLpayDtoList()!=null||detail.getLpayDtoList().size()>0){
 //            SPUtils.getInstance().setObject("REPAYMENT_LOAN_DETAIL",d);
+            //寻找第一个ACTIVE的，
             String stage = TimeManager.getRpTime(detail.getPeriodUnit());
             int count = 0;
             int firstActive = -1;
@@ -97,7 +127,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
             }
 
             if(firstActive!=-1){
-                mCurrentReturn.setText(StringFormatUtils.moneyFormat(detail.getLpayDtoList().get(firstActive).getPrincipalAccr()));
+                mCurrentReturn.setText(StringFormatUtils.moneyFormat(getSum(detail.getLpayDtoList().get(firstActive))));
                 mPaymentDate.setText(getString(R.string.payment_date_f,TimeManager.convertYNTimeDay(detail.getLpayDtoList().get(firstActive).getDueDate())));
             }
 
@@ -163,6 +193,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         mPresenter.doDeposit(appId,str);
     }
 
-
-
+    public static double getSum(StageBean bean){
+        return bean.getPrincipalAccr()-bean.getPrincipalPaid()+bean.getDefaultAccr()-bean.getDefaultPaid()+bean.getInterestAccr()-bean.getInterestPaid();
+    }
 }

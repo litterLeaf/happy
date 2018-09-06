@@ -33,7 +33,7 @@ public class BaseObserver<T> extends ErrorObserver<T> {
 
     @Override
     protected void onError(ApiException ex) {
-        Toast.makeText(context.get(), ex.getDisplayMessage(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context.get(), ex.getDisplayMessage(), Toast.LENGTH_SHORT).show();
         LogUtil.getInstance().e(ex.getDisplayMessage());
     }
 

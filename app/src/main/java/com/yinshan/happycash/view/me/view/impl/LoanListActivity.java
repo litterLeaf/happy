@@ -28,7 +28,6 @@ import butterknife.BindView;
 
 public class LoanListActivity extends BaseSingleNoScrollActivity implements ILoanListView{
 
-    @BindView(R.id.listView)
     ListView mListView;
     LoanAdapter mLoanAdapter;
 
@@ -46,6 +45,7 @@ public class LoanListActivity extends BaseSingleNoScrollActivity implements ILoa
 
     @Override
     protected void secondInit() {
+        mListView = (ListView)findViewById(R.id.listView);
         mLoanAdapter = new LoanAdapter(this);
         mListView.setAdapter(mLoanAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

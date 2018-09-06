@@ -18,6 +18,7 @@ import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
 import com.yinshan.happycash.utils.StringFormatUtils;
+import com.yinshan.happycash.utils.TimeManager;
 import com.yinshan.happycash.view.loan.presenter.ApplyPresenter;
 import com.yinshan.happycash.view.loan.view.IApplyView;
 import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
@@ -39,39 +40,24 @@ import butterknife.OnClick;
  */
 public class ApplyFragment extends BaseFragment implements IApplyView{
 
-    @BindView(R.id.refreshLayout)
     RefreshLayout refreshLayout;
-    @BindView(R.id.progressView)
     View progressView;
-    @BindView(R.id.progressList)
     ListView progressList;
     ApplyAdapter mAdapter;
 
-    @BindView(R.id.textProgress)
     TextView mTextProgress;
-    @BindView(R.id.textMoney)
     TextView mTextMoney;
-    @BindView(R.id.textTime)
     TextView mTextTime;
 
-    @BindView(R.id.viewDown)
     RelativeLayout mViewDown;
-    @BindView(R.id.viewUp)
     RelativeLayout mViewUp;
-    @BindView(R.id.viewDesc)
     LinearLayout mViewDesc;
 
-    @BindView(R.id.createTime)
     TextView mCreateTime;
-    @BindView(R.id.ktp)
     TextView mKtp;
-    @BindView(R.id.submitFee)
     TextView mSubmitFee;
-    @BindView(R.id.returnPerPeriod)
     TextView mReturnPerPeriod;
-    @BindView(R.id.recipientBankName)
     TextView mRecipientBankName;
-    @BindView(R.id.recipientAccountNo)
     TextView mRecipientAccountNo;
 
     private List<BaseStatusLogsBean> statusLogs = new ArrayList<>();
@@ -98,6 +84,27 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
         shrinkageView();
 
+    }
+
+    @Override
+    protected void initUIValue(View view) {
+        refreshLayout = (RefreshLayout)view.findViewById(R.id.refreshLayout);
+        progressView = (View)view.findViewById(R.id.progressView);
+        progressList = (ListView)view.findViewById(R.id.progressList);
+
+        mTextProgress = (TextView)view.findViewById(R.id.textProgress);
+        mTextMoney = (TextView)view.findViewById(R.id.textMoney);
+        mTextTime = (TextView)view.findViewById(R.id.textTime);
+        mViewDown = (RelativeLayout)view.findViewById(R.id.viewDown);
+        mViewUp = (RelativeLayout)view.findViewById(R.id.viewUp);
+        mViewDesc = (LinearLayout)view.findViewById(R.id.viewDesc);
+
+        mCreateTime = (TextView)view.findViewById(R.id.createTime);
+        mKtp = (TextView)view.findViewById(R.id.ktp);
+        mSubmitFee = (TextView)view.findViewById(R.id.submitFee);
+        mReturnPerPeriod = (TextView)view.findViewById(R.id.returnPerPeriod);
+        mRecipientBankName = (TextView)view.findViewById(R.id.recipientBankName);
+        mRecipientAccountNo = (TextView)view.findViewById(R.id.recipientAccountNo);
     }
 
     @Override
@@ -231,16 +238,20 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
             String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,bean.getStatus());
             mTextProgress.setText(word);
 
-            String period =bean.getPeriod() + " "+bean.getPeriodUnit();
+            String pUnit = "Bulan";
+            if(bean.getPeriodUnit().equals("M"))
+                pUnit = "Bulan";
+            String period =bean.getPeriod() + " "+pUnit;
             String  totalAmount= "Rp" + StringFormatUtils.moneyFormat(bean.getPrincipalAmount());
             mTextMoney.setText(totalAmount);
             mTextTime.setText(period);
 
 
-            mCreateTime.setText(bean.getCreateTime());
+            mCreateTime.setText(TimeManager.convertTime(bean.getCreateTime()));
             mKtp.setText(bean.getCredentialNo());
-            mSubmitFee.setText(String.valueOf(bean.getPrincipalAmount()));
-            mReturnPerPeriod.setText(String.valueOf(bean.getPrincipalAmount()/bean.getPeriod()));
+            mSubmitFee.setText(String.valueOf(Math.round(bean.getPrincipalAmount())));
+            MainActivity.getLastMoney(bean.getPrincipalAmount(),bean.getPeriod());
+            mReturnPerPeriod.setText(String.valueOf(Math.round(Math.ceil(bean.getPrincipalAmount()/bean.getPeriod()))));
             mRecipientBankName.setText(bean.getBankCode());
             mRecipientAccountNo.setText(bean.getCardNo());
 

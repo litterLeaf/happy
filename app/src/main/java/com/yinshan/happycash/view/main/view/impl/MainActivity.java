@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -110,6 +111,7 @@ import butterknife.OnClick;
 public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,ChatClientContract.View {
 
     boolean isFirstEnter = true;
+    public static boolean isNotResume = false;
 
     public static final int MIN_VALUE = 2000000;
     public static final int MAX_VALUE = 6000000;
@@ -120,23 +122,14 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public static long loanMoney;
     public static int choosePeriod;
 
-    @BindView(R.id.fragment_container)
     FrameLayout fragmentContainer;
-    @BindView(R.id.id_textview_tab_loan)
     TextView tabLoan;
-    @BindView(R.id.id_linearlayout_loan)
     LinearLayout idLinearlayoutLoan;
-    @BindView(R.id.id_textview_tab_certification)
     TextView tabInformation;
-    @BindView(R.id.id_linearlayout_certification)
     LinearLayout idLinearlayoutCertification;
-    @BindView(R.id.id_textview_tab_me)
     TextView tabMe;
-    @BindView(R.id.id_linearlayout_me)
     LinearLayout idLinearlayoutMe;
-    @BindView(R.id.id_textview_tab_online_qa)
     TextView abOnlineQa;
-    @BindView(R.id.id_linearlayout_online_qa)
     LinearLayout idLinearlayoutOnlineQa;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
@@ -157,6 +150,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     private ArrayList<String> permissionsList;
     private ArrayList<String> permissionsNeeded;
 
+    private String[] mustPermission = {
+            Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS,Manifest.permission.READ_PHONE_STATE
+            ,Manifest.permission.READ_SMS,Manifest.permission.READ_CALL_LOG,Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
     @Override
     protected int bindLayout() {
         return R.layout.activity_main;
@@ -174,6 +172,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
+        initUI();
         RxBus.get().register(this);
         reSetTab(1);
 
@@ -187,7 +186,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }else {
             showFragment(AppLoanStatus.UNLOAN);
         }
-        if (SPUtils.getInstance().getShowGuide()) {
+        if (!judgeMustPermission()) {
             PowerDialog powerDialog = new PowerDialog(MainActivity.this,new PowerListener());
             powerDialog.setCancelable(false);
             powerDialog.show();
@@ -205,7 +204,12 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         super.onResume();
         if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
             if(!isFirstEnter){
-                reUpdateStatus();
+                if(!isNotResume) {
+                    reUpdateStatus();
+                }else{
+                    MainActivity.isNotResume = false;
+                }
+
             }
         }else if(chooseIndex==2||chooseIndex==3){
             reSetTab(chooseIndex);
@@ -792,14 +796,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     public void guide() {
-        SPUtils.getInstance().setShowGuide(false);
+//        SPUtils.getInstance().setShowGuide(false);
         permissionsList = new ArrayList<>();
-        permissionsList.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        permissionsList.add(Manifest.permission.READ_CONTACTS);
-        permissionsList.add(Manifest.permission.READ_PHONE_STATE);
-        permissionsList.add(Manifest.permission.READ_SMS);
-        permissionsList.add(Manifest.permission.READ_CALL_LOG);
-        permissionsList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        for(int i=0;i<mustPermission.length;i++){
+            permissionsList.add(mustPermission[i]);
+        }
         ActivityCompat.requestPermissions(MainActivity.this,
                 permissionsList.toArray(new String[permissionsList.size()]),
                 PERMISSION_CODE);
@@ -884,5 +885,38 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
     }
 
+    public static long getLastMoney(){
+        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
+        return Math.round(ceil);
+    }
 
+    public static long getLastMoney(double money,int period){
+        long sum = (long) (money+money*MainActivity.RATE*period/100);
+        double ceil = Math.ceil(sum / period);
+        return Math.round(ceil);
+    }
+
+    private boolean judgeMustPermission(){
+        for(int i=0;i<mustPermission.length;i++){
+            if(ContextCompat.checkSelfPermission(this,
+                    mustPermission[i])
+                    != PackageManager.PERMISSION_GRANTED)
+                return false;
+        }
+        return true;
+    }
+
+    private void initUI(){
+        fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
+        tabLoan = (TextView)findViewById(R.id.id_textview_tab_loan);
+        idLinearlayoutLoan = (LinearLayout)findViewById(R.id.id_linearlayout_loan);
+        tabInformation = (TextView)findViewById(R.id.id_textview_tab_certification);
+
+        idLinearlayoutCertification = (LinearLayout)findViewById(R.id.id_linearlayout_certification);
+        tabMe = (TextView)findViewById(R.id.id_textview_tab_me);
+        idLinearlayoutMe = (LinearLayout)findViewById(R.id.id_linearlayout_me);
+        abOnlineQa = (TextView)findViewById(R.id.id_textview_tab_online_qa);
+        idLinearlayoutOnlineQa = (LinearLayout)findViewById(R.id.id_linearlayout_online_qa);
+    }
 }

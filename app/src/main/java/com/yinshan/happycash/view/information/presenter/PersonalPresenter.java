@@ -9,6 +9,7 @@ import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.view.information.model.PersonalBean;
 import com.yinshan.happycash.view.information.model.RegionsBean;
 import com.yinshan.happycash.view.information.view.IPersonalView;
@@ -71,7 +72,7 @@ public class PersonalPresenter {
                 });
     }
 
-    public void submitPersonalInfo(PersonalBean personalBean){
+    public void submitPersonalInfo(final PersonalBean personalBean){
         mView.showLoadingDialog();
         mApi.submitPersonalInfo(personalBean.getFullName(),personalBean.getCredentialNo(),personalBean.getFamilyNameInLaw(),
                 personalBean.getGender(),personalBean.getProvince(),personalBean.getCity(),personalBean.getDistrict(),personalBean.getArea(),
@@ -83,6 +84,7 @@ public class PersonalPresenter {
                     @Override
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
+                        SPUtils.getInstance().setUsername(personalBean.getFullName());
                         mView.submitPersonOk();
                         mView.dismissLoadingDialog();
                     }

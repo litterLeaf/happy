@@ -114,7 +114,7 @@
                             android:textColor="@color/text_blue"
                             android:textSize="18sp"
                             android:textStyle="bold"
-                            android:text="-- Hari"
+                            android:text="-- Bulan"
                             />
                         <TextView
                             style="@style/text_wrap_layout"

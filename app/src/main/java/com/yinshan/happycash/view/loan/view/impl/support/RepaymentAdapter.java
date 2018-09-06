@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.utils.TimeManager;
+import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.me.model.StageBean;
 
 import java.util.ArrayList;
@@ -65,7 +66,7 @@ public class RepaymentAdapter extends BaseAdapter{
         }
 
         viewHolder.time.setText(TimeManager.convertYNTimeDay(mList.get(position).getDueDate()));
-        viewHolder.money.setText(StringFormatUtils.moneyFormat(mList.get(position).getPrincipalAccr()));
+        viewHolder.money.setText(StringFormatUtils.moneyFormat(RepaymentFragment.getSum(mList.get(position))));
         String status = mList.get(position).getStatus();
         if(status.equals("INACTIVE"))
             viewHolder.status.setText(mContext.getString(R.string.return_clear));

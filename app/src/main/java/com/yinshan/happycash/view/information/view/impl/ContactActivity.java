@@ -34,31 +34,18 @@ import butterknife.OnClick;
 
 public class ContactActivity extends BaseSingleActivity implements IContactView{
 
-    @BindView(R.id.hintRelative1)
     TextView mHintRelative1;
-    @BindView(R.id.textRelative1)
     TextView mRelative1;
-    @BindView(R.id.hintContact1)
     TextView mHintContact1;
-    @BindView(R.id.textContact1)
     TextView mContact1;
-    @BindView(R.id.hintPhone1)
     TextView mHintPhone1;
-    @BindView(R.id.textPhone1)
     TextView mPhone1;
-    @BindView(R.id.hintRelative2)
     TextView mHintRelative2;
-    @BindView(R.id.textRelative2)
     TextView mRelative2;
-    @BindView(R.id.hintContact2)
     TextView mHintContact2;
-    @BindView(R.id.textContact2)
     TextView mContact2;
-    @BindView(R.id.hintPhone2)
     TextView mHintPhone2;
-    @BindView(R.id.textPhone2)
     TextView mPhone2;
-    @BindView(R.id.btnSubmit)
     RelativeLayout mBtnSubmit;
 
     ContactPresenter mPresenter;
@@ -75,6 +62,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
 
     @Override
     protected void secondInit() {
+        initUI();
         isCanSubmit();
         mPresenter = new ContactPresenter(this,this);
         mPresenter.getContactInfo();
@@ -85,9 +73,9 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         switch (view.getId()){
             case R.id.btnRelative1:
                 List<String> relativeList1 = new ArrayList<>();
-                relativeList1.add(RelationStatus.PARENT.getValue());
-                relativeList1.add(RelationStatus.SPOUSE.getValue());
-                relativeList1.add(RelationStatus.SIBLING.getValue());
+                relativeList1.add(getResources().getString(RelationStatus.PARENT.getShowString()));
+                relativeList1.add(getResources().getString(RelationStatus.SPOUSE.getShowString()));
+                relativeList1.add(getResources().getString(RelationStatus.SIBLING.getShowString()));
                 ListDialog listDialog = new ListDialog(this,R.style.DialogTheme,relativeList1){
                     @Override
                     public void clickIndex(int index) {
@@ -107,9 +95,9 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                 break;
             case R.id.btnRelative2:
                 List<String> relativeList2 = new ArrayList<>();
-                relativeList2.add(RelationStatus.CLASSMATE.getValue());
-                relativeList2.add(RelationStatus.COLLEAGUE.getValue());
-                relativeList2.add(RelationStatus.FRIEND.getValue());
+                relativeList2.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
+                relativeList2.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
+                relativeList2.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
                 ListDialog listDialog2 = new ListDialog(this,R.style.DialogTheme,relativeList2){
                     @Override
                     public void clickIndex(int index) {
@@ -122,8 +110,10 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                 getContactInfo(1);
                 break;
             case R.id.btnSubmit:
-                mPresenter.submitContactInfo(mContact1.getText().toString(),mPhone1.getText().toString(),mRelative1.getText().toString(),
-                        mContact2.getText().toString(),mPhone2.getText().toString(),mRelative2.getText().toString()
+                String firstRelation = showRelationStatus(mRelative1.getText().toString());
+                String secondRelation = showRelationStatus(mRelative2.getText().toString());
+                mPresenter.submitContactInfo(mContact1.getText().toString(),mPhone1.getText().toString(),firstRelation,
+                        mContact2.getText().toString(),mPhone2.getText().toString(),secondRelation
                         );
                 break;
         }
@@ -244,5 +234,69 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
             mBtnSubmit.setClickable(false);
             mBtnSubmit.setAlpha(0.3f);
         }
+    }
+
+    private String showRelationStatus(String relation){
+        if(relation==null)
+            return "";
+        String showRelation = "";
+        switch (relation){
+            case "PARENT":
+                showRelation =getResources().getString(RelationStatus.PARENT.getShowString());
+                break;
+            case "FRIEND":
+                showRelation =getResources().getString(RelationStatus.FRIEND.getShowString());
+                break;
+            case "SPOUSE":
+                showRelation =getResources().getString(RelationStatus.SPOUSE.getShowString());
+                break;
+            case "SIBLING":
+                showRelation =getResources().getString(RelationStatus.SIBLING.getShowString());
+                break;
+            case "COLLEAGUE":
+                showRelation =getResources().getString(RelationStatus.COLLEAGUE.getShowString());
+                break;
+            case "CLASSMATE":
+                showRelation =getResources().getString(RelationStatus.CLASSMATE.getShowString());
+                break;
+            case "ORANGTUA":
+                showRelation =RelationStatus.PARENT.getValue();
+                break;
+            case "TEMAN":
+                showRelation =RelationStatus.FRIEND.getValue();
+                break;
+            case "PASANGAN":
+                showRelation =RelationStatus.SPOUSE.getValue();
+                break;
+            case "SAUDARA":
+                showRelation =RelationStatus.SIBLING.getValue();
+                break;
+            case "REKAN":
+                showRelation =RelationStatus.COLLEAGUE.getValue();
+                break;
+            case "TEMAN KELAS":
+                showRelation =RelationStatus.CLASSMATE.getValue();
+                break;
+
+        }
+        return showRelation;
+    }
+
+    private void initUI(){
+        mHintRelative1 = (TextView)findViewById(R.id.hintRelative1);
+        mRelative1 = (TextView)findViewById(R.id.textRelative1);
+        mHintContact1 = (TextView)findViewById(R.id.hintContact1);
+
+        mContact1 = (TextView)findViewById(R.id.textContact1);
+        mHintPhone1 = (TextView)findViewById(R.id.hintPhone1);
+        mPhone1 = (TextView)findViewById(R.id.textPhone1);
+        mHintRelative2 = (TextView)findViewById(R.id.hintRelative2);
+        mRelative2 = (TextView)findViewById(R.id.textRelative2);
+
+        mHintContact2 = (TextView)findViewById(R.id.hintContact2);
+        mContact2 = (TextView)findViewById(R.id.textContact2);
+        mHintPhone2 = (TextView)findViewById(R.id.hintPhone2);
+        mPhone2 = (TextView)findViewById(R.id.textPhone2);
+        mBtnSubmit = (RelativeLayout)findViewById(R.id.btnSubmit);
     }
 }

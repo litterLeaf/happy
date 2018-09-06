@@ -3,7 +3,6 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -11,15 +10,13 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
 
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by huxin on 2018/8/17.
+ * Created by huxin on 2018/8/31.
  */
-public class BankPaymentActivity extends BaseActivity{
+public class BankPaymentStepActivity extends BaseActivity {
 
     TextView mMoney;
     TextView mVa;
@@ -62,6 +59,7 @@ public class BankPaymentActivity extends BaseActivity{
         setListViewHeightBasedOnChildren(mListStep);
     }
 
+
     @OnClick({R.id.viewATM,R.id.viewOnline,R.id.viewManking})
     public void onClick(View view){
         switch (view.getId()){
@@ -76,7 +74,7 @@ public class BankPaymentActivity extends BaseActivity{
         }
     }
 
-    private void initUI(){
+    private void initUI() {
         mMoney = (TextView)findViewById(R.id.money);
         mVa = (TextView)findViewById(R.id.va);
         mListStep = (ListView)findViewById(R.id.listStep);

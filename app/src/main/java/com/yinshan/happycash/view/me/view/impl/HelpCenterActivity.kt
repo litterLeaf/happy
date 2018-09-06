@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_help_center.*
 
 class HelpCenterActivity : BaseSingleNoScrollActivity() ,View.OnClickListener {
 
+
     internal var mListView: ListView? = null
      lateinit var mAdapter: HelpCenterAdapter
 
@@ -28,6 +29,15 @@ class HelpCenterActivity : BaseSingleNoScrollActivity() ,View.OnClickListener {
         return R.layout.activity_help_center
     }
 
+    @Override
+    protected void secondInit() {
+        mListView =(ListView)findViewById(R.id.listView);
+        lowestBg.setBackgroundColor(getResources().getColor(R.color.app_white));
+        mAdapter = new HelpCenterAdapter();
+        mAdapter.addList("User seperti apa yang dapat mengajukan pinjaman?","HappyCash tidak membatasi pekerjaan, pendapatan, atau syarat lainnya. Selama umur anda sudah mencapai 21 tahun dan anda memiliki pendapatan dan nomor ponsel yang tetap, anda dapat mengajukan pinjaman kepada HappyCash.");
+        mAdapter.addList("Bagaimana cara mengajukan pinjaman?","Silahkan buka Google Play dan cari app \"HappyCash\", kemudian download app tersebut. Setelah selesai mendownload, buka app tersebut dan anda dapat memulai proses pinjaman. ");
+        mAdapter.addList("Bagaimana cara mengembalikan pinjaman? Apakah dapat mengembalikan pinjaman lebih awal?","Kami akan mengirimkan sms pada anda satu hari sebelum tanggal jatuh tempo untuk mengingatkan anda agar mengembalikan pinjaman. Anda dapat mengembalikan pinjaman melalui Alfamart atau melalui e-banking, mobile banking, dan transfer ATM bank besar. Setelah sukses mentransfer, app HappyCash akan secara otomatis mendapatkan sinyal pengembalian pinjaman dan melunasi pinjaman anda. Kami mendukung pengembalian pinjaman lebih awal.");
+        mAdapter.addList("Dokumen apa saja yang perlu dipersiapkan? Bagaimana proses reviewnya?","Anda hanya perlu mengikuti petunjuk sistem kami untuk mengisi 4 halaman informasi (Informasi pribadi, informasi pekerjaan, informasi kontak, dan upload foto anda), tidak memerlukan data lain apapun mohon pastikan untuk mengisi informasi asli anda. Sistem akan melakukan analisa mahadata, multi-dimensi kalkulasi skor kredit, dan skor gabungan komprehensif berdasarkan informasi yang telah anda berikan untuk mengkalkulasi hasil review pinjaman.");
     override fun secondInit() {
         lowestBg.setBackgroundColor(resources.getColor(R.color.app_white))
         mAdapter = HelpCenterAdapter()

@@ -186,11 +186,12 @@
                 >
 
                 <TextView
+                    android:id="@+id/everyPay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="@dimen/dp10"
-                    android:text="Jumlah pembayaran per bulan Rp 700.000"
+                    android:text="Jumlah pembayaran per bulan Rp"
                     android:textColor="@color/hc_input_text"
                     android:textSize="@dimen/sp12"
                     />

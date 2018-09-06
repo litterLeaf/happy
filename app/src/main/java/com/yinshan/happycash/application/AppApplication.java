@@ -5,10 +5,13 @@ import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
+import com.appsflyer.AppsFlyerLib;
 import com.yinshan.happycash.config.AppEnvConfig;
 import com.yinshan.happycash.config.AppNetConfig;
 import com.yinshan.happycash.config.AppSdkConfig;
 import com.yinshan.happycash.widget.logger.LogUtil;
+
+import cn.fraudmetrix.octopus.aspirit.main.OctopusManager;
 
 /**
  * Created by huxin on 2018/3/2.
@@ -59,6 +62,10 @@ public class AppApplication extends MultiDexApplication{
 
 //        LeakCanary.install(this);
 
+        //AF初始化
+        AppsFlyerLib.getInstance().startTracking(AppApplication.instance, "ynLJnCRQMzbG8ncHcBWnwh");
+
+        OctopusManager.getInstance().init(this,"rupiahp_hw_mohe","89e4461bb0034c53945afaf617b3624f");
     }
 
     public static AppApplication getInstance() {

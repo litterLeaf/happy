@@ -65,26 +65,20 @@ import butterknife.OnClick;
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
 
-    @BindView(R.id.id_textview_repayment_amount)
     TextView idTextviewRepaymentAmount;
     private final int subLength = 10;
 
-    @BindView(R.id.bt_period_1_unloan)
     Button choose1Period;
-    @BindView(R.id.bt_period_3_unloan)
     Button choose3Period;
 
-    @BindView(R.id.loan_before_bind_card)
     TextViewExpand beforeBindCard;
-    @BindView(R.id.loan_bind_card)
     TextViewExpand bindCard;
-    @BindView(R.id.loan_reason)
     TextViewExpand borrowReason;
 
-    @BindView(R.id.add)
     ImageView mAddButton;
-    @BindView(R.id.sub)
     ImageView mSubButton;
+
+    TextView mEveryPay;
 
     LoaningPresenter mPresenter;
     Dialog dialogPlus;
@@ -113,6 +107,21 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }else if(MainActivity.choosePeriod==1){
             setChoose1Period();
         }
+    }
+
+    @Override
+    protected void initUIValue(View view) {
+        idTextviewRepaymentAmount = (TextView)view.findViewById(R.id.id_textview_repayment_amount);
+        choose1Period = (Button)view.findViewById(R.id.bt_period_1_unloan);
+        choose3Period = (Button)view.findViewById(R.id.bt_period_3_unloan);
+
+        beforeBindCard = (TextViewExpand)view.findViewById(R.id.loan_before_bind_card);
+        bindCard = (TextViewExpand)view.findViewById(R.id.loan_bind_card);
+        borrowReason = (TextViewExpand)view.findViewById(R.id.loan_reason);
+
+        mAddButton = (ImageView)view.findViewById(R.id.add);
+        mSubButton = (ImageView)view.findViewById(R.id.sub);
+        mEveryPay = (TextView)view.findViewById(R.id.everyPay);
     }
 
     @Override
@@ -168,6 +177,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
             case R.id.loan_before_bind_card:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.BIND_BANK_CARD);
                 Intent intent = new Intent(getActivity(), BindCardActivity.class);
+                MainActivity.isNotResume = true;
                 startActivityForResult(intent,mRequestCode);
                 break;
             case R.id.loan_reason:
@@ -273,11 +283,13 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         MainActivity.choosePeriod = 1;
         choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
     }
 
     private void setChoose3Period(){
         MainActivity.choosePeriod = 3;
         choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
     }
 }
