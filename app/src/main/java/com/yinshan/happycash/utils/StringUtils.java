@@ -84,6 +84,19 @@ public class StringUtils {
         conditionalSelection(format,builder);
         return builder;
     }
+
+
+    public   SpannableStringBuilder setBoldStringWords(String content,String param){
+        String format = String.format(content, param);
+        SpannableStringBuilder builder = new SpannableStringBuilder(format);
+        StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);//粗体
+        builder.setSpan(styleSpan, format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        builder.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary)),
+                format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        conditionalSelection(format,builder);
+        return builder;
+    }
+
     public  SpannableStringBuilder setStringWords(int content,String paCodeOrVA,String moneyCount,String s){
 
         String format = String.format(context.getResources().getString(content), paCodeOrVA, moneyCount);
@@ -96,6 +109,20 @@ public class StringUtils {
                     format.indexOf(moneyCount), format.indexOf(moneyCount) + moneyCount.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         conditionalSelection(format,s,builder);
+        return builder;
+    }
+
+    public  SpannableStringBuilder setStringWords(String content,String paCodeOrVA,String moneyCount){
+        String format = String.format(content, paCodeOrVA, moneyCount);
+        SpannableStringBuilder builder = new SpannableStringBuilder(format);
+        builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorPrimary)),
+                format.indexOf(paCodeOrVA), format.indexOf(paCodeOrVA) + paCodeOrVA.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        if (format.contains(moneyCount)) {
+            builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorPrimary)),
+                    format.indexOf(moneyCount), format.indexOf(moneyCount) + moneyCount.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        conditionalSelection(format,builder);
         return builder;
     }
 

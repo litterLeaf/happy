@@ -559,21 +559,21 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     </string-array>
 
     <string-array name="mandiri_xendit_bank">
-        <item>1.Log in Mobile Banking Mandiri Online
+        <item>Log in Mobile Banking Mandiri Online
 (Install Mandiri Online by PT. Bank Mandiri (Persero Tbk.)
 dari App Store: https://itunes.apple.com/id/ap p/mandiri-online/id111731290 8?mt=8
 atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri.mandirionline&amp;hl=en).</item>
-        <item>2.Klik “Icon Menu” di sebelah kiri atas.</item>
-        <item>3.Pilih menu “Pembayaran”.</item>
-        <item>4.Pilih “Buat Pembayaran Baru”.</item>
-        <item>5.Pilih “Multi Payment”.</item>
-        <item>6.Pilih Penyedia Jasa “Xendit 88608”.</item>
-        <item>7.Pilih “No. Virtual”.</item>
-        <item>8.Masukkan no virtual account dengan kode（%1$s） perusahaan “88608” lalu pilih “Tambah Sebagai Nomor Baru”.</item>
-        <item>9.Masukkan “Nominal”（%1$s） lalu pilih “Konfirmasi”.</item>
-        <item>10.Pilih “Lanjut”.</item>
-        <item>11.Muncul tampilan konfirmasi pembayaran.</item>
-        <item>12.Scroll ke bawah di tampilan konfirmasi pembayaran lalu pilih “Konfirmasi”.</item>
+        <item>Klik “Icon Menu” di sebelah kiri atas.</item>
+        <item>Pilih menu “Pembayaran”.</item>
+        <item>Pilih “Buat Pembayaran Baru”.</item>
+        <item>Pilih “Multi Payment”.</item>
+        <item>Pilih Penyedia Jasa “Xendit 88608”.</item>
+        <item>Pilih “No. Virtual”.</item>
+        <item>Masukkan no virtual account dengan kode（%1$s） perusahaan “88608” lalu pilih “Tambah Sebagai Nomor Baru”.</item>
+        <item>Masukkan “Nominal”（%1$s） lalu pilih “Konfirmasi”.</item>
+        <item>Pilih “Lanjut”.</item>
+        <item>Muncul tampilan konfirmasi pembayaran.</item>
+        <item>Scroll ke bawah di tampilan konfirmasi pembayaran lalu pilih “Konfirmasi”.</item>
     </string-array>
     <string-array name="mandiri_xendit_bank_insert_str_index">
         <item>7</item>
