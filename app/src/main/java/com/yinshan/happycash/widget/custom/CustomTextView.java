@@ -8,6 +8,7 @@ import android.util.FloatMath;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yinshan.happycash.utils.DensityUtil;
 import com.yinshan.happycash.utils.ScreenUtils;
 
 /**
@@ -34,16 +35,16 @@ public class CustomTextView extends TextView{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
-        super.onMeasure(widthMeasureSpec, expandSpec);
-//        Layout layout = getLayout();
-//        if (layout != null) {
-//            int height = (int) Math.ceil(getMaxLineHeight(this.getText().toString()))
-//                    + getCompoundPaddingTop() + getCompoundPaddingBottom();
-//            int width = getMeasuredWidth();
-//            setMeasuredDimension(width, height);
-//        }
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, MeasureSpec.AT_MOST);
+//        super.onMeasure(widthMeasureSpec, expandSpec);
+        Layout layout = getLayout();
+        if (layout != null) {
+            int height = (int) Math.ceil(getMaxLineHeight(this.getText().toString()))
+                    + getCompoundPaddingTop() + getCompoundPaddingBottom();
+            int width = getMeasuredWidth();
+            setMeasuredDimension(width, height);
+        }
     }
 
     private float getMaxLineHeight(String str) {

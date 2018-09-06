@@ -86,6 +86,7 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder.topLine = (View)view.findViewById(R.id.topLine);
             viewHolder.bottomLine = (View)view.findViewById(R.id.bottomLine);
             viewHolder.text = (CustomTextView)view.findViewById(R.id.text);
+            viewHolder.num = (TextView)view.findViewById(R.id.num);
             view.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)view.getTag();
@@ -101,6 +102,8 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder.topLine.setVisibility(View.VISIBLE);
             viewHolder.bottomLine.setVisibility(View.VISIBLE);
         }
+
+        viewHolder.num.setText(String.valueOf(position+1));
 
         String[] strings = insertStrMap.get(position);
         if(strings!=null){
@@ -135,6 +138,7 @@ public class BankPaymentAdapter extends BaseAdapter{
     class ViewHolder{
         View bottomLine;
         View topLine;
+        TextView num;
         CustomTextView text;
     }
 }
