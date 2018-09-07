@@ -77,7 +77,7 @@ public interface SPKeyUtils {
 
     //环信账号信息
     String TENANTID="53718";//租户ID
-    String IMSERVICE="kefuchannelimid_045802";//服务号
+    String IMSERVICE="kefuchannelimid_256170";//服务号
     String CHAT_CLIENT_APPKEY ="1481180402061178#kefuchannelapp53718";
     String PROJECT_ID  = "2610618";
 

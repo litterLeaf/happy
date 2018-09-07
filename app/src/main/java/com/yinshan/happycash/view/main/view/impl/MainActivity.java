@@ -62,6 +62,7 @@ import com.yinshan.happycash.view.main.contract.ChatClientContract;
 import com.yinshan.happycash.view.main.model.HXBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.model.YWUser;
+import com.yinshan.happycash.view.main.presenter.ChatClientPresenter;
 import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
@@ -149,6 +150,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     private GetStatusPresenter mPresenter;
     private ArrayList<String> permissionsList;
     private ArrayList<String> permissionsNeeded;
+    private ChatClientPresenter chatClientPresenter;
 
     private String[] mustPermission = {
             Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS,Manifest.permission.READ_PHONE_STATE
@@ -179,7 +181,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         MainActivity.choosePeriod = 3;
 
         mPresenter = new GetStatusPresenter(this,this);
-
+        chatClientPresenter = new ChatClientPresenter(this);
+        chatClientPresenter.attachView(this);
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         if(object!=null&&object.getStatus()!=null){
             dealResult(object);
@@ -508,7 +511,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                             return;
                         }
                         //获得常见问题列表
-
+//                        chatClientPresenter.getMessage();
                     }else {
                         initYW(0);
                     }
@@ -521,6 +524,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private void initYW(int i) {
+        chatClientPresenter.getChatClientAccount(TokenManager.getInstance().getToken());
     }
 
 
