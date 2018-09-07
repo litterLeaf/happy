@@ -171,7 +171,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void secondInit() {
-
+        requestProfile();
     }
 
     @Override
@@ -943,10 +943,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private void requestProfile(){
+        mVersionPresenter = new VersionPresenter(this,this);
         String versionCode = SystemUtil.getInstance().getVersionCode();
         if (TextUtils.isEmpty(versionCode)) {
             return;
         }
-//        mVersionPresenter.getVersionInfo(versionCode);
+        mVersionPresenter.getVersionInfo(versionCode);
     }
 }

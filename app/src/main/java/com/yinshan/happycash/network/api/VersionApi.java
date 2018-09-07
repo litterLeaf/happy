@@ -16,7 +16,6 @@ import io.reactivex.Observable;
 
 public interface VersionApi {
 
-    @FormUrlEncoded
-    @GET("version/latest")
-    Observable<ProfileBean> getVersionInfo(@Field("version") String version, @Header("X-AUTH-TOKEN") String token);
+    @GET("profiles")
+    Observable<ProfileBean> getVersionInfo(@Query("version") String version, @Header("X-AUTH-TOKEN") String token);
 }
