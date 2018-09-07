@@ -409,6 +409,14 @@ public class SPUtils extends ConstantSharedPreferences{
         return app.edit().putString(USER_NAME,userName).commit();
     }
 
+    public String getUserKtp(){
+        return app.getString(USER_KTP,"");
+    }
+
+    public boolean setUserKtp(String userKtp){
+        return app.edit().putString(USER_KTP,userKtp).commit();
+    }
+
     public void setObject(String key,Object object){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         ObjectOutputStream out = null;

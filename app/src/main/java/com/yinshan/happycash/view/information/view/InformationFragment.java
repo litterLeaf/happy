@@ -8,7 +8,9 @@ import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -63,17 +65,19 @@ import cn.fraudmetrix.octopus.aspirit.main.OctopusTaskCallBack;
 
 public class InformationFragment extends BaseFragment implements IInfoView,IBpjsView{
 
-    ProfilProgressView mProgressView;
+    ProgressBar mProgressView;
     TextView mProgressText;
-    TextView textView;
-    RelativeLayout notFinishPerson;
-    RelativeLayout finishPerson;
-    RelativeLayout notFinishEmploy;
-    RelativeLayout finishEmploy;
-    RelativeLayout notFinishContact;
-    RelativeLayout finishContact;
-    RelativeLayout notFinishUploadPhoto;
-    RelativeLayout finishUploadPhoto;
+
+    RelativeLayout mViewPerson;
+    RelativeLayout mViewJob;
+    RelativeLayout mViewContact;
+    RelativeLayout mViewSS;
+    RelativeLayout mViewPhoto;
+    ImageView mCheckPerson;
+    ImageView mCheckJob;
+    ImageView mCheckContact;
+    ImageView mCheckSS;
+    ImageView mCheckPhoto;
     Unbinder unbinder;
 
     RelativeLayout mSubmit;
@@ -90,9 +94,6 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 
     @Override
     protected void initView() {
-
-
-
         resetProgress();
 
         mPresenter = new InformationPresenter(getActivity(),this);
@@ -109,35 +110,34 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
         return R.layout.fragment_information;
     }
 
-    @OnClick({R.id.view_not_finish_person, R.id.view_finish_person, R.id.view_not_finish_employ, R.id.view_finish_employ,
-            R.id.view_not_finish_contact,R.id.view_finish_contact,R.id.view_not_finish_upload_photo,R.id.view_finish_upload_photo,R.id.submit})
+    @OnClick({R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.view_not_finish_person:
-//                doBpjsAction();
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
-                break;
-            case R.id.view_finish_person:
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
-                break;
-            case R.id.view_not_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
-                break;
-            case R.id.view_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
-                break;
-            case R.id.view_not_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
-                break;
-            case R.id.view_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
-                break;
-            case R.id.view_not_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
-                break;
-            case R.id.view_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
-                break;
+//            case R.id.view_not_finish_person:
+////                doBpjsAction();
+//                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
+//                break;
+//            case R.id.view_finish_person:
+//                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
+//                break;
+//            case R.id.view_not_finish_employ:
+//                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
+//                break;
+//            case R.id.view_finish_employ:
+//                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
+//                break;
+//            case R.id.view_not_finish_contact:
+//                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
+//                break;
+//            case R.id.view_finish_contact:
+//                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
+//                break;
+//            case R.id.view_not_finish_upload_photo:
+//                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
+//                break;
+//            case R.id.view_finish_upload_photo:
+//                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
+//                break;
             case R.id.submit:
                 RxBus.get().post(new InfoUploadEvent());
                 break;
@@ -179,52 +179,50 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     private void updateProgress(){
         int progress = 0;
         if(mProgressBean.isPersonalInfoPart()){
-            notFinishPerson.setVisibility(View.INVISIBLE);
-            finishPerson.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckPerson.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishPerson.setVisibility(View.VISIBLE);
-            finishPerson.setVisibility(View.INVISIBLE);
+            mCheckPerson.setVisibility(View.GONE);
         }
         if(mProgressBean.isEmploymentPart()){
-            notFinishEmploy.setVisibility(View.INVISIBLE);
-            finishEmploy.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckJob.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishEmploy.setVisibility(View.VISIBLE);
-            finishEmploy.setVisibility(View.INVISIBLE);
+            mCheckJob.setVisibility(View.GONE);
         }
         if(mProgressBean.isContactPart()){
-            notFinishContact.setVisibility(View.INVISIBLE);
-            finishContact.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckContact.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishContact.setVisibility(View.VISIBLE);
-            finishContact.setVisibility(View.INVISIBLE);
+            mCheckContact.setVisibility(View.GONE);
+        }
+        if(mProgressBean.isBpjsPart()){
+            mCheckSS.setVisibility(View.VISIBLE);
+            progress += 20;
+        }else{
+            mCheckSS.setVisibility(View.GONE);
         }
         if(mProgressBean.isFilePart()){
-            notFinishUploadPhoto.setVisibility(View.INVISIBLE);
-            finishUploadPhoto.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckPhoto.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishUploadPhoto.setVisibility(View.VISIBLE);
-            finishUploadPhoto.setVisibility(View.INVISIBLE);
+            mCheckPhoto.setVisibility(View.GONE);
         }
         setProgress(progress);
         showApplyButton(progress);
     }
 
     private void setProgress(int progress){
-        mProgressView.setCurrentProgress((float)(progress*0.01));
+        mProgressView.setProgress(progress);
         mProgressView.invalidate();
-        SpannableStringBuilder spannableString = new SpannableStringBuilder();
-        spannableString.append(String.valueOf(progress));
-        spannableString.append("%");
+//        SpannableStringBuilder spannableString = new SpannableStringBuilder();
+//        spannableString.append(String.valueOf(progress));
+//        spannableString.append("%");
 //        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(20);
 //        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(10);
 //        spannableString.setSpan(sizeSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        spannableString.setSpan(sizeSpan2, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mProgressText.setText(spannableString);
+        mProgressText.setText(String.valueOf(progress)+"%");
     }
 
     private void showApplyButton(int progress){
@@ -243,19 +241,51 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 
     @Override
     protected void initUIValue(View view){
+        mProgressView = (ProgressBar)view.findViewById(R.id.progressView);
+        mProgressText = (TextView)view.findViewById(R.id.progressNum);
 
-        mProgressView = (ProfilProgressView)view.findViewById(R.id.progressView);
-        mProgressText = (TextView)view.findViewById(R.id.progressText);
-        textView = (TextView)view.findViewById(R.id.textView);
-        notFinishPerson = (RelativeLayout)view.findViewById(R.id.view_not_finish_person);
-        finishPerson = (RelativeLayout)view.findViewById(R.id.view_finish_person);
-        notFinishEmploy = (RelativeLayout)view.findViewById(R.id.view_not_finish_employ);
+        mViewPerson = (RelativeLayout)view.findViewById(R.id.viewPerson);
+        mViewJob = (RelativeLayout)view.findViewById(R.id.viewJob);
+        mViewContact = (RelativeLayout)view.findViewById(R.id.viewContact);
+        mViewSS = (RelativeLayout)view.findViewById(R.id.viewSS);
+        mViewPhoto = (RelativeLayout)view.findViewById(R.id.viewPhoto);
 
-        finishEmploy = (RelativeLayout)view.findViewById(R.id.view_finish_employ);
-        notFinishContact = (RelativeLayout)view.findViewById(R.id.view_not_finish_contact);
-        finishContact = (RelativeLayout)view.findViewById(R.id.view_finish_contact);
-        notFinishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_not_finish_upload_photo);
-        finishUploadPhoto = (RelativeLayout)view.findViewById(R.id.view_finish_upload_photo);
+        mCheckPerson = (ImageView)view.findViewById(R.id.personCheck);
+        mCheckJob = (ImageView)view.findViewById(R.id.jobCheck);
+        mCheckContact = (ImageView)view.findViewById(R.id.contactCheck);
+        mCheckSS = (ImageView) view.findViewById(R.id.ssCheck);
+        mCheckPhoto = (ImageView)view.findViewById(R.id.photoCheck);
+
+        mViewPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
+            }
+        });
+        mViewJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
+            }
+        });
+        mViewContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
+            }
+        });
+        mViewSS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doBpjsAction();
+            }
+        });
+        mViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
+            }
+        });
 
         mSubmit = (RelativeLayout)view.findViewById(R.id.submit);
     }
@@ -278,7 +308,9 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 
     @Override
     public void bpjsOk() {
-        ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
+        mProgressBean.setBpjsPart(true);
+        updateProgress();
+        //ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
     }
 
     @Override
