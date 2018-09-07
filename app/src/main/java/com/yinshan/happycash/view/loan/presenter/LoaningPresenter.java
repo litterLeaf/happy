@@ -91,12 +91,14 @@ public class LoaningPresenter {
                     @Override
                     public void onNext(ApplyLoanAppsBean value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.submitLoanOk();
                         Log.v("huxin","submit ok");
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
+                        mView.dismissLoadingDialog();
                         super.onError(ex);
 
                         if(ex.getCode()== CodeException.E_201_ERROR||ex.getCode()==CodeException.E_EOF_ERROR)

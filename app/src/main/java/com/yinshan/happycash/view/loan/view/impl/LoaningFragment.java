@@ -185,8 +185,13 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                 mPresenter.getPurpose();
                 break;
             case R.id.btnSubmit:
-                MobAgent.onEvent(MobEvent.CLICK+MobEvent.APPLY_LOANING);
+//                MobAgent.onEvent(MobEvent.CLICK+MobEvent.APPLY_LOANING);
                 applyLoanAppSubmit();
+//                if (SPUtils.getInstance().getLiveNess()||true) {
+//                    intent = new Intent(getActivity(), OliveStartActivity.class);
+//                    startActivity(intent);
+//                }
+
                 break;
             case R.id.bt_period_1_unloan:
                 setChoose1Period();

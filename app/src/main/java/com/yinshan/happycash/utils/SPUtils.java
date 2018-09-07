@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.util.Base64;
 
 import com.yinshan.happycash.application.AppApplication;
+import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -529,5 +531,13 @@ public class SPUtils extends ConstantSharedPreferences{
         SharedPreferences.Editor editor = app.edit();
         editor.putLong(key, value);
         editor.apply();
+    }
+
+    public LastLoanAppBean getLatestBean(){
+        LastLoanAppBean object = getObject(SPKeyUtils.LATESTBEAN, LastLoanAppBean.class);
+        if(object!=null)
+            return object;
+        else
+            return null;
     }
 }

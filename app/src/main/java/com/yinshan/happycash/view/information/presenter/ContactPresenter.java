@@ -53,10 +53,13 @@ public class ContactPresenter {
                 });
     }
 
-    public void submitContactInfo(String name1,String mobile1,String relative1,String name2,String mobile2,String relative2){
+    public void submitContactInfo(String name1,String mobile1,String relative1,String name2,String mobile2,String relative2,
+    String name3,String mobile3,String relative3,String name4,String mobile4,String relative4,String name5,String mobile5,String relative5){
         mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(RecordApi.class)
-                .submitContactInfo(name1,mobile1,relative1,name2,mobile2,relative2,TokenManager.getInstance().getToken())
+                .submitContactInfo(name1,mobile1,relative1,name2,mobile2,relative2,
+                        name3,mobile3,relative3,name4,mobile4,relative4,
+                        name5,mobile5,relative5, TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
                     @Override

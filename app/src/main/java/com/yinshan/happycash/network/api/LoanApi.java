@@ -138,6 +138,7 @@ public interface LoanApi {
                                         @Field("clFile") String clFile,
                                         @Field("ctFile") String ctFile,
                                         @Field("bhFile") String eFile,
+                                        @Field("dvFile") String devFile,
                                         @Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded

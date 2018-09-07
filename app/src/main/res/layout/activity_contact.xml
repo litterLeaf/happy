@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
+    <!-- 1-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -120,6 +123,7 @@
             android:layout_height="15dp"/>
     </LinearLayout>
 
+    <!-- 2-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -232,6 +236,345 @@
             android:layout_height="15dp"/>
     </LinearLayout>
 
+    <!-- 3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_round_30_white">
+
+        <RelativeLayout
+            android:id="@+id/btnRelative3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/hintRelative3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/relative"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textRelative3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/path_8_copy"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:id="@+id/btnContact3"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintContact3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/contact"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textContact3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/contects"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintPhone3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textPhone3"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+    </LinearLayout>
+
+    <!-- 4-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_round_30_white">
+
+        <RelativeLayout
+            android:id="@+id/btnRelative4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/hintRelative4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/relative"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textRelative4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/path_8_copy"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:id="@+id/btnContact4"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintContact4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/contact"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textContact4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/contects"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintPhone4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textPhone4"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+    </LinearLayout>
+
+    <!-- 5-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:background="@drawable/bg_round_30_white">
+
+        <RelativeLayout
+            android:id="@+id/btnRelative5"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/hintRelative5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/relative"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textRelative5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/path_8_copy"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:id="@+id/btnContact5"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintContact5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/contact"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textContact5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:src="@drawable/contects"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/hintPhone5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:text="@string/telephone_number"
+                android:textColor="@color/text_d6d6d6"
+                />
+            <TextView
+                android:id="@+id/textPhone5"
+                style="@style/text_wrap_layout"
+                android:layout_centerInParent="true"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/text_blue"
+                />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@color/line"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="15dp"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
@@ -263,5 +606,5 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="20dp"/>
-    
 </LinearLayout>
+</ScrollView>

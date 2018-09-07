@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -23,6 +24,12 @@ import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
+import com.hyphenate.chat.ChatClient;
+import com.hyphenate.chat.EMTextMessageBody;
+import com.hyphenate.chat.Message;
+import com.hyphenate.helpdesk.callback.Callback;
+import com.hyphenate.helpdesk.easeui.util.IntentBuilder;
+import com.hyphenate.helpdesk.model.ContentFactory;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.callLog.CallLogDBController;
 import com.yinshan.happycash.analytic.contacts.ContactDBController;
@@ -34,6 +41,7 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
+import com.yinshan.happycash.utils.LockUtils;
 import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
@@ -50,7 +58,10 @@ import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.main.QuestionActivity;
+import com.yinshan.happycash.view.main.contract.ChatClientContract;
+import com.yinshan.happycash.view.main.model.HXBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.model.YWUser;
 import com.yinshan.happycash.view.main.model.ProfileBean;
 import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
 import com.yinshan.happycash.view.main.presenter.VersionPresenter;
@@ -66,8 +77,12 @@ import com.yinshan.happycash.widget.dialog.PowerDialog;
 import android.app.DialogFragment;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -96,7 +111,7 @@ import butterknife.OnClick;
  *    创建时间：2018/1/11 
  *
  */
-public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView {
+public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView ,ChatClientContract.View{
 
     boolean isFirstEnter = true;
     public static boolean isNotResume = false;
@@ -156,7 +171,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void secondInit() {
-        requestProfile();
+
     }
 
     @Override
@@ -168,7 +183,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         MainActivity.choosePeriod = 3;
 
         mPresenter = new GetStatusPresenter(this,this);
-        mVersionPresenter = new VersionPresenter(this,this);
 
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         if(object!=null&&object.getStatus()!=null){
@@ -487,7 +501,21 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 break;
             case R.id.id_textview_tab_online_qa:
                 if(TokenManager.getInstance().hasLogin()){
-                    mStartActivity(MainActivity.this,QuestionActivity.class);
+                    if(LockUtils.Instance.isFastClick()){
+                        return;
+                    }
+                    if(ChatClient.getInstance().isLoggedInBefore()){
+                        String token = TokenManager.getInstance().getToken();
+                        if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
+                            ToastUtils.showShort(R.string.show_not_login_yet);
+                            startActivity(new Intent(this, LoginActivity.class));
+                            return;
+                        }
+                        //获得常见问题列表
+
+                    }else {
+                        initYW(0);
+                    }
                 }else {
                     mStartActivity(MainActivity.this,LoginActivity.class);
                 }
@@ -495,6 +523,10 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 break;
         }
     }
+
+    private void initYW(int i) {
+    }
+
 
     private void reSetTab(int tab){
         tabLoan.setSelected(false);
@@ -794,6 +826,77 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     public void getVersionFail() {
 
+    }
+
+    /**
+     * 获取留言板块
+     * @param hxBean
+     */
+    @Override
+    public void getMessageSuccess(HXBean hxBean) {
+        int type = hxBean.getGreetingTextType();
+        String rob_welcome = hxBean.getGreetingText();
+        if(type==0){
+            SPUtils.put("rob_welcome",rob_welcome);
+        }else if(type==1){
+            final String str = rob_welcome.replaceAll("&quot;","\"");
+            JSONObject json = null;
+            try {
+                json = new JSONObject(str);
+                JSONObject ext = json.getJSONObject("ext");
+                final JSONObject msgtype = ext.getJSONObject("msgtype");
+                SPUtils.put("rob_welcome",msgtype.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            }
+        if(ChatClient.getInstance().isLoggedInBefore()){
+            inputMessage();
+            LastLoanAppBean  latestLoanAppBean= SPUtils.getInstance().getLatestBean();
+            String status;
+            String appId;
+            //已经登录，可以直接进入会话界面
+            //获取地址：kefu.easemob.com，“管理员模式 > 渠道管理 > 手机APP”页面的关联的“IM服务号”
+            if(latestLoanAppBean!=null){
+                status =latestLoanAppBean.getStatus();
+                appId = latestLoanAppBean.getLoanAppId();
+            }else {
+                status ="UNLOAN";
+                appId = "0000";
+            }
+            Intent intent = new IntentBuilder(MainActivity.this)
+                    .setVisitorInfo(ContentFactory.createVisitorInfo(null)
+                            .nickName(appId)
+                            .description(status))
+                    .setTitleName("Customer Service Kami")
+                    .setServiceIMNumber(SPKeyUtils.IMSERVICE)
+                    .build();
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void getMessageError(String message) {
+        dismissLoadingDialog();
+        ToastUtils.showShort(message);
+    }
+
+    /**
+     * 获取登录的账号名和密码
+     * @param ywUser
+     */
+    @Override
+    public void getChatAccountSuccess(YWUser ywUser) {
+        dismissLoadingDialog();
+        if(ywUser!=null){
+            loginCEC(ywUser.getUserid(),ywUser.getPassword(),0);
+        }
+    }
+
+    @Override
+    public void getChatAccountFailure(String message) {
+        dismissLoadingDialog();
+        ToastUtils.showShort(message);
     }
 
     class PowerListener implements CommonClickListener{

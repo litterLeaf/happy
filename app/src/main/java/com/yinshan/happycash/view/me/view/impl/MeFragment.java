@@ -1,6 +1,5 @@
 package com.yinshan.happycash.view.me.view.impl;
 
-import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -12,17 +11,10 @@ import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.view.information.model.PersonalBean;
-import com.yinshan.happycash.view.information.presenter.PersonalPresenter;
-import com.yinshan.happycash.view.information.view.IPersonalView;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.me.view.IGetPersonView;
-import com.yinshan.happycash.view.me.view.impl.AboutActivity;
-import com.yinshan.happycash.view.me.view.impl.HelpCenterActivity;
-import com.yinshan.happycash.view.me.view.impl.LoanListActivity;
-import com.yinshan.happycash.view.me.view.impl.SafeSettingActivity;
 import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**

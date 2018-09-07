@@ -25,6 +25,26 @@ package com.yinshan.happycash.utils;
  * on 2018/1/11
  */
 public interface SPKeyUtils {
+
+    //--------------------------------------- int 类型的-------------------------------------
+
+    //错误的警告
+    int SNACKBAR_TYPE_ERROR = 0;
+    //提示
+    int SNACKBAR_TYPE_TIP = 1;
+    //提醒
+    int SNACKBAR_TYPE_WORN = 2;
+    //跳转的提示
+    int SNACKBAR_TYPE_INTEENT = 3;
+
+    /**
+     * dialog 的type
+     */
+    int DIALOG_GPS = 1;
+    int DIALOG_SETTING = 2;
+    int DIALOG_NULL = 3;
+
+    //--------------------------------------- String 类型的-------------------------------------
     /**
      * 保存cookie
      */
@@ -55,22 +75,15 @@ public interface SPKeyUtils {
     String IS_KTP_PHOTO_OK = "is_ktp_photo_ok";
     String IS_WORK_PHOTO_OK = "is_work_photo_ok";
 
+    //环信账号信息
+    String TENANTID="53718";//租户ID
+    String IMSERVICE="kefuchannelimid_045802";//服务号
+    String CHAT_CLIENT_APPKEY ="1481180402061178#kefuchannelapp53718";
+    String PROJECT_ID  = "2610618";
 
-    //错误的警告
-    int SNACKBAR_TYPE_ERROR = 0;
-    //提示
-    int SNACKBAR_TYPE_TIP = 1;
-    //提醒
-    int SNACKBAR_TYPE_WORN = 2;
-    //跳转的提示
-    int SNACKBAR_TYPE_INTEENT = 3;
+    //环信的客服请求
+    String HX_API_URL = "http://kefu.easemob.com/v1/Tenants/";
 
-    /**
-     * dialog 的type
-     */
-    int DIALOG_GPS = 1;
-    int DIALOG_SETTING = 2;
-    int DIALOG_NULL = 3;
 
     String SP_APPINFO_FILENAME = "appInformation";
     String IMEI = "imei";
@@ -83,5 +96,7 @@ public interface SPKeyUtils {
 
     String CHANNEL_FASPAY= "FASPAY";
     String CHANNEL_XENDIT= "XENDIT";
+
+    String LATESTBEAN             = "latestbean";
 
 }

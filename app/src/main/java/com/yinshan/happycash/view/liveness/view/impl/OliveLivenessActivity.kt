@@ -97,7 +97,7 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
             showLoading("update info.....")
             RxHttpUtils.getInstance()
                     .createApi(LoanApi::class.java)
-                    .uploadBio1(loanAppId, base64Data, sms, callLog, contact, event, TokenManager.getInstance().token)
+                    .uploadBio1(loanAppId, base64Data, sms, callLog, contact, event, dev,TokenManager.getInstance().token)
                     .compose(RxTransformer.io_main())
                     .subscribe({
                         dismissLoading()
