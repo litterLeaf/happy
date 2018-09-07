@@ -1,1 +1,2 @@
-include ':app', ':kefu-easeui'
+include ':app'
+//, ':kefu-easeui'

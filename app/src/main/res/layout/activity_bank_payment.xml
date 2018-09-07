@@ -145,7 +145,7 @@
         android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -250,7 +250,7 @@
             <com.yinshan.happycash.widget.custom.NoScrollListView
                 android:id="@+id/listStep"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="@dimen/bank_payment_left"
                 android:layout_marginRight="@dimen/bank_payment_left"
