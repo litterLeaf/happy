@@ -51,8 +51,11 @@ import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.main.QuestionActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.model.ProfileBean;
 import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
+import com.yinshan.happycash.view.main.presenter.VersionPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
+import com.yinshan.happycash.view.main.view.IVersionView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.common.ToastManager;
@@ -93,7 +96,7 @@ import butterknife.OnClick;
  *    创建时间：2018/1/11 
  *
  */
-public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView {
+public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView {
 
     boolean isFirstEnter = true;
     public static boolean isNotResume = false;
@@ -132,6 +135,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public static int chooseIndex;
 
     private GetStatusPresenter mPresenter;
+    private VersionPresenter mVersionPresenter;
     private ArrayList<String> permissionsList;
     private ArrayList<String> permissionsNeeded;
 
@@ -152,7 +156,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void secondInit() {
-
+        requestProfile();
     }
 
     @Override
@@ -164,6 +168,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         MainActivity.choosePeriod = 3;
 
         mPresenter = new GetStatusPresenter(this,this);
+        mVersionPresenter = new VersionPresenter(this,this);
 
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         if(object!=null&&object.getStatus()!=null){
@@ -773,6 +778,24 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 PERMISSION_CODE);
     }
 
+    @Override
+    public void getVersionOk(ProfileBean profileBean) {
+        boolean forceUpgrade = profileBean.isForceUpgrade();
+        if (forceUpgrade) {
+
+        }
+//        ProfileBean.PrfileSettinBean setting = profileBean.getSetting();
+//        if (setting != null) {
+//            boolean isLiveness = setting.isLiveness_detection();
+//            BandaAppSP.getInstance().setLiveNess(isLiveness);
+//        }
+    }
+
+    @Override
+    public void getVersionFail() {
+
+    }
+
     class PowerListener implements CommonClickListener{
 
         @Override
@@ -814,5 +837,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         idLinearlayoutMe = (LinearLayout)findViewById(R.id.id_linearlayout_me);
         abOnlineQa = (TextView)findViewById(R.id.id_textview_tab_online_qa);
         idLinearlayoutOnlineQa = (LinearLayout)findViewById(R.id.id_linearlayout_online_qa);
+    }
+
+    private void requestProfile(){
+        String versionCode = SystemUtil.getInstance().getVersionCode();
+        if (TextUtils.isEmpty(versionCode)) {
+            return;
+        }
+//        mVersionPresenter.getVersionInfo(versionCode);
     }
 }
