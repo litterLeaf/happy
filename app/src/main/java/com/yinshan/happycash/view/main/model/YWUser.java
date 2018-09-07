@@ -1,5 +1,7 @@
 package com.yinshan.happycash.view.main.model;
 
+import java.io.Serializable;
+
 /**
  * ┏┓　　　┏┓
  * ┏┛┻━━━┛┻┓
@@ -23,5 +25,28 @@ package com.yinshan.happycash.view.main.model;
  * 创建人：    admin
  * 创建时间：2018/9/7
  */
-public class YWUser {
+public class YWUser implements Serializable {
+    /**
+     * userid : 59523e9f4736c2cab70a470f088b53dd
+     * password : 012c05e84b2d34635dff3abc8dd36640
+     */
+
+    String userid;
+    String password;
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

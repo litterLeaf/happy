@@ -19,12 +19,7 @@ import android.view.Window;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
-import com.hyphenate.chat.ChatClient;
-import com.hyphenate.chat.EMTextMessageBody;
-import com.hyphenate.chat.Message;
-import com.hyphenate.helpdesk.callback.Callback;
-import com.hyphenate.helpdesk.easeui.util.IntentBuilder;
-import com.hyphenate.helpdesk.model.ContentFactory;
+
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
@@ -246,59 +241,35 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
             }
         });
     }
-
-
-    public void loginCEC(String useriId, String password, int flag){
-        ChatClient.getInstance().login(useriId, password, new Callback() {
-            @Override
-            public void onSuccess() {
-                dismissLoadingDialog();
-                if(flag==0){
-//                    getWelcomeMessage();
-                }
-            }
-            @Override
-            public void onError(int i, String s) {
-                dismissLoadingDialog();
-                Log.e("onError " ,s);
-            }
-
-            @Override
-            public void onProgress(int i, String s) {
-                Log.d("onProgress " , s);
-            }
-        });
-    }
-
     /**
      * 注入消息
      */
     public void inputMessage(){
-        Message message = Message.createReceiveMessage(Message.Type.TXT);
-        //从本地获取保存的string
-        String str = SPUtils.get("rob_welcome","");
-        EMTextMessageBody body = null;
-        if(!TextUtils.isEmpty(str)){
-            if(!isRobotMenu(str)){
-                //文字消息直接去设置给消息
-                body = new EMTextMessageBody(str);
-            }else{
-                //菜单消息需要设置给消息扩展
-                try{
-                    body = new EMTextMessageBody("");
-                    JSONObject msgtype = new JSONObject(str);
-                    message.setAttribute("msgtype",msgtype);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-            message.setFrom(SPKeyUtils.IMSERVICE);
-            message.addBody(body);
-            message.setMsgTime(System.currentTimeMillis());
-            message.setStatus(Message.Status.SUCCESS);
-            message.setMsgId(UUID.randomUUID().toString());
-            ChatClient.getInstance().chatManager().saveMessage(message);
-        }
+//        Message message = Message.createReceiveMessage(Message.Type.TXT);
+//        //从本地获取保存的string
+//        String str = SPUtils.get("rob_welcome","");
+//        EMTextMessageBody body = null;
+//        if(!TextUtils.isEmpty(str)){
+//            if(!isRobotMenu(str)){
+//                //文字消息直接去设置给消息
+//                body = new EMTextMessageBody(str);
+//            }else{
+//                //菜单消息需要设置给消息扩展
+//                try{
+//                    body = new EMTextMessageBody("");
+//                    JSONObject msgtype = new JSONObject(str);
+//                    message.setAttribute("msgtype",msgtype);
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//            }
+//            message.setFrom(SPKeyUtils.IMSERVICE);
+//            message.addBody(body);
+//            message.setMsgTime(System.currentTimeMillis());
+//            message.setStatus(Message.Status.SUCCESS);
+//            message.setMsgId(UUID.randomUUID().toString());
+//            ChatClient.getInstance().chatManager().saveMessage(message);
+//        }
     }
     private boolean isRobotMenu(String str){
         try {

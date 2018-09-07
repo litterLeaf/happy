@@ -4,10 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 
-import com.hyphenate.chat.ChatClient;
-import com.hyphenate.helpdesk.easeui.util.IntentBuilder;
-import com.hyphenate.helpdesk.model.ContentFactory;
+
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.TokenManager;
@@ -15,6 +14,7 @@ import com.yinshan.happycash.network.api.OtherApi;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.BaseSubscriber;
+import com.yinshan.happycash.network.common.base.BaseURL;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ToastUtils;
@@ -99,22 +99,29 @@ public class ChatClientPresenter implements ChatClientContract.Presenter {
     }
 
     @Override
-    public void getChatClientAccount(String token) {
+    public void getChatClientAccount(String token,int flag) {
         RxHttpUtils.getInstance()
+                .baseUrl(BaseURL.getBaseURL())
                 .createApi(OtherApi.class)
                 .getChatUserInfo(token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new BaseSubscriber<YWUser>() {
+                .subscribe(new Subscriber<YWUser>() {
                     @Override
-                    public void onSuccess(YWUser ywUser) {
-                        view.getChatAccountSuccess(ywUser);
+                    public void onCompleted() {
+
                     }
 
                     @Override
-                    public void onFailure(Throwable e) {
+                    public void onError(Throwable e) {
                         view.getChatAccountFailure(e.getMessage());
+                    }
+
+                    @Override
+                    public void onNext(YWUser ywUser) {
+                        view.getChatAccountSuccess(ywUser,flag);
                     }
                 });
     }
+
 }

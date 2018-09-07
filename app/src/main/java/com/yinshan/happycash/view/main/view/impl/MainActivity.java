@@ -24,12 +24,6 @@ import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
-import com.hyphenate.chat.ChatClient;
-import com.hyphenate.chat.EMTextMessageBody;
-import com.hyphenate.chat.Message;
-import com.hyphenate.helpdesk.callback.Callback;
-import com.hyphenate.helpdesk.easeui.util.IntentBuilder;
-import com.hyphenate.helpdesk.model.ContentFactory;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.callLog.CallLogDBController;
 import com.yinshan.happycash.analytic.contacts.ContactDBController;
@@ -69,6 +63,7 @@ import com.yinshan.happycash.view.main.presenter.VersionPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
 import com.yinshan.happycash.view.main.view.IVersionView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
+import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
@@ -503,32 +498,32 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                         false,false,false,false,false);
                 break;
             case R.id.id_textview_tab_online_qa:
-                if(TokenManager.getInstance().hasLogin()){
-                    if(LockUtils.Instance.isFastClick()){
-                        return;
-                    }
-                    if(ChatClient.getInstance().isLoggedInBefore()){
-                        String token = TokenManager.getInstance().getToken();
-                        if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
-                            ToastUtils.showShort(R.string.show_not_login_yet);
-                            startActivity(new Intent(this, LoginActivity.class));
-                            return;
-                        }
-                        //获得常见问题列表
-//                        chatClientPresenter.getMessage();
-                    }else {
-                        initYW(0);
-                    }
-                }else {
-                    mStartActivity(MainActivity.this,LoginActivity.class);
-                }
+//                if(TokenManager.getInstance().hasLogin()){
+//                    if(LockUtils.Instance.isFastClick()){
+//                        return;
+//                    }
+//                    if(ChatClient.getInstance().isLoggedInBefore()){
+//                        String token = TokenManager.getInstance().getToken();
+//                        if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
+//                            ToastUtils.showShort(R.string.show_not_login_yet);
+//                            startActivity(new Intent(this, LoginActivity.class));
+//                            return;
+//                        }
+//                        //获得常见问题列表
+//                        chatClientPresenter.getMessage(SPKeyUtils.TENANTID);
+//                    }else {
+//                        initYW(0);
+//                    }
+//                }else {
+//                    mStartActivity(MainActivity.this,LoginActivity.class);
+//                }
 
                 break;
         }
     }
 
     private void initYW(int i) {
-        chatClientPresenter.getChatClientAccount(TokenManager.getInstance().getToken());
+        chatClientPresenter.getChatClientAccount(TokenManager.getInstance().getToken(),i);
     }
 
 
@@ -833,50 +828,51 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     /**
+     * 暂时去掉
      * 获取留言板块
      * @param hxBean
      */
     @Override
     public void getMessageSuccess(HXBean hxBean) {
-        int type = hxBean.getGreetingTextType();
-        String rob_welcome = hxBean.getGreetingText();
-        if(type==0){
-            SPUtils.put("rob_welcome",rob_welcome);
-        }else if(type==1){
-            final String str = rob_welcome.replaceAll("&quot;","\"");
-            JSONObject json = null;
-            try {
-                json = new JSONObject(str);
-                JSONObject ext = json.getJSONObject("ext");
-                final JSONObject msgtype = ext.getJSONObject("msgtype");
-                SPUtils.put("rob_welcome",msgtype.toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            }
-        if(ChatClient.getInstance().isLoggedInBefore()){
-            inputMessage();
-            LastLoanAppBean  latestLoanAppBean= SPUtils.getInstance().getLatestBean();
-            String status;
-            String appId;
-            //已经登录，可以直接进入会话界面
-            //获取地址：kefu.easemob.com，“管理员模式 > 渠道管理 > 手机APP”页面的关联的“IM服务号”
-            if(latestLoanAppBean!=null){
-                status =latestLoanAppBean.getStatus();
-                appId = latestLoanAppBean.getLoanAppId();
-            }else {
-                status ="UNLOAN";
-                appId = "0000";
-            }
-            Intent intent = new IntentBuilder(MainActivity.this)
-                    .setVisitorInfo(ContentFactory.createVisitorInfo(null)
-                            .nickName(appId)
-                            .description(status))
-                    .setTitleName("Customer Service Kami")
-                    .setServiceIMNumber(SPKeyUtils.IMSERVICE)
-                    .build();
-            startActivity(intent);
-        }
+//        int type = hxBean.getGreetingTextType();
+//        String rob_welcome = hxBean.getGreetingText();
+//        if(type==0){
+//            SPUtils.put("rob_welcome",rob_welcome);
+//        }else if(type==1){
+//            final String str = rob_welcome.replaceAll("&quot;","\"");
+//            JSONObject json = null;
+//            try {
+//                json = new JSONObject(str);
+//                JSONObject ext = json.getJSONObject("ext");
+//                final JSONObject msgtype = ext.getJSONObject("msgtype");
+//                SPUtils.put("rob_welcome",msgtype.toString());
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            }
+//        if(ChatClient.getInstance().isLoggedInBefore()){
+//            inputMessage();
+//            LastLoanAppBean  latestLoanAppBean= SPUtils.getInstance().getLatestBean();
+//            String status;
+//            String appId;
+//            //已经登录，可以直接进入会话界面
+//            //获取地址：kefu.easemob.com，“管理员模式 > 渠道管理 > 手机APP”页面的关联的“IM服务号”
+//            if(latestLoanAppBean!=null){
+//                status =latestLoanAppBean.getStatus();
+//                appId = latestLoanAppBean.getLoanAppId();
+//            }else {
+//                status ="UNLOAN";
+//                appId = "0000";
+//            }
+//            Intent intent = new IntentBuilder(MainActivity.this)
+//                    .setVisitorInfo(ContentFactory.createVisitorInfo(null)
+//                            .nickName(appId)
+//                            .description(status))
+//                    .setTitleName("Customer Service Kami")
+//                    .setServiceIMNumber(SPKeyUtils.IMSERVICE)
+//                    .build();
+//            startActivity(intent);
+//        }
     }
 
     @Override
@@ -890,10 +886,10 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
      * @param ywUser
      */
     @Override
-    public void getChatAccountSuccess(YWUser ywUser) {
+    public void getChatAccountSuccess(YWUser ywUser,int flag) {
         dismissLoadingDialog();
         if(ywUser!=null){
-            loginCEC(ywUser.getUserid(),ywUser.getPassword(),0);
+//            loginCEC(ywUser.getUserid(),ywUser.getPassword(),0);
         }
     }
 
@@ -904,7 +900,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     class PowerListener implements CommonClickListener{
-
         @Override
         public void onClick() {
             guide();
@@ -953,4 +948,41 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 //        mVersionPresenter.getVersionInfo(versionCode);
     }
+
+    /**
+     * 暂时去掉
+     * 调用环信客服SDK登录
+     * @param useriId
+     * @param password
+     * @param flag
+     */
+//    private void loginCEC(String useriId,String password,int flag){
+//        ChatClient.getInstance().login(useriId, password, new Callback() {
+//            @Override
+//            public void onSuccess() {
+//                if(flag==0){
+//                    String token = TokenManager.getInstance().getToken();
+//                    if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
+//                        HappySnackBar.showSnackBar(getWindow().getDecorView(),R.string.show_not_login_yet, SPKeyUtils.SNACKBAR_TYPE_INTEENT);
+//                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+//                        return;
+//                    }
+//                    chatClientPresenter.getMessage(SPKeyUtils.TENANTID);
+//                }
+//            }
+//
+//            @Override
+//            public void onError(int i, String s) {
+//                Log.d("onError","onError " + s);
+//            }
+//
+//            @Override
+//            public void onProgress(int i, String s) {
+//                Log.d("onProgress","onProgress " + s);
+//            }
+//        });
+//    }
+
+
+
 }

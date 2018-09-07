@@ -36,13 +36,13 @@ public class ChatClientContract {
 
         void getMessageError(String message);
 
-        void getChatAccountSuccess(YWUser ywUser);
+        void getChatAccountSuccess(YWUser ywUser, int flag);
 
         void getChatAccountFailure(String message);
     }
 
     public interface Presenter extends MvpBasePresenter<ChatClientContract.View>{
         void getMessage(String  tenantId);
-        void getChatClientAccount(String token);
+        void getChatClientAccount(String token,int flag);
     }
 }
