@@ -1,7 +1,9 @@
 package com.yinshan.happycash.view.information.presenter;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.api.RegionApi;
@@ -44,6 +46,9 @@ public class PersonalPresenter {
                     @Override
                     public void onNext(PersonalBean personalBean) {
                         mView.showInfo(personalBean);
+                        if(personalBean!=null&& !TextUtils.isEmpty(personalBean.getCredentialNo())){
+                            SPUtils.getInstance().setUserKtp(personalBean.getCredentialNo());
+                        }
                         mView.dismissLoadingDialog();
                     }
 
@@ -85,6 +90,8 @@ public class PersonalPresenter {
                     public void onNext(ResponseBody value) {
                         super.onNext(value);
                         SPUtils.getInstance().setUsername(personalBean.getFullName());
+                        if(!TextUtils.isEmpty(personalBean.getCredentialNo()))
+                            SPUtils.getInstance().setUserKtp(personalBean.getCredentialNo());
                         mView.submitPersonOk();
                         mView.dismissLoadingDialog();
                     }

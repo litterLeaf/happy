@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.view.information.model.ProgressBean;
 import com.yinshan.happycash.view.information.presenter.BpjsPresenter;
 import com.yinshan.happycash.view.information.presenter.InformationPresenter;
@@ -277,7 +279,15 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
         mViewSS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                doBpjsAction();
+                if(mProgressBean==null)
+                    mPresenter.getProgress();
+                else{
+                    if(mProgressBean.isPersonalInfoPart()&& TextUtils.isEmpty(SPUtils.getInstance().getUserKtp())){
+                        doBpjsAction();
+                    }else{
+                        ToastManager.showToast("Harap tingkatkan informasi pribadi Anda terlebih dahulu.");
+                    }
+                }
             }
         });
         mViewPhoto.setOnClickListener(new View.OnClickListener() {
@@ -295,7 +305,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 ////                param.passbackarams=“*****”//选填;
 //        param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
         OctopusParam param = new OctopusParam();
-        param.identityCode = "3273186312790002";//必填，作为唯⼀一标识关联多数据源数据;
+        param.identityCode = SPUtils.getInstance().getUserKtp();//必填，作为唯⼀一标识关联多数据源数据;
 
         OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
         OctopusManager.getInstance().setPrimaryColorResId(R.color.app_yellow);
