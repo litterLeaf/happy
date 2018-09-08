@@ -216,7 +216,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 }else{
                     showCount++;
                     if(!isShow) {
-                        mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getInsertStrIndexs[REPAYMENT_ONLINE]);
                         isShow = true;
                     }
                 }
@@ -225,7 +225,7 @@ public class BankPaymentStepActivity extends BaseActivity {
                 }else{
                     showCount++;
                     if(!isShow) {
-                        mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
+                        mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ONLINE], getInsertStrIndexs[REPAYMENT_ONLINE]);
                         isShow = true;
                     }
                 }
@@ -274,7 +274,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(0);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ATM], getIndexs[REPAYMENT_ATM]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ATM], getInsertStrIndexs[REPAYMENT_ATM]);
                 mAdapter.notifyDataSetChanged();
                 setMTextListViewHeightBasedOnChildren(mListStep);
 //                mScrollView.smoothScrollTo(0,0);
@@ -285,7 +285,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(1);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getIndexs[REPAYMENT_ONLINE]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getInsertStrIndexs[REPAYMENT_ONLINE]);
                 mAdapter.notifyDataSetChanged();
                 setMTextListViewHeightBasedOnChildren(mListStep);
 //                mScrollView.smoothScrollTo(0,0);
@@ -296,7 +296,7 @@ public class BankPaymentStepActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 clickIndex(2);
-                mAdapter.setNewArray(getIndexs[REPAYMENT_BANK], getInserStrIndexIndexs[REPAYMENT_BANK], getIndexs[REPAYMENT_BANK]);
+                mAdapter.setNewArray(getIndexs[REPAYMENT_BANK], getInserStrIndexIndexs[REPAYMENT_BANK], getInsertStrIndexs[REPAYMENT_BANK]);
                 mAdapter.notifyDataSetChanged();
                 setMTextListViewHeightBasedOnChildren(mListStep);
 //                mScrollView.smoothScrollTo(0,0);
@@ -338,34 +338,55 @@ public class BankPaymentStepActivity extends BaseActivity {
     }
 
 
-    public int setMTextListViewHeightBasedOnChildren(ListView listView) {
-
-// 获取ListView对应的Adapter
+    public void setMTextListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
-            return 0;
+            // pre-condition
+            return;
         }
+
         int totalHeight = 0;
-        int listViewWidth = ScreenUtils.getScreenWidth(this)- DensityUtil.dip2px(this, 50);
-        int widthSpec = View.MeasureSpec.makeMeasureSpec(listViewWidth, View.MeasureSpec.AT_MOST);
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
-
-            // 计算子项View 的宽高
-            listItem.measure(widthSpec, 0);
-            // 统计所有子项的总高度
-            int itemHeight = listItem.getMeasuredHeight();
-            totalHeight += itemHeight;
-
-            System.out.println("listView.totalHeight: " + totalHeight + " itemHeight: " + itemHeight);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
         }
-        int historyHeight = totalHeight + (listView.getDividerHeight() * listAdapter.getCount() - 1)+DensityUtil.dip2px(this,1000);
 
-// listView.getDividerHeight()获取子项间分隔符占用的高度
-        System.out.println("listViewHeight = " + historyHeight);
         ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = historyHeight;
+        int length = listView.getDividerHeight();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1))+DensityUtil.dip2px(this,50);
         listView.setLayoutParams(params);
-        return historyHeight;
     }
+
+//    public int setMTextListViewHeightBasedOnChildren(ListView listView) {
+
+// 获取ListView对应的Adapter
+//        ListAdapter listAdapter = listView.getAdapter();
+//        if (listAdapter == null) {
+//            return 0;
+//        }
+//        int totalHeight = 0;
+//        int listViewWidth = ScreenUtils.getScreenWidth(this)- DensityUtil.dip2px(this, 50);
+//        int widthSpec = View.MeasureSpec.makeMeasureSpec(listViewWidth, View.MeasureSpec.AT_MOST);
+//        for (int i = 0; i < listAdapter.getCount(); i++) {
+//            View listItem = listAdapter.getView(i, null, listView);
+//
+//            // 计算子项View 的宽高
+//            listItem.measure(widthSpec, 0);
+//            // 统计所有子项的总高度
+//            int itemHeight = listItem.getMeasuredHeight();
+//            totalHeight += itemHeight;
+//
+//            System.out.println("listView.totalHeight: " + totalHeight + " itemHeight: " + itemHeight);
+//        }
+//        int historyHeight = totalHeight + (listView.getDividerHeight() * listAdapter.getCount() - 1);
+//
+//// listView.getDividerHeight()获取子项间分隔符占用的高度
+//        System.out.println("listViewHeight = " + historyHeight);
+//        ViewGroup.LayoutParams params = listView.getLayoutParams();
+//        params.height = historyHeight;
+//        listView.setLayoutParams(params);
+//        return historyHeight;
+//        return 0;
+//    }
 }

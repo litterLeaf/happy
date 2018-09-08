@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -26,6 +27,7 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.AppManager;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.utils.DensityUtil;
 import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
@@ -154,7 +156,7 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
 //        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
 
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
+    public void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
@@ -172,6 +174,7 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
     public  void mStartActivity(Context packageContext, Class<?> cls){
         Intent intent = new Intent(packageContext,cls);
         startActivity(intent);
