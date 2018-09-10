@@ -32,6 +32,7 @@ import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
 import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.logger.LogUtil;
 import com.yinshan.happycash.widget.userdefined.OnCheckInputResult;
@@ -138,7 +139,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             mTimer.cancel();
     }
 
-    @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code})
+    @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code,R.id.id_login_statement_data_privacy,R.id.id_login_statement_terms_conditions})
     public void onClick(View view){
         switch (view.getId()){
 
@@ -159,6 +160,12 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             case R.id.id_imageview_code:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.REFRESH);
                 refreshCaptcha();
+                break;
+            case R.id.id_login_statement_data_privacy:
+                DialogManager.loanAgreementDialog(this,0);
+                break;
+            case R.id.id_login_statement_terms_conditions:
+                DialogManager.loanAgreementDialog(this,1);
                 break;
         }
 
