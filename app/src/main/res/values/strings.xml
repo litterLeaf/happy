@@ -775,5 +775,289 @@ atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri
     <string name="oke">OKE</string>
     <string name="update_version">Update segera</string>
 
+    <string name="loan_agreement_data_privacy">
+Kebijakan Privasi ini telah dibuat untuk menjaga, melindungi dan menjaga privasi dan kerahasiaan dari Pengguna Platform milik kami. Pengguna diharapkan membaca Kebijakan Privasi ini dengan saksama sebelum menggunakan Layanan yang diberikan melalui Platform. Dengan mengakses dan menggunakan Layanan di Platform, Pengguna mengakui telah membaca, memahami dan menyetujui isi yang tertulis dalam Kebijakan Privasi ini.
+\n1.	DEFINISI
+\n“Anda” dengan variasi tata bahasa dan ungkapan yang serumpun, merujuk pada Peminjam, Pemberi Pinjaman atau orang lain yang menggunakan Platform dan/atau Layanan baik terdaftar pada Platform maupun tidak.
+\n“Data Pribadi” adalah meliputi segala data, keterangan, informasi dan dokumen, baik elektronik maupun non-elektronik namun selain Nomor Darurat, dari atau mengenai Pengguna (baik Peminjam maupun Pemberi Pinjaman, sesuai konteksnya) dan/atau pihak terkait Pengguna (termasuk namun tidak terbatas pada keluarga, rekan, karyawan, perusahaan atau penyedia jasa Pengguna, apabila dipersyaratkan) yang diterima atau diakses HappyCash dari Pengguna, diajukan, diberikan atau disingkapkan Pengguna bagi HappyCash, menurut persetujuan Pengguna yang bersangkutan serta disimpan dan dikelola sehubungan dengan penyediaan Layanan pada Platform dan dalam rangka pemanfaatan Layanan pada Platform oleh Pengguna.
+\n“Gagal Bayar” adalah peristiwa dimana Peminjam telah melanggar ketentuan pembayaran Pinjaman, berikut bunga, denda, dan kewajiban finansial lainnya berdasarkan Perjanjian Pinjaman, oleh karena alasan apapun, baik karena kesengajaan atau kelalaian, meliputi antara lain melanggar jadwal dan/atau jumlah pembayaran Pinjaman yang diatur dalam Perjanjian Pinjaman maupun perubahannya dari waktu ke waktu (apabila ada).
+\n“Kami” atau “HappyCash”, digunakan sesuai konteksnya, adalah PT Digital Synergy Technology yang dikenal dengan merek dagang “HappyCash”, yaitu perusahaan teknologi finansial yang melaksanakan kegiatan usaha LPMUBTI melalui Platform berdasarkan POJK No. 77/2016 untuk menyediakan Pinjaman bagi Peminjam. Kami atau HappyCash termasuk pegawai dan kuasa yang sah dari HappyCash.
+\n“Kuasa” adalah pemberian kuasa sebagaimana dimaksud dalam Pasal 1792 Kitab Undang-Undang Hukum Perdata dari Pemberi Pinjaman kepada HappyCash untuk mewakili dan bertindak untuk dan atas nama serta demi kepentingan Pemberi Pinjaman melakukan:
+\n(a)	pernyataan kesepakatan, perancangan, negosiasi, penandatanganan, implementasi maupun restrukturisasi Perjanjian Pinjaman;
+\n(b)	penagihan Pinjaman dari Peminjam berdasarkan Perjanjian Pinjaman, menerima dan mengembalikan dana hasil pembayaran kembali Pinjaman dari Peminjam kepada Pemberi Pinjaman; dan
+\n(c)	tindakan-tindakan lain terkait yang sewajarnya diperlukan untuk pelaksanaan Perjanjian Pinjaman, kepatuhan terhadap POJK No. 77/2016, surat edaran OJK terkait dan peraturan perundang-undangan yang mempengaruhi atau perlu diperhatikan terkait LPMUBTI, Perjanjian Penyaluran Dana dan Perjanjian Pinjaman serta pemenuhan hak dan kewajiban Pemberi Pinjaman berdasarkan Perjanjian Pinjaman.
+\n“Layanan” adalah layanan jasa keuangan berupa penyediaan Platform oleh HappyCash untuk mempertemukan Pemberi Pinjaman dengan Peminjam dalam rangka melaksanakan kegiatan LPMUBTI terkait penyaluran Pinjaman kepada Peminjam.
+\n“LPMUBTI” adalah Layanan Pinjam Meminjam Uang Berbasis Teknologi, atau dikenal dengan peer-to-peer lending, untuk menyalurkan Pinjaman dari Pemberi Pinjaman kepada Penerima Pinjaman sebagaimana syarat, ketentuan dan pelaksanaannya diatur dalam POJK No. 77/2016.
+\n“Nomor Darurat” adalah nomor kontak individu yang dicantumkan Peminjam pada saat mengajukan aplikasi permohonan perolehan pinjaman pada Perusahaan melalui Platform sebagai nomor yang dapat, berhak dan akan dihubungi Perusahaan ketika Peminjam telah dikategorikan Gagal Bayar.
+\n“Nomor Darurat Pengganti” adalah nomor kontak individu yang diberikan Peminjam sebagai pengganti atas Nomor Darurat Non-Aktif atas permintaan HappyCash untuk dapat dihubungi HappyCash terkait tujuan sebagaimana dimaksud dalam Kebijakan Privasi ini.
+\n“Nomor Darurat Non-Aktif” adalah sebagaimana dimaksud dalam Kebijakan Privasi ini.
+\n“Platform” adalah situs dan/atau versi mobile dari situs yang dibuat, dimiliki dan dioperasikan oleh HappyCash yang saat ini terletak di dan dapat diakses pada URL id berikut perubahan URL tersebut dari waktu ke waktu.
+\n“Pemberi Pinjaman” adalah pihak yang terdaftar dalam Platform untuk melakukan pendanaan berupa pemberian dan penyaluran Pinjaman kepada Peminjam melalui Platform.
+\n“Peminjam” adalah pihak yang terdaftar dalam Platform untuk menerima pendanaan berupa pinjaman dari Pemberi Pinjaman melalui Platform.
+\n“Pengguna” adalah Pemberi Pinjaman selaku pihak dalam Perjanjian Penyaluran Pinjaman dan Peminjam selaku pihak dalam Perjanjian Pinjaman yang terdaftar dalam Platform.
+\n“Perjanjian Penyaluran Pinjaman” adalah perjanjian antara HappyCash dan Pemberi Pinjaman untuk penyaluran dana Pinjaman dari Pemberi Pinjaman kepada Peminjam melalui Platform.
+\n“Perjanjian Pinjaman” adalah kesepakatan tertulis yang disepakati antara Pemberi Pinjaman, HappyCash dan Peminjam yang mengatur antara lain hak dan kewajiban Pemberi Pinjaman dan Peminjam, syarat dan ketentuan penyaluran Pinjaman dari Pemberi Pinjaman melalui HappyCash kepada Peminjam, dan mekanisme serta Kuasa, prosedur pengembalian atau pembayaran Pinjaman beserta perubahan, perpanjangan dan lampiran-lampirannya.
+\n“Perkominfo No. 20/2016” adalah Peraturan Menteri Komunikasi dan Informatika Nomor 20 Tahun 2016 tentang Perlindungan Data Pribadi dalam Sistem Elektronik.
+\n“Pinjaman” adalah fasilitas pinjaman (berikut bunga, denda dan kewajiban finansial lainnya) dari Pemberi Pinjaman yang disalurkan Pemberi Pinjaman kepada Peminjam melalui Platform HappyCash berdasarkan Perjanjian Pinjaman.
+\n“POJK No. 77/2016” adalah Peraturan Otoritas Jasa Keuangan Nomor 77/POJK.01/2016 tentang LPMUBTI.
+\n“UU ITE” adalah Undang-Undang No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik sebagaimana telah diubah terakhir berdasarkan Undang-Undang No. 19 Tahun 2016.
+\n2.	PENDAHULUAN
+\n2.1	Dengan memperoleh Pinjaman dari Pemberi Pinjaman melalui HappyCash berdasarkan Perjanjian Pinjaman serta selama Peminjam masih merupakan pihak dalam setiap Perjanjian Pinjaman dan memiliki kewajiban finansial menurut ketentuan Perjanjian Pinjaman, maka Peminjam dianggap demi hukum telah menyetujui seluruh ketentuan Kebijakan Privasi ini khususnya ketentuan mengenai Penggunaan Nomor Darurat sebagaimana diatur dalam Pasal 4 berikut seluruh akibat hukumnya dengan sukarela, tanpa paksaan maupun penipuan dan tanpa diperlukan suatu formalitas atau pemenuhan prosedur apapun untuk memberlakukan ketentuan ini secara hukum.
+\n2.2	Persetujuan Peminjam sebagaimana dimaksud dalam Pasal 2.1 di atas, tetap berlaku tanpa syarat dan tanpa dapat ditarik kembali hingga berakhirnya perikatan hukum berikut seluruh kewajiban finansial Peminjam berdasarkan Perjanjian Pinjaman.
+\n2.3	Persetujuan Peminjam secara elektronik sebagaimana dimaksud dalam Pasal 2.2 di atas adalah:
+\n(a)	dipersamakan dengan persetujuan sebagaimana dimaksud dalam Pasal 1320 Kitab Undang-Undang Hukum Perdata sebagai syarat sahnya suatu perjanjian;
+\n(b)	dikualifisir sebagai alat bukti hukum yang sah berdasarkan Pasal 5 ayat 1 UU ITE; dan
+\n(c)	merupakan instrumen pembuktian yang diterima sebagai bagian dari konsep pembuktian secara perdata dalam pengadilan menurut Pasal 1865 Kitab Undang-Undang Hukum Perdata.
+\n2.4	HappyCash telah mengedepankan transparansi dan pemaparan secara intensif mengenai isi Kebijakan Privasi ini termasuk Penggunaan Nomor Darurat dalam proses pengajuan Aplikasi Permohonan sebagaimana diatur dalam Pasal 4 Kebijakan Privasi ini, sehingga Peminjam dianggap telah cermat memahami isi Kebijakan Privasi, sebagaimana dibuktikan secara mutlak dari diterimanya Pinjaman oleh Peminjam melalui Platform.
+\n2.5	Dengan diberlakukannya ketentuan perihal Penggunaan Nomor Darurat sebagaimana diatur dalam Pasal 4 Kebijakan Privasi ini, HappyCash mengharapkan:
+\n(a)	Peminjam menjadi konsumen yang baik dengan memenuhi janji dan komitmennya melunasi Pinjaman berdasarkan Perjanjian Pinjaman, sebagaimana HappyCash telah melaksanakan tanggung jawabnya untuk mencairkan Pinjaman dengan efisien, aman dan efektif pada Peminjam dengan seluruh rekam jejak transaksi dan alur proses pengajuan Aplikasi Permohonan yang terekam pada sistem informasi dan teknologi Rupiah Plus; dan
+\n(b)	Peminjam menjadi konsumen yang beriktikad baik dalam melaksanakan tanggung jawabnya untuk melunasi Pinjaman dengan tepat waktu dan tuntas tanpa terlibat dalam sengketa apapun terkait Gagal Bayar dengan HappyCash, melainkan seluruh kewajiban finansial Peminjam terkait Pinjaman dapat dipenuhi dan dituntaskan sehingga Peminjam dapat dikategorikan sebagai Peminjam yang bertanggung jawab (responsible borrower) dalam kegiatan pinjam meminjam yang juga bertanggung jawab (responsible lending) yang mematuhi ketentuan hukum dan peraturan perundang-undangan
+\n3.	DATA PRIBADI
+\nPenggunaan Data Pribadi
+\n3.1	Selama menggunakan Layanan, kami berhak untuk meminta, memperoleh, mengumpulkan, menyimpan, mengelola dan menggunakan Data Pribadi Anda yang diperoleh melalui proses mencakup namun tidak terbatas pada pengisian formulir atau data isian online yang terdapat pada Platform, informasi mengenai perangkat, kunjungan serta penggunaan Platform pada saat Pengguna mengakses Platform, dan informasi lain yang didapat melalui Platform, e-mail, telepon maupun media lain (apabila diperlukan).
+\n3.2	Anda dengan ini memberikan persetujuan bahwa kami berhak meminta, memperoleh, mengumpulkan, mengolah, menyimpan, dan menggunakan Data Pribadi yang Anda berikan melalui Platform yang akan digunakan untuk, namun tidak terbatas pada, tujuan berikut:
+\n(a)	penilaian, analisis, verifikasi, validasi atau pemeriksaan terhadap (i) permohonan atau aplikasi perolehan pinjaman; (ii) proses atau permohonan pendaftaran sebagai Pemberi Pinjaman atau Peminjam; dan/atau (iii) profil Anda;
+\n(b)	melakukan penilaian risiko, analisis dan perencanaan statistik dan tren, termasuk melaksanakan pengolahan data, analisis statistik, kredit, risiko dan anti pencucian uang, membuat dan mengelola model penilaian kredit, melakukan pemeriksaan dan peninjauan kredit dan latar belakang lain, dan menyimpan sejarah kredit Anda dan kuasa Anda yang sah untuk referensi saat ini dan di masa mendatang;
+\n(c)	mengelola hubungan HappyCash dengan Anda yang dapat termasuk menyediakan informasi kepada Anda tentang Platform dan memungkinkan Anda untuk menggunakan Layanan yang disediakan oleh Platform;
+\n(d)	mengirim notifikasi melalui e-mail kepada Anda;
+\n(e)	menghubungi Anda terkait dengan permintaan Anda dan kewajiban pembayaran Anda;
+\n(f)	mencegah dan mendeteksi penipuan, termasuk namun tidak terbatas pada penggunaan teknologi deteksi suara untuk menganalisa rekaman percakapan telepon Anda dengan kami;
+\n(g)	untuk keperluan bisnis kami secara umum misalkan untuk verifikasi identitas Anda dan reputasi kredit Anda;
+\n(h)	mengidentifikasi Anda ketika Anda menghubungi kami atau mengunjungi Platform.
+\n(i)	mengirim komunikasi komersial pemasaran dan non-pemasaran kepada Anda;
+\n(j)	mengirim notifikasi atau buletin e-mail jika sebelumnya diminta oleh Anda;
+\n(k)	memberikan informasi yang memadai di Platform untuk mengidentifikasi Anda kepada Pemberi Pinjaman dan/atau Peminjam;
+\n(l)	mengizinkan Anda berpartisipasi dalam layanan fitur interaktif kami;
+\n(m)	mengizinkan bank, badan keuangan atau pihak ketiga yang berwenang guna mengadakan pengecekan terbatas pada status Anda dalam database kami atau Layanan;
+\n(n)	menangani pertanyaan atau keluhan yang dibuat oleh atau tentang Anda sehubungan dengan Platform dan disimpan untuk mencegah kecurangan;
+\n(o)	memverifikasi kepatuhan Anda terhadap persyaratan dan ketentuan yang mengatur penggunaan Platform;
+\n(p)	survey, riset, evaluasi dan/atau pengembangan produk atau Layanan oleh HappyCash atau pihak terkait yang berkepentingan;
+\n(q)	pengurusan rekening escrow Pengguna kepada pihak penyedia penyedia rekening escrow;
+\n(r)	melakukan pemeriksaan anti pencucian uang dan pencegahan dana terorisme di sektor jasa keuangan;
+\n(s)	memenuhi persyaratan hukum, regulasi dan kepatuhan yang berlaku terhadap HappyCash beserta Platform dan Layanannya berdasarkan undang-undang yang berlaku dan mematuhi setiap perjanjian yang berlaku sehubungan dengan pelaksanaan Layanan, termasuk tetapi tidak terbatas pada memberikan data pribadi sebagaimana dipersyaratkan oleh otoritas yang berwenang;
+\n(t)	melaksanakan perintah atau kebijakan pemerintah, badan pengaturan atau instansi yang berwenang;
+\n(u)	melaporkan data Anda kepada otoritas yang berwenang dan melakukan tindakan hukum yang diperlukan dengan menggunakan data Anda ketika terjadi Gagal Bayar;
+\n(v)	memberitahu Anda tentang perubahan-perubahan terhadap Platform dan Layanan.
+\n3.3	Data Pribadi yang disampaikan oleh Anda kepada kami untuk tujuan publikasi di Platform akan digunakan untuk tujuan tersebut sesuai dengan persetujuan yang telah Anda berikan kepada kami.
+\n3.4	Kami dapat mengungkapkan Data Pribadi Anda apabila:
+\n(a)	dipersyaratkan oleh peraturan perundang-undangan;
+\n(b)	terdapat proses hukum yang sedang atau akan berlangsung;
+\n(c)	terdapat dugaan adanya tindak pidana termasuk namun tidak terbatas pada tindak pidana penipuan atau pencucian uang dan terorisme;
+\n(d)	dipersyaratkan oleh instansi atau pihak yang berwenang; dan
+\n(e)	apabila terjadi Gagal Bayar.
+\n3.5	Jika Anda memberikan kami informasi yang salah dan tidak akurat, atau kami menduga adanya penipuan, kami bisa mencatat hal tersebut dalam sejarah kredit Anda dan membagikan informasi tersebut ke badan hukum yang tepat atau pihak yang berwenang dan/atau agensi pencegah penipuan, serta melakukan tindakan hukum sesuai dengan ketentuan yang berlaku.
+\nPenyimpanan Data Pribadi
+\n3.6	Semua Data Pribadi yang Anda berikan dan/atau kami terima sesuai dengan Kebijakan Privasi disimpan dengan aman di wilayah Republik Indonesia.
+\n3.7	Penyimpanan Data Pribadi Pengguna oleh HappyCash paling singkat adalah selama 5 (lima) tahun atau selama diperlukan untuk melindungi kepentingan HappyCash yang dianggap perlu atau apabila diminta oleh undang-undang.
+\nKeamanan Data Pribadi
+\n3.8	Kami akan mengambil semua langkah dan tindakan yang wajar untuk mencegah kehilangan, penyalahgunaaan atau perubahan Data Pribadi Anda oleh pihak-pihak yang tidak berwenang.
+\n3.9	Kami selanjutnya menjamin bahwa semua informasi Data Pribadi Anda yang disampaikan kepada kami akan disimpan dalam server kami yang aman. Sistem keamanan kami telah memenuhi standar industri dan kami senantiasa mengamati perkembangan internet guna memastikan sistem kami berkembang seperti yang disyaratkan. Kami juga melakukan pengujian terhadap sistem kami secara berkala untuk memastikan mekanisme keamanan kami selalu mutakhir dan kami sepenuhnya mematuhi peraturan perundang-undangan yang berlaku tentang perlindungan data di Indonesia.
+\n3.10	Terlepas dari langkah dan tindakan pencegahan yang kami lakukan, kami tidak dapat memberikan jaminan penuh atas keamanan segala bentuk data yang dikirimkan kepada kami melalui internet dimana terdapat pihak-pihak lain yang mengambil atau mempergunakan kami dengan melawan hukum serta tanpa izin kami. Kami akan berupaya sebaik mungkin untuk membatasi akses ke dalam Data Pribadi oleh pihak yang tidak berwenang.
+\n3.11	Saat mendaftarkan diri di Platform, Anda diminta untuk membuat kata sandi pribadi Anda sendiri. Anda bertanggung jawab untuk menjaga kerahasiaan kata sandi tersebut. Kami mengimbau agar Anda tidak membagikan atau memberitahukan kata sandi tersebut kepada pihak yang tidak berkepentingan. Kecuali jika Anda ingin masuk ke Platform, kami tidak akan pernah meminta kata sandi Anda.
+\nPengembalian dan Pemusnahan Data Pribadi
+\n3.12	Pemusnahan Data Pribadi Anda hanya dapat dilakukan jika:
+\n(a)	telah melewati ketentuan jangka waktu penyimpanan Data Pribadi yaitu 5 (lima) tahun atau sesuai dengan ketentuan peraturan perundang-undangan;
+\n(b)	atas permintaan Anda, kecuali ditentukan lain oleh ketentuan peraturan perundang-undangan.
+\n3.13	Pemusnahan sebagaimana dimaksud di atas termasuk menghilangkan sebagian atau keseluruhan dokumen terkait Data Pribadi Anda yang kami kelola sehingga Data Pribadi tersebut tidak dapat ditampilkan kembali dalam sistem elektronik kecuali Anda memberikan Data Pribadi yang baru.
+\nPerubahan Data Pribadi
+\n3.14	Kami memahami bahwa Anda perlu memperbarui atau memperbaiki informasi Anda dari waktu ke waktu. Saat diperlukan pembaruan informasi, maka Pengguna dapat mengajukan permohonan secara tertulis via e-mail kepada Kami dan berikan Kami rincian yang relevan. Kami akan membantu memperbarui dan/atau memperbaiki informasi Anda untuk Anda jika dianggap perubahan tersebut diperlukan.
+\nPengembalian Data Pribadi
+\n3.15	Pengguna berhak atas pemusnahan Data Pribadi yang telah diberikan kepada kami dengan persyaratan sebagai berikut:
+\n(a)	tidak sedang terikat perjanjian sehubungan dengan penyediaan Layanan pada Platform, baik Perjanjian Penyaluran Pinjaman maupun Perjanjian Pinjaman;
+\n(b)	tidak memiliki hak sehubungan dengan penyediaan Layanan pada Platform, termasuk namun tidak terbatas pada hak tagih atas pengembalian, pembayaran kembali dan pelunasan piutang;
+\n(c)	tidak memiliki kewajiban, tanggung jawab finansial, utang atau hal sejenisnya sehubungan penyediaan Layanan pada Platform;
+\n(d)	tidak dalam proses pengajuan permohonan perolehan pinjaman berikut proses verifiaksi dan penilaian terhadap permohonan tersebut oleh HappyCash; dan
+\n(e)	tidak terdaftar sebagai Pengguna aktif Platform (sudah menonaktifkan akun).
+\n3.16	Permohonan pemusnahan Data Pribadi tersebut disampaikan kepada kami melalui e-mail cs@happycash.com [kindly confirm] dengan menyertakan bukti diri yang sah (salinan kartu tanda penduduk atau paspor) beserta alasan pengembalian Data Pribadi.
+\n4.	PENGGUNAAN NOMOR DARURAT
+\nTujuan Penggunaan Nomor Darurat
+\n4.1	Nomor Darurat yang dicantumkan oleh Penerima Pinjaman saat proses pengajuan permohonan perolehan Pinjaman (“Aplikasi Permohonan”) akan digunakan HappyCash khusus untuk menghubungi pemilik Nomor Darurat yang bersangkutan ketika Peminjam berada dalam keadaan Gagal Bayar.
+\nHak HappyCash Menghubungi Nomor Darurat
+\n4.2	Sebagai syarat mutlak pemanfaatan Pinjaman melalui Platform, Peminjam dengan ini mengizinkan HappyCash tanpa memerlukan persetujuan dari pihak manapun, untuk menghubungi pihak selaku pemilik Nomor Darurat (“Pemilik Nomor Darurat”) dalam hal Peminjam berada dalam keadaan Gagal Bayar, sebagaimana dapat diberitahukan oleh HappyCash, untuk tujuan:
+\n(a)	mencari atau menelusuri keberadaaan Peminjam dalam hal Peminjam yang belum melunasi Pinjaman dan Peminjam tidak bisa atau sulit dihubungi melalui nomor telepon selular Peminjam yang terdaftar dan tercatat pada Platform pada saat proses pengajuan Aplikasi Permohonan;
+\n(b)	meminta bantuan Pemilik Nomor Darurat untuk mengingatkan Peminjam untuk membayar dan melunasi Pinjaman; dan/atau
+\n(c)	meminta Pemilik Nomor Darurat menyampaikan pesan dari HappyCash sehubungan dengan pemenuhan kewajiban pelunasan Pinjaman dan keadaan Gagal Bayar.
+\n4.3	HappyCash akan menghubungi Pemilik Nomor Darurat untuk tujuan di atas baik melalui, antara lain, telepon langsung, SMS (Short Message Service), BlackBerry messenger, WeChat, maupun Whatsapp dan cara lain sebagaimana ditentukan oleh HappyCash dari waktu ke waktu. Dalam berkorespondensi dengan Pemilik Nomor Darurat, HappyCash akan menghindari segala wujud intimidasi, ancaman maupun pelanggaran hukum lainnya, termasuk dalam hal ini tidak akan mengirim foto Peminjam kepada Pemilik Nomor Darurat.
+\nLangkah Antisipasi Terhadap “Nomor Darurat Non-Aktif”
+\n4.4	Nomor Darurat yang dicantumkan Peminjam dalam proses pengajuan Aplikasi Permohonan sehingga tercatat pada Platform dianggap sebagai “Nomor Darurat Non-Aktif” apabila namun Nomor Darurat tersebut:
+\n(a)	tidak juga diangkat, memperoleh tanggapan atau respon;
+\n(b)	tidak terdaftar, tidak aktif, tidak berfungsi ataupun secara permanen tidak lagi digunakan; dan/atau
+\n(c)	telah berpindah tangan kepada pihak ketiga lain yang tidak terkait Peminjam atau telah digunakan oleh pihak lain yang mengaku tidak mengenal Peminjam.
+\nHak HappyCash Menghubungi Nomor Darurat Pengganti
+\n4.5	Dalam hal terjadinya keadaan dimana Nomor Darurat dikualifisir sebagai Nomor Darurat Non-Aktif, maka HappyCash akan menghubungi Peminjam yang bersangkutan untuk meminta Nomor Darurat Pengganti untuk menjadi substitusi atau pengganti atas Nomor Darurat Non-Aktif tersebut di atas.
+\n4.6	HappyCash tidak akan menghubungi pihak pengirim SMS kepada Peminjam atau yang menerima SMS dari Peminjam yang merupakan pihak institusional seperti institusi perbankan, perusahaan pembiayaan atau pihak lain yang mengirimkan SMS terkait tagihan atau tunggakan kredit, pemesanan barang melalui daring (online), asuransi atau perusahaan telekomunikasi dalam konteks SIM Card provider atau layanan pra atau pasca bayar.
+\n4.7	HappyCash akan melaksanakan haknya berdasarkan Kebijakan Privasi ini termasuk ketentuan mengenai Penggunaan Nomor Darurat dengan mematuhi ketentuan hukum dan peraturan perundang-undangan terkait serta menjunjung tinggi etika dan tanggung jawab yang baik.
+\nPembebasan Tanggung Jawab HappyCash
+\n4.8	Peminjam dengan ini membebaskan, membela dan tidak HappyCash dan/atau Pemberi Pinjaman (berikut karyawan, direksi, komisaris, pemegang saham, perwakilan, kuasa, agen dan/atau afiliasinya) dari setiap kerugian, pengeluaran, ongkos maupun biaya, tuntutan dan/atau gugatan appaun yang timbul dari atau sehubungan dengan:
+\n(a)	sengketa dengan pihak ketiga terkait Nomor Darurat dan/atau Nomor Darurat Pengganti oleh karena alasan atau sebab sengketa apapun;
+\n(b)	pelanggaran hak atau kerugian pihak ketiga atau pihak manapun terkait Nomor Darurat dan/atau Nomor Darurat Pengganti;
+\n(c)	sanksi, investigasi atau penyelidikan, penyidikan, inspeksi atau audit maupun konsekuensi apapun dari atau terkait pelanggaran ketentuan hukum dan/atau peraturan perundang-undangan, kebijakan pemerintah dan/atau putusan badan peradilan atau arbitrase manapun akibat dari atau sehubungan dengan pelaksanaan hak HappyCash dalam ketentuan ini atau upaya menghubungi, mengakses, menelusuri, memperoleh dan/atau memanfaatkan Nomor Darurat dan/atau Nomor Darurat Pengganti.
+\n5.	HAK PENGGUNA
+\nSehubungan dengan penggunaan Layanan pada Platform, Pengguna berhak:
+\n(a)	atas kerahasiaan Data Pribadinya dan Nomor Darurat (termasuk Nomor Darurat Pengganti);
+\n(b)	mengajukan pengaduan dalam rangka penyelesaian sengketa Data Pribadi atas kegagalan perlindungan Data Pribadi oleh kami kepada Menteri yang terkait;
+\n(c)	mendapatkan akses atau kesempatan untuk mengubah atau memperbaharui Data Pribadinya tanpa menganggu sistem pengelolaan Data Pribadi, kecuali ditentukan lain oleh ketentuan peraturan perundang-undangan;
+\n(d)	mendapatkan akses atau kesempatan untuk memperoleh historis Data Pribadinya yang pernah diserahkan sepanjang masih sesuai dengan ketentuan peraturan perundang-undangan;
+\n(e)	meminta pemusnahan Data Pribadi yang yang kami kelola, kecuali ditentukan lain oleh ketentuan peraturan perundang-undangan; dan
+\n(f)	menentukan klasifikasi rahasia dan tidak rahasia dari Data Pribadi (apabila dibutuhkan).
+\n6.	PENGESAMPINGAN KEWAJIBAN
+\n6.1	Anda setuju untuk tidak meminta pertanggungjawaban kami atas pelanggaran, pelanggaran atau ketidakpatuhan terhadap Kebijakan Privasi atau perlindungan Data Pribadi dalam situasi berikut:
+\n(a)	dimana suatu tindakan alam atau keadaan yang tidak terduga telah terjadi, mengakibatkan kerusakan, kerusakan atau penghancuran peralatan dan/atau mesin yang digunakan untuk mengamankan, menyimpan atau memproses Data Pribadi Pengguna;
+\n(b)	dimana Data Pribadi telah tersedia atau dapat ditemukan oleh publik sebelum Data Pribadi atau informasi semacam itu disampaikan kepada kami;
+\n(c)	dimana setelah setiap usaha dan upaya yang wajar telah dilakukan oleh kami untuk memverifikasi, mengamankan dan melindungi data dan informasi pribadi yang kami berikan, ada akses tidak sah, hacking, penyalahgunaan, modifikasi, perubahan, gangguan;
+\n(d)	atas keakurasian (kecuali Data Pribadi yang telah diverifikasi oleh HappyCash sesuai kebijakannya), keabsahan, legalitas dan kelengkapan Data Pribadi Anda dan tidak diwajibkan untuk memberitahu Anda atau pihak manapun perihal tersebut kecuali diwajibkan secara hukum; dan/atau
+\n(e)	dimana penyalahgunaan Data Pribadi dan informasi yang disebabkan dengan tindakan kejahatan, penipuan atau tindak pidana apapun atau salah tindakan dari pihak ketiga yang tidak berada di bawah kendali atau instruksi maupun persetujuan kami.
+\n6.2	Kami akan berupaya sewajarnya untuk memberitahu secara tertulis melalui e-mail kepada Anda jika terjadi kegagalan perlindungan rahasia Data Pribadi dalam pengelolaan Platform baik yang disebabkan oleh kami atau ketika kami mengetahuinya dari pihak ketiga yang dikelola dengan ketentuan pemberitahuan sebagai berikut:
+\n(a)	dengan menyertakan alasan atau penyebab terjadinya kegagalan perlindungan rahasia Data Pribadi;
+\n(b)	pemberitahuan tertulis lewat e-mail kepada Anda paling lambat 14 (empat belas) hari sejak diketahui adanya kegagalan tersebut;
+\n(c)	menyediakan contact person yang mudah dihubungi oleh Anda terkait pengelolaan Data Pribadi.
+\n7.	COOKIES
+\n7.1	Dengan mengunjungi dan menggunakan Platform, Anda mengetahui bahwa cookies dapat terpasang di perangkat Anda. Cookies adalah file yang mencatat informasi seperti jejak pencarian situs dari perangkat atau untuk mengumpulkan informasi log internet dan informasi perilaku pengunjung. Saat Anda mengunjungi Platform ini lagi, cookies akan memudahkan kami untuk menyesuaikan konten sesuai dengan kebutuhan Anda. Cookies ini tidak melacak informasi Pengguna secara individual, dan semua data cookie kami telah dienkripsi dan tidak dapat dibaca oleh Platform lain.
+\n7.2	Walaupun secara otomatis perangkat komputer Anda akan menerima cookies, Anda dapat menentukan pilihan untuk melakukan modifikasi melalui pengaturan situs pencarian Anda yaitu dengan memilih untuk menolak cookies dengan menghapus cookies yang terpasang di perangkat Anda setiap saat dengan mengkonfigurasi perangkat lunak situs pencarian Anda. Anda mungkin tidak mendapatkan keuntungan dari beberapa Layanan pada Platform jika cookie dihapus atau dicegah agar tidak terpasang diperangkat Anda.
+\n8.	AKSES SOSIAL MEDIA
+\n8.1	Dalam rangka penyediaan Layanan pada Platform, kami dapat meminta Anda untuk memberikan kami izin mengakses ke akun media sosial termasuk namun tidak terbatas pada Instagram, Twitter, Facebook, Path, Google+ dan/atau Linkedln.
+\n8.2	Anda tidak diwajibkan untuk memberikan akses ke akun media sosial milik Anda. Namun terkait dengan Layanan, Anda perlu memahami bahwa akses ke akun media sosial Anda dapat meningkatkan kesempatan Anda mendapatkan pinjaman lebih murah dengan kami.
+\n8.3	Dalam hal Anda memberikan kami akses ke data akun media sosial Anda, Anda harus memahami bahwa kami hanya menggunakan data tersebut untuk tujuan berikut:
+\n(a)	verifikasi identitas;
+\n(b)	mitigasi risiko penipuan identitas;
+\n(c)	statistik analisis/kuantitatif;
+\n(d)	melakukan kontrol regulasi;
+\n(e)	memberikan informasi dan menjawab pertanyaan; dan
+\n(f)	mencegah penipuan, pencucian uang dan kegiatan kriminal lainnya.
+\n8.4	Kami tidak akan menggunakan data Anda untuk tujuan lain yang tidak disebutkan di atas termasuk namun tidak terbatas pada:
+\n(a)	berbagi atau menjual data Anda langsung atau tidak langsung kepada pihak ketiga;
+\n(b)	mengunggah informasi apapun untuk atau ke akun media sosial Anda termasuk namun tidak terbatas pada kepesertaan Anda pada HappyCash;
+\n(c)	menghubungi setiap koneksi Anda pada jaringan sosial.
+\n9.	PERUBAHAN KEBIJAKAN PRIVASI
+\n9.1	Kebijakan Privasi ini mungkin diubah dan/atau diperbaharui dari waktu ke waktu. Ketika kami melakukannya, kami akan memperbaharui dan menerbitkan versi terbaru dari Kebijakan Privasi ini di Platform.
+\n9.2	Anda disarankan untuk membaca secara saksama dan memeriksa Kebijakan Privasi ini dari waktu ke waktu agar Anda tetap terinformasikan mengenai perubahan terbaru dalam Kebijakan Privasi ini.
+\n9.3	Kami dapat memberitahu Anda tentang perubahan yang dibuat pada Kebijakan Privasi ini melalui e-mail ke alamat e-mail Anda yang terdaftar.
+\n9.4	Dengan tetap mengakses dan menggunakan Platform dan Layanan, maka Pengguna dianggap menyetujui perubahan-perubahan dalam Kebijakan Privasi ini.
+\n10.	LAIN-LAIN
+\nKebijakan Privasi ini kami susun dengan menyesuaikan pada peraturan perundang-undangan yang berlaku termasuk namun tidak terbatas pada POJK No. 77/2016 dan Pekominfo No. 20/2016.
+\n11.	KONTAK
+\nApabila ada pertanyaan, komentar dan permintaan mengenai Kebijakan Privasi dapat ditujukan kepada Petugas Perlindungan Data Kami di alamat surat elektronik (e-mail): cs@happycash.com [kindly confirm].
+\nDengan menyetujui untuk menerima Pinjaman dari HappyCash berdasarkan Perjanjian Pinjaman, Peminjam menyatakan dan menjamin bahwa:
+\nSaya telah membaca dan memahami dengan seksama dan menyetujui seluruh isi dan bagian dari Kebijakan Privasi,
+\nSaya menyetujui dan bersedia untuk terikat pada seluruh ketentuan Kebijakan Privasi, tanpa memerlukan tanda tangan konvensional atau tanda tangan basah, dan persetujuan yang saya berikan saat ini merupakan persetujuan elektronik yang diakui secara hukum sebagai alat bukti hukum yang sah berdasarkan Pasal 5 ayat 1 Undang-Undang Nomor 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik mengenai kesepakatan dan persetujuan saya atas Kebijakan Privasi yang saya telah pahami, berikut segala akibat hukumnya bagi saya selaku Peminjam.
+\nSaya menyadari bahwa persetujuan saya terhadap Kebijakan Privasi ini dianggap sebagai persetujuan elektronik (electronic consent) yang terekam dalam sistem elektronik HappyCash dan sah mengikat saya secara hukum sehingga tidak akan saya sangkal dan saya tidak bisa mengelak dari tuntutan untuk mematuhi Kebijakan Privasi ini.
+\nSaya menerima bahwa setiap pemberian tanda centang ini sebagai alat bukti tunggal atas persetujuan saya terhadap ketentuan Kebijakan Privasi dalam rangka pembuktian menurut Pasal 1865 Kitab Undang-Undang Hukum Perdata, dan dengan demikian saya tidak akan memulai atau terlibat dalam upaya atau kegiatan apapun yang bertujuan untuk membatalkan persetujuan ini maupun mempengaruhi keberlakuannya. Oleh karena itu saya juga menyadari, mengakui, menerima dan menyetujui bahwa HappyCash tidak akan memberi tanggapan apapun terhadap setiap sangkalan, konflik, laporan atau argumen apapun dari saya pribadi terkait upaya untuk menentang keberlakuan dan keabsahan secara hukum Kebijakan Privasi ini.
+    </string>
+
+    <string name="loan_agreement_terms_conditions">
+<![CDATA[
+Syarat dan Ketentuan Penggunaan Platform ini (“S&K”) dibuat untuk menetapkan syarat, ketentuan-ketentuan dan perikatan hukum yang mengikat Anda atas pemanfaatan Layanan kami oleh Anda. Dengan mengajukan Permohonan Pinjaman dan/atau memanfaatkan Layanan HappyCash, Anda secara sah:
+\n1.	Mengakui bahwa Anda telah membaca dan memahami seluruh isi S&K;
+\n2.	Setuju untuk terikat oleh dan tunduk pada S&K; dan
+\n3.	Mengetahui setiap akibat hukum dari keberlakuan S&K serta konsekuensi hukum berupa pelanggaran atas S&K sebagaimana dijelaskan dalam S&K ini.
+\nFakta bahwa Anda: (i) memanfaatkan Layanan HappyCash; (ii) mengajukan Permohonan Pinjaman kepada HappyCash; dan/atau (iii) menyetujui Perjanjian Pinjaman sebagai Peminjam, hal tersebut adalah wujud pernyataan kesepakatan Anda yang sah berdasarkan Pasal 1320 Kitab Undang-Undang Hukum Perdata (“KUH Perdata”) terhadap S&K dan diakui sebagai alat bukti yang sah di hadapan pengadilan berdasarkan Pasal 5 ayat 1 Undang-Undang Nomor 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik berikut perubahannya dari waktu ke waktu.
+\nJika Anda tidak setuju dengan ketentuan dan/atau isi dalam S&K ini atau tidak dapat memahami isi S&K ini, mohon tidak mengakses dan menggunakan Layanan pada Platform termasuk mengajukan Permohonan Pinjaman dan menyetujui Perjanjian Pinjaman.
+\nPENAFIAN
+\nA.	Peran HappyCash hanya bersifat administratif dan sebagai fasilitator dan perantara dalam proses pemberian Pinjaman dari Pemberi Pinjaman kepada Peminjam berdasarkan suatu Perjanjian Pinjaman. Sehingga, kewajiban, risiko, dan akibat hukum yang timbul dari atau sehubungan dengan Perjanjian Pinjaman tersebut merupakan tanggung jawab Peminjam dan Pemberi Pinjaman.
+\nB.	HappyCash maupun lembaga, institusi, atau otoritas negara yang mengatur dan/atau mengawasi HappyCash tidak dapat dilibatkan dalam, dan tidak bertanggung jawab atas kerugian yang dialami oleh Pemberi Pinjaman maupun Peminjam sehubungan dengan kegiatan LPMUBTI dan pemberian Pinjaman kepada Peminjam melalui Platform.
+\n1.	DEFINISI/INTERPRETASI
+\nDefinisi
+\n1.1	Untuk tujuan S&K ini, istilah yang didefinisikan dalam Pasal ini, dan di manapun dalam S&K ini, akan memiliki arti sebagai berikut:
+\n“Anda” adalah dengan variasi tata bahasa dan ungkapan yang serumpun, merujuk pada Peminjam, Pemberi Pinjaman atau orang lain yang menggunakan Platform dan/atau Layanan baik terdaftar pada Platform maupun tidak.
+\n"Akun Peminjam” adalah akun pribadi Peminjam yang dibukakan dan disediakan HappyCash dalam Platform dimana Peminjam dapat, antara lain, (i) mengajukan Permohonan Pinjaman serta mengajukan Permohonan Pinjaman baru setelah dilunasinya Pinjaman sebelumnya; (ii) mengunduh dokumen persyaratan dan memberikan informasi lain yang diwajibkan terkait pengajuan aplikasi permohonan; dan (iii) mengetahui ketentuan dan jadwal pelunasan Pinjaman yang diwajibkan serta jumlah pembayaran Pinjaman tertunggak.
+\n“Data Pribadi” adalah meliputi segala data, keterangan, informasi dan dokumen, baik elektronik maupun non-elektronik namun selain Nomor Darurat, dari atau mengenai Pengguna (baik Peminjam maupun Pemberi Pinjaman, sesuai konteksnya) dan/atau pihak terkait Pengguna (termasuk namun tidak terbatas pada keluarga, rekan, karyawan, perusahaan atau penyedia jasa Pengguna, apabila dipersyaratkan) yang diterima atau diakses HappyCash dari Pengguna, diajukan, diberikan atau diungkapkan Pengguna kepada HappyCash, menurut persetujuan Pengguna yang bersangkutan serta disimpan dan dikelola sehubungan dengan penyediaan Layanan pada Platform dan dalam rangka pemanfaatan Layanan pada Platform oleh Pengguna.
+\n“Hari Kerja” berarti hari selain Sabtu, Minggu, dan hari libur nasional di Indonesia, dimana bank-bank di Jakarta buka untuk melakukan kegiatan usahanya.
+\n“Hukum” adalah setiap undang-undang dan peraturan, surat keputusan atau kebijakan yang memiliki kekuatan hukum termasuk peraturan daerah, dan perundang-undangan di bawahnya, persyaratan dan pedoman dari pemerintah pusat, provinsi, wilayah, kotamadya, kabupaten, atau pemerintahan regional atau otoritas gabungan pemerintahan dan swasta, di Republik Indonesia dan yurisdiksi terkait lainnya, dan termasuk kementerian, departemen, komisi, biro, dewan, administratif dan atau lembaga atau badan pengatur atau instrumen lain darinya yang secara hukum disyaratkan untuk dipatuhi oleh suatu pihak, termasuk hukum dan keadilan bersama.
+\n“Layanan” adalah layanan jasa keuangan berupa penyediaan Platform oleh HappyCash untuk mempertemukan Pemberi Pinjaman dengan Peminjam dalam rangka melaksanakan kegiatan LPMUBTI terkait penyaluran Pinjaman kepada Peminjam.
+\n“LPMUBTI” adalah Layanan Pinjam Meminjam Uang Berbasis Teknologi, atau dikenal dengan peer-to-peer lending, untuk menyalurkan Pinjaman dari Pemberi Pinjaman kepada Penerima Pinjaman sebagaimana syarat, ketentuan dan pelaksanaannya diatur dalam POJK No. 77/2016.
+\n“Para Pemberi Pinjaman” atau “Pemberi Pinjaman” berarti individu yang menyediakan semua atau sebagian Pinjaman kepada Peminjam berdasarkan Perjanjian Pinjaman melalui Platform yang akan ditandatangani oleh Peminjam dan Pemberi Pinjaman melalui Platform
+\n“Peminjam” berarti individu yang memperoleh Pinjaman dari Pemberi Pinjaman berdasarkan Perjanjian Pinjaman yang disepakati oleh Peminjam dan Pemberi Pinjaman melalui Platform.
+\n“Pengguna” berarti (atau disebut sebagai “Anda”) sebagaimana dimaksud dalam Pasal 1 ayat 9 POJK No. 77/2016, yaitu Pemberi Pinjaman dan Peminjam yang menggunakan jasa dan layanan HappyCash atau memanfaatkan Platform HappyCash.
+\n“Perusahaan” atau “HappyCash” berarti PT Digital Synergy Technology yang dikenal dengan merek dagang “HappyCash”, yaitu perusahaan teknologi finansial yang melaksanakan kegiatan usaha LPMUBTI melalui Platform berdasarkan POJK No. 77/2016 untuk menyediakan Pinjaman bagi Peminjam. Kami atau HappyCash termasuk pegawai dan kuasa yang sah dari HappyCash.
+\n“Permohonan Pinjaman” berarti suatu formulir yang wajib diisi oleh Penerima Pinjaman untuk mengajukan permohonan perolehan Pinjaman kepada HappyCash melalui Platform.
+\n“Pihak Terkait” adalah direksi, komisaris, karyawan, manajemen, pemegang saham, afiliasi, kuasa dan/atau perwakilan HappyCash, termasuk dalam hal ini adalah Pemberi Pinjaman dan keluarganya.
+\n“Pinjaman” berarti pinjaman atau fasilitas pinjaman dari Pemberi Pinjaman (berikut bunga Pinjaman atau biaya lain) dengan konsep atau skema yang ditentukan HappyCash sebagaimana tercantum pada Platform yang disalurkan Pemberi Pinjaman kepada Peminjam melalui Platform HappyCash berdasarkan Perjanjian Pinjaman.
+\n“Platform” adalah situs dan/atau versi mobile dari situs yang dibuat, dimiliki dan dioperasikan oleh HappyCash yang saat ini terletak di dan dapat diakses pada URL www.happycash.com [kindly confirm] berikut perubahan URL tersebut dari waktu ke waktu.
+\n“POJK No. 77/2016” adalah Peraturan Otoritas Jasa Keuangan Nomor 77/POJK.01/2016 tentang LPMUBTI.
+\n“Rekening Layanan” adalah rekening yang meliputi escrow account dan virtual account atas masing-masing Pemberi Pinjaman dan HappyCash yang disediakan oleh bank yang bekerja sama dengan HappyCash, dimana rekening ini diperuntukan untuk kegiatan LPMUBTI yang melibatkan Pemberi Pinjaman dan Peminjam berdasarkan Perjanjian Pinjaman, khususnya terkait penyaluran Pinjaman kepada Peminjam dan penerimaan pembayaran kembali Pinjaman dari Peminjam.
+\nInterpretasi
+\n1.2	Judul yang digunakan untuk S&K ini hanya untuk penjelasan dan referensi saja, dan tidak mempengaruhi penafsiran, atau menjadi bahan pertimbangan, dalam interpretasi S&K ini.
+\n1.3	Dalam S&K ini, semua rujukan kepada badan hukum atau individu, adalah juga sebagai merujuk kepada agen yang sah, penerima hak pengalihan, penerus, ataupun kuasa/wakil dari badan hukum atau individu tersebut selama dianggap wajar. Ungkapan bermakna tunggal diartikan sebagai ungkapan bermakna jamak dan sebaliknya.
+\n1.4	Setiap rujukan Hukum, peraturan, undang-undang atau penetapan adalah merujuk pada amandemen dan perubahan peraturan terkait, atau peraturan yang berada di bawah Hukum, peraturan, atau penetapan tersebut.
+\n1.5	Apabila terdapat perbedaan dan pertentangan antara S&K dan perjanjian yang mengikat Anda dengan HappyCash, maka yang berlaku adalah ketentuan dalam perjanjian dan Anda wajib mematuhi ketentuan perjanjian tersebut kecuali untuk ketentuan yang bertentangan dengan S&K.
+\n2.	SYARAT UMUM PENGGUNAAN
+\n2.1	S&K ini merupakan syarat-syarat dan ketentuan-ketentuan yang mengatur tata cara pemberian Layanan oleh HappyCash dengan mengoperasikan Platform yang memfasilitasi proses pemberian Pinjaman kepada Peminjam.
+\n2.2	Layanan yang terdapat pada Platform yang ditujukan untuk digunakan oleh Pengguna:
+\n(a)	individu cakap secara hukum menurut Pasal 1330 KUH Perdata, artinya individu yang telah dewasa yaitu berusia minimal 18 tahun, dan waras (“Cakap Secara Hukum”); dan
+\n(b)	individu yang berkewarganegaraan Indonesia.
+\n2.3	Jumlah Pinjaman yang dapat diperoleh oleh Peminjam dari Pemberi Pinjaman melalui Platform adalah sebesar Rp2.000.000,- atau Rp3.000.000,- atau Rp4.000.000,- atau Rp5.000.000,- atau Rp6.000.000,-], dengan jangka waktu (tenor) cicilan Pinjaman yaitu 3 (tiga) bulan sejak diterimanya Pinjaman oleh Peminjam berdasarkan Perjanjian Pinjaman.
+\n2.4	Bunga atas Pinjaman yang dikenakan atas setiap jumlah Pinjaman sebagaimana dimaksud di atas ditentukan sesuai diskresi mutlak HappyCash dan akan diketahui Peminjam pada saat proses pengajuan Permohonan Pinjaman..
+\n2.5	Peminjam dapat mengetahui mengenai nilai Pinjaman termasuk bunga berikut denda keterlambatan (apabila ada) yang wajib dibayar dan dilunasi Peminjam sesuai ketentuan pembayaran dalam Perjanjian Pinjaman pada Akun Peminjam.
+\n2.6	HappyCash berhak mengubah komponen atau aspek komersial Pinjaman yang meliputi jumlah maksimal nilai Pinjaman, bunga Pinjaman dan denda keterlambatan maupun biaya lainnya yang akan diberitahukan secara transparan kepada Peminjam saat proses pengajuan Permohonan Pinjaman dan pada Akun Peminjam setelah Peminjam memperoleh Pinjaman.
+\n2.7	Terhadap jumlah Pinjaman akan dibebankan suatu pajak, pungutan, bunga, biaya, bea atau potongan yang serupa sebagaimana akan ditetapkan dalam suatu perjanjian antara Pemberi Pinjaman yang diwakili HappyCash sebagai kuasanya dan Anda dari waktu ke waktu.
+\n2.8	Dengan tunduk pada Kebijakan Privasi dan ketentuan S&K ini sebagaimana ditetapkan oleh HappyCash dari waktu ke waktu, Anda sepakat bahwa dengan (i) memanfaatkan Layanan HappyCash; (ii) mengajukan Permohonan Pinjaman kepada HappyCash; dan/atau (iii) menyetujui Perjanjian Pinjaman sebagai Peminjam, maka Anda dengan tanpa syarat mengizinkan HappyCash untuk mengumpulkan, menyimpan mengolah, mengakses, mengkaji, dan/atau menggunakan informasi dan Data Pribadi Anda.
+\n3.	PERNYATAAN DAN JAMINAN
+\n3.1	Anda dengan ini menyatakan dan menjamin bahwa:
+\n(a)	Anda telah membaca dan menyetujui S&K ini berikut ketentuan lain yang mengatur penggunaan Layanan pada Platform, termasuk namun tidak terbatas pada Kebijakan Privasi;
+\n(b)	Anda akan menggunakan dan/atau mengakses Platform kami hanya untuk tujuan yang sah berdasarkan Hukum;
+\n(c)	Anda telah Cakap Secara Hukum sebagaimana dimaksud dalam Pasal 2 ayat 2.2 S&K ini sehingga Anda dapat menyetujui S&K ini termasuk mengakses Platform, menggunakan Layanan dan mengadakan kontrak dengan Pemberi Pinjaman dalam kapasitas Anda sendiri sebagai pribadi;
+\n(d)	Anda menggunakan Platform dengan itikad baik dan tanpa niat untuk melanggar aturan dan peraturan perundang-undangan yang berlaku, termasuk namun tidak terbatas pada peraturan pencucian uang, peraturan penghindaran pajak, dan peraturan anti terorisme;
+\n(e)	tidak ada materi apapun yang disampaikan melalui akun Anda atau yang dibagikan oleh Anda melalui Platform akan melanggar atau menyalahi hak-hak dari pihak ketiga manapun, termasuk hak cipta, merek dagang, privasi, publisitas atau hak-hak kepemilikan atau pribadi lainnya; atau mengandung fitnah, pencemaran nama baik atau materi yang melanggar hukum; dan
+\n(f)	Setiap Data Pribadi yang Anda ajukan dalam proses pemanfaatan Layanan maupun yang diakses HappyCash berdasarkan Kebijakan Privasi termasuk Nomor Darurat sebagaimana dimaksud dalam Kebijakan Privasi adalah benar, bukan merupakan hasil penipuan atau pelanggaran hukum maupun hak pihak ketiga lain, akurat dan dapat dipertanggungjawabkan.
+\n4.	PERMOHONAN PINJAMAN DAN PENYEDIAAN LAYANAN
+\n4.1	HappyCash menyediakan Layanan dengan membuat dan mengoperasikan Platform untuk tujuan mempertemukan Pemberi Pinjaman dengan Peminjam dan lebih lanjut mengatur pengikatan antara Peminjam dan Pemberi Pinjaman di dalam suatu Perjanjian Pinjaman.
+\n4.2	HappyCash berhak melakukan penilaian kelayakan kredit (creditworthiness) terhadap calon Peminjam berdasarkan Permohonan Pinjaman yang diajukan kepada HappyCash untuk menentukan apakah calon Peminjam dapat atau layak memperoleh Pinjaman dari Pemberi Pinjaman melalui Platform. Dalam hal Permohonan Pinjaman Anda ditolak oleh HappyCash dengan alasan apapun, Anda tidak berhak untuk meminta penjelasan apapun mengenai alasan, tolak ukur atau indikator penilaian yang menjadi dasar penolakan tersebut, dan Anda tidak berhak menuntut ganti rugi, biaya, ongkos atau pengeluaran dan pemberian hak atau penggantian maupun kompensasi dalam wujud apapun kepada HappyCash maupun Pihak Terkait.
+\n4.3	Peminjam memahami dan menyetujui, bahwa HappyCash sebagai kuasa dan perwakilan Pemberi Pinjaman dalam pelaksanaan Perjanjian Pinjaman dapat melaksanakan hak Pemberi Pinjaman dan meminta pemenuhan kewajiban Peminjam berdasarkan ketentuan Perjanjian Pinjaman atau berdasarkan arahan dari Pemberi Pinjaman dari waktu ke waktu.
+\n5.	KEAKURATAN DATA PRIBADI
+\n5.1	Dengan tunduk pada Kebijakan Privasi yang ditetapkan oleh HappyCash dari waktu ke waktu, Anda menjamin bahwa semua informasi dan Data Pribadi yang diberikan atau disingkapkan kepada HappyCash maupun yang diakses HappyCash berdasarkan Kebijakan Privasi termasuk Nomor Darurat adalah data yang lengkap dan benar, akurat, lengkap, terbaru, dapat dipertanggung jawabkan dan tidak menyesatkan dalam hal apapun serta bukan merupakan hasil penipuan atau pelanggaran hukum maupun hak pihak ketiga.
+\n5.2	Anda wajib untuk memperbaharui dan/atau memberitahukan kepada HappyCash melalui Platform atas setiap perubahan informasi dan Data Pribadi Anda.
+\n5.3	Dalam hal HappyCash menemukan bahwa informasi dan/atau Data Pribadi yang Anda berikan kepada HappyCash melalui Platform adalah tidak benar, diduga palsu, menyesatkan, dan/atau tidak akurat atau menyalahi ketentuan Pasal 5 ayat 5.1 S&K ini, maka HappyCash berhak untuk mengambil tindakan yang diperlukan, termasuk namun tidak terbatas pada memblokir akses Anda terhadap Platform, dan meminta ganti kerugian kepada Anda tanpa mempengaruhi kewajiban pelunasan Pinjaman Anda serta hak tagih Pemberi Pinjaman melalui HappyCash terhadap kewajiban finansial Anda berdasarkan Perjanjian Pinjaman, serta melaporkan kepada pihak yang berwenang, memproses sesuai hukum yang berlaku.
+\n6.	PERLINDUNGAN DATA PRIBADI
+\n6.1	Dengan tunduk pada Kebijakan Privasi, pengumpulan, penyimpanan, dan pengolahan informasi dan Data Pribadi yang diberikan oleh Anda kepada HappyCash akan sesuai dengan tujuan penggunaan Platform berdasarkan persetujuan yang Anda berikan kepada HappyCash dan sesuai dengan Hukum yang berlaku di Indonesia.
+\n6.2	HappyCash akan mengambil semua langkah dan tindakan yang wajar untuk mencegah kehilangan, penyingkapan, penyalahgunaaan atau perubahan Data Pribadi Anda oleh pihak-pihak yang tidak berwenang.
+\n6.3	HappyCash dapat mengungkapkan informasi dan Data Pribadi Anda apabila:
+\n(a)	dipersyaratkan oleh peraturan perundang-undangan;
+\n(b)	dipersyaratkan oleh instansi atau pihak yang berwenang;
+\n(c)	terdapat proses hukum yang sedang atau akan berlangsung;
+\n(d)	terdapat dugaan adanya tindak pidana termasuk namun tidak terbatas pada tindak pidana penipuan atau pencucian uang;
+\n(e)	telah mendapatkan persetujuan tertulis oleh Anda; atau
+\n(f)	sewajarnya diperlukan untuk pelaksanaan kegiatan usaha LPMUBTI oleh HappyCash sesuai dengan ketentuan peraturan perundang-undangan.
+\n7.	COOKIES
+\n7.1	“Cookies” adalah file yang mencatat informasi seperti jejak pencarian situs dari perangkat untuk mengumpulkan informasi log internet dan informasi tentang Anda. Saat Anda mengunjungi Platform, Cookies akan memudahkan HappyCash untuk menyesuaikan konten sesuai dengan kebutuhan Anda. Cookies tidak akan melacak informasi pribadi Anda dan semua data Cookies kami telah dienkripsi dan tidak dapat dibaca oleh platform lain.
+\n7.2	Dengan mengunjungi dan menggunakan Platform, Anda mengetahui dan menyetujui bahwa Cookies terpasang pada perangkat Anda.
+\n7.3	Anda dapat menolak pemasangan Cookies pada perangkat Anda dengan melakukan konfigurasi melalui pengaturan situs pencarian Anda. Namun perlu dipahami bahwa dengan menolak pemasangan Cookies pada perangkat Anda, Anda mungkin tidak mendapatkan keuntungan dari beberapa Layanan pada Platform.
+\n8.	HAK ATAS KEKAYAAN INTELEKTUAL
+\n8.1	Seluruh hak kekayaan intelektual pada Platform, termasuk tetapi tidak terbatas pada, hak cipta, hak paten, dan merek dagang, untuk dan atas nama HappyCash adalah milik dan aset tetap dari HappyCash.
+\n8.2	Dengan mengakses Platform, Anda diberikan lisensi terbatas untuk melihat, mengunduh atau mencetak salinan dari bagian manapun pada Platform, dengan ketentuan bahwa Anda tidak mengubah dengan salinan tersebut cara apapun atau menggunakannya dengan cara apapun tanpa persetujuan tertulis HappyCash, termasuk namun tidak terbatas pada penghapusan segala hak cipta atau kepemilikan lainnya yang terdapat pada Platform atas nama HappyCash, maupun mendaftarkannya dengan cara apapun pada instansi manapun dan pada yurisdiksi negara manapun.
+\n9.	PERUBAHAN SYARAT DAN KETENTUAN
+\n9.1	HappyCash, atas diskresinya sendiri, berhak untuk mengubah dan/atau memperbaharui S&K ini dari waktu ke waktu. HappyCash akan memberitahukan perubahan S&K ini pada Platform dan melalui Akun Peminjam atau surel Anda yang terdaftar pada Platform.
+\n9.2	Dalam hal HappyCash mengubah S&K ini dan Anda tetap mengakses serta menggunakan Layanan yang ada di Platform, maka Anda secara otomatis dianggap menyetujui untuk menundukkan dan mengikatkan diri terhadap segala perubahan yang dibuat atas S&K ini.
+\n10.	PEMBATASAN TANGGUNG JAWAB
+\n10.1	HappyCash atau pegawainya tidak bertanggung jawab dan tidak akan memberikan ganti rugi ketika terjadi pelanggaran atas S&K ini, termasuk kelalaian atau pelanggaran kewajiban atas (a) terjadinya kehilangan keuntungan, bisnis, atau pendapatan; atau (b) setiap biaya atau beban, yang secara langsung atau tidak langsung disebabkan oleh Anda.
+\n10.2	HappyCash tidak bertanggung jawab kepada Anda dan/atau siapapun atas segala kehilangan, keuntungan, kebocoran, dan/atau hal lainnya, yang secara langsung atau tidak langsung, disebabkan oleh pihak ketiga.
+\n11.	GANTI RUGI
+\nAnda sepakat untuk melepaskan, membebaskan, dan mengganti kerugian HappyCash, termasuk namun tidak terbatas pada afiliasi, pemegang saham, direktur, komisaris, pegawai, subkontraktor, pemasok, dan agen dari HappyCash atas setiap dan seluruh kerugian, pajak, biaya konsultan hukum, kontijensi, yang diderita oleh HappyCash sebagai hasil atau sehubungan dengan pelanggaran S&K ini atau dokumen lainnya yang mengikat Anda terkait penggunaan Layanan pada Platform yang dilakukan oleh Anda.
+\n12.	KETERPISAHAN
+\nApabila suatu ketentuan dalam S&K ini tidak dapat diberlakukan, tidak berlaku, atau bertentangan dengan suatu hukum atau kebijakan umum karena alasan apapun, ketentuan-ketentuan lain dari S&K ini tidak akan terpengaruh dan tetap berlaku secara penuh sepanjang diperbolehkan oleh Hukum dan peraturan perundang-undangan yang berlaku.
+\n13.	SATU KESATUAN
+\n13.1	S&K ini merupakan satu kesatuan dan bagian tidak terpisahkan dari ketentuan lain yang mengatur penggunaan Layanan pada Platform oleh Anda sebagaimana ditetapkan oleh HappyCash dari waktu ke waktu, termasuk namun tidak terbatas pada Kebijakan Privasi,  dan aturan atau kebijakan lain yang diberlakukan HappyCash bagi Pengguna (“Dokumen Lain”).
+\n13.2	Jika terdapat pertentangan antara S&K ini dan Dokumen Lain terkait suatu pokok permasalahan, maka yang berlaku adalah Dokumen Lain yang menentukan secara lebih spesifik untuk suatu pokok permasalahan tersebut.
+\n14.	PENGAKHIRAN
+\nAnda sepakat bahwa HappyCash dapat, berdasarkan diskresi HappyCash, dengan atau tanpa pemberitahuan, menunda, mengakhiri, menonaktifkan atau menutup akses Anda pada, atau penggunaan dari Platform, mengakhiri Akun Peminjam, menghapus profil Anda dan setiap konten atau informasi yang Anda telah unggah pada Platform apabila Anda melanggar atau bertindak tidak sesuai dengan S&K ini.
+\n15.	HUKUM YANG BERLAKU DAN PENYELESAIAN SENGKETA
+\n15.1	S&K ini diatur dan ditafsirkan sesuai dengan ketentuan hukum negara Republik Indonesia.
+\n15.2	Apabila terjadi perselisihan dalam penafsiran dan/atau pelaksanaan ketentuan-ketentuan dari S&K ini (“Sengketa”), Anda sepakat untuk terlebih dahulu menyelesaikan Sengketa tersebut secara musyawarah untuk mencapai mufakat dalam waktu 30 (tiga puluh) hari sejak diterimanya pemberitahuan tertulis mengenai terjadinya Sengketa oleh Anda atau HappyCash.
+\n15.3	Apabila Sengketa tidak dapat diselesaikan dengan cara musyawarah untuk mufakat dalam waktu 30 (tiga puluh) hari, Anda sepakat untuk menyelesaikan Sengketa tersebut pada Pengadilan Negeri Jakarta Barat.
+\n16.	ADUAN KONSUMEN DAN REKAM JEJAK TRANSAKSI SERTA KORESPONDENSI
+\nAtas setiap dugaan tindakan yang melanggar hukum atau merugikan Anda  secara materi yang dilakukan oleh karyawan HappyCash, termasuk tindakan intimidasi atau kekerasan oleh tim penagih utang HappyCash dalam proses penagihan utang Pinjaman Anda yang tertunggak (“Dugaan Pelanggaran Hukum”), maka Anda berhak mengajukan aduan perihal tersebut ke nomor kontak dan e-mail dengan ketentuan:
+\na.	Anda wajib memberikan keterangan yang jelas, akurat dan disertai serta didukung bukti yang dapat mendukung laporan atau aduan tersebut;
+\nb.	Anda wajib memberikan keterangan mengenai identitas terduga karyawan yang melakukan Dugaan Pelanggaran Hukum kepada HappyCash sehingga HappyCash dapat melakukan penyelidikan dan pemeriksaan atas identitas tersebut terkait Dugaan Pelanggaran Hukum; dan
+\nc.	Anda wajib menyediakan nomor telepon dan e-mail yang jelas kepada HappyCash sebagai media korespondensi antara Anda dengan HappyCash untuk penelusuran lebih lanjut terkait Dugaan Pelanggaran Hukum dan kerugian materi yang Anda alami.
+\nHappyCash tidak bertanggung jawab atas setiap akibat atau kerugian yang Anda alami yang disebabkan oleh pihak yang bukan merupakan karyawan HappyCash. HappyCash akan menangani setiap laporan dan aduan Anda dengan pertama kali melakukan verifikasi atas identitas pihak atau oknum yang melakukan Dugaan Pelanggaran dan kebenaran atas laporan dan aduan yang disampaikan.
+\n17.	NOMOR DARURAT
+\nSebagai salah satu komponen terpenting yang merupakan persyaratan untuk mengajukan Permohonan Pinjaman dan memperoleh Pinjaman, maka Anda diwajibkan untuk memberikan keterangan mengenai nomor kontak yang dapat dihubungi HappyCash sebagai “Nomor Darurat”. Ketentuan mengenai hak HappyCash yang sah secara hukum untuk menghubungi Nomor Darurat ini sehubungan dengan kegagalan Anda dalam melunasi Pinjaman tepat waktu diatur dalam Pasal 43 Kebijakan Privasi.
+\nSetiap Peminjam wajib membaca dan memahami Kebijakan Privasi yang mengikat setiap Peminjam dalam pemanfaatan Layanan atau Pinjaman melalui Platform. Kebijakan Privasi dapat diunduh di tautan sebagai berikut Kebijakan Privasi dan juga terdapat dalam Akun Peminjam dan dapat diakses pada Platform.
+\n18.	FAQ (Frequently Asked Question)
+\nHappyCash menyediakan layanan FAQ (Frequently Asked Question) mengenai aspek hukum LPMUBTI dan Layanan HappyCash yang dapat diakses pada Akun Peminjam dari waktu ke waktu. HappyCash mengharapkan Anda untuk menemukan jawaban atas pertanyaan Anda dari Layanan HappyCash dalam FAQ tersebut.
+\n19.	HUBUNGI KAMI
+\nApabila ada pertanyaan, komentar dan permintaan mengenai S&K ini, Anda dapat mengunjungi halaman FAQ HappyCash atau menghubungi petugas HappyCash melalui layanan telepon pada [insert customer services phone number] atau layanan email pada [insert customer services email]
+]]>
+    </string>
+
     <string name="show_dial_hotline">Telepon layanan pelanggan:%1$s?</string>
 </resources>

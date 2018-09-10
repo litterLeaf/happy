@@ -2,6 +2,7 @@ package com.yinshan.happycash.widget.custom;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.Layout;
 import android.util.AttributeSet;
 import android.util.FloatMath;
@@ -14,7 +15,7 @@ import com.yinshan.happycash.utils.ScreenUtils;
 /**
  * Created by huxin on 2018/9/6.
  */
-public class CustomTextView extends TextView{
+public class CustomTextView extends AppCompatTextView{
 
     Context mContext;
     boolean isSN;
