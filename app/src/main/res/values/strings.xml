@@ -775,5 +775,5 @@ atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri
     <string name="oke">OKE</string>
     <string name="update_version">Update segera</string>
 
-
+    <string name="show_dial_hotline">Telepon layanan pelanggan:%1$s?</string>
 </resources>

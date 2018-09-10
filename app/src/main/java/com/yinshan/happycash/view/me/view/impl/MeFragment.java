@@ -1,5 +1,7 @@
 package com.yinshan.happycash.view.me.view.impl;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,13 +9,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.application.AppContext;
+import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.ToolsUtils;
 import com.yinshan.happycash.view.information.model.PersonalBean;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.me.view.IGetPersonView;
 import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
+import com.yinshan.happycash.widget.common.CommonClickListener;
+import com.yinshan.happycash.widget.dialog.CommonDialog;
 
 import butterknife.OnClick;
 
@@ -79,6 +86,19 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
                 mStartActivity(HelpCenterActivity.class);
                 break;
             case R.id.customHotLineView:
+                CommonClickListener listener = new CommonClickListener() {
+                    @Override
+                    public void onClick() {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        Uri data = Uri.parse("tel:" + AppDataConfig.HOTLINE);
+                        intent.setData(data);
+                        startActivity(intent);
+                    }
+                };
+                CommonDialog dialog = new CommonDialog(getActivity(),listener,"",
+                        String.format(getString(R.string.show_dial_hotline), AppDataConfig.HOTLINE)
+                        ,"","",true);
+                dialog.show();
 //                Intent intent = mIMKit.getConversationActivityIntent();
 //                startActivity(intent);
                 break;

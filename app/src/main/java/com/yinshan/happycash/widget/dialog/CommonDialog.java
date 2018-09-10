@@ -4,9 +4,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ public class CommonDialog extends Dialog{
     String mStrConfirm;
 
     TextView mTextTitle;
+    LinearLayout mViewTitle;
     TextView mTextDesc;
     RelativeLayout mBtnConfirm;
     View mSpaceView;
@@ -44,6 +47,8 @@ public class CommonDialog extends Dialog{
         mStrConfirm = strConfirm;
         mIsCanCancel = isCanCancel;
         initView(context);
+        if(TextUtils.isEmpty(title))
+            mViewTitle.setVisibility(View.GONE);
         if(!isCanCancel){
             setCancelable(false);
             setOnKeyListener(new OnKeyListener() {
@@ -64,6 +69,7 @@ public class CommonDialog extends Dialog{
         View view = LayoutInflater.from(context).inflate(R.layout.dialog_common, null, false);
         setContentView(view);
         mTextTitle = (TextView)view.findViewById(R.id.title);
+        mViewTitle = (LinearLayout)view.findViewById(R.id.titleView);
         mTextDesc = (TextView)view.findViewById(R.id.desc);
         mBtnConfirm = (RelativeLayout)view.findViewById(R.id.btnConfirm);
         mBtnCancel = (RelativeLayout)view.findViewById(R.id.btnCancel);
@@ -71,13 +77,13 @@ public class CommonDialog extends Dialog{
         mSpaceView = (View)view.findViewById(R.id.spaceView);
         mTextConfirm = (TextView)view.findViewById(R.id.textConfirm);
 
-        if(mStrTitle!=null)
+        if(!TextUtils.isEmpty(mStrTitle))
             mTextTitle.setText(mStrTitle);
-        if(mStrDesc!=null)
+        if(!TextUtils.isEmpty(mStrDesc))
             mTextDesc.setText(mStrDesc);
-        if(mStrConfirm!=null)
+        if(!TextUtils.isEmpty(mStrConfirm))
             mTextConfirm.setText(mStrConfirm);
-        if(mStrCancel!=null)
+        if(!TextUtils.isEmpty(mStrCancel))
             mTextCancel.setText(mStrCancel);
 
         mBtnCancel.setOnClickListener(new View.OnClickListener() {

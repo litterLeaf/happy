@@ -5,6 +5,8 @@ package com.yinshan.happycash.config.inner;
  */
 public interface AppDataConfig {
 
+    public static final String HOTLINE         = "02139506666";
+
     public static final String CHANNEL_XENDIT = "XENDIT";
 
     public static final String METHOD_ALFMART = "ALFAMART";
