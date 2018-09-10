@@ -10,6 +10,7 @@ public class ProgressBean {
     private boolean employmentPart;
     private boolean contactPart;
     private boolean filePart;
+    private boolean bpjsPart;
     private boolean completed;
 
     public boolean isPersonalInfoPart() {
@@ -42,6 +43,14 @@ public class ProgressBean {
 
     public void setFilePart(boolean filePart) {
         this.filePart = filePart;
+    }
+
+    public boolean isBpjsPart() {
+        return bpjsPart;
+    }
+
+    public void setBpjsPart(boolean bpjsPart) {
+        this.bpjsPart = bpjsPart;
     }
 
     public boolean isCompleted() {

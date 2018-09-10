@@ -10,6 +10,7 @@ import com.yinshan.happycash.framework.BaseFragment;
  */
 
 public class RejectFragment extends BaseFragment {
+
     @Override
     protected void initView() {
 

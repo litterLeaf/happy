@@ -21,6 +21,7 @@ public class ConstantSharedPreferences {
     protected static final String PASSWORD = "password";
     protected static final String MOBILE = "mobile";
     protected static final String USER_NAME = "user_name";
+    protected static final String USER_KTP = "user_ktp";
 
     protected static final String IMEI_TIMES = "imei_times";
 }

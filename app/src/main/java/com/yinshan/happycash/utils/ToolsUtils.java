@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.yinshan.happycash.application.AppApplication;
 import com.yinshan.happycash.application.AppContext;
+import com.yinshan.happycash.config.inner.AppInnerConfig;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -113,7 +114,7 @@ public class ToolsUtils {
      *
      */
     public static void launchAppDetail(Context context) {
-        String  pageName= "com.yinshan.program.martket";
+        String pageName= AppInnerConfig.PACKAGE_NAME;
         String market = "com.android.vending";
         try {
             //应用包名
