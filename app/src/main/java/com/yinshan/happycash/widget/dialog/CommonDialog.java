@@ -26,19 +26,23 @@ public class CommonDialog extends Dialog{
     TextView mTextTitle;
     TextView mTextDesc;
     RelativeLayout mBtnConfirm;
+    View mSpaceView;
     RelativeLayout mBtnCancel;
     TextView mTextCancel;
     TextView mTextConfirm;
 
+    boolean mIsCanCancel;
+
     CommonClickListener mListener;
 
-    public CommonDialog(@NonNull Context context, CommonClickListener listener,String title,String desc,String strCancel,String strConfirm,boolean isCanCancel) {
+    public CommonDialog(@NonNull Context context, CommonClickListener listener, String title, String desc, String strCancel, String strConfirm, boolean isCanCancel) {
         super(context, R.style.DialogTheme);
         mListener = listener;
         mStrTitle = title;
         mStrDesc = desc;
         mStrCancel = strCancel;
         mStrConfirm = strConfirm;
+        mIsCanCancel = isCanCancel;
         initView(context);
         if(!isCanCancel){
             setCancelable(false);
@@ -51,6 +55,8 @@ public class CommonDialog extends Dialog{
                     return false;
                 }
             });
+            mBtnCancel.setVisibility(View.GONE);
+            mSpaceView.setVisibility(View.GONE);
         }
     }
 
@@ -62,12 +68,17 @@ public class CommonDialog extends Dialog{
         mBtnConfirm = (RelativeLayout)view.findViewById(R.id.btnConfirm);
         mBtnCancel = (RelativeLayout)view.findViewById(R.id.btnCancel);
         mTextCancel = (TextView)view.findViewById(R.id.textCancel);
+        mSpaceView = (View)view.findViewById(R.id.spaceView);
         mTextConfirm = (TextView)view.findViewById(R.id.textConfirm);
 
         if(mStrTitle!=null)
             mTextTitle.setText(mStrTitle);
         if(mStrDesc!=null)
             mTextDesc.setText(mStrDesc);
+        if(mStrConfirm!=null)
+            mTextConfirm.setText(mStrConfirm);
+        if(mStrCancel!=null)
+            mTextCancel.setText(mStrCancel);
 
         mBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override

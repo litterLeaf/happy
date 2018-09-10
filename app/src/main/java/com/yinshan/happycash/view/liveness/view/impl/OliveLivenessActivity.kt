@@ -76,9 +76,10 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
         super.onInitializeFail(e)
         Log.e(TAG, "无法初始化活体检测...", e)
         Toast.makeText(this, getString(R.string.oliveapp_init_fail), Toast.LENGTH_LONG).show()
-        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
-        i.putExtra("is_success", false)
-        handleLivenessFinish(i)
+        finish();
+//        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
+//        i.putExtra("is_success", false)
+//        handleLivenessFinish(i)
     }
 
     ////////////// LIVENESS DETECTION /////////////////
@@ -102,15 +103,17 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
                     .subscribe({
                         dismissLoading()
                         update()
-                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
-                        i.putExtra("is_success", true)
-                        handleLivenessFinish(i)
+                        finish()
+//                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
+//                        i.putExtra("is_success", true)
+//                        handleLivenessFinish(i)
                     }, {
                         Log.e(TAG, "result---------- ${it.message}")
                         dismissLoading()
-                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
-                        i.putExtra("is_success", false)
-                        handleLivenessFinish(i)
+                        finish()
+//                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
+//                        i.putExtra("is_success", false)
+//                        handleLivenessFinish(i)
                     })
         }
     }
@@ -130,9 +133,10 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
         super.onLivenessFail(result, livenessDetectionFrames)
         val handler = Handler()
         handler.postDelayed({
-            val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
-            i.putExtra("is_success", false)
-            handleLivenessFinish(i)
+            finish();
+//            val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
+//            i.putExtra("is_success", false)
+//            handleLivenessFinish(i)
         }, 2000)
     }
 

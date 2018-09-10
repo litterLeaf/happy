@@ -61,6 +61,7 @@ public class RepaymentDialogAdapter extends BaseAdapter{
             @Override
             public void onClick(View v) {
                 InfoAdapterEnum.ItemSelectedEvent<String> event = new InfoAdapterEnum.ItemSelectedEvent(position,mDepositMethods.get(position));
+                event.type = InfoAdapterEnum.RepaymentType;
                 RxBus.get().post(event);
             }
         });
