@@ -6,6 +6,8 @@ package com.yinshan.happycash.config.inner;
 
 public class AppInnerConfig {
 
+    public static final String PACKAGE_NAME = "com.yinshan.happycash";
+
     //默认的第一页
     public static final int DEFAULT_FIRST_PAGE = 1;
 

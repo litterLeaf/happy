@@ -201,14 +201,14 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
             alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
             alertDialog.setCancelable(true);
-            alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                @Override
-                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_SEARCH || keyCode == KeyEvent.KEYCODE_BACK)
-                        return true;
-                    return false;
-                }
-            });
+//            alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//                @Override
+//                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                    if (keyCode == KeyEvent.KEYCODE_SEARCH || keyCode == KeyEvent.KEYCODE_BACK)
+//                        return true;
+//                    return false;
+//                }
+//            });
         }
         alertDialog.show();
         alertDialog.setContentView(R.layout.loading_alert);

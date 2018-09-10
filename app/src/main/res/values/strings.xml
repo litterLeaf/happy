@@ -282,6 +282,8 @@
 
 
     <string name="text_cancel">Batal</string>
+    <string name="text_confirm">Konfirmasikan</string>
+    <string name="text_oke">OKE</string>
 
     <string name="please_make_original_data_submit_can_done_after_all_data_is_completed">Mohon pastikan data asli,pengajuan bisa dilakukan setelah seluruh data dilengkapi</string>
     <string name="help_1">Download HappyCash di Google Play atau Android Market lainnya</string>
@@ -489,8 +491,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     <string name="process_point_tip">Dalam analisa,telah selesai</string>
 
 
-    <string name="reject_txt1">Setelah melewati analisis data besar, sistem secara otomatis menyesuaikan produk pinjaman yang paling sesuai untuk Anda,
-        100% dapat lulus. </string>
+    <string name="reject_txt1">Setelah melewati analisis data besar,sistem secara otomatis menyesuaikan produk pinjaman yang paling sesuai untuk Anda,100% dapat lulus.</string>
 
     <string name="textview_bank_select_statement">Silahkan pilih bank untuk mengembalikan pinjaman</string>
 
@@ -768,6 +769,11 @@ atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri
     <string name="interest">Bunga</string>
     <string name="penalty_interest">Penalti bunga</string>
     <string name="total">Total</string>
+
+    <string name="find_a_new_version">Menemukan versi baru</string>
+    <string name="please_update_the_version">Kami secara periodik memperbaharui fungsi baru untuk memperbaiki kecepatan, meningkatkan pengalaman, anda disarankan update ke versi terbaru.</string>
+    <string name="oke">OKE</string>
+    <string name="update_version">Update segera</string>
 
 
 </resources>

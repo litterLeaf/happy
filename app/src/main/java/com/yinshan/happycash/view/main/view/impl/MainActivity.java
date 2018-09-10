@@ -30,6 +30,7 @@ import com.yinshan.happycash.analytic.contacts.ContactDBController;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.analytic.sms.SmsDBController;
+import com.yinshan.happycash.application.AppContext;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.MessageEvent;
@@ -40,6 +41,7 @@ import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.utils.ToastUtils;
+import com.yinshan.happycash.utils.ToolsUtils;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
@@ -67,6 +69,7 @@ import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
+import com.yinshan.happycash.widget.dialog.CommonDialog;
 import com.yinshan.happycash.widget.dialog.PerGuideDialogFragment;
 import com.yinshan.happycash.widget.dialog.PowerDialog;
 
@@ -630,7 +633,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                         PERMISSION_CODE);
             }
         }
-
     }
 
     //位置信息设置
@@ -794,7 +796,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
     }
 
     @Override
@@ -813,7 +814,16 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public void getVersionOk(ProfileBean profileBean) {
         boolean forceUpgrade = profileBean.isForceUpgrade();
         if (forceUpgrade) {
-
+            CommonClickListener listener = new CommonClickListener() {
+                @Override
+                public void onClick() {
+                    ToolsUtils.launchAppDetail(AppContext.getContext());
+                }
+            };
+            CommonDialog updateVersionDialog = new CommonDialog(this,listener,getResources().getString(R.string.find_a_new_version),
+                    getResources().getString(R.string.please_update_the_version)
+                    ,getResources().getString(R.string.oke),getResources().getString(R.string.update_version),false);
+            updateVersionDialog.show();
         }
 //        ProfileBean.PrfileSettinBean setting = profileBean.getSetting();
 //        if (setting != null) {
@@ -942,6 +952,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private void requestProfile(){
+
+
         mVersionPresenter = new VersionPresenter(this,this);
         String versionCode = SystemUtil.getInstance().getVersionCode();
         if (TextUtils.isEmpty(versionCode)) {
