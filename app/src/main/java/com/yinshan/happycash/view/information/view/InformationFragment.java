@@ -282,7 +282,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
                 if(mProgressBean==null)
                     mPresenter.getProgress();
                 else{
-                    if(mProgressBean.isPersonalInfoPart()&& TextUtils.isEmpty(SPUtils.getInstance().getUserKtp())){
+                    if(mProgressBean.isPersonalInfoPart()&& !TextUtils.isEmpty(SPUtils.getInstance().getUserKtp())){
                         doBpjsAction();
                     }else{
                         ToastManager.showToast("Harap tingkatkan informasi pribadi Anda terlebih dahulu.");

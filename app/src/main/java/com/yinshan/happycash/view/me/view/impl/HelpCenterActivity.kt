@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.me.view.impl
 import android.content.Intent
 import android.view.View
 import android.widget.ListView
+import android.widget.RelativeLayout
 
 import com.yinshan.happycash.R
 
@@ -20,6 +21,8 @@ class HelpCenterActivity : BaseSingleNoScrollActivity(), View.OnClickListener {
 
     internal var mListView: ListView? = null
     lateinit var mAdapter: HelpCenterAdapter
+    lateinit var mBtnBorrow :RelativeLayout
+    lateinit var mBtnLoan :RelativeLayout
 
     override fun bindTitle(): String {
         return resources.getString(R.string.help_center)
@@ -30,6 +33,7 @@ class HelpCenterActivity : BaseSingleNoScrollActivity(), View.OnClickListener {
     }
 
     override fun secondInit() {
+        mListView = findViewById(R.id.listView)
         lowestBg.setBackgroundColor(resources.getColor(R.color.app_white))
         mAdapter = HelpCenterAdapter()
         mAdapter.addList("User seperti apa yang dapat mengajukan pinjaman?", "Happy Cash tidak membatasi pekerjaan, pendapatan, atau syarat lainnya. Selama umur anda sudah mencapai 21 tahun dan anda memiliki pendapatan dan nomor ponsel yang tetap, anda dapat mengajukan pinjaman kepada Happy cash.")
@@ -49,12 +53,16 @@ class HelpCenterActivity : BaseSingleNoScrollActivity(), View.OnClickListener {
         mAdapter.addList("Bagaimana cara menghitung tanggal jatuh tempo? Bagaimana cara memeriksa tanggal jatuh tempo pinjaman ?",
                 "Tanggal jatuh tempo dijadwalkan satu bulan setelah tanggal pengeluaran pinjaman (berdasarkan jangka waktu pinjaman yang telah anda pilih sebelumnya). Setelah pinjaman berhasil, anda dapat memeriksa tanggal jatuh tempo pinjaman pada halaman utama app.")
         mListView!!.adapter = mAdapter
+        mBtnBorrow = findViewById(R.id.btnBorrow)
+        mBtnBorrow.setOnClickListener(View.OnClickListener {  startActivity(Intent(this, BorrowStrategyActivity::class.java))})
+        mBtnLoan = findViewById(R.id.btnLoan)
+        mBtnLoan.setOnClickListener(View.OnClickListener {  startActivity(Intent(this, RepaymentStrategyActivity::class.java))})
     }
 
     override fun onClick(v: View?) {
-        when (v!!.id) {
-            R.id.btnBorrow -> startActivity(Intent(this, BorrowStrategyActivity::class.java))
-            R.id.btnLoan -> startActivity(Intent(this, RepaymentStrategyActivity::class.java))
-        }
+//        when (v!!.id) {
+//            R.id.btnBorrow -> startActivity(Intent(this, BorrowStrategyActivity::class.java))
+//            R.id.btnLoan -> startActivity(Intent(this, RepaymentStrategyActivity::class.java))
+//        }
     }
 }

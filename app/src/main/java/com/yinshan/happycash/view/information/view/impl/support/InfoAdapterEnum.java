@@ -165,9 +165,13 @@ public class InfoAdapterEnum extends BaseAdapter implements InfoAdapter{
         }
 
     }
+
+    public static final int RepaymentType = 1;
+
     public static class ItemSelectedEvent<T>{
         public T data;
         public int pos;
+        public int type;
 
         public ItemSelectedEvent(int pos, T data){
             this.pos = pos;

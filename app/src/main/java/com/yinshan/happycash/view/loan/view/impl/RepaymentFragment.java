@@ -176,6 +176,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     public void sendRepayRequest(InfoAdapterEnum.ItemSelectedEvent<String> event){
         if(mDialog!=null&&mDialog.isShowing())
             mDialog.dismiss();
+        if(event.type!=InfoAdapterEnum.RepaymentType)
+            return;
         String str = event.data;
         MyDebugUtils.v(str);
         doRepayRequest(str);
