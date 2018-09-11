@@ -37,6 +37,8 @@ public class BaseLoanAppBean implements Parcelable,Serializable {
     private String paidOffMode;
     private float loanCostAmount;
     private String loanType;
+    private String appCurrentShownStatus;
+    private String appPaidoffShownStatus;
 
     public String getLoanType() {
         return loanType;
@@ -198,7 +200,23 @@ public class BaseLoanAppBean implements Parcelable,Serializable {
         this.comments = comments;
     }
 
-//    @Override
+    public String getAppCurrentShownStatus() {
+        return appCurrentShownStatus;
+    }
+
+    public void setAppCurrentShownStatus(String appCurrentShownStatus) {
+        this.appCurrentShownStatus = appCurrentShownStatus;
+    }
+
+    public String getAppPaidoffShownStatus() {
+        return appPaidoffShownStatus;
+    }
+
+    public void setAppPaidoffShownStatus(String appPaidoffShownStatus) {
+        this.appPaidoffShownStatus = appPaidoffShownStatus;
+    }
+
+    //    @Override
 //    public String toString() {
 //        return "LoanAppBeanFather{" +
 //                "loanAppId='" + loanAppId + '\'' +

@@ -32,6 +32,7 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.analytic.sms.SmsDBController;
 import com.yinshan.happycash.application.AppContext;
 import com.yinshan.happycash.application.HappyAppSP;
+import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
@@ -233,7 +234,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         if (loanStatus == null) {
             return;
         } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
-            ToastManager.showToast("Pinjaman berhasil");
+            if(!TextUtils.isEmpty(bean.getAppCurrentShownStatus())&&bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
+//                ToastManager.showToast("Pinjaman berhasil");
+            }
+
+
 //            if(bean!=null){
 //                String isShow = bean.getCurrentDialogStatus();
 //                if(null==isShow){
@@ -251,7 +256,9 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 loanStatus.equals("CANCELED") ||
                 loanStatus.equals("PAID_OFF")
                 ) {//没有贷款，取消？？   还款成功
-            ToastManager.showToast("Akhiri pinjaman ini");
+            if(loanStatus.equals("PAID_OFF") &&!TextUtils.isEmpty(bean.getAppPaidoffShownStatus())&&bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
+//                ToastManager.showToast("Akhiri pinjaman ini");
+            }
 //            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
 //                if(bean!=null){
 //                    String isShow = bean.getPiadOffDialogStatus();

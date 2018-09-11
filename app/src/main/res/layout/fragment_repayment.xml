@@ -17,7 +17,8 @@
             android:layout_marginRight="25dp"
             android:textColor="@color/text_blue"
             android:textSize="16sp"
-            android:text="@string/full_repayment" />
+            android:text="@string/full_repayment"
+            android:visibility="gone"/>
     </RelativeLayout>
 
     <ScrollView
