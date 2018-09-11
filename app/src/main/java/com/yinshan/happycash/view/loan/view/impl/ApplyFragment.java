@@ -141,12 +141,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
     private void getRefreshData(LastLoanAppBean loanAppBean) {
         if(loanAppBean!=null&&loanAppBean.getLoanAppId()!=null){
-
+            showData(loanAppBean);
         }
-        showData(loanAppBean);
-        refreshLayout.setRefreshListener(()-> {
-            refreshLayout.refreshComplete();
-        });
         if(TextUtils.equals("PAID_OFF",loanAppBean.getStatus())){
             ((MainActivity)getActivity()).showDefaultView();
         }
@@ -173,6 +169,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
             @Override
             public void onRefresh() {
                 refresh();
+                refreshLayout.refreshComplete();
             }
         });
         MyRefreshHeader header = new MyRefreshHeader(getActivity());

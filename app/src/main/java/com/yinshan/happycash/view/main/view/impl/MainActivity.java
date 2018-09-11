@@ -495,7 +495,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 reSetTab(1);
                 LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
                 if(object!=null&&object.getStatus()!=null){
-                    dealResult(SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN,LastLoanAppBean.class));
+                    dealResult(object);
                 }else {
                     showFragment(AppLoanStatus.UNLOAN);
                 }
