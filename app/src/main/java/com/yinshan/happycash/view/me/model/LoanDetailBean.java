@@ -20,8 +20,10 @@ public class LoanDetailBean {
     private int period;
     private String periodUnit;
     private double principalAmount;
+    private long reapplyCounterDown;
     private String  status;
     List<StageBean> lpayDtoList;
+
 
     public String getBankCode() {
         return bankCode;
@@ -133,5 +135,13 @@ public class LoanDetailBean {
 
     public void setPeriodUnit(String periodUnit) {
         this.periodUnit = periodUnit;
+    }
+
+    public long getReapplyCounterDown() {
+        return reapplyCounterDown;
+    }
+
+    public void setReapplyCounterDown(long reapplyCounterDown) {
+        this.reapplyCounterDown = reapplyCounterDown;
     }
 }

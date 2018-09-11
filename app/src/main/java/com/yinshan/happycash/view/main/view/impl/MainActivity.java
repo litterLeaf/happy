@@ -50,6 +50,7 @@ import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
+import com.yinshan.happycash.view.main.SplashActivity;
 import com.yinshan.happycash.view.main.contract.ChatClientContract;
 import com.yinshan.happycash.view.main.model.DialogType;
 import com.yinshan.happycash.view.main.model.HXBean;
@@ -178,12 +179,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         mUpdateDialogPresenter = new UpdateDialogPresenter(this,this);
         chatClientPresenter = new ChatClientPresenter(this);
         chatClientPresenter.attachView(this);
-        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if(object!=null&&object.getStatus()!=null){
-            dealResult(object);
-        }else {
-            showFragment(AppLoanStatus.UNLOAN);
-        }
+
         if (!judgeMustPermission()) {
             PowerDialog powerDialog = new PowerDialog(MainActivity.this,new PowerListener());
             powerDialog.setCancelable(false);
@@ -194,6 +190,19 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 //            fragment.show(getSupportFragmentManager(), "guide");
         } else {
             checkPermissons();
+        }
+        if(SplashActivity.isGetStatus){
+            LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+            if(object!=null&&object.getStatus()!=null){
+                dealResult(object);
+            }else {
+                showFragment(AppLoanStatus.UNLOAN);
+            }
+        }else{
+            if(TokenManager.getInstance().hasLogin())
+                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
+            else
+                showFragment(AppLoanStatus.UNLOAN);
         }
     }
 
@@ -814,7 +823,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     public void getVersionOk(ProfileBean profileBean) {
         boolean forceUpgrade = profileBean.isForceUpgrade();
-        forceUpgrade = false;
         //发布时修改
         if (forceUpgrade) {
             CommonClickListener listener = new CommonClickListener() {

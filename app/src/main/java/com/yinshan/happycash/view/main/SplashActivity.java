@@ -28,6 +28,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
      SplashContract.Presenter splashPresenter;
      LastLoanAppBean mLatestLoanAppBean;
     private Handler  mHandler;
+    boolean isDestroy = false;
+
+    public static boolean isGetStatus = false;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,15 +41,22 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
         splashPresenter = new SplashPresenter(this);
         splashPresenter.attachView(this);
-        if(TokenManager.getInstance().hasLogin())
+//        if(TokenManager.getInstance().hasLogin()) {
+//            splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
+//        }else
+//            toGoMainActivity();
+        if(TokenManager.getInstance().hasLogin()) {
             splashPresenter.getLastLoanAppBean(TokenManager.getInstance().getToken());
-        else
-            toGoMainActivity();
+        }
+
+        toGoMainActivity();
     }
 
     private void toGoMainActivity() {
         mHandler = new Handler();
         mHandler.postDelayed(()-> {
+                if(isDestroy)
+                    return;
                 Intent intent = new Intent(this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -55,6 +65,8 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
 
     @Override
     public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
+        if(isDestroy)
+            return;
         mLatestLoanAppBean = latestLoanAppBean;
         if(mLatestLoanAppBean ==null){
             if(!TokenManager.getInstance().hasLogin()){
@@ -66,8 +78,10 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
             DateManager.setAPPStatus(StatusManagementUtils.loanStatusClassify(mLatestLoanAppBean));
         }
         Intent intent = new Intent(this,MainActivity.class);
+        isGetStatus = true;
         startActivity(intent);
         finish();
+
     }
 
     @Override
@@ -76,5 +90,11 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isDestroy = true;
     }
 }
