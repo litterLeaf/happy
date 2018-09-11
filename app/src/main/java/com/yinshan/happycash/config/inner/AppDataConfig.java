@@ -9,6 +9,8 @@ public interface AppDataConfig {
 
     public static final String DIALOG_SHOW_TIPS = "Y";
 
+
+
     public static final String CHANNEL_XENDIT = "XENDIT";
 
     public static final String METHOD_ALFMART = "ALFAMART";

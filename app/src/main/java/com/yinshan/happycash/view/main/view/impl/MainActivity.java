@@ -15,9 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,7 +35,6 @@ import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
-import com.yinshan.happycash.utils.LockUtils;
 import com.yinshan.happycash.utils.LoggerWrapper;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
@@ -53,20 +50,20 @@ import com.yinshan.happycash.view.loan.view.impl.LoaningFragment;
 import com.yinshan.happycash.view.loan.view.impl.RejectFragment;
 import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
-import com.yinshan.happycash.view.login.LoginActivity;
-import com.yinshan.happycash.view.main.QuestionActivity;
 import com.yinshan.happycash.view.main.contract.ChatClientContract;
+import com.yinshan.happycash.view.main.model.DialogType;
 import com.yinshan.happycash.view.main.model.HXBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.model.YWUser;
 import com.yinshan.happycash.view.main.model.ProfileBean;
 import com.yinshan.happycash.view.main.presenter.ChatClientPresenter;
 import com.yinshan.happycash.view.main.presenter.GetStatusPresenter;
+import com.yinshan.happycash.view.main.presenter.UpdateDialogPresenter;
 import com.yinshan.happycash.view.main.presenter.VersionPresenter;
 import com.yinshan.happycash.view.main.view.IGetStatusView;
+import com.yinshan.happycash.view.main.view.IUpdateDialogView;
 import com.yinshan.happycash.view.main.view.IVersionView;
 import com.yinshan.happycash.view.me.view.impl.MeFragment;
-import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.CheckPermissionDialog;
@@ -74,17 +71,10 @@ import com.yinshan.happycash.widget.dialog.CommonDialog;
 import com.yinshan.happycash.widget.dialog.PerGuideDialogFragment;
 import com.yinshan.happycash.widget.dialog.PowerDialog;
 
-import android.app.DialogFragment;
-
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -111,7 +101,7 @@ import butterknife.OnClick;
  *    创建时间：2018/1/11 
  *
  */
-public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView ,ChatClientContract.View{
+public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView ,ChatClientContract.View,IUpdateDialogView{
 
     boolean isFirstEnter = true;
     public static boolean isNotResume = false;
@@ -151,6 +141,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     private GetStatusPresenter mPresenter;
     private VersionPresenter mVersionPresenter;
+    private UpdateDialogPresenter mUpdateDialogPresenter;
     private ArrayList<String> permissionsList;
     private ArrayList<String> permissionsNeeded;
     private ChatClientPresenter chatClientPresenter;
@@ -184,6 +175,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         MainActivity.choosePeriod = 3;
 
         mPresenter = new GetStatusPresenter(this,this);
+        mUpdateDialogPresenter = new UpdateDialogPresenter(this,this);
         chatClientPresenter = new ChatClientPresenter(this);
         chatClientPresenter.attachView(this);
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
@@ -235,6 +227,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             return;
         } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
             if(!TextUtils.isEmpty(bean.getAppCurrentShownStatus())&&bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),DialogType.CURRENT.toString());
 //                ToastManager.showToast("Pinjaman berhasil");
             }
 
@@ -257,7 +250,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 loanStatus.equals("PAID_OFF")
                 ) {//没有贷款，取消？？   还款成功
             if(loanStatus.equals("PAID_OFF") &&!TextUtils.isEmpty(bean.getAppPaidoffShownStatus())&&bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
-//                ToastManager.showToast("Akhiri pinjaman ini");
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),DialogType.PAID_OFF.toString());
+                //                ToastManager.showToast("Akhiri pinjaman ini");
             }
 //            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
 //                if(bean!=null){
@@ -916,6 +910,15 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public void getChatAccountFailure(String message) {
         dismissLoadingDialog();
         ToastUtils.showShort(message);
+    }
+
+    @Override
+    public void updateDialogSuccess(String type) {
+        if(type.equals(DialogType.CURRENT)){
+            ToastManager.showToast("Pinjaman berhasil");
+        }else if(type.equals(DialogType.PAID_OFF)){
+            ToastManager.showToast("Akhiri pinjaman ini");
+        }
     }
 
     class PowerListener implements CommonClickListener{
