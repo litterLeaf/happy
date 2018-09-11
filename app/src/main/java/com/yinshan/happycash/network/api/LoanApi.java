@@ -95,7 +95,7 @@ public interface LoanApi {
     Observable<ApplyResponseBean> isQualification(@Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded
-    @POST("loanapp/appMsgShownStatus")
+    @POST("loanapps/appMsgShownStatus")
     Observable<ResponseBody> updateAppMsgShownStataus(@Header("X-AUTH-TOKEN") String token,
                                                       @Field("loanAppId") long loanAppId ,
                                                       @Field("type") String type);

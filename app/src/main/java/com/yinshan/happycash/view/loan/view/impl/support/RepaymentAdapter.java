@@ -5,8 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.utils.TimeManager;
@@ -51,7 +53,7 @@ public class RepaymentAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder viewHolder;
         if(convertView==null){
             convertView = LayoutInflater.from(mContext).inflate(R.layout.adapter_repayment,parent,false);
@@ -59,6 +61,9 @@ public class RepaymentAdapter extends BaseAdapter{
             viewHolder.time = (TextView)convertView.findViewById(R.id.time);
             viewHolder.money = (TextView)convertView.findViewById(R.id.money);
             viewHolder.status = (TextView)convertView.findViewById(R.id.status);
+            viewHolder.detailImage = (ImageView) convertView.findViewById(R.id.detailImage);
+
+
 
             convertView.setTag(viewHolder);
         }else{
@@ -67,6 +72,17 @@ public class RepaymentAdapter extends BaseAdapter{
 
         viewHolder.time.setText(TimeManager.convertYNTimeDay(mList.get(position).getDueDate()));
         viewHolder.money.setText(StringFormatUtils.moneyFormat(RepaymentFragment.getSum(mList.get(position))));
+        viewHolder.detailImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepaymentDetailEvent event = new RepaymentDetailEvent(position);
+                RxBus.get().post(event);
+            }
+        });
+        if((mList.get(position).getDefaultAccr()-mList.get(position).getDefaultPaid())>=1){
+            viewHolder.detailImage.setVisibility(View.VISIBLE);
+        }
+
         String status = mList.get(position).getStatus();
         if(status.equals("INACTIVE"))
             viewHolder.status.setText(mContext.getString(R.string.return_clear));
@@ -81,6 +97,15 @@ public class RepaymentAdapter extends BaseAdapter{
     class ViewHolder{
         TextView time;
         TextView money;
+        ImageView detailImage;
         TextView status;
+    }
+
+    public static class RepaymentDetailEvent{
+        public int pos;
+
+        public RepaymentDetailEvent(int pos){
+            this.pos = pos;
+        }
     }
 }

@@ -2,6 +2,8 @@ package com.yinshan.happycash.view.loan.view.impl;
 
 import android.content.Intent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,6 +14,7 @@ import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.utils.DebugUtil;
+import com.yinshan.happycash.utils.DensityUtil;
 import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.utils.SPKeyUtils;
@@ -34,6 +37,8 @@ import com.yinshan.happycash.view.me.presenter.LoanDetailPresenter;
 import com.yinshan.happycash.view.me.view.ILoanDetailView;
 import com.yinshan.happycash.view.me.view.impl.RepaymentStrategyActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
+import com.yinshan.happycash.widget.dialog.PowerDialog;
+import com.yinshan.happycash.widget.dialog.RepaymentShowDetailDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -142,6 +147,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     @OnClick(R.id.btnPay)
     public void btnPay(View view){
+
         mPresenter.getRepaymentList();
     }
 
@@ -171,6 +177,20 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         ToastUtils.showShort(ex.getMessage());
     }
 
+    @Subscribe
+    public void onGetRe(RepaymentAdapter.RepaymentDetailEvent event){
+        RepaymentShowDetailDialog showDetailDialog = new RepaymentShowDetailDialog(getActivity());
+        Window win = showDetailDialog.getWindow();
+        WindowManager.LayoutParams lp = win.getAttributes();
+        lp.x = 20;
+        lp.y = listView.getTop()+10+event.pos* DensityUtil.dip2px(getActivity(),34);
+        showDetailDialog.getWindow().setAttributes(lp);
+        showDetailDialog.setText1(String.format(getResources().getString(R.string.repayment_detail_1)
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr()-mDetail.getLpayDtoList().get(event.pos).getPrincipalPaid())));
+        showDetailDialog.setText2(String.format(getResources().getString(R.string.repayment_detail_2)
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getDefaultAccr()-mDetail.getLpayDtoList().get(event.pos).getDefaultPaid())));
+        showDetailDialog.show();
+    }
 
     @Subscribe
     public void sendRepayRequest(InfoAdapterEnum.ItemSelectedEvent<String> event){

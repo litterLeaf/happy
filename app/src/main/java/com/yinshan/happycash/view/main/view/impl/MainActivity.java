@@ -814,8 +814,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     public void getVersionOk(ProfileBean profileBean) {
         boolean forceUpgrade = profileBean.isForceUpgrade();
-        //发布时修改
         forceUpgrade = false;
+        //发布时修改
         if (forceUpgrade) {
             CommonClickListener listener = new CommonClickListener() {
                 @Override

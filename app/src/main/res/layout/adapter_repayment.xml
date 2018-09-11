@@ -26,6 +26,15 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="153dp"
         />
+    <ImageView
+        android:id="@+id/detailImage"
+        style="@style/image_wrap_layout"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/money"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/question"
+        android:visibility="gone"
+        />
 
     <!--status-->
     <TextView
