@@ -209,10 +209,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         String appId;
         if(bean!=null&&bean.getLoanAppId()!=null){
             appId = bean.getLoanAppId();
-        }else{
-            return;
+            mPresenter.doDeposit(appId,str);
         }
-        mPresenter.doDeposit(appId,str);
     }
 
     public static double getSum(StageBean bean){
