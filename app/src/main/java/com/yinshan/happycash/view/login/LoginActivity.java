@@ -224,7 +224,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             mBtnSendSms.setClickable(true);
             mBtnSendSms.setAlpha(0.8f);
         }else{
-            mBtnSendSms.setClickable(true);
+            mBtnSendSms.setClickable(false);
             mBtnSendSms.setAlpha(0.3f);
         }
     }

@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.login.contract;
 
 import com.yinshan.happycash.framework.MvpBasePresenter;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
+import com.yinshan.happycash.widget.inter.IBaseView;
 
 import okhttp3.ResponseBody;
 
@@ -31,7 +32,7 @@ import okhttp3.ResponseBody;
 
 public class LoginContract {
 
-   public  interface View {
+   public  interface View extends IBaseView{
         void signInSuccess(String mobile, LoginTokenResponse tokenResponse);
 
         void signInError(String message);

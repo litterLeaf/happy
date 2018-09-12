@@ -44,6 +44,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void signIn(String smsCode, String captchaSid, String captcha,final String mobile, String inviteCode, String andridId) {
+        mvpView.showLoadingDialog();
         api.login(smsCode,
                 captchaSid,
                 captcha,
@@ -58,6 +59,7 @@ public class LoginPresenter implements LoginContract.Presenter {
                 .subscribe(new DefaultObserver<LoginTokenResponse>() {
                     @Override
                     public void onNext(LoginTokenResponse loginTokenResponse) {
+                        mvpView.dismissLoadingDialog();
                         String token = loginTokenResponse.getToken();
                         TokenManager.getInstance().setToken(token);
                         mvpView.signInSuccess(mobile,loginTokenResponse);
@@ -65,7 +67,8 @@ public class LoginPresenter implements LoginContract.Presenter {
 
                     @Override
                     public void onError(Throwable e) {
-                            mvpView.signInError(e.getMessage());
+                        mvpView.dismissLoadingDialog();
+                        mvpView.signInError(e.getMessage());
                     }
 
                     @Override
@@ -77,16 +80,19 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void sendSms(String mobile) {
+        mvpView.showLoadingDialog();
         api.sendSms(mobile)
                 .compose(RxTransformer.io_main())
                 .subscribe(new DefaultObserver<ResponseBody>() {
                     @Override
                     public void onNext(ResponseBody responseBody) {
+                        mvpView.dismissLoadingDialog();
                         mvpView.getSMSCodeSuccess(responseBody);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        mvpView.dismissLoadingDialog();
                     }
 
                     @Override
