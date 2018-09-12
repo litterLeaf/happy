@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -244,7 +245,8 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
             }
             borrowReason.setCenterString(event.data.getInfoStr());
             borrowReasonString = event.data.getValueStr();
-            borrowReason.setBackground(getResources().getDrawable(R.drawable.shape_amount_selected));
+//            Drawable drawable = getResources().getDrawable(R.drawable.shape_amount_selected);
+//            borrowReason.setBackground(drawable);
             MobAgent.onEvent("LOANING_REASON_"+MobEvent.LIST+borrowReasonString);
         }
     }

@@ -97,6 +97,5 @@ public interface SPKeyUtils {
     String CHANNEL_FASPAY= "FASPAY";
     String CHANNEL_XENDIT= "XENDIT";
 
-    String LATESTBEAN             = "latestbean";
 
 }

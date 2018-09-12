@@ -19,8 +19,10 @@ import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.view.information.model.ProgressBean;
 import com.yinshan.happycash.view.information.presenter.BpjsPresenter;
 import com.yinshan.happycash.view.information.presenter.InformationPresenter;
@@ -29,6 +31,7 @@ import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
@@ -231,13 +234,27 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
         if(!TokenManager.getInstance().hasLogin()){
             mSubmit.setVisibility(View.INVISIBLE);
         }else{
-            if(progress==100){
-                mSubmit.setClickable(true);
-                mSubmit.setAlpha(0.8f);
-            }else{
-                mSubmit.setClickable(false);
-                mSubmit.setAlpha(0.3f);
+            LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+            if(bean==null)
+                showProgressButton(progress);
+            else{
+                String loanStatus = StatusManagementUtils.loanStatusClassify(bean);
+                if(loanStatus.equals(AppLoanStatus.UNLOAN)){
+                    showProgressButton(progress);
+                }else{
+                    mSubmit.setVisibility(View.INVISIBLE);
+                }
             }
+        }
+    }
+
+    private void showProgressButton(int progress) {
+        if(progress==100){
+            mSubmit.setClickable(true);
+            mSubmit.setAlpha(0.8f);
+        }else{
+            mSubmit.setClickable(false);
+            mSubmit.setAlpha(0.3f);
         }
     }
 

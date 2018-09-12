@@ -540,12 +540,4 @@ public class SPUtils extends ConstantSharedPreferences{
         editor.putLong(key, value);
         editor.apply();
     }
-
-    public LastLoanAppBean getLatestBean(){
-        LastLoanAppBean object = getObject(SPKeyUtils.LATESTBEAN, LastLoanAppBean.class);
-        if(object!=null)
-            return object;
-        else
-            return null;
-    }
 }
