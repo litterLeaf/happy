@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.view.me.model.NameDescData;
 
 import java.util.ArrayList;
@@ -68,11 +69,13 @@ public class HelpCenterAdapter extends BaseAdapter{
             holder.nameRow.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(chooseIndex==position)
-                        chooseIndex = -1;
-                    else
+                    MyDebugUtils.v("the onClick is "+position);
+                    if(chooseIndex==position){
+
+                    }else{
                         chooseIndex = position;
-                    notifyDataSetChanged();
+                        notifyDataSetChanged();
+                    }
                 }
             });
             if(position==getCount()-1)
@@ -84,6 +87,7 @@ public class HelpCenterAdapter extends BaseAdapter{
             holder = (ViewHolder)view.getTag();
         }
 
+        MyDebugUtils.v("the chooseIndex is "+chooseIndex);
         if(chooseIndex==position){
             holder.descRow.setVisibility(View.VISIBLE);
         }else{
