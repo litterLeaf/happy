@@ -12,6 +12,7 @@ import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.DateManager;
+import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.utils.DebugUtil;
 import com.yinshan.happycash.utils.DensityUtil;
@@ -31,6 +32,7 @@ import com.yinshan.happycash.view.loan.view.impl.support.FullRepaymentDialog;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentAdapter;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentDialog;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
 import com.yinshan.happycash.view.me.model.StageBean;
 import com.yinshan.happycash.view.me.presenter.LoanDetailPresenter;
@@ -39,6 +41,8 @@ import com.yinshan.happycash.view.me.view.impl.RepaymentStrategyActivity;
 import com.yinshan.happycash.widget.common.CommonClickListener;
 import com.yinshan.happycash.widget.dialog.PowerDialog;
 import com.yinshan.happycash.widget.dialog.RepaymentShowDetailDialog;
+import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
+import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -50,6 +54,7 @@ import butterknife.OnClick;
 
 public class RepaymentFragment extends BaseFragment implements ILoanDetailView,IRepaymentView{
 
+    RefreshLayout refreshLayout;
     ListView listView;
     RepaymentAdapter mAdapter;
 
@@ -76,14 +81,23 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         mAdapter = new RepaymentAdapter(getActivity());
         listView.setAdapter(mAdapter);
 
+        MyRefreshHeader header = new MyRefreshHeader(getActivity());
+        refreshLayout.setRefreshHeader(header);
+        initPullRefresh();
+
         mDetailPresenter = new LoanDetailPresenter(getActivity(),this);
-        mDetailPresenter.getDetail(Long.valueOf(SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN,LastLoanAppBean.class).getLoanAppId()));
+        refresh();
 
         mPresenter = new RepaymentPresenter(getActivity(),this);
     }
 
+    private void resume(){
+
+    }
+
     @Override
     protected void initUIValue(View view) {
+        refreshLayout = (RefreshLayout)view.findViewById(R.id.refreshLayout);
         mClickFullPay = (TextView)view.findViewById(R.id.clickFullPay);
 
         listView = (ListView)view.findViewById(R.id.listView);
@@ -186,9 +200,11 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         lp.y = listView.getTop()+10+event.pos* DensityUtil.dip2px(getActivity(),34);
         showDetailDialog.getWindow().setAttributes(lp);
         showDetailDialog.setText1(String.format(getResources().getString(R.string.repayment_detail_1)
-                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr()-mDetail.getLpayDtoList().get(event.pos).getPrincipalPaid())));
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr())));
         showDetailDialog.setText2(String.format(getResources().getString(R.string.repayment_detail_2)
-                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getDefaultAccr()-mDetail.getLpayDtoList().get(event.pos).getDefaultPaid())));
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getInterestAccr())));
+        showDetailDialog.setText3(String.format(getResources().getString(R.string.repayment_detail_3)
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getDefaultAccr())));
         showDetailDialog.show();
     }
 
@@ -215,5 +231,31 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     public static double getSum(StageBean bean){
         return bean.getPrincipalAccr()-bean.getPrincipalPaid()+bean.getDefaultAccr()-bean.getDefaultPaid()+bean.getInterestAccr()-bean.getInterestPaid();
+    }
+
+    public static double getSumAccr(StageBean bean){
+        return bean.getPrincipalAccr()+bean.getDefaultAccr()+bean.getInterestAccr();
+    }
+
+    //刷新的方法
+    private void refresh() {
+        ((MainActivity) getActivity()).updateStatus(TokenManager.getInstance().getToken());
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if (object != null) {
+            if (object.getLoanAppId() != null)
+                mDetailPresenter.getDetail(Long.valueOf(object.getLoanAppId()));
+        }
+    }
+
+    private void initPullRefresh() {
+        refreshLayout.setRefreshListener(new RefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refresh();
+                refreshLayout.refreshComplete();
+            }
+        });
+        MyRefreshHeader header = new MyRefreshHeader(getActivity());
+        refreshLayout.setRefreshHeader(header);
     }
 }

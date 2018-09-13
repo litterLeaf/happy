@@ -63,15 +63,13 @@ public class RepaymentAdapter extends BaseAdapter{
             viewHolder.status = (TextView)convertView.findViewById(R.id.status);
             viewHolder.detailImage = (ImageView) convertView.findViewById(R.id.detailImage);
 
-
-
             convertView.setTag(viewHolder);
         }else{
             viewHolder = (ViewHolder)convertView.getTag();
         }
 
         viewHolder.time.setText(TimeManager.convertYNTimeDay(mList.get(position).getDueDate()));
-        viewHolder.money.setText(StringFormatUtils.moneyFormat(RepaymentFragment.getSum(mList.get(position))));
+        viewHolder.money.setText(StringFormatUtils.moneyFormat(RepaymentFragment.getSumAccr(mList.get(position))));
         viewHolder.detailImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +77,10 @@ public class RepaymentAdapter extends BaseAdapter{
                 RxBus.get().post(event);
             }
         });
-        if((mList.get(position).getDefaultAccr()-mList.get(position).getDefaultPaid())>=1){
+//        if((mList.get(position).getDefaultAccr()-mList.get(position).getDefaultPaid())>=1){
+//            viewHolder.detailImage.setVisibility(View.VISIBLE);
+//        }
+        if(true){
             viewHolder.detailImage.setVisibility(View.VISIBLE);
         }
 
@@ -107,5 +108,9 @@ public class RepaymentAdapter extends BaseAdapter{
         public RepaymentDetailEvent(int pos){
             this.pos = pos;
         }
+    }
+
+    public static double getSumAccr(StageBean bean){
+        return bean.getPrincipalAccr()+bean.getDefaultAccr()+bean.getInterestAccr();
     }
 }

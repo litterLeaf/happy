@@ -42,21 +42,21 @@ public class LoaningPresenter {
     }
 
     public void getBankCard(){
-//        mView.showLoadingDialog();
+        mView.showLoadingDialog();
         mApi.getBindCard(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<BandCardBean>(new SoftReference(mContext)){
                     @Override
                     public void onNext(BandCardBean bean) {
                         super.onNext(bean);
-//                        mView.dismissLoadingDialog();
+                        mView.dismissLoadingDialog();
                         mView.showBindBankCard(bean);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
-//                        mView.dismissLoadingDialog();
+                        mView.dismissLoadingDialog();
                         Log.e("bankCardDto","bindCard"+ex);
                     }
                 });
