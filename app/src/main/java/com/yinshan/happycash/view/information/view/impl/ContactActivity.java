@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.information.view.impl;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -9,6 +10,7 @@ import android.net.Uri;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.ContactBean;
 import com.yinshan.happycash.view.information.model.RelationStatus;
 import com.yinshan.happycash.view.information.presenter.ContactPresenter;
@@ -253,15 +256,50 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
                         String phone = cursor.getString(0);
                         String name = cursor.getString(1);
                         if (requestCode==0){
-                            showContact1(name,phone);
+                            if(isContactSame(name, phone, mContact2.getText().toString(), mPhone2.getText().toString())
+                                    ||isContactSame(name, phone, mContact3.getText().toString(), mPhone3.getText().toString())
+                                    ||isContactSame(name, phone, mContact4.getText().toString(), mPhone4.getText().toString())
+                                    ||isContactSame(name, phone, mContact5.getText().toString(), mPhone5.getText().toString())
+                                )
+                                showContact1("","");
+                            else
+                                showContact1(name,phone);
                         }else if(requestCode==1){
-                            showContact2(name,phone);
+                            if(isContactSame(name, phone, mContact1.getText().toString(), mPhone1.getText().toString())
+                                    ||isContactSame(name, phone, mContact3.getText().toString(), mPhone3.getText().toString())
+                                    ||isContactSame(name, phone, mContact4.getText().toString(), mPhone4.getText().toString())
+                                    ||isContactSame(name, phone, mContact5.getText().toString(), mPhone5.getText().toString())
+                                    )
+                                showContact2("","");
+                            else
+                                showContact2(name,phone);
                         } else if(requestCode==2){
-                            showContact3(name,phone);
+                            if(isContactSame(name, phone, mContact1.getText().toString(), mPhone1.getText().toString())
+                                    ||isContactSame(name, phone, mContact2.getText().toString(), mPhone2.getText().toString())
+                                    ||isContactSame(name, phone, mContact4.getText().toString(), mPhone4.getText().toString())
+                                    ||isContactSame(name, phone, mContact5.getText().toString(), mPhone5.getText().toString())
+                                    )
+                                showContact3("","");
+                            else
+                                showContact3(name,phone);
                         } else if(requestCode==3){
-                            showContact4(name,phone);
+                            if(isContactSame(name, phone, mContact1.getText().toString(), mPhone1.getText().toString())
+                                    ||isContactSame(name, phone, mContact2.getText().toString(), mPhone2.getText().toString())
+                                    ||isContactSame(name, phone, mContact3.getText().toString(), mPhone3.getText().toString())
+                                    ||isContactSame(name, phone, mContact5.getText().toString(), mPhone5.getText().toString())
+                                    )
+                                showContact4("","");
+                            else
+                                showContact4(name,phone);
                         } else if(requestCode==4){
-                            showContact5(name,phone);
+                            if(isContactSame(name, phone, mContact1.getText().toString(), mPhone1.getText().toString())
+                                    ||isContactSame(name, phone, mContact2.getText().toString(), mPhone2.getText().toString())
+                                    ||isContactSame(name, phone, mContact3.getText().toString(), mPhone3.getText().toString())
+                                    ||isContactSame(name, phone, mContact4.getText().toString(), mPhone4.getText().toString())
+                                    )
+                                showContact5("","");
+                            else
+                                showContact5(name,phone);
                         }
                     }
                 }finally {
@@ -482,5 +520,73 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         mHintPhone5 = (TextView)findViewById(R.id.hintPhone5);
         mPhone5 = (TextView)findViewById(R.id.textPhone5);
         mBtnSubmit = (RelativeLayout)findViewById(R.id.btnSubmit);
+    }
+
+
+    private boolean isContactSame(String name, String phone, String compareName, String comparePhone) {
+        phone = phone.trim().replace(" ","");
+        comparePhone = comparePhone.trim().replace(" ","");
+
+        if (!StringUtil.isNullOrEmpty(name) && !StringUtil.isNullOrEmpty(phone) && !StringUtil.isNullOrEmpty(compareName) && !StringUtil.isNullOrEmpty(comparePhone)) {
+            if (name.equals(compareName)) {
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Warning: ");
+                alertDialogBuilder.setNeutralButton("Got it", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.setMessage(getString(R.string.same_name));
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        alertDialogBuilder.show();
+                    }
+                });
+                return true;
+            }
+
+            if (phone.equals(comparePhone)) {
+                final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Warning: ");
+                alertDialogBuilder.setNeutralButton("Got it", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                alertDialogBuilder.setMessage(getString(R.string.same_number));
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        alertDialogBuilder.show();
+                    }
+                });
+                return true;
+            }
+
+//            if(NameUtil.isMatch(name,compareName)){
+//                final AlertDialog.Builder similarDialog = new AlertDialog.Builder(this);
+//                similarDialog.setTitle("Warning: ");
+//                similarDialog.setNeutralButton("Got it", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                similarDialog.setMessage(getString(R.string.similar_name));
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        similarDialog.show();
+//                    }
+//                });
+//                return true;
+//            }
+        }
+        return false;
     }
 }
