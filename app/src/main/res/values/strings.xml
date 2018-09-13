@@ -1060,8 +1060,9 @@ Syarat dan Ketentuan Penggunaan Platform ini (“S&K”) dibuat untuk menetapkan
     </string>
 
     <string name="show_dial_hotline">Telepon layanan pelanggan:%1$s?</string>
-    <string name="repayment_detail_1">Rp %1$s(Bunga periode ini) +</string>
-    <string name="repayment_detail_2">Rp %1$s(Benda keterlambatan)</string>
+    <string name="repayment_detail_1">Rp %1$s(Pokok saat ini) +</string>
+    <string name="repayment_detail_2">Rp %1$s(Bunga periode ini) +</string>
+    <string name="repayment_detail_3">Rp %1$s(Benda keterlambatan)</string>
 
     Rp 200.000(Bunga periode ini) + Rp 10.000(Benda keterlambatan)
 </resources>

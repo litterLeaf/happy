@@ -172,7 +172,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         HappySnackBar.showSnackBar(mAddButton,displayMessage, SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 
-    @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan,R.id.add,R.id.sub})
+    @OnClick({R.id.loan_before_bind_card,R.id.loan_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan,R.id.add,R.id.sub})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.loan_before_bind_card:
@@ -180,6 +180,12 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                 Intent intent = new Intent(getActivity(), BindCardActivity.class);
                 MainActivity.isNotResume = true;
                 startActivityForResult(intent,mRequestCode);
+                break;
+            case R.id.loan_bind_card:
+                MobAgent.onEvent(MobEvent.CLICK+MobEvent.BIND_BANK_CARD);
+                Intent intent2 = new Intent(getActivity(), BindCardActivity.class);
+                MainActivity.isNotResume = true;
+                startActivityForResult(intent2,mRequestCode);
                 break;
             case R.id.loan_reason:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.BORROW_REANSON);

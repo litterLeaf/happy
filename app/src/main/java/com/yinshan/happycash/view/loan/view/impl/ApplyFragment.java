@@ -232,7 +232,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     @Override
     public void showDetailOk(LoanDetailBean bean) {
         if(bean!=null){
-            String word =getResources().getString(R.string.process_point_tip)+getORMWord(getActivity(),2,bean.getStatus());
+            String tStr = getResources().getString(R.string.process_point_tip);
+            String word = tStr +getORMWord(getActivity(),2,bean.getStatus());
             mTextProgress.setText(word);
 
             String pUnit = "Bulan";

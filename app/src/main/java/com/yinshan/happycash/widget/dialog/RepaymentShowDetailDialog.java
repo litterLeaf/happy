@@ -18,6 +18,7 @@ public class RepaymentShowDetailDialog extends Dialog{
 
     TextView mText1;
     TextView mText2;
+    TextView mText3;
 
     public RepaymentShowDetailDialog(@NonNull Context context) {
         super(context, R.style.DialogTheme);
@@ -30,6 +31,7 @@ public class RepaymentShowDetailDialog extends Dialog{
         setContentView(view);
         mText1 = (TextView)view.findViewById(R.id.text1);
         mText2 = (TextView)view.findViewById(R.id.text2);
+        mText3 = (TextView)view.findViewById(R.id.text3);
     }
 
     public void setText1(String str){
@@ -38,5 +40,9 @@ public class RepaymentShowDetailDialog extends Dialog{
 
     public void setText2(String str){
         mText2.setText(str);
+    }
+
+    public void setText3(String str){
+        mText3.setText(str);
     }
 }

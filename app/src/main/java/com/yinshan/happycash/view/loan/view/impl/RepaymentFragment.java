@@ -200,9 +200,11 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         lp.y = listView.getTop()+10+event.pos* DensityUtil.dip2px(getActivity(),34);
         showDetailDialog.getWindow().setAttributes(lp);
         showDetailDialog.setText1(String.format(getResources().getString(R.string.repayment_detail_1)
-                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr()-mDetail.getLpayDtoList().get(event.pos).getPrincipalPaid())));
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr())));
         showDetailDialog.setText2(String.format(getResources().getString(R.string.repayment_detail_2)
-                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getDefaultAccr()-mDetail.getLpayDtoList().get(event.pos).getDefaultPaid())));
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getInterestAccr())));
+        showDetailDialog.setText3(String.format(getResources().getString(R.string.repayment_detail_3)
+                ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getDefaultAccr())));
         showDetailDialog.show();
     }
 
