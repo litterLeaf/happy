@@ -17,6 +17,8 @@ import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 import com.yinshan.happycash.view.bindcard.view.impl.support.BankCardNameAdapter;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
@@ -58,6 +60,12 @@ public class BindCardActivity  extends BaseActivity {
         bindUserName.clearFocus();
         inputTxtTime();
         checkPaste();
+        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
+        if(bean!=null){
+            bindBankName.setText(bean.getBankCode());
+            bindUserName.setText(bean.getHolderName());
+            bindBankNumber.setText(bean.getCardNo());
+        }
     }
 
     @Override

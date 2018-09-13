@@ -100,6 +100,10 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
         idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
 
+        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
+        if(bean!=null)
+            setBankdCardBean(bean);
+
         mPresenter = new LoaningPresenter(getActivity(),this);
         mPresenter.getBankCard();
 
@@ -108,6 +112,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }else if(MainActivity.choosePeriod==1){
             setChoose1Period();
         }
+
     }
 
     @Override
@@ -133,11 +138,16 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     @Override
     public void showBindBankCard(BandCardBean bean) {
         if(bean!=null){
-            beforeBindCard.setVisibility(View.GONE);
-            bindCard.setVisibility(View.VISIBLE);
-            bindCard.setCenterString(bean.getCardNo());
-            bindCard.setLeftString(bean.getBankCode());
+            SPUtils.getInstance().setObject(SPKeyUtils.BANDCARDBEAN,bean);
+            setBankdCardBean(bean);
         }
+    }
+
+    private void setBankdCardBean(BandCardBean bean) {
+        beforeBindCard.setVisibility(View.GONE);
+        bindCard.setVisibility(View.VISIBLE);
+        bindCard.setCenterString(bean.getCardNo());
+        bindCard.setLeftString(bean.getBankCode());
     }
 
     @Override

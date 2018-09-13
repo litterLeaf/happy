@@ -57,6 +57,7 @@ public interface SPKeyUtils {
     String APP_STATUES = "loan_app_status";
     String SERVER_STATUES = "loan_server_status";
     String LOANAPPBEAN = "loanAppBean";
+    String BANDCARDBEAN = "bindCardBean";
     String UNLOAN_FRAG = "unLoanFrag";
     String LOANING_FRAG = "loaningFrag";
     String PROCESS_FRAG = "processFrag";
