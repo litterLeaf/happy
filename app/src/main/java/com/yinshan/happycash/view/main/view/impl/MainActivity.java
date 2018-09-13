@@ -15,6 +15,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -52,7 +53,6 @@ import com.yinshan.happycash.view.loan.view.impl.RepaymentFragment;
 import com.yinshan.happycash.view.loan.view.impl.UnLoanFragment;
 import com.yinshan.happycash.view.main.SplashActivity;
 import com.yinshan.happycash.view.main.contract.ChatClientContract;
-import com.yinshan.happycash.view.main.model.DialogType;
 import com.yinshan.happycash.view.main.model.HXBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.model.YWUser;
@@ -77,6 +77,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.OnClick;
+
 
 /**
  * ┏┓　　　┏┓
@@ -236,7 +237,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             return;
         } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
             if(!TextUtils.isEmpty(bean.getAppCurrentShownStatus())&&bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
-                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),DialogType.CURRENT.toString());
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),SPKeyUtils.DialogType_CURRENT);
 //                ToastManager.showToast("Pinjaman berhasil");
             }
 
@@ -259,7 +260,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 loanStatus.equals("PAID_OFF")
                 ) {//没有贷款，取消？？   还款成功
             if(loanStatus.equals("PAID_OFF") &&!TextUtils.isEmpty(bean.getAppPaidoffShownStatus())&&bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
-                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),DialogType.PAID_OFF.toString());
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),SPKeyUtils.DialogType_PAID_OFF);
                 //                ToastManager.showToast("Akhiri pinjaman ini");
             }
 //            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
@@ -812,8 +813,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public void guide() {
 //        SPUtils.getInstance().setShowGuide(false);
         permissionsList = new ArrayList<>();
-        for(int i=0;i<mustPermission.length;i++){
-            permissionsList.add(mustPermission[i]);
+        for(String permission: mustPermission){
+            permissionsList.add(permission);
         }
         ActivityCompat.requestPermissions(MainActivity.this,
                 permissionsList.toArray(new String[permissionsList.size()]),
@@ -831,16 +832,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                     ToolsUtils.launchAppDetail(AppContext.getContext());
                 }
             };
-            CommonDialog updateVersionDialog = new CommonDialog(this,listener,getResources().getString(R.string.find_a_new_version),
+            CommonDialog updateVersionDialog = new CommonDialog(this,R.layout.dialog_update_app,listener,"",
                     getResources().getString(R.string.please_update_the_version)
                     ,getResources().getString(R.string.oke),getResources().getString(R.string.update_version),false);
             updateVersionDialog.show();
         }
-//        ProfileBean.PrfileSettinBean setting = profileBean.getSetting();
-//        if (setting != null) {
-//            boolean isLiveness = setting.isLiveness_detection();
-//            BandaAppSP.getInstance().setLiveNess(isLiveness);
-//        }
     }
 
     @Override
@@ -922,10 +918,18 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     public void updateDialogSuccess(String type) {
-        if(type.equals(DialogType.CURRENT)){
+        if(type.equals(SPKeyUtils.DialogType_CURRENT)){
             ToastManager.showToast("Pinjaman berhasil");
-        }else if(type.equals(DialogType.PAID_OFF)){
-            ToastManager.showToast("Akhiri pinjaman ini");
+        }else if(type.equals(SPKeyUtils.DialogType_PAID_OFF)){
+            CommonClickListener listener = new CommonClickListener() {
+                @Override
+                public void onClick() {
+                    Log.e("paymentSuccessDialog","success");
+                }
+            };
+            CommonDialog    paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess, listener, "",
+                                                        getResources().getString(R.string.please_update_the_version)
+                            , getResources().getString(R.string.oke), getResources().getString(R.string.update_version), false);
         }
     }
 
@@ -949,9 +953,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private boolean judgeMustPermission(){
-        for(int i=0;i<mustPermission.length;i++){
-            if(ContextCompat.checkSelfPermission(this,
-                    mustPermission[i])
+        for(String permission:mustPermission){
+            if(ContextCompat.checkSelfPermission(this, permission)
                     != PackageManager.PERMISSION_GRANTED)
                 return false;
         }
@@ -981,41 +984,4 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
         mVersionPresenter.getVersionInfo(versionCode);
     }
-
-    /**
-     * 暂时去掉
-     * 调用环信客服SDK登录
-     * @param useriId
-     * @param password
-     * @param flag
-     */
-//    private void loginCEC(String useriId,String password,int flag){
-//        ChatClient.getInstance().login(useriId, password, new Callback() {
-//            @Override
-//            public void onSuccess() {
-//                if(flag==0){
-//                    String token = TokenManager.getInstance().getToken();
-//                    if (TextUtils.isEmpty(token) || TokenManager.isExpired) {
-//                        HappySnackBar.showSnackBar(getWindow().getDecorView(),R.string.show_not_login_yet, SPKeyUtils.SNACKBAR_TYPE_INTEENT);
-//                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
-//                        return;
-//                    }
-//                    chatClientPresenter.getMessage(SPKeyUtils.TENANTID);
-//                }
-//            }
-//
-//            @Override
-//            public void onError(int i, String s) {
-//                Log.d("onError","onError " + s);
-//            }
-//
-//            @Override
-//            public void onProgress(int i, String s) {
-//                Log.d("onProgress","onProgress " + s);
-//            }
-//        });
-//    }
-
-
-
 }

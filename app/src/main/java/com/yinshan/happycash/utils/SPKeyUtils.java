@@ -84,6 +84,9 @@ public interface SPKeyUtils {
     //环信的客服请求
     String HX_API_URL = "http://kefu.easemob.com/v1/Tenants/";
 
+    String DialogType_CURRENT ="CURRENT";
+    String DialogType_PAID_OFF ="PAID_OFF";
+    String DialogType_HAIRCUT_ISSUE ="HAIRCUT_ISSUE";
 
     String SP_APPINFO_FILENAME = "appInformation";
     String IMEI = "imei";

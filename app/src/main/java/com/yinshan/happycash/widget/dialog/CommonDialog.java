@@ -46,7 +46,7 @@ public class CommonDialog extends Dialog{
         mStrCancel = strCancel;
         mStrConfirm = strConfirm;
         mIsCanCancel = isCanCancel;
-        initView(context);
+        initView(context,0);
         if(TextUtils.isEmpty(title))
             mViewTitle.setVisibility(View.GONE);
         if(!isCanCancel){
@@ -54,10 +54,34 @@ public class CommonDialog extends Dialog{
             setOnKeyListener(new OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                        return true;
-                    }
-                    return false;
+                    return  keyCode == KeyEvent.KEYCODE_BACK;
+                }
+            });
+            mBtnCancel.setVisibility(View.GONE);
+            mSpaceView.setVisibility(View.GONE);
+        }
+    }
+    public CommonDialog(@NonNull Context context,int layout ,CommonClickListener listener, String title, String desc, String strCancel, String strConfirm, boolean isCanCancel) {
+        super(context, R.style.DialogTheme);
+        mListener = listener;
+        mStrTitle = title;
+        mStrDesc = desc;
+        mStrCancel = strCancel;
+        mStrConfirm = strConfirm;
+        mIsCanCancel = isCanCancel;
+        initView(context,layout);
+        if(TextUtils.isEmpty(title))
+            mViewTitle.setVisibility(View.GONE);
+        if(!isCanCancel){
+            setCancelable(false);
+            setOnKeyListener(new OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+//                        return true;
+//                    }
+//                    return false;
+                    return  keyCode==KeyEvent.KEYCODE_BACK;
                 }
             });
             mBtnCancel.setVisibility(View.GONE);
@@ -65,8 +89,11 @@ public class CommonDialog extends Dialog{
         }
     }
 
-    private void initView(Context context) {
-        View view = LayoutInflater.from(context).inflate(R.layout.dialog_common, null, false);
+    private void initView(Context context,int layout) {
+        if(layout==0){
+            layout = R.layout.dialog_common;
+        }
+        View view = LayoutInflater.from(context).inflate(layout, null, false);
         setContentView(view);
         mTextTitle = (TextView)view.findViewById(R.id.title);
         mViewTitle = (LinearLayout)view.findViewById(R.id.titleView);
