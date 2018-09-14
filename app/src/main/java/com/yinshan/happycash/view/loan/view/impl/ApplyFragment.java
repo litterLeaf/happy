@@ -153,6 +153,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
             mAdapter.setStatusList(loanAppBean.getStatusLogs());
             mAdapter.notifyDataSetChanged();
+            setListViewHeightBasedOnChildren(progressList);
         }
     }
 
