@@ -371,17 +371,26 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //unLoan
-        if (isUnLoan && null == unLoanFrag) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.UNLOAN_FRAG);
-            if (null != tab1) {
-                unLoanFrag = (UnLoanFragment) tab1;
-            } else {
-                unLoanFrag = new UnLoanFragment();
-                transaction.add(R.id.fragment_container, unLoanFrag, SPKeyUtils.UNLOAN_FRAG);
+        boolean isUnLoanFirstReshow = false;
+        if(isUnLoan){
+            if(null==unLoanFrag){
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.UNLOAN_FRAG);
+                if (null != tab1) {
+                    unLoanFrag = (UnLoanFragment) tab1;
+                    isUnLoanFirstReshow = true;
+                } else {
+                    isUnLoanFirstReshow = false;
+                    unLoanFrag = new UnLoanFragment();
+                    transaction.add(R.id.fragment_container, unLoanFrag, SPKeyUtils.UNLOAN_FRAG);
+                }
+            }else{
+                isUnLoanFirstReshow = true;
             }
         }
         if (isUnLoan && null != unLoanFrag) {
             transaction.show(unLoanFrag);
+            if(isUnLoanFirstReshow)
+                unLoanFrag.resume();
         } else if (!isUnLoan && null != unLoanFrag) {
             transaction.hide(unLoanFrag);
         }
