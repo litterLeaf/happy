@@ -521,7 +521,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
         <item>Pilih menu “MULTI PAYMENT”.</item>
         <item>Ketik kode perusahaan, yaitu "88608" (Xendit 88608), tekan "BENAR".</item>
         <item>Masukkan nomor Virtual Account(%1$s).</item>
-        <item>Isi NOMINAL（%1$s）, kemudian tekan "BENAR".</item>
+        <item>Isi NOMINAL（%s）, kemudian tekan “BENAR”.</item>
         <item>Muncul konfirmasi data customer. Pilih Nomor 1 sesuai tagihan yang akan dibayar, kemudian tekan "YA".</item>
         <item>Muncul konfirmasi pembayaran. Tekan "YA" untuk melakukan pembayaran.</item>
         <item>Bukti pembayaran dalam bentuk struk agar disimpan sebagai bukti pembayaran yang sah dari Bank Mandiri.</item>

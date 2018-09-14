@@ -91,10 +91,11 @@ public class StringUtils {
         SpannableStringBuilder builder = new SpannableStringBuilder(format);
         StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);//粗体
         int value  = format.indexOf(param);
-        builder.setSpan(styleSpan, format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        int lastValue = format.indexOf(param) + param.length();
+        builder.setSpan(styleSpan, value, lastValue, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         builder.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)),
-                format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        conditionalSelection(format,builder);
+                value, lastValue, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        //conditionalSelection(format,builder);
         return builder;
     }
 
@@ -116,14 +117,18 @@ public class StringUtils {
     public  SpannableStringBuilder setStringWords(String content,String paCodeOrVA,String moneyCount){
         String format = String.format(content, paCodeOrVA, moneyCount);
         SpannableStringBuilder builder = new SpannableStringBuilder(format);
+        builder.setSpan( new StyleSpan(Typeface.BOLD),
+                format.indexOf(paCodeOrVA), format.indexOf(paCodeOrVA) + paCodeOrVA.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorSPTextPrimary)),
                 format.indexOf(paCodeOrVA), format.indexOf(paCodeOrVA) + paCodeOrVA.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         if (format.contains(moneyCount)) {
+            builder.setSpan( new StyleSpan(Typeface.BOLD),
+                    format.indexOf(moneyCount), format.indexOf(moneyCount) + moneyCount.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
             builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorSPTextPrimary)),
                     format.indexOf(moneyCount), format.indexOf(moneyCount) + moneyCount.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
-        conditionalSelection(format,builder);
+//        conditionalSelection(format,builder);
         return builder;
     }
 
@@ -206,8 +211,6 @@ public class StringUtils {
     }
 
     private void conditionalSelection(String format,SpannableStringBuilder builder){
-
-
         if (format.contains(code)) {
             builder.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary)),
                     format.indexOf(code), format.indexOf(code) + code.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
