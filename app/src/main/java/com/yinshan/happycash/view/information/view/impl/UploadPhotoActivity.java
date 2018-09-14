@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import com.yinshan.happycash.utils.FileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.Util;
+import com.yinshan.happycash.view.information.presenter.UploadPhotoPresenter;
 import com.yinshan.happycash.view.information.view.IUploadPhotoView;
 import com.yinshan.happycash.view.information.view.impl.support.FileStatus;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
@@ -56,7 +58,7 @@ import rx.schedulers.Schedulers;
  * Created by huxin on 2018/3/14.
  */
 
-public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPhotoView{
+public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPhotoView,View.OnClickListener{
 
     ZQImageViewRoundOval mKtpImage;
     ZQImageViewRoundOval mJobImage;
@@ -68,9 +70,10 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     UploadKtpPhotoDialog mKtpDialog;
     UploadJobPhotoDialog mJobDialog;
-
+    UploadPhotoPresenter uploadPhotoPresenter;
     private final static int PERMISSION_CODE = 110;
-
+    private RelativeLayout mJobRL;
+    private RelativeLayout mKTPRL;
     @Override
     protected void onResume() {
         super.onResume();
@@ -89,14 +92,19 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     @Override
     protected void secondInit() {
-        mKtpImage = (ZQImageViewRoundOval)findViewById(R.id.ktpImage);
-        mJobImage = (ZQImageViewRoundOval)findViewById(R.id.jobImage);
-        mBtnInfoSubmit = (RelativeLayout)findViewById(R.id.btnInfoSubmit);
-
+        RxBus.get().register(this);
+        uploadPhotoPresenter = new UploadPhotoPresenter(this,this);
+        mKtpImage = findViewById(R.id.ktpImage);
+        mJobImage = findViewById(R.id.jobImage);
+        mBtnInfoSubmit = findViewById(R.id.upload_btnInfoSubmit);
+        mKTPRL = findViewById( R.id.upload_btnKtp);
+        mJobRL = findViewById( R.id.upload_btnJob);
+        mBtnInfoSubmit.setOnClickListener(this);
+        mKTPRL.setOnClickListener(this);
+        mJobRL.setOnClickListener(this);
         mKtpImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
         mJobImage.setType(ZQImageViewRoundOval.TYPE_ROUND);
 
-        RxBus.get().register(this);
         mFileStatus = new HashMap<>(2);
 
         loadAndSetPhoto();
@@ -122,25 +130,25 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
         setButtonClickableState();
     }
 
-    @OnClick({R.id.btnKtp,R.id.btnJob,R.id.btnInfoSubmit})
-    public void onCLick(View view){
+    @Override
+    public void onClick(View view){
         boolean hasPermission1 = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.CAMERA);
         boolean hasPermission2 = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         switch (view.getId()){
-            case R.id.btnKtp:
+            case R.id.upload_btnKtp:
                 if(hasPermission1&&hasPermission2)
                     takePhotoKtp();
                 else
                     checkPermission();
                 break;
-            case R.id.btnJob:
+            case R.id.upload_btnJob:
                 if(hasPermission1&&hasPermission2)
                     showJobDialog();
                 else
                     checkPermission();
 
                 break;
-            case R.id.btnInfoSubmit:
+            case R.id.upload_btnInfoSubmit:
                 uploadImages();
                 break;
         }
@@ -152,23 +160,17 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
 
     private void showKtpDialog() {
         if(mKtpDialog ==null)
-            mKtpDialog = new UploadKtpPhotoDialog(this, R.style.DialogTheme, new CommonClickListener() {
-                @Override
-                public void onClick() {
-                    changeTo(TakePhotoActivity.class, true);
-                }
-            });
+            mKtpDialog = new UploadKtpPhotoDialog(this, R.style.DialogTheme,
+                    ()-> changeTo(TakePhotoActivity.class, true)
+            );
         mKtpDialog.show();
     }
 
     private void showJobDialog(){
         if(mJobDialog ==null)
-            mJobDialog = new UploadJobPhotoDialog(this, R.style.DialogTheme, new CommonClickListener() {
-                @Override
-                public void onClick() {
-                    changeTo(TakePhotoActivity.class, false);
-                }
-            });
+            mJobDialog = new UploadJobPhotoDialog(this, R.style.DialogTheme,
+                    ()-> changeTo(TakePhotoActivity.class, false)
+            );
         mJobDialog.show();
     }
 
@@ -225,67 +227,13 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
             isUpload = true;
             upload(mJobFile,FileUploadType.EMPLOYMENT_PHOTO);
         }
-        if(isUpload==false)
+        if(!isUpload)
             ToastManager.showToast(getResources().getString(R.string.had_upload_these_photo_please_re_photo));
         if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED && mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED) {
             dismissLoadingDialog();
             setResult(RESULT_OK);
             finish();
         }
-    }
-
-    private void upload(File mKTPFile, final FileUploadType fileUploadType) {
-        showLoadingDialog();
-        FileUploadUtil.uploadPhotoFile(
-                fileUploadType,
-                mKTPFile,
-                TokenManager.getInstance().getToken())
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Pair<Call<ResponseBody>, Response<ResponseBody>>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        dismissLoadingDialog();
-                        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
-                        if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
-                                mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
-
-//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
-                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
-                        }
-                    }
-
-                    @Override
-                    public void onNext(Pair<Call<ResponseBody>, Response<ResponseBody>> callResponsePair) {
-                        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_SUCCESS);
-                        dismissLoadingDialog();
-                        if ((mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED || mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_SUCCESS)
-                                && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
-//                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
-                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
-                            if(fileUploadType==FileUploadType.KTP_PHOTO)
-                                mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.DOWNLOADED);
-                            else if(fileUploadType==FileUploadType.EMPLOYMENT_PHOTO)
-                                mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO, FileStatus.DOWNLOADED);
-                            SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
-                            SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
-                            UploadPhotoActivity.this.setResult(Activity.RESULT_OK);
-                            finish();
-                        } else if (
-                                mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
-                                        mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING
-                                ) {
-
-//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
-                            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
-                        }
-                    }
-                });
     }
 
     private void checkPermission() {
@@ -297,9 +245,7 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                 permissionsNeeded.add(getString(R.string.CAMERA));
             }
             permissionsList.add(Manifest.permission.CAMERA);
-        } else {
         }
-
         hasPermission = MainActivity.hasSelfPermission(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         if (!hasPermission) {
             if (ActivityCompat.shouldShowRequestPermissionRationale(UploadPhotoActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -342,7 +288,6 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                 .show();
     }
 
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -367,5 +312,60 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
+    }
+
+
+    /**
+     * 上传照片的请求
+     * @param mKTPFile
+     * @param fileUploadType
+     */
+    private void upload(File mKTPFile, final FileUploadType fileUploadType) {
+        uploadPhotoPresenter.upload(mKTPFile,fileUploadType);
+    }
+
+
+    /**
+     * 上传照片成功的回调
+     * @param callResponsePair
+     */
+    @Override
+    public void uploadPhoto(Pair<Call<ResponseBody>, Response<ResponseBody>> callResponsePair,  FileUploadType fileUploadType) {
+        Log.e("uploadPhoto","success");
+        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_SUCCESS);
+        if ((mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.DOWNLOADED || mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) == FileStatus.UPLOAD_SUCCESS)
+                && (mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.UPLOAD_SUCCESS || mFileStatus.get(FileUploadType.KTP_PHOTO) == FileStatus.DOWNLOADED)) {
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_sucess).toString());
+            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_sucess,SPKeyUtils.SNACKBAR_TYPE_INTEENT);
+            if(fileUploadType==FileUploadType.KTP_PHOTO)
+                mFileStatus.put(FileUploadType.KTP_PHOTO, FileStatus.DOWNLOADED);
+            else if(fileUploadType==FileUploadType.EMPLOYMENT_PHOTO)
+                mFileStatus.put(FileUploadType.EMPLOYMENT_PHOTO, FileStatus.DOWNLOADED);
+            SPUtils.put(SPKeyUtils.IS_KTP_PHOTO_OK,false);
+            SPUtils.put(SPKeyUtils.IS_WORK_PHOTO_OK,false);
+            UploadPhotoActivity.this.setResult(Activity.RESULT_OK);
+            finish();
+        } else if (
+                mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
+                        mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
+            HappySnackBar.showSnackBar(mBtnInfoSubmit,R.string.show_upload_failed,SPKeyUtils.SNACKBAR_TYPE_ERROR);
+        }
+    }
+
+    /**
+     * /**
+     * 上传照片失败的回调
+     * @param e
+     */
+    @Override
+    public void uploadFailed(Throwable e,FileUploadType fileUploadType) {
+        Log.e("uploadPhoto","failed"+e.getMessage());
+        mFileStatus.put(fileUploadType, FileStatus.UPLOAD_FAILED);
+        if (mFileStatus.get(FileUploadType.EMPLOYMENT_PHOTO) != FileStatus.UPLOADING &&
+                mFileStatus.get(FileUploadType.KTP_PHOTO) != FileStatus.UPLOADING) {
+//                            ToastManager.showToast(getResources().getText(R.string.show_upload_failed).toString());
+            HappySnackBar.showSnackBar(mBtnInfoSubmit, R.string.show_upload_failed, SPKeyUtils.SNACKBAR_TYPE_ERROR);
+        }
     }
 }
