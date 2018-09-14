@@ -25,15 +25,15 @@ import java.util.List;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- * ┃　　　┃   兽神保佑
- * ┃　　　┃   代码无BUG！
- * ┃　　　┗━━━┓
- * ┃　　　　　　　┣┓
- * ┃　　　　　　　┏┛
- * ┗┓┓┏━┳┓┏┛
- * ┃┫┫　┃┫┫
- * ┗┻┛　┗┻┛
- * <p>
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *            ┃┫┫　┃┫┫
+ *            ┗┻┛　┗┻┛
+ *
  * 文件描述：
  * 创建人：    admin
  * 创建时间：2018/9/14
@@ -89,17 +89,13 @@ public class HelpCenterListViewAdapter  extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     MyDebugUtils.v("the onClick is "+position);
-                    if(chooseIndex==position){
-
-                    }else{
+                    if(chooseIndex!=position){
                         chooseIndex = position;
                         notifyDataSetChanged();
                     }
                 }
             });
-            if(position==getCount()-1)
-                holder.line.setVisibility(View.GONE);
-
+            if(position==getCount()-1)  holder.line.setVisibility(View.GONE);
             view.setTag(holder);
         }else{
             view = mHashMap.get(position);

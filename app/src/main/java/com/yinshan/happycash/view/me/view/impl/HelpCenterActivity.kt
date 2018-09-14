@@ -12,9 +12,29 @@ import com.yinshan.happycash.view.me.view.impl.support.HelpCenterListViewAdapter
 import kotlinx.android.synthetic.main.activity_help_center.*
 
 /**
- * Created by huxin on 2018/3/19.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：
+ *    创建人：     admin
+ *    创建时间：2018/9/14
+ *
  */
-
 class HelpCenterActivity : BaseSingleNoScrollActivity(), View.OnClickListener {
 
     lateinit var mAdapter: HelpCenterListViewAdapter
