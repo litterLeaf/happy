@@ -95,13 +95,15 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
         val base64Data = Base64.encodeToString(livenessDetectionFrames.verificationPackageWithFanpaiFull, Base64.NO_WRAP)
         Log.d(TAG, "base64Data = $base64Data")
         if (!TextUtils.isEmpty(loanAppId)) {
-            showLoading("update info.....")
+            showSelfLoadingDialog()
+//            showLoading("update info.....")
             RxHttpUtils.getInstance()
                     .createApi(LoanApi::class.java)
                     .uploadBio1(loanAppId, base64Data, sms, callLog, contact, event, dev,TokenManager.getInstance().token)
                     .compose(RxTransformer.io_main())
                     .subscribe({
-                        dismissLoading()
+//                        dismissLoading()
+                        dismissSelfLoadingDialog();
                         update()
                         finish()
 //                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
@@ -109,7 +111,8 @@ class OliveLivenessActivity : LivenessDetectionMainActivity() {
 //                        handleLivenessFinish(i)
                     }, {
                         Log.e(TAG, "result---------- ${it.message}")
-                        dismissLoading()
+                        dismissSelfLoadingDialog()
+//                        dismissLoading()
                         finish()
 //                        val i = Intent(this@OliveLivenessActivity, OliveResultActivity::class.java)
 //                        i.putExtra("is_success", false)

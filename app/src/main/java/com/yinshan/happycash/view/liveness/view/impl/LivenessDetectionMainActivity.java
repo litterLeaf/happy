@@ -31,6 +31,7 @@ import com.oliveapp.face.livenessdetectorsdk.prestartvalidator.datatype.Prestart
 import com.oliveapp.face.livenessdetectorsdk.utilities.utils.LogUtil;
 import com.oliveapp.face.livenessdetectorsdk.utilities.utils.PackageNameManager;
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.framework.LoadingActivity;
 import com.yinshan.happycash.view.liveness.view.impl.support.NewCircularCountDownProgressBar;
 
 import junit.framework.Assert;
@@ -38,7 +39,7 @@ import junit.framework.Assert;
 /**
  * Created by huxin on 2018/8/13.
  */
-public class LivenessDetectionMainActivity extends Activity implements ViewUpdateEventHandlerIf {
+public class LivenessDetectionMainActivity extends LoadingActivity implements ViewUpdateEventHandlerIf {
     public static final int INSTANT_CHANGE = 1;
     public static final int FLUENT_CHANGE = 2;
     public static final String TAG = LivenessDetectionMainActivity.class.getSimpleName();
