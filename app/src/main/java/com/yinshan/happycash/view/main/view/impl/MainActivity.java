@@ -955,13 +955,15 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     public static long getLastMoney(){
         long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
-        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
+        double dSum = Double.valueOf(sum);
+        double ceil = Math.ceil(dSum / MainActivity.choosePeriod);
         return Math.round(ceil);
     }
 
     public static long getLastMoney(double money,int period){
         long sum = (long) (money+money*MainActivity.RATE*period/100);
-        double ceil = Math.ceil(sum / period);
+        double dSum = Double.valueOf(sum);
+        double ceil = Math.ceil(dSum / period);
         return Math.round(ceil);
     }
 

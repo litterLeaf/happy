@@ -56,8 +56,9 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
         if(isLogin()){
             mLoginView.setVisibility(View.GONE);
             mInfoView.setVisibility(View.VISIBLE);
-            if(TextUtils.isEmpty(SPUtils.getInstance().getUsername())) {
+            if(!TextUtils.isEmpty(SPUtils.getInstance().getUsername())) {
                 mUserName.setText(SPUtils.getInstance().getUsername());
+                mUserName.setVisibility(View.VISIBLE);
             }else{
                 mGetPersonPresenter.getPersonInfo();
             }
@@ -115,7 +116,12 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
     public void showInfo(PersonalBean personalBean) {
         if(personalBean!=null&&personalBean.getFullName()!=null){
             SPUtils.getInstance().setUsername(personalBean.getFullName());
-            mUserName.setText(personalBean.getFullName());
+            if(TextUtils.isEmpty(personalBean.getFullName())){
+                mUserName.setVisibility(View.GONE);
+            }else{
+                mUserName.setVisibility(View.VISIBLE);
+                mUserName.setText(personalBean.getFullName());
+            }
         }
     }
 }

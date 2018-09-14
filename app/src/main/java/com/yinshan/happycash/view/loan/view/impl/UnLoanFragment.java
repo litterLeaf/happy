@@ -22,6 +22,8 @@ import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ServiceLoanStatus;
+import com.yinshan.happycash.utils.StringFormatUtils;
+import com.yinshan.happycash.utils.StringUtils;
 import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
@@ -177,7 +179,7 @@ public class UnLoanFragment extends BaseFragment {
     }
 
     private void setComputeMoney(){
-        mChooseMoney.setText(String.valueOf(MainActivity.loanMoney));
-        mUnloanFee.setText(String.valueOf(MainActivity.getLastMoney()));
+        mChooseMoney.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+        mUnloanFee.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
 }

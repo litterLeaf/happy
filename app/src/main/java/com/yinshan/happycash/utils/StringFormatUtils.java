@@ -60,6 +60,25 @@ public class StringFormatUtils {
         return result.toString();
     }
 
+    public static String moneyFormat(long amount) {
+        StringBuffer result = new StringBuffer();
+        while(amount > 1000){
+            long temp = amount % 1000;
+            amount = amount / 1000;
+            String tempResult;
+            if(temp < 10){
+                tempResult = "00" + temp;
+            }else if(temp <100){
+                tempResult = "0" + temp;
+            }else{
+                tempResult = temp + "";
+            }
+            result.insert(0,"." + tempResult);
+        }
+        result.insert(0, "" + amount);
+        return result.toString();
+    }
+
     public static String moneyFormat(float paidAmount){
 
         return moneyFormat((int)paidAmount);
