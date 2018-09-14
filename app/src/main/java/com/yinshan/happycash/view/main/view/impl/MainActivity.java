@@ -841,15 +841,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         boolean forceUpgrade = profileBean.isForceUpgrade();
         //发布时修改
         if (forceUpgrade) {
-            CommonClickListener listener = new CommonClickListener() {
-                @Override
-                public void onClick() {
-                    ToolsUtils.launchAppDetail(AppContext.getContext());
-                }
-            };
-            CommonDialog updateVersionDialog = new CommonDialog(this, R.layout.dialog_update_app, listener, "",
-                    getResources().getString(R.string.please_update_the_version)
-                    , getResources().getString(R.string.oke), getResources().getString(R.string.update_version), false);
+            CommonDialog updateVersionDialog = new CommonDialog(this, R.layout.dialog_update_app,
+                    ()-> ToolsUtils.launchAppDetail(AppContext.getContext()), "",
+                    getResources().getString(R.string.please_update_the_version),
+                    getResources().getString(R.string.oke), getResources().getString(R.string.update_version),
+                    false);
             updateVersionDialog.show();
         }
     }
