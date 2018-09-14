@@ -229,7 +229,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         } else if (chooseIndex == 2 || chooseIndex == 3) {
             reSetTab(chooseIndex);
             if(chooseIndex==3){
-                manageFragament(false,false,true,false,false,
+                manageFragment(false,false,true,false,false,
                         false,false,false,false,false);
             }
         }
@@ -242,56 +242,23 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         if (bean == null || bean.getStatus() == null) {
             return;
         }
-
         String loanStatus = bean.getStatus();
         if (loanStatus == null) {
             return;
         } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
             if (!TextUtils.isEmpty(bean.getAppCurrentShownStatus()) && bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)) {
                 mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()), SPKeyUtils.DialogType_CURRENT);
-//                ToastManager.showToast("Pinjaman berhasil");
             }
-
-
-//            if(bean!=null){
-//                String isShow = bean.getCurrentDialogStatus();
-//                if(null==isShow){
-//
-//                    showTipsDialog("CURRENT", AppSP.getInstance().getLatestBean().getLoanType(), loanAppId);
-//                    //mPresenter.tipUpdate(bean.getLoanAppId(), AppDataConfig.CURRENT_SUCCESS);
-//                }
-//            }
-//            //FaceBook事件埋点  Current
-//            AppEventsLogger logger = AppEventsLogger.newLogger(MainActivity.this);
-//            Bundle parameters = new Bundle();
-//            parameters.putString(AppEventsConstants.EVENT_NAME_PURCHASED, "CustomerIMei:" + BandaAppSP.getInstance().getImei());
-//            logger.logEvent(AppEventsConstants.EVENT_NAME_PURCHASED, parameters);
         } else if (loanStatus.equals("NOLOANAPP") ||
                 loanStatus.equals("CANCELED") ||
                 loanStatus.equals("PAID_OFF")
                 ) {//没有贷款，取消？？   还款成功
             if (loanStatus.equals("PAID_OFF") && !TextUtils.isEmpty(bean.getAppPaidoffShownStatus()) && bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)) {
                 mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()), SPKeyUtils.DialogType_PAID_OFF);
-                //                ToastManager.showToast("Akhiri pinjaman ini");
             }
-//            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
-//                if(bean!=null){
-//                    String isShow = bean.getPiadOffDialogStatus();
-//                    if(null==isShow){
-//                        mPresenter.tipUpdate(bean.getLoanAppId(), AppDataConfig.PAID_OFF_SUCCESS);
-//                    }
-//                }
-//            }
         } else if (loanStatus.equals("CLOSED")) {//后台关闭，不同于拒绝
             ToastManager.showToast("Akhiri pinjaman ini");
-//            String loanAppId = bean.getLoanAppId();
-//            String asString = ACache.get(this).getAsString(FieldParams.LOANRESULT);
-//            if (loanAppId != null && !TextUtils.equals(loanAppId, asString)) {
-//                showTipsDialog("CLOSED", loanAppId);
-//            }
         }
-
-
         String lastAppStatus = StatusManagementUtils.loanStatusClassify(bean);
         showFragment(lastAppStatus);
     }
@@ -309,7 +276,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
      * @param isReject
      */
 
-    private void manageFragament(boolean isUnLoan, boolean isInfor, boolean isMeFragment, boolean isLoaning, boolean isProcess,
+    private void manageFragment(boolean isUnLoan, boolean isInfor, boolean isMeFragment, boolean isLoaning, boolean isProcess,
                                  boolean isBuildUp, boolean isRepayment, boolean isExpiryRepayment, boolean isRollover, boolean isReject) {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -464,29 +431,29 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     private void showFragment(String status) {
         if (AppLoanStatus.UNLOAN.equals(status)) {
-            manageFragament(true, false, false, false, false, false, false,
+            manageFragment(true, false, false, false, false, false, false,
                     false, false, false);
         } else if (AppLoanStatus.REVIEW.equals(status)) {
-            manageFragament(false, false, false, false, true, false, false,
+            manageFragment(false, false, false, false, true, false, false,
                     false, false, false);
         } else if (AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)) {
-            manageFragament(false, false, false, false, false, true, false,
+            manageFragment(false, false, false, false, false, true, false,
                     false, false, false);
         } else if (AppLoanStatus.REPAYMENT.equals(status)) {
-            manageFragament(false, false, false, false, false, false, true,
+            manageFragment(false, false, false, false, false, false, true,
                     false, false, false);
         } else if (AppLoanStatus.OVERDUE.equals(status)) {
-//            manageFragament(false, false, false, false, false, false, true,
+//            manageFragment(false, false, false, false, false, false, true,
 //                    false,false,false);
         } else if (AppLoanStatus.REJECT.equals(status)) {
-            manageFragament(false, false, false, false, false, false, false,
+            manageFragment(false, false, false, false, false, false, false,
                     false, false, true);
         }
     }
 
     @Subscribe
     public void goInformationFragment(MessageEvent messageEvent) {
-        manageFragament(false, true, false, false, false,
+        manageFragment(false, true, false, false, false,
                 false, false, false, false, false);
         reSetTab(2);
     }
@@ -504,7 +471,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Subscribe
     public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
-        manageFragament(false, false, false, true, false,
+        manageFragment(false, false, false, true, false,
                 false, false, false, false, false);
         reSetTab(1);
     }
@@ -523,12 +490,12 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 break;
             case R.id.id_textview_tab_certification:
                 reSetTab(2);
-                manageFragament(false, true, false, false, false,
+                manageFragment(false, true, false, false, false,
                         false, false, false, false, false);
                 break;
             case R.id.id_textview_tab_me:
                 reSetTab(3);
-                manageFragament(false, false, true, false, false,
+                manageFragment(false, false, true, false, false,
                         false, false, false, false, false);
                 break;
             case R.id.id_textview_tab_online_qa:
@@ -731,7 +698,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         dialog.setCancelShow(showCancel);
     }
 
-
     public static void initImei() {
         String imei = HappyAppSP.getInstance().getImei();
         if (TextUtils.isEmpty(imei)) {
@@ -744,7 +710,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     //默认unLoan界面
     public void showDefaultView() {
-        manageFragament(true, false, false, false, false, false, false,
+        manageFragment(true, false, false, false, false, false, false,
                 false, false, false);
     }
 
@@ -943,12 +909,12 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                     getResources().getString(R.string.oke), "Ayo rating kami", true);
             paymentSuccessDialog.show();
         } else if (type.equals(SPKeyUtils.DialogType_PAID_OFF)) {
-            CommonDialog paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess,
+            CommonDialog paidOffSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess,
                     ()-> Log.e("paymentSuccessDialog", "success"), "",
                     getResources().getString(R.string.repayment_success),
                     getResources().getString(R.string.oke),
                     getResources().getString(R.string.oke), false);
-            paymentSuccessDialog.show();
+            paidOffSuccessDialog.show();
         }
     }
 
