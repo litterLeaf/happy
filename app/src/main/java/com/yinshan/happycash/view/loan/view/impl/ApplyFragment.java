@@ -66,7 +66,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
     @Override
     protected void initView() {
-
+        mPresenter = new ApplyPresenter(getActivity(),this);
         mAdapter = new ApplyAdapter(getActivity());
         progressList.setAdapter(mAdapter);
 
@@ -79,8 +79,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
         setListViewHeightBasedOnChildren(progressList);
 
-        mPresenter = new ApplyPresenter(getActivity(),this);
-        refresh();
+
+//        refresh();
 
         shrinkageView();
 
@@ -172,11 +172,6 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     //刷新的方法
     private void refresh() {
         ((MainActivity) getActivity()).updateStatus(TokenManager.getInstance().getToken());
-        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if (object != null) {
-            if (object.getLoanAppId() != null)
-                mPresenter.getDetail(Long.valueOf(object.getLoanAppId()));
-        }
     }
 
     public static String getORMWord(Context context, int type, String status){
@@ -240,9 +235,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
             mCreateTime.setText(TimeManager.convertTime(bean.getCreateTime()));
             mKtp.setText(bean.getCredentialNo());
-            mSubmitFee.setText(String.valueOf(Math.round(bean.getPrincipalAmount())));
-            MainActivity.getLastMoney(bean.getPrincipalAmount(),bean.getPeriod());
-            mReturnPerPeriod.setText(String.valueOf(Math.round(Math.ceil(bean.getPrincipalAmount()/bean.getPeriod()))));
+            mSubmitFee.setText(StringFormatUtils.moneyFormat(Math.round(bean.getPrincipalAmount())));
+            mReturnPerPeriod.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney(bean.getPrincipalAmount(),bean.getPeriod())));
             mRecipientBankName.setText(bean.getBankCode());
             mRecipientAccountNo.setText(bean.getCardNo());
 
@@ -282,6 +276,8 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         if(object!=null) {
             getRefreshData(object);
+            if (object.getLoanAppId() != null)
+                mPresenter.getDetail(Long.valueOf(object.getLoanAppId()));
         }
     }
 }
