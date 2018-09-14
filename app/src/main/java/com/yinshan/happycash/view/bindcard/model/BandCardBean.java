@@ -1,10 +1,12 @@
 package com.yinshan.happycash.view.bindcard.model;
 
+import java.io.Serializable;
+
 /**
  * Created by admin on 2018/3/13.
  */
 
-public class BandCardBean {
+public class BandCardBean implements Serializable{
 
     private String bankCode;
     private String holderName;

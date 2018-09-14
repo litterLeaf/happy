@@ -100,6 +100,10 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
         idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
 
+        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
+        if(bean!=null)
+            setBankdCardBean(bean);
+
         mPresenter = new LoaningPresenter(getActivity(),this);
         mPresenter.getBankCard();
 
@@ -108,6 +112,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }else if(MainActivity.choosePeriod==1){
             setChoose1Period();
         }
+        setAddSubIcon();
     }
 
     @Override
@@ -133,11 +138,16 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     @Override
     public void showBindBankCard(BandCardBean bean) {
         if(bean!=null){
-            beforeBindCard.setVisibility(View.GONE);
-            bindCard.setVisibility(View.VISIBLE);
-            bindCard.setCenterString(bean.getCardNo());
-            bindCard.setLeftString(bean.getBankCode());
+            SPUtils.getInstance().setObject(SPKeyUtils.BANDCARDBEAN,bean);
+            setBankdCardBean(bean);
         }
+    }
+
+    private void setBankdCardBean(BandCardBean bean) {
+        beforeBindCard.setVisibility(View.GONE);
+        bindCard.setVisibility(View.VISIBLE);
+        bindCard.setCenterString(bean.getCardNo());
+        bindCard.setLeftString(bean.getBankCode());
     }
 
     @Override
@@ -208,34 +218,33 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                 break;
             case R.id.add:
                 if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
-                    mAddButton.setBackgroundResource(R.drawable.add_icon);
                     long addValue = MainActivity.loanMoney+(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
                     MainActivity.loanMoney = addValue;
                     idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
-                }else{
-                    mAddButton.setBackgroundResource(R.drawable.add_icon_disable);
                 }
-                if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
-                    mSubButton.setBackgroundResource(R.drawable.sub_icon);
-                }else{
-                    mSubButton.setBackgroundResource(R.drawable.sub_icon_disable);
-                }
+                setAddSubIcon();
                 break;
             case R.id.sub:
                 if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
-                    mSubButton.setBackgroundResource(R.drawable.sub_icon);
                     long subValue = MainActivity.loanMoney-(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
                     MainActivity.loanMoney = subValue;
                     idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
-                }else{
-                    mSubButton.setBackgroundResource(R.drawable.sub_icon_disable);
                 }
-                if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
-                    mAddButton.setBackgroundResource(R.drawable.add_icon);
-                }else{
-                    mAddButton.setBackgroundResource(R.drawable.add_icon_disable);
-                }
+                setAddSubIcon();
                 break;
+        }
+    }
+
+    private void setAddSubIcon(){
+        if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
+            mAddButton.setBackgroundResource(R.drawable.add_icon);
+        }else{
+            mAddButton.setBackgroundResource(R.drawable.add_icon_disable);
+        }
+        if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
+            mSubButton.setBackgroundResource(R.drawable.sub_icon);
+        }else{
+            mSubButton.setBackgroundResource(R.drawable.sub_icon_disable);
         }
     }
 

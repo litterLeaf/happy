@@ -57,13 +57,13 @@ public abstract class ErrorObserver<T> implements Observer<T> {
             if (((HttpException) e).code() == 201)
                 onError(new ApiException(e, CodeException.E_201_ERROR, "201错误"));
             else
-                onError(new ApiException(e, ((HttpException) e).code(), "HTTP错误"));
+                onError(new ApiException(e, ((HttpException) e).code(),((HttpException) e).message()));
         }else if(e instanceof EOFException){
             Log.v("huxin","EOFException");
             onError(new ApiException(e, CodeException.E_EOF_ERROR, "EOF错误"));
         }else{
             Log.v("huxin","other exception");
-            onError(new ApiException(e,CodeException.UNKNOWN_ERROR,"未知错误"));
+            onError(new ApiException(e,CodeException.UNKNOWN_ERROR,e.getMessage()));
         }
     }
 
