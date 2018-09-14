@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
@@ -76,7 +77,9 @@ public class UnLoanFragment extends BaseFragment {
             setChoose1Period();
         else
             setChoose3Period();
-        setComputeMoney();
+
+
+        resume();
 
         unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -98,6 +101,17 @@ public class UnLoanFragment extends BaseFragment {
             }
         });
         setComputeMoney();
+    }
+
+    public void resume() {
+        LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        MainActivity.loanMoney = Math.round(bean.getTotalAmount());
+        setComputeMoney();
+        if(bean!=null&& !TextUtils.isEmpty(bean.getStatus())&&bean.getStatus().equals("SUBMITTED")){
+            unloanSeeker.setEnabled(false);
+        }else{
+            unloanSeeker.setEnabled(true);
+        }
     }
 
     @Override
@@ -182,4 +196,6 @@ public class UnLoanFragment extends BaseFragment {
         mChooseMoney.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
         mUnloanFee.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
+
+
 }
