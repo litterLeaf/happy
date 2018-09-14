@@ -16,17 +16,36 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by huxin on 2018/3/19.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ * ┃　　　┃   兽神保佑
+ * ┃　　　┃   代码无BUG！
+ * ┃　　　┗━━━┓
+ * ┃　　　　　　　┣┓
+ * ┃　　　　　　　┏┛
+ * ┗┓┓┏━┳┓┏┛
+ * ┃┫┫　┃┫┫
+ * ┗┻┛　┗┻┛
+ * <p>
+ * 文件描述：
+ * 创建人：    admin
+ * 创建时间：2018/9/14
  */
-
-public class HelpCenterAdapter extends BaseAdapter{
+public class HelpCenterListViewAdapter  extends BaseAdapter {
 
     int chooseIndex = -1;
 
     List<NameDescData> nameDescList = new ArrayList<>();
     private HashMap<Integer,View> mHashMap;
 
-    public HelpCenterAdapter(){
+    public HelpCenterListViewAdapter(){
         mHashMap = new HashMap<>();
     }
 

@@ -28,7 +28,7 @@ import butterknife.OnClick;
  * Created by huxin on 2018/3/13.
  */
 
-public class MeFragment extends BaseFragment implements IGetPersonView{
+public class MeFragment extends BaseFragment implements IGetPersonView {
 
     RelativeLayout mLoginView;
     LinearLayout mInfoView;
@@ -40,25 +40,25 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
     @Override
     protected void initView() {
 //        mIMKit = YWAPI.getIMKitInstance("", "");
-        mGetPersonPresenter = new GetPersonInfoPresenter(getActivity(),this);
+        mGetPersonPresenter = new GetPersonInfoPresenter(getActivity(), this);
         resume();
     }
 
     @Override
     protected void initUIValue(View view) {
-        mLoginView = (RelativeLayout)view.findViewById(R.id.loginView);
-        mInfoView = (LinearLayout)view.findViewById(R.id.infoView);
-        mUserName = (TextView)view.findViewById(R.id.userName);
-        mUserMobile = (TextView)view.findViewById(R.id.userMobile);
+        mLoginView = (RelativeLayout) view.findViewById(R.id.loginView);
+        mInfoView = (LinearLayout) view.findViewById(R.id.infoView);
+        mUserName = (TextView) view.findViewById(R.id.userName);
+        mUserMobile = (TextView) view.findViewById(R.id.userMobile);
     }
 
-    public void resume(){
-        if(isLogin()){
+    public void resume() {
+        if (isLogin()) {
             mLoginView.setVisibility(View.GONE);
             mInfoView.setVisibility(View.VISIBLE);
-            if(TextUtils.isEmpty(SPUtils.getInstance().getUsername())) {
+            if (TextUtils.isEmpty(SPUtils.getInstance().getUsername())) {
                 mUserName.setText(SPUtils.getInstance().getUsername());
-            }else{
+            } else {
                 mGetPersonPresenter.getPersonInfo();
             }
             mUserMobile.setText(SPUtils.getInstance().getMobile());
@@ -70,11 +70,11 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
         return R.layout.fragment_me;
     }
 
-    @OnClick({R.id.loanView,R.id.safeSettingView,R.id.helpCenterView,R.id.customHotLineView,R.id.aboutView,R.id.loginView})
-    public void onViewClicked(View view){
-        switch (view.getId()){
+    @OnClick({R.id.loanView, R.id.safeSettingView, R.id.helpCenterView, R.id.customHotLineView, R.id.aboutView, R.id.loginView})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
             case R.id.loanView:
-                if(TextUtils.isEmpty(TokenManager.getInstance().getToken())||TokenManager.isExpired)
+                if (TextUtils.isEmpty(TokenManager.getInstance().getToken()) || TokenManager.isExpired)
                     mStartActivity(LoginActivity.class);
                 else
                     mStartActivity(LoanListActivity.class);
@@ -86,21 +86,17 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
                 mStartActivity(HelpCenterActivity.class);
                 break;
             case R.id.customHotLineView:
-                CommonClickListener listener = new CommonClickListener() {
-                    @Override
-                    public void onClick() {
-                        Intent intent = new Intent(Intent.ACTION_DIAL);
-                        Uri data = Uri.parse("tel:" + AppDataConfig.HOTLINE);
-                        intent.setData(data);
-                        startActivity(intent);
-                    }
-                };
-                CommonDialog dialog = new CommonDialog(getActivity(),listener,"",
-                        String.format(getString(R.string.show_dial_hotline), AppDataConfig.HOTLINE)
-                        ,"","",true);
+
+                CommonDialog dialog = new CommonDialog(getActivity(),
+                        () -> {
+                            Intent intent = new Intent(Intent.ACTION_DIAL);
+                            Uri data = Uri.parse("tel:" + AppDataConfig.HOTLINE);
+                            intent.setData(data);
+                            startActivity(intent);
+                        }, "",
+                        String.format(getString(R.string.show_dial_hotline), AppDataConfig.HOTLINE),
+                        "", "", true);
                 dialog.show();
-//                Intent intent = mIMKit.getConversationActivityIntent();
-//                startActivity(intent);
                 break;
             case R.id.aboutView:
                 mStartActivity(AboutActivity.class);
@@ -113,7 +109,7 @@ public class MeFragment extends BaseFragment implements IGetPersonView{
 
     @Override
     public void showInfo(PersonalBean personalBean) {
-        if(personalBean!=null&&personalBean.getFullName()!=null){
+        if (personalBean != null && personalBean.getFullName() != null) {
             SPUtils.getInstance().setUsername(personalBean.getFullName());
             mUserName.setText(personalBean.getFullName());
         }

@@ -29,6 +29,7 @@ import com.yinshan.happycash.analytic.contacts.ContactDBController;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.analytic.sms.SmsDBController;
+import com.yinshan.happycash.application.AppApplication;
 import com.yinshan.happycash.application.AppContext;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.config.inner.AppDataConfig;
@@ -89,21 +90,20 @@ import butterknife.OnClick;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- *        ┃　　　┃   兽神保佑
- *        ┃　　　┃   代码无BUG！
- *        ┃　　　┗━━━┓
- *        ┃　　　　　　　┣┓
- *        ┃　　　　　　　┏┛
- *        ┗┓┓┏━┳┓┏┛
- *           ┃┫┫　┃┫┫
- *           ┗┻┛　┗┻┛
- *
- *    描述：          贷款状态机+权限申请
- *    创建人：     admin
- *    创建时间：2018/1/11 
- *
+ * ┃　　　┃   兽神保佑
+ * ┃　　　┃   代码无BUG！
+ * ┃　　　┗━━━┓
+ * ┃　　　　　　　┣┓
+ * ┃　　　　　　　┏┛
+ * ┗┓┓┏━┳┓┏┛
+ * ┃┫┫　┃┫┫
+ * ┗┻┛　┗┻┛
+ * <p>
+ * 描述：          贷款状态机+权限申请
+ * 创建人：     admin
+ * 创建时间：2018/1/11
  */
-public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener,IGetStatusView,IVersionView ,ChatClientContract.View,IUpdateDialogView{
+public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener, IGetStatusView, IVersionView, ChatClientContract.View, IUpdateDialogView {
 
     boolean isFirstEnter = true;
     public static boolean isNotResume = false;
@@ -149,8 +149,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     private ChatClientPresenter chatClientPresenter;
 
     private String[] mustPermission = {
-            Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.READ_CONTACTS,Manifest.permission.READ_PHONE_STATE
-            ,Manifest.permission.READ_SMS,Manifest.permission.READ_CALL_LOG,Manifest.permission.WRITE_EXTERNAL_STORAGE
+            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.READ_CONTACTS, Manifest.permission.READ_PHONE_STATE
+            , Manifest.permission.READ_SMS, Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
     @Override
@@ -176,13 +176,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
         MainActivity.choosePeriod = 3;
 
-        mPresenter = new GetStatusPresenter(this,this);
-        mUpdateDialogPresenter = new UpdateDialogPresenter(this,this);
+        mPresenter = new GetStatusPresenter(this, this);
+        mUpdateDialogPresenter = new UpdateDialogPresenter(this, this);
         chatClientPresenter = new ChatClientPresenter(this);
         chatClientPresenter.attachView(this);
 
         if (!judgeMustPermission()) {
-            PowerDialog powerDialog = new PowerDialog(MainActivity.this,new PowerListener());
+            PowerDialog powerDialog = new PowerDialog(MainActivity.this, new PowerListener());
             powerDialog.setCancelable(false);
             powerDialog.show();
 //            PerGuideDialogFragment fragment = new PerGuideDialogFragment();
@@ -192,15 +192,15 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         } else {
             checkPermissons();
         }
-        if(SplashActivity.isGetStatus){
+        if (SplashActivity.isGetStatus) {
             LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-            if(object!=null&&object.getStatus()!=null){
+            if (object != null && object.getStatus() != null) {
                 dealResult(object);
-            }else {
+            } else {
                 showFragment(AppLoanStatus.UNLOAN);
             }
-        }else{
-            if(TokenManager.getInstance().hasLogin())
+        } else {
+            if (TokenManager.getInstance().hasLogin())
                 mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
             else
                 showFragment(AppLoanStatus.UNLOAN);
@@ -210,25 +210,25 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     protected void onResume() {
         super.onResume();
-        if(chooseIndex==1&&TokenManager.getInstance().hasLogin()){
-            if(!isFirstEnter){
-                if(!isNotResume) {
+        if (chooseIndex == 1 && TokenManager.getInstance().hasLogin()) {
+            if (!isFirstEnter) {
+                if (!isNotResume) {
                     reUpdateStatus();
-                }else{
+                } else {
                     MainActivity.isNotResume = false;
                 }
 
             }
-        }else if(chooseIndex==2||chooseIndex==3){
+        } else if (chooseIndex == 2 || chooseIndex == 3) {
             reSetTab(chooseIndex);
         }
 
-        if(isFirstEnter)
+        if (isFirstEnter)
             isFirstEnter = false;
     }
 
-    private void dealResult(LastLoanAppBean bean){
-        if(bean==null||bean.getStatus()==null){
+    private void dealResult(LastLoanAppBean bean) {
+        if (bean == null || bean.getStatus() == null) {
             return;
         }
 
@@ -236,8 +236,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         if (loanStatus == null) {
             return;
         } else if ("CURRENT".equals(loanStatus)) {//成功放款进入还款期
-            if(!TextUtils.isEmpty(bean.getAppCurrentShownStatus())&&bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
-                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),SPKeyUtils.DialogType_CURRENT);
+            if (!TextUtils.isEmpty(bean.getAppCurrentShownStatus()) && bean.getAppCurrentShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)) {
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()), SPKeyUtils.DialogType_CURRENT);
 //                ToastManager.showToast("Pinjaman berhasil");
             }
 
@@ -259,8 +259,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 loanStatus.equals("CANCELED") ||
                 loanStatus.equals("PAID_OFF")
                 ) {//没有贷款，取消？？   还款成功
-            if(loanStatus.equals("PAID_OFF") &&!TextUtils.isEmpty(bean.getAppPaidoffShownStatus())&&bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)){
-                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()),SPKeyUtils.DialogType_PAID_OFF);
+            if (loanStatus.equals("PAID_OFF") && !TextUtils.isEmpty(bean.getAppPaidoffShownStatus()) && bean.getAppPaidoffShownStatus().equals(AppDataConfig.DIALOG_SHOW_TIPS)) {
+                mUpdateDialogPresenter.updateDialog(Long.valueOf(bean.getLoanAppId()), SPKeyUtils.DialogType_PAID_OFF);
                 //                ToastManager.showToast("Akhiri pinjaman ini");
             }
 //            if (loanStatus.equals("PAID_OFF") && !SPUtils.get(SPKey.ORIGINAL_LOAN_STATUS, "").equals("PAID_OFF")) {
@@ -418,7 +418,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         //meFragment
         boolean isMeFirstReShow = false;
         if (isMeFragment) {
-            if(null==meFrag){
+            if (null == meFrag) {
                 Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.ME_TAB);
                 if (null != tab1) {
                     meFrag = (MeFragment) tab1;
@@ -428,13 +428,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                     meFrag = new MeFragment();
                     transaction.add(R.id.fragment_container, meFrag, SPKeyUtils.ME_TAB);
                 }
-            }else{
+            } else {
                 isMeFirstReShow = true;
             }
         }
         if (isMeFragment && null != meFrag) {
             transaction.show(meFrag);
-            if(isMeFirstReShow)
+            if (isMeFirstReShow)
                 meFrag.resume();
         } else if (!isMeFragment && null != meFrag) {
             transaction.hide(meFrag);
@@ -445,71 +445,71 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     private void showFragment(String status) {
         if (AppLoanStatus.UNLOAN.equals(status)) {
             manageFragament(true, false, false, false, false, false, false,
-                    false,false,false);
+                    false, false, false);
         } else if (AppLoanStatus.REVIEW.equals(status)) {
             manageFragament(false, false, false, false, true, false, false,
-                    false,false,false);
+                    false, false, false);
         } else if (AppLoanStatus.REVIEW_SUPPLEMENT.equals(status)) {
             manageFragament(false, false, false, false, false, true, false,
-                    false,false,false);
+                    false, false, false);
         } else if (AppLoanStatus.REPAYMENT.equals(status)) {
             manageFragament(false, false, false, false, false, false, true,
-                    false,false,false);
+                    false, false, false);
         } else if (AppLoanStatus.OVERDUE.equals(status)) {
 //            manageFragament(false, false, false, false, false, false, true,
 //                    false,false,false);
-        }else if(AppLoanStatus.REJECT.equals(status)){
+        } else if (AppLoanStatus.REJECT.equals(status)) {
             manageFragament(false, false, false, false, false, false, false,
-                    false,false,true);
+                    false, false, true);
         }
     }
 
     @Subscribe
     public void goInformationFragment(MessageEvent messageEvent) {
         manageFragament(false, true, false, false, false,
-                false, false, false,false,false);
+                false, false, false, false, false);
         reSetTab(2);
     }
 
     //数据刷新
     public void updateStatus(final String token) {
-        if(TokenManager.getInstance().hasLogin())
+        if (TokenManager.getInstance().hasLogin())
             mPresenter.getStatusInfo(token);
     }
 
-    public void reUpdateStatus(){
-        if(TokenManager.getInstance().hasLogin())
+    public void reUpdateStatus() {
+        if (TokenManager.getInstance().hasLogin())
             mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
     }
 
     @Subscribe
     public void goBackUnLoanFragment(InfoUploadEvent messageEvent) {
         manageFragament(false, false, false, true, false,
-                false, false, false,false,false);
+                false, false, false, false, false);
         reSetTab(1);
     }
 
-    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me,R.id.id_textview_tab_online_qa})
+    @OnClick({R.id.id_textview_tab_loan, R.id.id_textview_tab_certification, R.id.id_textview_tab_me, R.id.id_textview_tab_online_qa})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.id_textview_tab_loan:
                 reSetTab(1);
                 LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-                if(object!=null&&object.getStatus()!=null){
+                if (object != null && object.getStatus() != null) {
                     dealResult(object);
-                }else {
+                } else {
                     showFragment(AppLoanStatus.UNLOAN);
                 }
                 break;
             case R.id.id_textview_tab_certification:
                 reSetTab(2);
-                manageFragament(false,true,false,false,false,
-                        false,false,false,false,false);
+                manageFragament(false, true, false, false, false,
+                        false, false, false, false, false);
                 break;
             case R.id.id_textview_tab_me:
                 reSetTab(3);
-                manageFragament(false,false,true,false,false,
-                        false,false,false,false,false);
+                manageFragament(false, false, true, false, false,
+                        false, false, false, false, false);
                 break;
             case R.id.id_textview_tab_online_qa:
 //                if(TokenManager.getInstance().hasLogin()){
@@ -537,23 +537,23 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private void initYW(int i) {
-        chatClientPresenter.getChatClientAccount(TokenManager.getInstance().getToken(),i);
+        chatClientPresenter.getChatClientAccount(TokenManager.getInstance().getToken(), i);
     }
 
 
-    private void reSetTab(int tab){
+    private void reSetTab(int tab) {
         tabLoan.setSelected(false);
         tabInformation.setSelected(false);
         tabMe.setSelected(false);
         chooseIndex = tab;
-        switch (tab){
-            case  1:
+        switch (tab) {
+            case 1:
                 tabLoan.setSelected(true);
                 break;
-            case  2:
+            case 2:
                 tabInformation.setSelected(true);
                 break;
-            case  3:
+            case 3:
                 tabMe.setSelected(true);
                 break;
         }
@@ -561,6 +561,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     //危险权限和权限组
     private final static int PERMISSION_CODE = 100;
+
     private void checkPermissons() {
         permissionsList = new ArrayList<>();
         permissionsNeeded = new ArrayList<>();
@@ -600,13 +601,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //calllog相关的权限
-        hasPermission =hasSelfPermission(this, Manifest.permission.READ_CALL_LOG);
-        if(!hasPermission){
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CALL_LOG)){
+        hasPermission = hasSelfPermission(this, Manifest.permission.READ_CALL_LOG);
+        if (!hasPermission) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CALL_LOG)) {
                 permissionsNeeded.add(getString(R.string.call_log));
             }
             permissionsList.add(Manifest.permission.READ_CALL_LOG);
-        }else {
+        } else {
             CallLogDBController.getInstance().gainCallLogs();
         }
 
@@ -690,7 +691,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     private void showPermisionDialog(String content, final int type, boolean showCancel) {
-        CheckPermissionDialog dialog = new CheckPermissionDialog(this, ()->{
+        CheckPermissionDialog dialog = new CheckPermissionDialog(this, () -> {
             switch (type) {
                 case SPKeyUtils.DIALOG_GPS:
                     gotoGpsSetting();
@@ -722,16 +723,16 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     }
 
     //默认unLoan界面
-    public void showDefaultView(){
-        manageFragament(true,false,false,false,false,false,false,
-                false,false,false);
+    public void showDefaultView() {
+        manageFragament(true, false, false, false, false, false, false,
+                false, false, false);
     }
 
     @Override
     public void getStatusSuccess(LastLoanAppBean latestLoanAppBean) {
-        if(latestLoanAppBean!=null) {
+        if (latestLoanAppBean != null) {
             SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, latestLoanAppBean);
-            if(latestLoanAppBean.getStatus()!=null)
+            if (latestLoanAppBean.getStatus() != null)
                 dealResult(latestLoanAppBean);
         }
         LoggerWrapper.d("MainActivity: updatestatus--" + "success");
@@ -742,18 +743,18 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         ToastManager.showToast("Loading data tidak normal");
         LoggerWrapper.d("MainActivity: updatestatus--" + displayMessage);
         LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if(object!=null){
+        if (object != null) {
             dealResult(object);
-        }else{
+        } else {
             showDefaultView();
         }
     }
 
-    public static void setSeg(int i){
-        if(i<3)
+    public static void setSeg(int i) {
+        if (i < 3)
             MainActivity.seg = 0;
         else
-            seg = (i-1)/(100/MainActivity.MONEY_SEG)+1;
+            seg = (i - 1) / (100 / MainActivity.MONEY_SEG) + 1;
     }
 
     @Override
@@ -813,7 +814,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     public void guide() {
 //        SPUtils.getInstance().setShowGuide(false);
         permissionsList = new ArrayList<>();
-        for(String permission: mustPermission){
+        for (String permission : mustPermission) {
             permissionsList.add(permission);
         }
         ActivityCompat.requestPermissions(MainActivity.this,
@@ -832,9 +833,9 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                     ToolsUtils.launchAppDetail(AppContext.getContext());
                 }
             };
-            CommonDialog updateVersionDialog = new CommonDialog(this,R.layout.dialog_update_app,listener,"",
+            CommonDialog updateVersionDialog = new CommonDialog(this, R.layout.dialog_update_app, listener, "",
                     getResources().getString(R.string.please_update_the_version)
-                    ,getResources().getString(R.string.oke),getResources().getString(R.string.update_version),false);
+                    , getResources().getString(R.string.oke), getResources().getString(R.string.update_version), false);
             updateVersionDialog.show();
         }
     }
@@ -847,6 +848,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     /**
      * 暂时去掉
      * 获取留言板块
+     *
      * @param hxBean
      */
     @Override
@@ -900,12 +902,13 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     /**
      * 获取登录的账号名和密码
+     *
      * @param ywUser
      */
     @Override
-    public void getChatAccountSuccess(YWUser ywUser,int flag) {
+    public void getChatAccountSuccess(YWUser ywUser, int flag) {
         dismissLoadingDialog();
-        if(ywUser!=null){
+        if (ywUser != null) {
 //            loginCEC(ywUser.getUserid(),ywUser.getPassword(),0);
         }
     }
@@ -918,66 +921,67 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     public void updateDialogSuccess(String type) {
-        if(type.equals(SPKeyUtils.DialogType_CURRENT)){
-            ToastManager.showToast("Pinjaman berhasil");
-        }else if(type.equals(SPKeyUtils.DialogType_PAID_OFF)){
-            CommonClickListener listener = new CommonClickListener() {
-                @Override
-                public void onClick() {
-                    Log.e("paymentSuccessDialog","success");
-                }
-            };
-            CommonDialog    paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess, listener, "",
-                                                        getResources().getString(R.string.please_update_the_version)
-                            , getResources().getString(R.string.oke), getResources().getString(R.string.update_version), false);
+        if (type.equals(SPKeyUtils.DialogType_CURRENT)) {
+            CommonDialog paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_current_suucess,
+                    () -> ToolsUtils.launchAppDetail(AppApplication.appContext),
+                    "", getResources().getString(R.string.current_tip1),
+                    getResources().getString(R.string.oke), "Ayo rating kami", true);
+            paymentSuccessDialog.show();
+        } else if (type.equals(SPKeyUtils.DialogType_PAID_OFF)) {
+            CommonDialog paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess,
+                    ()-> Log.e("paymentSuccessDialog", "success"), "",
+                    getResources().getString(R.string.repayment_success),
+                    getResources().getString(R.string.oke),
+                    getResources().getString(R.string.oke), false);
+            paymentSuccessDialog.show();
         }
     }
 
-    class PowerListener implements CommonClickListener{
+    class PowerListener implements CommonClickListener {
         @Override
         public void onClick() {
             guide();
         }
     }
 
-    public static long getLastMoney(){
-        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+    public static long getLastMoney() {
+        long sum = MainActivity.loanMoney + MainActivity.loanMoney * MainActivity.RATE * MainActivity.choosePeriod / 100;
         double ceil = Math.ceil(sum / MainActivity.choosePeriod);
         return Math.round(ceil);
     }
 
-    public static long getLastMoney(double money,int period){
-        long sum = (long) (money+money*MainActivity.RATE*period/100);
+    public static long getLastMoney(double money, int period) {
+        long sum = (long) (money + money * MainActivity.RATE * period / 100);
         double ceil = Math.ceil(sum / period);
         return Math.round(ceil);
     }
 
-    private boolean judgeMustPermission(){
-        for(String permission:mustPermission){
-            if(ContextCompat.checkSelfPermission(this, permission)
+    private boolean judgeMustPermission() {
+        for (String permission : mustPermission) {
+            if (ContextCompat.checkSelfPermission(this, permission)
                     != PackageManager.PERMISSION_GRANTED)
                 return false;
         }
         return true;
     }
 
-    private void initUI(){
-        fragmentContainer = (FrameLayout)findViewById(R.id.fragment_container);
-        tabLoan = (TextView)findViewById(R.id.id_textview_tab_loan);
-        idLinearlayoutLoan = (LinearLayout)findViewById(R.id.id_linearlayout_loan);
-        tabInformation = (TextView)findViewById(R.id.id_textview_tab_certification);
+    private void initUI() {
+        fragmentContainer = (FrameLayout) findViewById(R.id.fragment_container);
+        tabLoan = (TextView) findViewById(R.id.id_textview_tab_loan);
+        idLinearlayoutLoan = (LinearLayout) findViewById(R.id.id_linearlayout_loan);
+        tabInformation = (TextView) findViewById(R.id.id_textview_tab_certification);
 
-        idLinearlayoutCertification = (LinearLayout)findViewById(R.id.id_linearlayout_certification);
-        tabMe = (TextView)findViewById(R.id.id_textview_tab_me);
-        idLinearlayoutMe = (LinearLayout)findViewById(R.id.id_linearlayout_me);
-        abOnlineQa = (TextView)findViewById(R.id.id_textview_tab_online_qa);
-        idLinearlayoutOnlineQa = (LinearLayout)findViewById(R.id.id_linearlayout_online_qa);
+        idLinearlayoutCertification = (LinearLayout) findViewById(R.id.id_linearlayout_certification);
+        tabMe = (TextView) findViewById(R.id.id_textview_tab_me);
+        idLinearlayoutMe = (LinearLayout) findViewById(R.id.id_linearlayout_me);
+        abOnlineQa = (TextView) findViewById(R.id.id_textview_tab_online_qa);
+        idLinearlayoutOnlineQa = (LinearLayout) findViewById(R.id.id_linearlayout_online_qa);
     }
 
-    private void requestProfile(){
+    private void requestProfile() {
 
 
-        mVersionPresenter = new VersionPresenter(this,this);
+        mVersionPresenter = new VersionPresenter(this, this);
         String versionCode = SystemUtil.getInstance().getVersionCode();
         if (TextUtils.isEmpty(versionCode)) {
             return;
