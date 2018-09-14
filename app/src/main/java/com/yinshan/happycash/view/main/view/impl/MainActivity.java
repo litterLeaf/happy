@@ -201,9 +201,15 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 showFragment(AppLoanStatus.UNLOAN);
             }
         } else {
-            if (TokenManager.getInstance().hasLogin())
-                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
-            else
+            if (TokenManager.getInstance().hasLogin()) {
+                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+                if (object != null && object.getStatus() != null) {
+                    dealResult(object);
+                }else{
+                    showFragment(AppLoanStatus.UNLOAN);
+                    mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
+                }
+            }else
                 showFragment(AppLoanStatus.UNLOAN);
         }
     }

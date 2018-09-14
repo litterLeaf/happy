@@ -63,6 +63,9 @@ public class MeFragment extends BaseFragment implements IGetPersonView {
                 mGetPersonPresenter.getPersonInfo();
             }
             mUserMobile.setText(SPUtils.getInstance().getMobile());
+        }else{
+            mLoginView.setVisibility(View.VISIBLE);
+            mInfoView.setVisibility(View.GONE);
         }
     }
 
