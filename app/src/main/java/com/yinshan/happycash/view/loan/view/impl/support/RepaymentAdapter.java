@@ -77,12 +77,12 @@ public class RepaymentAdapter extends BaseAdapter{
                 RxBus.get().post(event);
             }
         });
-//        if((mList.get(position).getDefaultAccr()-mList.get(position).getDefaultPaid())>=1){
-//            viewHolder.detailImage.setVisibility(View.VISIBLE);
-//        }
-        if(true){
+        if((mList.get(position).getDefaultAccr()-mList.get(position).getDefaultPaid())>=1){
             viewHolder.detailImage.setVisibility(View.VISIBLE);
         }
+//        if(true){
+//            viewHolder.detailImage.setVisibility(View.VISIBLE);
+//        }
 
         String status = mList.get(position).getStatus();
         if(status.equals("INACTIVE"))

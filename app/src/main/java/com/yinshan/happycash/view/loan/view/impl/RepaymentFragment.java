@@ -196,8 +196,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         RepaymentShowDetailDialog showDetailDialog = new RepaymentShowDetailDialog(getActivity());
         Window win = showDetailDialog.getWindow();
         WindowManager.LayoutParams lp = win.getAttributes();
-        lp.x = 20;
-        lp.y = listView.getTop()+10+event.pos* DensityUtil.dip2px(getActivity(),34);
+        lp.x = listView.getLeft()+DensityUtil.dip2px(getActivity(),28);
+        lp.y = listView.getTop()-DensityUtil.dip2px(getActivity(),3)+event.pos* DensityUtil.dip2px(getActivity(),34);
         showDetailDialog.getWindow().setAttributes(lp);
         showDetailDialog.setText1(String.format(getResources().getString(R.string.repayment_detail_1)
                 ,String.valueOf(mDetail.getLpayDtoList().get(event.pos).getPrincipalAccr())));

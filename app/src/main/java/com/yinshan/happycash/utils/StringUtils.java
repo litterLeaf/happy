@@ -86,12 +86,13 @@ public class StringUtils {
     }
 
 
-    public   SpannableStringBuilder setBoldStringWords(String content,String param){
+    public   SpannableStringBuilder setBoldStringWords(String content,String param,int color){
         String format = String.format(content, param);
         SpannableStringBuilder builder = new SpannableStringBuilder(format);
         StyleSpan styleSpan = new StyleSpan(Typeface.BOLD);//粗体
+        int value  = format.indexOf(param);
         builder.setSpan(styleSpan, format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        builder.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.colorPrimary)),
+        builder.setSpan(new ForegroundColorSpan(context.getResources().getColor(color)),
                 format.indexOf(param), format.indexOf(param) + param.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         conditionalSelection(format,builder);
         return builder;
@@ -115,11 +116,11 @@ public class StringUtils {
     public  SpannableStringBuilder setStringWords(String content,String paCodeOrVA,String moneyCount){
         String format = String.format(content, paCodeOrVA, moneyCount);
         SpannableStringBuilder builder = new SpannableStringBuilder(format);
-        builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorPrimary)),
+        builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorSPTextPrimary)),
                 format.indexOf(paCodeOrVA), format.indexOf(paCodeOrVA) + paCodeOrVA.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         if (format.contains(moneyCount)) {
-            builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorPrimary)),
+            builder.setSpan(new ForegroundColorSpan( context.getResources().getColor(R.color.colorSPTextPrimary)),
                     format.indexOf(moneyCount), format.indexOf(moneyCount) + moneyCount.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         conditionalSelection(format,builder);
