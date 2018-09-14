@@ -49,6 +49,7 @@
                 android:layout_centerInParent="true"
                 android:textSize="16sp"
                 android:textColor="@color/app_blue"
+                android:textStyle="bold"
                 android:text="@string/repayment_method_atm"
                 />
             <TextView
@@ -80,6 +81,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/app_blue"
                 android:text="@string/repayment_method_online"
+                android:textStyle="bold"
                 android:visibility="gone"
                 />
             <TextView
@@ -111,6 +113,7 @@
                 android:textSize="16sp"
                 android:textColor="@color/app_blue"
                 android:text="@string/repayment_method_mbanking"
+                android:textStyle="bold"
                 android:visibility="gone"
                 />
             <TextView
@@ -232,6 +235,7 @@
                         android:layout_marginTop="12dp"
                         android:layout_marginLeft="45dp"
                         android:layout_marginRight="15dp"
+                        android:lineSpacingExtra="3dp"
                         android:textColor="@color/app_red"
                         android:textSize="12sp"
                         android:text="@string/repayment_warning"
@@ -245,6 +249,7 @@
                 android:layout_gravity="center_horizontal"
                 android:textColor="@color/app_blue"
                 android:textSize="17sp"
+                android:textStyle="bold"
                 android:text="@string/payment_step"
                 />
             <com.yinshan.happycash.widget.custom.NoScrollListView

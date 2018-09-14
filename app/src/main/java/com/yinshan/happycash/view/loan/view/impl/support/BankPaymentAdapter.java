@@ -110,10 +110,10 @@ public class BankPaymentAdapter extends BaseAdapter{
             if(strings.length==1){
                 if(strings[0].equals(AppDataConfig.DATA_AMOUNT)){
                     viewHolder.text.setIsSN(true);
-                    viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getAmount())));
+                    viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getAmount()),R.color.colorSPTextPrimary));
                 }else if(strings[0].equals(AppDataConfig.DATA_VIRTUAL_ACCOUNT)){
                     viewHolder.text.setIsSN(true);
-                    viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getPaymentCode())));
+                    viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getPaymentCode()),R.color.colorSPTextPrimary));
                 }
             }else if(strings.length==2){
                 String str1 = "";

@@ -109,10 +109,10 @@
     <string name="number_of_returns_for_this_period">Jumlah pengembalian periode ini(Rp)</string>
     <string name="payment_date_f">Tanggai penbayaran %s</string>
     <string name="payment_date_df">Tanggai penbayaran --</string>
-    <string name="number">Jumiah</string>
+    <string name="number">Jumlah</string>
     <string name="tenor">Tenor</string>
     <string name="details">Rincian</string>
-    <string name="time_period2">Jumiah Periode</string>
+    <string name="time_period2">Jumlah Periode</string>
     <string name="rp_df">Rp--</string>
     <string name="df">--</string>
     <string name="change_the_pattern_password">Ubah password pola</string>

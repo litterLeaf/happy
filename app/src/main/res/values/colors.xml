@@ -4,6 +4,7 @@
     <color name="colorAccent">#ffe232</color>
     <color name="colorPrimary">#ffe232</color>
     <color name="colorPrimaryDark">#ffe232</color>
+    <color name="colorSPTextPrimary">#FF816C</color>
     <color name="colorWrong">#FF4081</color>
     <color name="transparent_color">#00000000</color>
     <color name="hc_text">#FCA849</color>
