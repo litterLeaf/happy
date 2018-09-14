@@ -49,6 +49,9 @@ public class PersonalPresenter {
                         if(personalBean!=null&& !TextUtils.isEmpty(personalBean.getCredentialNo())){
                             SPUtils.getInstance().setUserKtp(personalBean.getCredentialNo());
                         }
+                        if(personalBean!=null&&!TextUtils.isEmpty(personalBean.getFullName())){
+                            SPUtils.getInstance().setUsername(personalBean.getFullName());
+                        }
                         mView.dismissLoadingDialog();
                     }
 

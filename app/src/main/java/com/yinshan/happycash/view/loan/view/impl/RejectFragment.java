@@ -27,6 +27,8 @@ public class RejectFragment extends BaseFragment implements ILoanDetailView{
     TextView mMinute;
     TextView mSecond;
 
+    TextView mLeftDay;
+
     LoanDetailPresenter mDetailPresenter;
     private long reapplyCounterDown;
     private CountDownTimer timer;
@@ -45,6 +47,7 @@ public class RejectFragment extends BaseFragment implements ILoanDetailView{
         mHour = (TextView)view.findViewById(R.id.hour);
         mMinute = (TextView)view.findViewById(R.id.minute);
         mSecond = (TextView)view.findViewById(R.id.second);
+        mLeftDay = (TextView)view.findViewById(R.id.leftDay);
     }
 
     @Override
@@ -89,6 +92,8 @@ public class RejectFragment extends BaseFragment implements ILoanDetailView{
         mMinute.setText("" + min);
         mHour.setText("" + hour);
         mDay.setText("" + day);
+        String leftDay = getResources().getString(R.string.reject_left_day);
+        mLeftDay.setText(String.format(leftDay,String.valueOf(day)));
     }
 
     class TimerDown extends CountDownTimer {

@@ -51,12 +51,13 @@
                             android:text="Mohon maaf,pengajuan anda ditolak"
                             />
                         <TextView
+                            android:id="@+id/leftDay"
                             style="@style/text_wrap_layout"
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="28dp"
                             android:textSize="12sp"
                             android:textColor="@color/app_blue"
-                            android:text="Silahkan coba lagi dalam 14 hari"
+                            android:text="Silahkan coba lagi dalam -- hari"
                             />
                     </RelativeLayout>
                     <ImageView

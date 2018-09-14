@@ -72,7 +72,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
         MobAgent.onEvent(MobEvent.IN_ISSUING_FRAGMENT);
         initPullRefresh();
-        mResume();
+        resume();
 
         MyRefreshHeader header = new MyRefreshHeader(getActivity());
         refreshLayout.setRefreshHeader(header);
@@ -110,14 +110,6 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
     @Override
     protected int bindLayout() {
         return R.layout.fragment_apply;
-    }
-
-    public void mResume(){
-        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        if(object!=null) {
-            getRefreshData(object);
-
-        }
     }
 
     @OnClick({R.id.viewUp,R.id.viewDown,R.id.cancel})
@@ -161,6 +153,7 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
             mAdapter.setStatusList(loanAppBean.getStatusLogs());
             mAdapter.notifyDataSetChanged();
+            setListViewHeightBasedOnChildren(progressList);
         }
     }
 
@@ -283,5 +276,12 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
         mViewDown.setVisibility(View.VISIBLE);
         mViewDesc.setVisibility(View.GONE);
         mViewUp.setVisibility(View.GONE);
+    }
+
+    public void resume() {
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if(object!=null) {
+            getRefreshData(object);
+        }
     }
 }

@@ -90,18 +90,19 @@ import butterknife.OnClick;
  * ┃　　　┻　　　┃
  * ┃　　　　　　　┃
  * ┗━┓　　　┏━┛
- * ┃　　　┃   兽神保佑
- * ┃　　　┃   代码无BUG！
- * ┃　　　┗━━━┓
- * ┃　　　　　　　┣┓
- * ┃　　　　　　　┏┛
- * ┗┓┓┏━┳┓┏┛
- * ┃┫┫　┃┫┫
- * ┗┻┛　┗┻┛
- * <p>
- * 描述：          贷款状态机+权限申请
- * 创建人：     admin
- * 创建时间：2018/1/11
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：          贷款状态机+权限申请
+ *    创建人：     admin
+ *    创建时间：2018/1/11
+ *
  */
 public class MainActivity extends BaseActivity implements PerGuideDialogFragment.GuideListener, IGetStatusView, IVersionView, ChatClientContract.View, IUpdateDialogView {
 
@@ -221,6 +222,10 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             }
         } else if (chooseIndex == 2 || chooseIndex == 3) {
             reSetTab(chooseIndex);
+            if(chooseIndex==3){
+                manageFragament(false,false,true,false,false,
+                        false,false,false,false,false);
+            }
         }
 
         if (isFirstEnter)
@@ -352,17 +357,26 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //isProcess
-        if (isProcess && null == applyFragment) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.PROCESS_FRAG);
-            if (null != tab1) {
-                applyFragment = (ApplyFragment) tab1;
-            } else {
-                applyFragment = new ApplyFragment();
-                transaction.add(R.id.fragment_container, applyFragment, SPKeyUtils.PROCESS_FRAG);
+        boolean isApplyReShow = false;
+        if(isProcess){
+            if(null==applyFragment){
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.PROCESS_FRAG);
+                if (null != tab1) {
+                    applyFragment = (ApplyFragment) tab1;
+                    isApplyReShow = true;
+                } else {
+                    isApplyReShow = false;
+                    applyFragment = new ApplyFragment();
+                    transaction.add(R.id.fragment_container, applyFragment, SPKeyUtils.PROCESS_FRAG);
+                }
+            }else{
+                isApplyReShow = true;
             }
         }
         if (isProcess && null != applyFragment) {
             transaction.show(applyFragment);
+            if(isApplyReShow)
+                applyFragment.resume();
         } else if (!isProcess && null != applyFragment) {
             transaction.hide(applyFragment);
         }
@@ -902,7 +916,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     /**
      * 获取登录的账号名和密码
-     *
      * @param ywUser
      */
     @Override
@@ -944,15 +957,17 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
     }
 
-    public static long getLastMoney() {
-        long sum = MainActivity.loanMoney + MainActivity.loanMoney * MainActivity.RATE * MainActivity.choosePeriod / 100;
-        double ceil = Math.ceil(sum / MainActivity.choosePeriod);
+    public static long getLastMoney(){
+        long sum = MainActivity.loanMoney+MainActivity.loanMoney*MainActivity.RATE*MainActivity.choosePeriod/100;
+        double dSum = Double.valueOf(sum);
+        double ceil = Math.ceil(dSum / MainActivity.choosePeriod);
         return Math.round(ceil);
     }
 
-    public static long getLastMoney(double money, int period) {
-        long sum = (long) (money + money * MainActivity.RATE * period / 100);
-        double ceil = Math.ceil(sum / period);
+    public static long getLastMoney(double money,int period){
+        long sum = (long) (money+money*MainActivity.RATE*period/100);
+        double dSum = Double.valueOf(sum);
+        double ceil = Math.ceil(dSum / period);
         return Math.round(ceil);
     }
 

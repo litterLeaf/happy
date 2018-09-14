@@ -144,6 +144,8 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     }
 
     private void setBankdCardBean(BandCardBean bean) {
+        bankCardName = bean.getBankCode();
+        bankCardNumber = bean.getCardNo();
         beforeBindCard.setVisibility(View.GONE);
         bindCard.setVisibility(View.VISIBLE);
         bindCard.setCenterString(bean.getCardNo());
@@ -222,6 +224,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                     MainActivity.loanMoney = addValue;
                     idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
                 }
+                mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
                 setAddSubIcon();
                 break;
             case R.id.sub:
@@ -230,6 +233,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
                     MainActivity.loanMoney = subValue;
                     idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
                 }
+                mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
                 setAddSubIcon();
                 break;
         }
@@ -321,13 +325,13 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         MainActivity.choosePeriod = 1;
         choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
-        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
 
     private void setChoose3Period(){
         MainActivity.choosePeriod = 3;
         choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
         choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
-        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+MainActivity.getLastMoney());
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
 }

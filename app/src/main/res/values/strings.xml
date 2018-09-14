@@ -139,6 +139,7 @@
     <string name="recipient_account_no">No Rekening Penerima</string>
     <string name="had_upload_these_photo_please_re_photo">Kedua gambar ini telah diunggah, silakan rekam ulang</string>
     <string name="every_pay">Jumlah pembayaran per bulan Rp</string>
+    <string name="reject_left_day">Silahkan coba lagi dalam %s hari</string>
 
     <string name="relation_parent">ORANGTUA</string>
     <string name="relation_friend">TEMAN</string>
