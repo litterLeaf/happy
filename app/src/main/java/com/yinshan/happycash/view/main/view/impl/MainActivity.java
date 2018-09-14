@@ -221,6 +221,10 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
             }
         }else if(chooseIndex==2||chooseIndex==3){
             reSetTab(chooseIndex);
+            if(chooseIndex==3){
+                manageFragament(false,false,true,false,false,
+                        false,false,false,false,false);
+            }
         }
 
         if(isFirstEnter)
@@ -352,17 +356,26 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //isProcess
-        if (isProcess && null == applyFragment) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.PROCESS_FRAG);
-            if (null != tab1) {
-                applyFragment = (ApplyFragment) tab1;
-            } else {
-                applyFragment = new ApplyFragment();
-                transaction.add(R.id.fragment_container, applyFragment, SPKeyUtils.PROCESS_FRAG);
+        boolean isApplyReShow = false;
+        if(isProcess){
+            if(null==applyFragment){
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.PROCESS_FRAG);
+                if (null != tab1) {
+                    applyFragment = (ApplyFragment) tab1;
+                    isApplyReShow = true;
+                } else {
+                    isApplyReShow = false;
+                    applyFragment = new ApplyFragment();
+                    transaction.add(R.id.fragment_container, applyFragment, SPKeyUtils.PROCESS_FRAG);
+                }
+            }else{
+                isApplyReShow = true;
             }
         }
         if (isProcess && null != applyFragment) {
             transaction.show(applyFragment);
+            if(isApplyReShow)
+                applyFragment.resume();
         } else if (!isProcess && null != applyFragment) {
             transaction.hide(applyFragment);
         }
