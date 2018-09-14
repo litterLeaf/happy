@@ -3,8 +3,7 @@
 
     <!-- 描边 -->
     <solid
-        android:color="@color/app_yellow" ></solid>
-
+        android:color="@color/app_yellow" />
     <corners android:radius="30dp"/>
 
 </shape>

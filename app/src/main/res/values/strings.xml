@@ -775,6 +775,8 @@ atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri
     <string name="please_update_the_version">Kami secara periodik memperbaharui fungsi baru untuk memperbaiki kecepatan, meningkatkan pengalaman, anda disarankan update ke versi terbaru.</string>
     <string name="oke">OKE</string>
     <string name="update_version">Update segera</string>
+    <string name="repayment_success">Selamat anda telah berhasil membayar</string>
+    <string name="current_tip1">Silahkan periksa rekening anda,Pengeluaran pinjaman berhasil !</string>
 
     <string name="loan_agreement_data_privacy">
 Kebijakan Privasi ini telah dibuat untuk menjaga, melindungi dan menjaga privasi dan kerahasiaan dari Pengguna Platform milik kami. Pengguna diharapkan membaca Kebijakan Privasi ini dengan saksama sebelum menggunakan Layanan yang diberikan melalui Platform. Dengan mengakses dan menggunakan Layanan di Platform, Pengguna mengakui telah membaca, memahami dan menyetujui isi yang tertulis dalam Kebijakan Privasi ini.
