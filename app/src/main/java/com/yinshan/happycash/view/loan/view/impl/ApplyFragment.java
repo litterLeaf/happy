@@ -79,9 +79,6 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
 
         setListViewHeightBasedOnChildren(progressList);
 
-
-//        refresh();
-
         shrinkageView();
 
     }
