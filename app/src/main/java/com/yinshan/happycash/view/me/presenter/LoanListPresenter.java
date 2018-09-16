@@ -30,6 +30,7 @@ public class LoanListPresenter {
     }
 
     public void getList(){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .getLoanList(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -37,12 +38,14 @@ public class LoanListPresenter {
                     @Override
                     public void onNext(List<LoanItem> value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.showList(value);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                     }
                 });
     }

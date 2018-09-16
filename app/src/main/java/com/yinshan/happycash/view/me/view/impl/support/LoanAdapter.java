@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
@@ -57,8 +58,13 @@ public class LoanAdapter extends BaseAdapter{
         if(null==view){
             view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_loan,parent,false);
             holder = new ViewHolder();
+            holder.bgView = (RelativeLayout)view.findViewById(R.id.bgView);
             holder.time = (TextView)view.findViewById(R.id.time);
             holder.id = (TextView)view.findViewById(R.id.id);
+            holder.line = (View)view.findViewById(R.id.line);
+            holder.title1 = (TextView)view.findViewById(R.id.title1);
+            holder.title2 = (TextView)view.findViewById(R.id.title2);
+            holder.title3 = (TextView)view.findViewById(R.id.title3);
             holder.money = (TextView)view.findViewById(R.id.money);
             holder.period = (TextView)view.findViewById(R.id.period);
             holder.status = (TextView)view.findViewById(R.id.status);
@@ -79,6 +85,31 @@ public class LoanAdapter extends BaseAdapter{
 //        }else{
 //            holder.status.setTextColor(mContext.getResources().getColor(R.color.color_red));
 //        }
+        if(position==0){
+//        if(status.equals("CURRENT")){
+            holder.bgView.setBackgroundResource(R.drawable.bg_oval_yellow);
+            holder.time.setTextColor(mContext.getResources().getColor(R.color.app_blue));
+            holder.id.setTextColor(mContext.getResources().getColor(R.color.app_blue));
+            int whiteColor = mContext.getResources().getColor(R.color.white);
+            holder.line.setBackgroundColor(whiteColor);
+            holder.title1.setTextColor(mContext.getResources().getColor(R.color.f6f6f6));
+            holder.title2.setTextColor(mContext.getResources().getColor(R.color.f6f6f6));
+            holder.title3.setTextColor(mContext.getResources().getColor(R.color.f6f6f6));
+            holder.money.setTextColor(mContext.getResources().getColor(R.color.white));
+            holder.period.setTextColor(mContext.getResources().getColor(R.color.white));
+            holder.status.setTextColor(mContext.getResources().getColor(R.color.white));
+        }else{
+            holder.bgView.setBackgroundResource(R.drawable.bg_round_white);
+            holder.time.setTextColor(mContext.getResources().getColor(R.color.gray_9b));
+            holder.id.setTextColor(mContext.getResources().getColor(R.color.gray_9b));
+            holder.line.setBackgroundColor(mContext.getResources().getColor(R.color.hc_line_bg));
+            holder.title1.setTextColor(mContext.getResources().getColor(R.color.line));
+            holder.title2.setTextColor(mContext.getResources().getColor(R.color.line));
+            holder.title3.setTextColor(mContext.getResources().getColor(R.color.line));
+            holder.money.setTextColor(mContext.getResources().getColor(R.color.gray_9b));
+            holder.period.setTextColor(mContext.getResources().getColor(R.color.gray_9b));
+            holder.status.setTextColor(mContext.getResources().getColor(R.color.gray_9b));
+        }
         if (TextUtils.equals(ServiceLoanStatus.WITHDRAWN,status)) {
             holder.status.setAllCaps(true);
             holder.status.setText(R.string.text_cancel);
@@ -94,8 +125,13 @@ public class LoanAdapter extends BaseAdapter{
     }
 
     class ViewHolder{
+        RelativeLayout bgView;
         TextView time;
         TextView id;
+        View line;
+        TextView title1;
+        TextView title2;
+        TextView title3;
         TextView money;
         TextView period;
         TextView status;
