@@ -30,6 +30,7 @@ import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.loan.model.ApplyPurpose;
 import com.yinshan.happycash.view.loan.presenter.LoaningPresenter;
 import com.yinshan.happycash.view.loan.view.ILoaningView;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.DialogManager;
@@ -171,7 +172,9 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     public void submitLoanOk() {
 //        AppReport.sendUserData();
 //        Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to get scan results
-
+        LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        bean.setStatus("SUBMITTED");
+        SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         Intent intent;
         if (SPUtils.getInstance().getLiveNess()||true) {
             intent = new Intent(getActivity(), OliveStartActivity.class);

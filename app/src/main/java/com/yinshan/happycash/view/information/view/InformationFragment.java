@@ -32,6 +32,7 @@ import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.me.model.StageStatus;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
@@ -99,15 +100,18 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 
     @Override
     protected void initView() {
-        resetProgress();
-
         mPresenter = new InformationPresenter(getActivity(),this);
         mBpjsPresenter = new BpjsPresenter(getActivity(),this);
 
+        RxBus.get().register(this);
+
+        resume();
+    }
+
+    public void resume(){
+        resetProgress();
         if(TokenManager.getInstance().hasLogin())
             mPresenter.getProgress();
-
-        RxBus.get().register(this);
     }
 
     @Override
@@ -238,7 +242,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
             if(bean==null)
                 showProgressButton(progress);
             else{
-                String loanStatus = StatusManagementUtils.loanStatusClassify(bean);
+                String loanStatus = StatusManagementUtils.loanBtnStatus(bean);
                 if(loanStatus.equals(AppLoanStatus.UNLOAN)){
                     showProgressButton(progress);
                 }else{

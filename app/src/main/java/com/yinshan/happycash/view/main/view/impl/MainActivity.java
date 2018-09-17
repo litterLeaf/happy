@@ -109,8 +109,8 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     boolean isFirstEnter = true;
     public static boolean isNotResume = false;
 
-    public static final int MIN_VALUE = 2000000;
-    public static final int MAX_VALUE = 6000000;
+    public static final long MIN_VALUE = 2000000;
+    public static final long MAX_VALUE = 6000000;
     public static final int MONEY_SEG = 4;
     public static final int RATE = 8;
     public static int seg;
@@ -199,16 +199,19 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 dealResult(object);
             } else {
                 showFragment(AppLoanStatus.UNLOAN);
+                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
             }
         } else {
             if (TokenManager.getInstance().hasLogin()) {
-                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-                if (object != null && object.getStatus() != null) {
-                    dealResult(object);
-                }else{
-                    showFragment(AppLoanStatus.UNLOAN);
-                    mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
-                }
+                showFragment(AppLoanStatus.UNLOAN);
+                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
+//                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+//                if (object != null && object.getStatus() != null) {
+//                    dealResult(object);
+//                }else{
+//                    showFragment(AppLoanStatus.UNLOAN);
+//
+//                }
             }else
                 showFragment(AppLoanStatus.UNLOAN);
         }
@@ -396,17 +399,26 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //inforFragament
-        if (isInfor && null == inforFragament) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.CERTIFICATION_TAB);
-            if (null != tab1) {
-                inforFragament = (InformationFragment) tab1;
-            } else {
-                inforFragament = new InformationFragment();
-                transaction.add(R.id.fragment_container, inforFragament, SPKeyUtils.CERTIFICATION_TAB);
+        boolean isInfoFirstReShow = false;
+        if(isInfor){
+            if (null == inforFragament) {
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.CERTIFICATION_TAB);
+                if (null != tab1) {
+                    inforFragament = (InformationFragment) tab1;
+                    isInfoFirstReShow = true;
+                } else {
+                    isInfoFirstReShow = false;
+                    inforFragament = new InformationFragment();
+                    transaction.add(R.id.fragment_container, inforFragament, SPKeyUtils.CERTIFICATION_TAB);
+                }
+            }else{
+                isInfoFirstReShow = true;
             }
         }
         if (isInfor && null != inforFragament) {
             transaction.show(inforFragament);
+            if(isInfoFirstReShow)
+                inforFragament.resume();
         } else if (!isInfor && null != inforFragament) {
             transaction.hide(inforFragament);
         }

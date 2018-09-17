@@ -105,7 +105,8 @@ public class UnLoanFragment extends BaseFragment {
 
     public void resume() {
         LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-        MainActivity.loanMoney = Math.round(bean.getTotalAmount());
+        showMoneyUI();
+//        MainActivity.loanMoney = Math.round(bean.getTotalAmount());
         setComputeMoney();
         if(bean!=null&& !TextUtils.isEmpty(bean.getStatus())&&bean.getStatus().equals("SUBMITTED")){
             unloanSeeker.setEnabled(false);
@@ -197,5 +198,8 @@ public class UnLoanFragment extends BaseFragment {
         mUnloanFee.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
 
-
+    private void showMoneyUI(){
+        int progress = (int)((MainActivity.loanMoney-MainActivity.MIN_VALUE)*100/(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE));
+        unloanSeeker.setProgress(progress);
+    }
 }
