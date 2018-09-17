@@ -49,6 +49,8 @@ public class StatusManagementUtils {
             mTempStatus = AppLoanStatus.REPAYMENT;
         } else if(ServiceLoanStatus.SUPPLEMENT.equals(status)){
             mTempStatus = AppLoanStatus.REVIEW_SUPPLEMENT;
+        } else if(ServiceLoanStatus.SUBMITTED.equals(status)){
+            mTempStatus = AppLoanStatus.SUBMITTED;
         } else if(ServiceLoanStatus.PRE_REVIEW.equals(status)){
             mTempStatus = AppLoanStatus.REVIEW;
         } else if(ServiceLoanStatus.FIRST_REVIEW.equals(status)){

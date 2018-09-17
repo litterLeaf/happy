@@ -19,6 +19,7 @@ import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AndroidUtils;
+import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
@@ -78,7 +79,12 @@ public class UnLoanFragment extends BaseFragment {
         else
             setChoose3Period();
 
-
+        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        if (object != null && object.getStatus() != null) {
+            if(object.getStatus().equals(ServiceLoanStatus.SUBMITTED)){
+                MainActivity.loanMoney = (long)(object.getAmount());
+            }
+        }
         resume();
 
         unloanSeeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -11,4 +11,6 @@ public interface AppLoanStatus {
         String  OVERDUE = "OVERDUE";//暂时不用
         String  REJECT = "REJECTED";
         String REVIEW_SUPPLEMENT = "REVIEW_SUPPLEMENT";
+
+        String SUBMITTED = "SUBMITTED";
 }
