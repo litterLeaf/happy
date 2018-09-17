@@ -1,5 +1,6 @@
 package com.yinshan.happycash.framework;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -54,6 +55,8 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
     private Unbinder unbinder;
 
     private AlertDialog alertDialog;
+
+    protected Activity mActivity;
 
     /**
      * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
@@ -177,6 +180,13 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
         alertDialog.setContentView(R.layout.loading_alert);
         alertDialog.setCanceledOnTouchOutside(false);
     }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        this.mActivity = activity;
+    }
+
 
     @Override
     public boolean isShouldHandleResponseData() {

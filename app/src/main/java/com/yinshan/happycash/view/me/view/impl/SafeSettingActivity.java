@@ -66,7 +66,7 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
     @Override
     public void logoutOk() {
         quitClear();
-        startActivity(new Intent(this, MainActivity.class));
         AppManager.getInstance().finishAllActivity();
+        startActivity(new Intent(this, MainActivity.class));
     }
 }

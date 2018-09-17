@@ -147,6 +147,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     private void setBankdCardBean(BandCardBean bean) {
         bankCardName = bean.getBankCode();
         bankCardNumber = bean.getCardNo();
+        userName = bean.getHolderName();
         beforeBindCard.setVisibility(View.GONE);
         bindCard.setVisibility(View.VISIBLE);
         bindCard.setCenterString(bean.getCardNo());
