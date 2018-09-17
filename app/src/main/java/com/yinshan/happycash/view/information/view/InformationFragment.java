@@ -253,6 +253,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     }
 
     private void showProgressButton(int progress) {
+        mSubmit.setVisibility(View.VISIBLE);
         if(progress==100){
             mSubmit.setClickable(true);
             mSubmit.setAlpha(0.8f);

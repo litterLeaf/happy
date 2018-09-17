@@ -41,6 +41,7 @@ public class GetPersonInfoPresenter {
                     @Override
                     public void onError(Throwable e) {
                         mView.dismissLoadingDialog();
+                        mView.showPersonInfoError();
                     }
                 });
     }

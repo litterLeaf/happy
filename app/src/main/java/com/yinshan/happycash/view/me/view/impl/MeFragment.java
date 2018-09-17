@@ -123,4 +123,9 @@ public class MeFragment extends BaseFragment implements IGetPersonView {
             }
         }
     }
+
+    @Override
+    public void showPersonInfoError() {
+        mUserName.setVisibility(View.GONE);
+    }
 }

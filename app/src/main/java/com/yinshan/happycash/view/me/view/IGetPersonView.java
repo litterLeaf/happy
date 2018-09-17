@@ -10,4 +10,6 @@ public interface IGetPersonView extends IBaseView{
 
 
     void showInfo(PersonalBean personalBean);
+
+    void showPersonInfoError();
 }
