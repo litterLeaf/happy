@@ -12,12 +12,15 @@ import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.presenter.SafeSettingPresenter;
 import com.yinshan.happycash.view.me.view.ISafeSettingView;
+import com.yinshan.happycash.widget.common.CommonClickListener;
+import com.yinshan.happycash.widget.dialog.CommonDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
  * Created by huxin on 2018/3/20.
+ * 安全设置界面
  */
 
 public class SafeSettingActivity extends BaseSingleNoScrollActivity implements ISafeSettingView{
@@ -56,7 +59,15 @@ public class SafeSettingActivity extends BaseSingleNoScrollActivity implements I
     }
 
     private void submitQuit(){
-        mPresenter.logout();
+        CommonClickListener click = new CommonClickListener() {
+            @Override
+            public void onClick() {
+                mPresenter.logout();
+            }
+        };
+        String desc = getResources().getString(R.string.dialog_ensure_logout);
+        CommonDialog dialog = new CommonDialog(this, click,null,desc,null,null,true);
+        dialog.show();
     }
 
     private void quitClear(){
