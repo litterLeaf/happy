@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.main.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
@@ -42,6 +43,7 @@ public class UpdateDialogPresenter {
                        @Override
                        protected void onError(ApiException ex) {
                            super.onError(ex);
+                           AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                        }
                    }
                 );

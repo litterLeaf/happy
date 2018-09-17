@@ -3,12 +3,14 @@ package com.yinshan.happycash.view.main.presenter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
+import com.yinshan.happycash.view.main.SplashActivity;
 import com.yinshan.happycash.view.main.contract.SplashContract;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 
@@ -54,6 +56,7 @@ public class SplashPresenter implements SplashContract.Presenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mvpView.getStatusError(ex.getDisplayMessage());
+                        AppException.handleException(context,ex.getCode(),ex.getMessage());
                     }
                 });
     }

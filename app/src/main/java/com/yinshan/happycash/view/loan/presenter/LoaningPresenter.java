@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.loan.presenter;
 import android.content.Context;
 import android.util.Log;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.RecordApi;
@@ -57,6 +58,7 @@ public class LoaningPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                         Log.e("bankCardDto","bindCard"+ex);
                     }
                 });
@@ -77,6 +79,7 @@ public class LoaningPresenter {
                     @Override
                     protected void onError(ApiException ex) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                         super.onError(ex);
                     }
                 });
@@ -84,6 +87,7 @@ public class LoaningPresenter {
 
     public void submitLoanApp(String loanType,String amount, String period,String periodUnit,String bankCode,String cardNo,String holderName,String applyPurpose,String applyFor,
                               String applyChannel,String applyPlatform,String imei,String smsCode){
+        mView.showLoadingDialog();
         mLoanApi.applyLoanApp(loanType,amount,period,periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
                 applyChannel,applyPlatform,imei,TokenManager.getInstance().getToken(),smsCode)
                 .compose(RxTransformer.io_main())
@@ -105,6 +109,7 @@ public class LoaningPresenter {
                             mView.submitLoanOk();
                         else
                             mView.submitFail(ex.getDisplayMessage());
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                         Log.v("huxin","submit fail"+ex.getCode()+"  "+ex.toString());
                     }
                 });

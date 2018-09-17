@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.me.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.UserApi;
@@ -46,6 +47,7 @@ public class LoanListPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

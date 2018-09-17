@@ -173,7 +173,7 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
 
     @Override
     public void showLoadingDialog() {
-        alertDialog = new AlertDialog.Builder(getActivity()).create();
+        alertDialog = new AlertDialog.Builder(mActivity).create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
         alertDialog.setCancelable(true);
         alertDialog.show();

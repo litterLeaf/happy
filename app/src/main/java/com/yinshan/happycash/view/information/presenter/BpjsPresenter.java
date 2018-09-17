@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.information.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
@@ -43,6 +44,7 @@ public class BpjsPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.bpjsFail();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
 

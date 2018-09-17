@@ -2,9 +2,11 @@ package com.yinshan.happycash.view.me.view.impl.support;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.network.common.base.ApiException;
 import com.yinshan.happycash.network.common.base.BaseObserver;
 import com.yinshan.happycash.network.common.base.RxTransformer;
 import com.yinshan.happycash.view.information.model.PersonalBean;
@@ -39,9 +41,10 @@ public class GetPersonInfoPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException e) {
                         mView.dismissLoadingDialog();
                         mView.showPersonInfoError();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }

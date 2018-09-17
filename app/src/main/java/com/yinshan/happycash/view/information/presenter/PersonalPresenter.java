@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.information.presenter;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
@@ -56,8 +57,9 @@ public class PersonalPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException ex) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }
@@ -74,8 +76,9 @@ public class PersonalPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException e) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }
@@ -103,6 +106,7 @@ public class PersonalPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

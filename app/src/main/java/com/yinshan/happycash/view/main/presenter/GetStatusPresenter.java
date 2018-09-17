@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.main.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.network.common.base.ApiException;
@@ -44,6 +45,7 @@ public class GetStatusPresenter {
                         mView.dismissLoadingDialog();
                         super.onError(ex);
                         mView.getStatusError(ex.getDisplayMessage());
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

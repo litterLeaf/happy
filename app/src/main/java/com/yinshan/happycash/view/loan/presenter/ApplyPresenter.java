@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.loan.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
@@ -45,6 +46,7 @@ public class ApplyPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                         mView.showDetailFail(ex.getDisplayMessage());
                     }
                 });
@@ -64,9 +66,10 @@ public class ApplyPresenter {
                     }
 
                     @Override
-                    protected void onError(ApiException ex) {
-                        super.onError(ex);
+                    protected void onError(ApiException e) {
+                        super.onError(e);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                         mView.cancelFail();
                     }
                 });

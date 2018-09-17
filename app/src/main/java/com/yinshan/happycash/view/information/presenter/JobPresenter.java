@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.information.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.api.RegionApi;
@@ -48,8 +49,9 @@ public class JobPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException e) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }
@@ -66,8 +68,9 @@ public class JobPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException e) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }
@@ -84,8 +87,9 @@ public class JobPresenter {
                     }
 
                     @Override
-                    public void onError(Throwable e) {
+                    public void onError(ApiException e) {
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }
@@ -105,9 +109,10 @@ public class JobPresenter {
                     }
 
                     @Override
-                    protected void onError(ApiException ex) {
-                        super.onError(ex);
+                    protected void onError(ApiException e) {
+                        super.onError(e);
                         mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,e.getCode(),e.getMessage());
                     }
                 });
     }
