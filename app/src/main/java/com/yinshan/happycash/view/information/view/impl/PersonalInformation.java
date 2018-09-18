@@ -180,15 +180,19 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
         PersonalKtp.setText(personalBean.getCredentialNo());
         personalFamilyName.setText(personalBean.getFamilyNameInLaw());
         personalGender.setText(getString(GenderStatus.valueOf(personalBean.getGender()).getShowString()));
+        mBean.setGender(personalBean.getGender());
         personalEducation.setText(personalBean.getLastEducation());
         personalMarital.setText(getString(MarriageStatus.valueOf(personalBean.getMaritalStatus()).getShowString()));
+        mBean.setMaritalStatus(personalBean.getMaritalStatus());
         personalChildrenNumber.setText(getString(ChildrenNumStatus.valueOf(personalBean.getChildrenNumber()).getShowString()));
+        mBean.setChildrenNumber(personalBean.getChildrenNumber());
         personalResidenceProvince.setText(personalBean.getProvince());
         personalResidenceCity.setText(personalBean.getCity());
         personalResidenceStreet.setText(personalBean.getDistrict());
         personalResidenceArea.setText(personalBean.getArea());
         personalAddress.setText(personalBean.getAddress());
         personalDurationOfResidence.setText(getString(DurationStatus.valueOf(personalBean.getResidenceDuration()).getShowString()));
+        mBean.setResidenceDuration(personalBean.getResidenceDuration());
     }
 
     @Override
@@ -290,6 +294,7 @@ public class PersonalInformation extends BaseSingleActivity implements IPersonal
             mBean.setArea(personalResidenceArea.getText().toString().trim());
             mBean.setAddress(personalAddress.getText().toString().trim());
             mBean.setLastEducation(personalEducation.getText().toString().trim());
+
             mPresenter.submitPersonalInfo(mBean);
         }
     }
