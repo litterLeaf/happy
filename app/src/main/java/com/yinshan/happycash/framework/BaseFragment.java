@@ -2,6 +2,7 @@ package com.yinshan.happycash.framework;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -56,7 +57,7 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
 
     private AlertDialog alertDialog;
 
-    protected Activity mActivity;
+    protected Context mActivity;
 
     /**
      * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
@@ -182,9 +183,9 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        this.mActivity = activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mActivity = context;
     }
 
 

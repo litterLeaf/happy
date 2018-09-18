@@ -23,6 +23,7 @@ import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
+import com.yinshan.happycash.view.information.model.PersonalBean;
 import com.yinshan.happycash.view.information.model.ProgressBean;
 import com.yinshan.happycash.view.information.presenter.BpjsPresenter;
 import com.yinshan.happycash.view.information.presenter.InformationPresenter;
@@ -33,6 +34,8 @@ import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.StageStatus;
+import com.yinshan.happycash.view.me.view.IGetPersonView;
+import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
@@ -69,7 +72,7 @@ import cn.fraudmetrix.octopus.aspirit.main.OctopusTaskCallBack;
  *         on 2018/1/31
  */
 
-public class InformationFragment extends BaseFragment implements IInfoView,IBpjsView{
+public class InformationFragment extends BaseFragment implements IInfoView,IBpjsView,IGetPersonView{
 
     ProgressBar mProgressView;
     TextView mProgressText;
@@ -90,6 +93,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 
     InformationPresenter mPresenter;
     BpjsPresenter mBpjsPresenter;
+    GetPersonInfoPresenter mGetPersonPresenter;
 
     private ProgressBean mProgressBean;
 
@@ -102,6 +106,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     protected void initView() {
         mPresenter = new InformationPresenter(getActivity(),this);
         mBpjsPresenter = new BpjsPresenter(getActivity(),this);
+        mGetPersonPresenter = new GetPersonInfoPresenter(getActivity(),this);
 
         RxBus.get().register(this);
 
@@ -122,31 +127,6 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     @OnClick({R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-//            case R.id.view_not_finish_person:
-////                doBpjsAction();
-//                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
-//                break;
-//            case R.id.view_finish_person:
-//                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
-//                break;
-//            case R.id.view_not_finish_employ:
-//                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
-//                break;
-//            case R.id.view_finish_employ:
-//                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
-//                break;
-//            case R.id.view_not_finish_contact:
-//                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
-//                break;
-//            case R.id.view_finish_contact:
-//                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
-//                break;
-//            case R.id.view_not_finish_upload_photo:
-//                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
-//                break;
-//            case R.id.view_finish_upload_photo:
-//                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
-//                break;
             case R.id.submit:
                 RxBus.get().post(new InfoUploadEvent());
                 break;
@@ -304,10 +284,14 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
                 if(mProgressBean==null)
                     mPresenter.getProgress();
                 else{
-                    if(mProgressBean.isPersonalInfoPart()&& !TextUtils.isEmpty(SPUtils.getInstance().getUserKtp())){
-                        doBpjsAction();
+                    if(mProgressBean.isPersonalInfoPart()){
+                        if(!TextUtils.isEmpty(SPUtils.getInstance().getUserKtp()))
+                            doBpjsAction();
+                        else
+                            mGetPersonPresenter.getPersonInfo();
                     }else{
-                        ToastManager.showToast("Harap tingkatkan informasi pribadi Anda terlebih dahulu.");
+                        String str = getActivity().getString(R.string.please_input_your_person_info_first);
+                        ToastManager.showToast(str);
                     }
                 }
             }
@@ -362,4 +346,20 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
             }
         }
     };
+
+    @Override
+    public void showInfo(PersonalBean personalBean) {
+        if(personalBean!=null&&!TextUtils.isEmpty(personalBean.getCredentialNo())) {
+            SPUtils.getInstance().setUserKtp(personalBean.getCredentialNo());
+            doBpjsAction();
+        }else{
+            String str = getActivity().getString(R.string.please_input_your_person_info_first);
+            ToastManager.showToast(str);
+        }
+    }
+
+    @Override
+    public void showPersonInfoError() {
+        //HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
+    }
 }
