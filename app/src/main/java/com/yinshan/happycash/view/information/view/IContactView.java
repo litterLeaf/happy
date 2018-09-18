@@ -16,4 +16,5 @@ public interface IContactView extends IBaseView{
 
     void submitContactOk();
 
+    void getContactInfoError(String message);
 }

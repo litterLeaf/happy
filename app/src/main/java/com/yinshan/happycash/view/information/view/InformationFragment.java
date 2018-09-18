@@ -2,15 +2,9 @@ package com.yinshan.happycash.view.information.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,15 +27,12 @@ import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
-import com.yinshan.happycash.view.me.model.StageStatus;
 import com.yinshan.happycash.view.me.view.IGetPersonView;
 import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.ToastManager;
-import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
 
 
-import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 import cn.fraudmetrix.octopus.aspirit.bean.OctopusParam;
@@ -330,8 +321,8 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
     }
 
     @Override
-    public void bpjsFail() {
-        HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
+    public void bpjsFail(String message) {
+        HappySnackBar.showSnackBar(mSubmit,message, SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 
     private OctopusTaskCallBack octopusTaskCallBack = new OctopusTaskCallBack() { @Override

@@ -49,6 +49,7 @@ public class ContactPresenter {
                     @Override
                     protected void onError(ApiException ex) {
                         mView.dismissLoadingDialog();
+                        mView.getContactInfoError(ex.getMessage());
                         AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                         super.onError(ex);
                     }

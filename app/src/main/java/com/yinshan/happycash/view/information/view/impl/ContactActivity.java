@@ -18,11 +18,13 @@ import android.widget.TextView;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.ContactBean;
 import com.yinshan.happycash.view.information.model.RelationStatus;
 import com.yinshan.happycash.view.information.presenter.ContactPresenter;
 import com.yinshan.happycash.view.information.view.IContactView;
+import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.ListDialog;
 
 import java.util.ArrayList;
@@ -241,6 +243,11 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     public void submitContactOk() {
         ContactActivity.this.setResult(Activity.RESULT_OK);
         finish();
+    }
+
+    @Override
+    public void getContactInfoError(String message) {
+        HappySnackBar.showSnackBar(mBtnSubmit,message, SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 
     @Override

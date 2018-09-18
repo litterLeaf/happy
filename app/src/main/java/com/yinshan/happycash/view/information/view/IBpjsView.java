@@ -8,5 +8,5 @@ public interface IBpjsView {
 
     void bpjsOk();
 
-    void bpjsFail();
+    void bpjsFail(String message);
 }

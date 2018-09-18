@@ -43,7 +43,7 @@ public class BpjsPresenter {
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
-                        mView.bpjsFail();
+                        mView.bpjsFail(ex.getMessage());
                         AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
