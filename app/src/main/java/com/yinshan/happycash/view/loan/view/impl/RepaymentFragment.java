@@ -179,10 +179,18 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     @Override
     public void getDepositOk(DepositResponseBean bean) {
+        MyDebugUtils.v("the wantImage is "+getActivity());
         depositRB = bean;
-        int depositRBType = PaymentMethodManager.getPaymentStepsLayout(bean);
+
+        if(getActivity()==null) {
+
+        }else{
+            jump();
+        }
+    }
+
+    private void jump(){
         Intent intent = new Intent(getActivity(),BankPaymentStepActivity.class);
-        intent.putExtra("Steps",depositRBType);
         startActivity(intent);
     }
 

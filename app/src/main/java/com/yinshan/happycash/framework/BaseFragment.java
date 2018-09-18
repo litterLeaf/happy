@@ -17,8 +17,10 @@ import android.widget.ListView;
 
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.inter.IBaseView;
 
 import butterknife.ButterKnife;
@@ -57,7 +59,8 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
 
     private AlertDialog alertDialog;
 
-    protected Context mActivity;
+    protected MainActivity mActivity;
+    protected Activity mAddActivity;
 
     /**
      * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
@@ -181,13 +184,16 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
         alertDialog.setContentView(R.layout.loading_alert);
         alertDialog.setCanceledOnTouchOutside(false);
     }
+    int i1 = 0;
+    int i2 = 0;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        this.mActivity = context;
+        this.mActivity = (MainActivity) context;
+        i1++;
+        MyDebugUtils.v("onAttach Context"+i1);
     }
-
 
     @Override
     public boolean isShouldHandleResponseData() {

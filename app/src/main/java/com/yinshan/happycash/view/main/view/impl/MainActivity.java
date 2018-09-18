@@ -38,10 +38,12 @@ import com.yinshan.happycash.framework.MessageEvent;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.utils.AppLoanStatus;
 import com.yinshan.happycash.utils.LoggerWrapper;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.StatusManagementUtils;
 import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.utils.ToolsUtils;
+import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 import com.yinshan.happycash.view.loan.view.impl.ApplyFragment;
 import com.yinshan.happycash.view.loan.view.impl.BuildUpFragment;
 import com.yinshan.happycash.utils.SPUtils;
@@ -167,6 +169,12 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     protected void secondInit() {
         requestProfile();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyDebugUtils.v("mainActivity wantImage onDestroy ");
     }
 
     @Override
@@ -929,6 +937,7 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                     "", getResources().getString(R.string.current_tip1),
                     getResources().getString(R.string.oke), "Ayo rating kami", true);
             paymentSuccessDialog.show();
+            LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         } else if (type.equals(SPKeyUtils.DialogType_PAID_OFF)) {
             CommonDialog paidOffSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess,
                     ()-> Log.e("paymentSuccessDialog", "success"), "",
