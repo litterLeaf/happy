@@ -204,14 +204,14 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         if(list.size()>=1){
             ContactBean contactBean = list.get(0);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                showRelative1(contactBean.getRelation());
+                showRelative1(showRelationStatus(contactBean.getRelation()));
             }
             showContact1(contactBean.getName(),contactBean.getMobile());
         }
         if(list.size()>=2){
             ContactBean contactBean = list.get(1);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                showRelative2(contactBean.getRelation());
+                showRelative2(showRelationStatus(contactBean.getRelation()));
             }
             showContact2(contactBean.getName(),contactBean.getMobile());
         }
@@ -219,21 +219,21 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         if(list.size()>=3){
             ContactBean contactBean = list.get(2);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                showRelative3(contactBean.getRelation());
+                showRelative3(showRelationStatus(contactBean.getRelation()));
             }
             showContact3(contactBean.getName(),contactBean.getMobile());
         }
         if(list.size()>=4){
             ContactBean contactBean = list.get(3);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                showRelative4(contactBean.getRelation());
+                showRelative4(showRelationStatus(contactBean.getRelation()));
             }
             showContact4(contactBean.getName(),contactBean.getMobile());
         }
         if(list.size()>=5){
             ContactBean contactBean = list.get(4);
             if(!TextUtils.isEmpty(contactBean.getRelation())){
-                showRelative5(contactBean.getRelation());
+                showRelative5(showRelationStatus(contactBean.getRelation()));
             }
             showContact5(contactBean.getName(),contactBean.getMobile());
         }

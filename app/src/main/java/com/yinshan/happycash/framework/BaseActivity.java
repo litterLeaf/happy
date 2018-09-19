@@ -29,6 +29,7 @@ import com.yinshan.happycash.network.api.UserApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
 import com.yinshan.happycash.utils.DensityUtil;
 import com.yinshan.happycash.utils.LoggerWrapper;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ToastUtils;
@@ -197,6 +198,7 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
         if(alertDialog!=null&&alertDialog.isShowing()){
             return;
         }
+        MyDebugUtils.v("BaseActivity this "+this);
         if(alertDialog==null){
             alertDialog = new AlertDialog.Builder(this).create();
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());

@@ -58,7 +58,11 @@ public class LoaningPresenter {
                     protected void onError(ApiException ex) {
                         super.onError(ex);
                         mView.dismissLoadingDialog();
-                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
+                        if(ex.getCode()==400){
+
+                        }else{
+                            AppException.handleException(mContext,ex.getCode(),ex.getMessage());
+                        }
                         Log.e("bankCardDto","bindCard"+ex);
                     }
                 });

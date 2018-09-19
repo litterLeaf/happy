@@ -235,7 +235,6 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
                 } else {
                     MainActivity.isNotResume = false;
                 }
-
             }
         } else if (chooseIndex == 2 || chooseIndex == 3) {
             reSetTab(chooseIndex);
@@ -932,13 +931,18 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
     @Override
     public void updateDialogSuccess(String type) {
         if (type.equals(SPKeyUtils.DialogType_CURRENT)) {
+            LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+            object.setAppCurrentShownStatus("");
+            SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, object);
             CommonDialog paymentSuccessDialog = new CommonDialog(this, R.layout.dialog_current_suucess,
                     () -> ToolsUtils.launchAppDetail(AppApplication.appContext),
                     "", getResources().getString(R.string.current_tip1),
                     getResources().getString(R.string.oke), "Ayo rating kami", true);
             paymentSuccessDialog.show();
-            LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
         } else if (type.equals(SPKeyUtils.DialogType_PAID_OFF)) {
+            LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+            bean.setAppPaidoffShownStatus("");
+            SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, bean);
             CommonDialog paidOffSuccessDialog = new CommonDialog(this, R.layout.dialog_payment_suucess,
                     ()-> Log.e("paymentSuccessDialog", "success"), "",
                     getResources().getString(R.string.repayment_success),
