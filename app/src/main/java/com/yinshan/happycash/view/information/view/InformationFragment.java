@@ -302,6 +302,7 @@ public class InformationFragment extends BaseFragment implements IInfoView,IBpjs
 ////                param.passbackarams=“*****”//选填;
 //        param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
         OctopusParam param = new OctopusParam();
+        param.passbackarams = SPUtils.getInstance().getMobile();
         param.identityCode = SPUtils.getInstance().getUserKtp();//必填，作为唯⼀一标识关联多数据源数据;
 
         OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
