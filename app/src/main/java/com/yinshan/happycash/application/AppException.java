@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.network.common.base.BaseURL;
+import com.yinshan.happycash.network.common.base.CodeException;
 import com.yinshan.happycash.view.login.LoginActivity;
 import com.yinshan.happycash.widget.common.ToastManager;
 
@@ -20,6 +21,8 @@ public class AppException {
 //        }
         if(errorCode== BaseURL.HTTP_401){
             context.startActivity(new Intent(context, LoginActivity.class));
+        }else if(errorCode == CodeException.E_201_ERROR||errorCode==CodeException.E_EOF_ERROR){
+
         }else{
             ToastManager.showToast(errorMessage);
         }
