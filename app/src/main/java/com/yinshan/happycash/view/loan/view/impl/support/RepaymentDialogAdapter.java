@@ -60,7 +60,7 @@ public class RepaymentDialogAdapter extends BaseAdapter{
         viewHolder.btnClick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InfoAdapterEnum.ItemSelectedEvent<String> event = new InfoAdapterEnum.ItemSelectedEvent(position,mDepositMethods.get(position));
+                RepaymentDialogEvent<String> event = new RepaymentDialogEvent(position,mDepositMethods.get(position));
                 event.type = InfoAdapterEnum.RepaymentType;
                 RxBus.get().post(event);
             }
@@ -71,5 +71,16 @@ public class RepaymentDialogAdapter extends BaseAdapter{
     class ViewHolder{
         TextView text;
         RelativeLayout btnClick;
+    }
+
+    public static class RepaymentDialogEvent<T>{
+        public T data;
+        public int pos;
+        public int type;
+
+        public RepaymentDialogEvent(int pos, T data){
+            this.pos = pos;
+            this.data = data;
+        }
     }
 }

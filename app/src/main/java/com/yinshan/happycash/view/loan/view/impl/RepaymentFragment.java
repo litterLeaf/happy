@@ -31,6 +31,7 @@ import com.yinshan.happycash.view.loan.view.IRepaymentView;
 import com.yinshan.happycash.view.loan.view.impl.support.FullRepaymentDialog;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentAdapter;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentDialog;
+import com.yinshan.happycash.view.loan.view.impl.support.RepaymentDialogAdapter;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
@@ -217,7 +218,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     }
 
     @Subscribe
-    public void sendRepayRequest(InfoAdapterEnum.ItemSelectedEvent<String> event){
+    public void sendRepayRequest(RepaymentDialogAdapter.RepaymentDialogEvent<String> event){
         if(mDialog!=null&&mDialog.isShowing())
             mDialog.dismiss();
         if(event.type!=InfoAdapterEnum.RepaymentType)
