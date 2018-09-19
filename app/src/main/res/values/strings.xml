@@ -540,7 +540,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
 
 
     <string-array name="mandiri_xendit_online">
-        <item>Kunjungi website Mandiri Internet Banking: https://ibank.bankmandir i.co.id/retail3/.</item>
+        <item>Kunjungi website Mandiri Internet Banking: https://ibank.bankmandiri.co.id/retail3/.</item>
         <item>Login dengan memasukkan USER ID dan PIN.</item>
         <item>Pilih "Pembayaran".</item>
         <item>Pilih "Multi Payment".</item>
@@ -564,8 +564,7 @@ HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan In
     <string-array name="mandiri_xendit_bank">
         <item>Log in Mobile Banking Mandiri Online
 (Install Mandiri Online by PT. Bank Mandiri (Persero Tbk.)
-dari App Store: https://itunes.apple.com/id/ap p/mandiri-online/id111731290 8?mt=8
-atau Play Store: https://play.google.com/store/ apps/details?id=com.bankma ndiri.mandirionline&amp;hl=en).</item>
+dari App Store: https://itunes.apple.com/id/app/mandiri-online/id1117312908?mt=8atauPlayStore:https://play.google.com/store/apps/details?id=com.bankmandiri.mandirionline&amp;hl=en).</item>
         <item>Klik “Icon Menu” di sebelah kiri atas.</item>
         <item>Pilih menu “Pembayaran”.</item>
         <item>Pilih “Buat Pembayaran Baru”.</item>

@@ -20,6 +20,8 @@ public class AppException {
 //        }
         if(errorCode== BaseURL.HTTP_401){
             context.startActivity(new Intent(context, LoginActivity.class));
+        }else{
+            ToastManager.showToast(errorMessage);
         }
         return false;
     }
