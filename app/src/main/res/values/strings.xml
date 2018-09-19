@@ -292,11 +292,12 @@
     <string name="help_3">Luangkan 5 menit untuk memverifikasi informasi anda</string>
     <string name="help_4">Tunggu review pertama, mohon pastikan ponsel anda aktif</string>
     <string name="help_5">Tunggu pencairan, pinjaman akan tiba dalam 5-10 menit</string>
-    <string name="about_desc">HappyCash rilis pada tanggal 15 April 2018, adalah salah satu platform pinjaman dan angsuran tanpa jaminan pertama yang beroperasi sepenuhnya menggunakan app ponsel.
-HappyCash telah merealisasikan angsuran pinjaman sepenuhnya otomatis, "tanpa jaminan, tanpa tanda tangan." Seluruh proses dari pengajuan pinjaman, pencairan, sampai pelunasan dapat diselesaikan melalui ponsel.
-Pinjaman angsuran HappyCash merealisasikan proses verifikasi yang efisien dengan ”mengutamakan proses verifikasi otomatis dengan verifikasi manual sebagai suplemen”, dana cair paling cepat dalam 3 menit.
-Menyediakan layanan pinjaman sebesar RP3.000.000 dengan angsuran 3 bulan.
-HappyCash dioperasikan oleh Shanghai Yinshan Network Technology Co., Ltd. dan Indonesia Balabala Co., Ltd</string>
+    <string name="about_desc">HappyCash merupakan salah satu teras cicilan tanpa jaminan partai pertama di Indonesia.
+        Kami bermisi menyajikan layanan peminjaman yang aman dan nyaman. HappyCash menegaskan “Kredit makes a better life”,
+        mendukung inovasi finans berdasarkan inovasi teknologi. Pinjaman kami dari Rp2.000.000 sampai Rp6.000.000 dengan tenor 3 bulan.
+        Peminjaman hanya perlu KTP anda, dan anda bisa meminjam, mendapat pencairan, dan membayar lewat handphone anda.
+        Verifikasi peminjaman dilakukan secara utama otomatis dan sekunder bantuan manusia. Anda bisa mendapat pencairan paling cepat 5 menit.
+        Selain layannan peminjaman, kami juga akan tegas menjaga privasi nasabah.</string>
     <string name="hy_not_call_your_relative_please_write_cool">HappyCash menggunakan analisa mahadata, pada proses verifikasi tidak akan menghubungi orang tua atau teman anda, silahkan isi dengan tenang</string>
 
     <string-array name="bankCardName1">
