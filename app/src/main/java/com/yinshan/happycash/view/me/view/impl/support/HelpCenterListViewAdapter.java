@@ -92,6 +92,9 @@ public class HelpCenterListViewAdapter  extends BaseAdapter {
                     if(chooseIndex!=position){
                         chooseIndex = position;
                         notifyDataSetChanged();
+                    }else{
+                        chooseIndex = -1;
+                        notifyDataSetChanged();
                     }
                 }
             });

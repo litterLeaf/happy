@@ -34,18 +34,21 @@ public class SafeSettingPresenter {
     }
 
     public void logout(){
+        mView.showLoadingDialog();
         mApi.logout(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
                     @Override
                     public void onNext(ResponseBody body) {
                         super.onNext(body);
+                        mView.dismissLoadingDialog();
                         mView.logoutOk();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
                         AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
