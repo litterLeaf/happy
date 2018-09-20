@@ -60,7 +60,6 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
     private AlertDialog alertDialog;
 
     protected MainActivity mActivity;
-    protected Activity mAddActivity;
 
     /**
      * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
@@ -177,6 +176,8 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
 
     @Override
     public void showLoadingDialog() {
+        if(mActivity.isFinishing())
+            return;
         alertDialog = new AlertDialog.Builder(mActivity).create();
         alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
         alertDialog.setCancelable(true);
@@ -184,15 +185,12 @@ public abstract class BaseFragment extends RxSupportFragment  implements IBaseVi
         alertDialog.setContentView(R.layout.loading_alert);
         alertDialog.setCanceledOnTouchOutside(false);
     }
-    int i1 = 0;
-    int i2 = 0;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.mActivity = (MainActivity) context;
-        i1++;
-        MyDebugUtils.v("onAttach Context"+i1);
+        MyDebugUtils.v("onAttach Context");
     }
 
     @Override

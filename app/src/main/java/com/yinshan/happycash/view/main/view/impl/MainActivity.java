@@ -173,6 +173,34 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 
     @Override
     protected void onDestroy() {
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        if(null!=unLoanFrag){
+            transaction.remove(unLoanFrag);
+        }
+        if(null!=loaningFrag){
+            transaction.remove(loaningFrag);
+        }
+        if(null!=applyFragment){
+            transaction.remove(applyFragment);
+        }
+        if(null!=inforFragament){
+            transaction.remove(inforFragament);
+        }
+        if(null!=meFrag){
+            transaction.remove(meFrag);
+        }
+        if(null!=buildUpFragment){
+            transaction.remove(buildUpFragment);
+        }
+        if(null!=rejectFragment){
+            transaction.remove(rejectFragment);
+        }
+        if(null!=repaymentFragment){
+            transaction.remove(repaymentFragment);
+        }
+        transaction.commitAllowingStateLoss();
+
         super.onDestroy();
         MyDebugUtils.v("mainActivity wantImage onDestroy ");
     }

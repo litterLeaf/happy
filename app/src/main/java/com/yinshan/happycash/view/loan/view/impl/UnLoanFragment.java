@@ -115,9 +115,11 @@ public class UnLoanFragment extends BaseFragment {
 //        MainActivity.loanMoney = Math.round(bean.getTotalAmount());
         setComputeMoney();
         if(bean!=null&& !TextUtils.isEmpty(bean.getStatus())&&bean.getStatus().equals("SUBMITTED")){
-            unloanSeeker.setEnabled(false);
+            if(unloanSeeker!=null)
+                unloanSeeker.setEnabled(false);
         }else{
-            unloanSeeker.setEnabled(true);
+            if(unloanSeeker!=null)
+                unloanSeeker.setEnabled(true);
         }
     }
 
@@ -200,12 +202,15 @@ public class UnLoanFragment extends BaseFragment {
     }
 
     private void setComputeMoney(){
-        mChooseMoney.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
-        mUnloanFee.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
+        if(mChooseMoney!=null)
+            mChooseMoney.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+        if(mUnloanFee!=null)
+            mUnloanFee.setText(StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
 
     private void showMoneyUI(){
         int progress = (int)((MainActivity.loanMoney-MainActivity.MIN_VALUE)*100/(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE));
-        unloanSeeker.setProgress(progress);
+        if(unloanSeeker!=null)
+            unloanSeeker.setProgress(progress);
     }
 }
