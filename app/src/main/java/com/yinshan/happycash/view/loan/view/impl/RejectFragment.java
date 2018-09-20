@@ -88,12 +88,30 @@ public class RejectFragment extends BaseFragment implements ILoanDetailView{
         int min = (int) (expiredLeftTimeSecond % (3600 * 24) % 3600) / 60;
         int day = (int) expiredLeftTimeSecond / (3600 * 24);
         int hour = (int) (expiredLeftTimeSecond % (3600 * 24)) / 3600;
-        mSecond.setText("" + second);
-        mMinute.setText("" + min);
-        mHour.setText("" + hour);
-        mDay.setText("" + day);
-        String leftDay = getResources().getString(R.string.reject_left_day);
-        mLeftDay.setText(String.format(leftDay,String.valueOf(day)));
+        if(second<10)
+            mSecond.setText("0" + second);
+        else
+            mSecond.setText("" + second);
+        if(min<10)
+            mMinute.setText("0" + min);
+        else
+            mMinute.setText("" + min);
+        if(hour<10)
+            mHour.setText("0" + hour);
+        else
+            mHour.setText("" + hour);
+        if(day<10)
+            mDay.setText("0" + day);
+        else
+            mDay.setText("" + day);
+        if(getActivity()!=null&&!getActivity().isFinishing()) {
+            String leftDay = getResources().getString(R.string.reject_left_day);
+            mLeftDay.setText(String.format(leftDay, String.valueOf(day)));
+        }else{
+            if(timer!=null)
+                timer.cancel();
+            timer = null;
+        }
     }
 
     class TimerDown extends CountDownTimer {
