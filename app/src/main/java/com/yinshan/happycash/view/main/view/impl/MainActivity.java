@@ -393,17 +393,26 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         }
 
         //loaning
-        if (isLoaning && null == loaningFrag) {
-            Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.LOANING_FRAG);
-            if (null != tab1) {
-                loaningFrag = (LoaningFragment) tab1;
-            } else {
-                loaningFrag = new LoaningFragment();
-                transaction.add(R.id.fragment_container, loaningFrag, SPKeyUtils.LOANING_FRAG);
+        boolean isLoaningFirstReShow = false;
+        if(isLoaning){
+            if (null == loaningFrag) {
+                Fragment tab1 = getSupportFragmentManager().findFragmentByTag(SPKeyUtils.LOANING_FRAG);
+                if (null != tab1) {
+                    loaningFrag = (LoaningFragment) tab1;
+                    isLoaningFirstReShow = true;
+                } else {
+                    isLoaningFirstReShow = false;
+                    loaningFrag = new LoaningFragment();
+                    transaction.add(R.id.fragment_container, loaningFrag, SPKeyUtils.LOANING_FRAG);
+                }
+            }else{
+                isLoaningFirstReShow = true;
             }
         }
         if (isLoaning && null != loaningFrag) {
             transaction.show(loaningFrag);
+            if(isLoaningFirstReShow)
+                loaningFrag.resume();
         } else if (!isLoaning && null != loaningFrag) {
             transaction.hide(loaningFrag);
         }

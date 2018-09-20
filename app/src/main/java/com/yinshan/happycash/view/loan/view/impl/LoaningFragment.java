@@ -99,21 +99,7 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         RxBus.get().register(this);
         MobAgent.onEvent(MobEvent.IN_LOANING_FRAGMENT);
 
-        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
-
-        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
-        if(bean!=null)
-            setBankdCardBean(bean);
-
-        mPresenter = new LoaningPresenter(getActivity(),this);
-        mPresenter.getBankCard();
-
-        if(MainActivity.choosePeriod==3){
-            setChoose3Period();
-        }else if(MainActivity.choosePeriod==1){
-            setChoose1Period();
-        }
-        setAddSubIcon();
+        resume();
     }
 
     @Override
@@ -129,6 +115,23 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         mAddButton = (ImageView)view.findViewById(R.id.add);
         mSubButton = (ImageView)view.findViewById(R.id.sub);
         mEveryPay = (TextView)view.findViewById(R.id.everyPay);
+    }
+
+
+    public void resume() {
+        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
+        if(bean!=null)
+            setBankdCardBean(bean);
+        mPresenter = new LoaningPresenter(getActivity(),this);
+        mPresenter.getBankCard();
+
+        if(MainActivity.choosePeriod==3){
+            setChoose3Period();
+        }else if(MainActivity.choosePeriod==1){
+            setChoose1Period();
+        }
+        setAddSubIcon();
+        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
     }
 
     @Override
@@ -338,4 +341,5 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
         mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
     }
+
 }
