@@ -96,7 +96,6 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         mPresenter.getJobInfo();
 
         RxBus.get().register(this);
-        initWorkTelPre();
         jobWorkType.requestFocus();
         mBean = new EmploymentBean();
         initListener();
@@ -222,27 +221,32 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         String companyPhone = bean.getCompanyPhone();
         List<String> areaCodes = bean.getAreaCodes();
         if (areaCodes != null) {
+            mTelPreStrings.clear();
             for (int i = 0; i < areaCodes.size(); i++) {
+                if(!TextUtils.isEmpty(areaCodes.get(i)))
+                    mTelPreStrings.add(areaCodes.get(i));
                 if (companyPhone.startsWith(areaCodes.get(i))) {
                     companyPhone = companyPhone.substring(areaCodes.get(i).length());
                     break;
                 }
             }
         }
+        initWorkTelPre();
         if(!TextUtils.isEmpty(companyPhone)){
             String[] c=bean.getCompanyPhone().split(companyPhone);
             if(c.length>0){
                 String areaCode = c[0];
                 if(areaCode!=null){
                     if(!TextUtils.isEmpty(areaCode)){
-//                        mbdlv.setText(areaCode);
+                        mbdlv.setText(areaCode);
                     }else {
-//                        mbdlv.setText(areaCodes.get(0));
+                        mbdlv.setText(areaCodes.get(0));
                     }
                 }
             }
         }
         edittextJobInfoTel.setText(companyPhone);
+
     }
 
     private void submitData(){
@@ -250,7 +254,7 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         if(isCheckedField()){
             mBean.setCompanyName(jobCompanyName.getText().toString().trim());
             mBean.setCompanyAddress(jobCompanyAddress.getText().toString().trim());
-            mBean.setCompanyPhone(edittextJobInfoTel.getText().toString().trim());
+            mBean.setCompanyPhone(mbdlv.getText().toString()+edittextJobInfoTel.getText().toString().trim());
             mPresenter.submitJobInfo(mBean);
         }
     }

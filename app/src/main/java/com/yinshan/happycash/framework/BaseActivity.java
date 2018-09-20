@@ -87,6 +87,8 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
 
     private AlertDialog alertDialog;
 
+    BaseActivity mActivity;
+
     /**
      * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
      */
@@ -97,6 +99,8 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        mActivity = this;
 
 
         if (mContextView == null) {
@@ -195,12 +199,14 @@ public abstract class BaseActivity extends RxSupportActivity implements IBaseVie
 
     @Override
     public void showLoadingDialog() {
+        if(isFinishing())
+            return;
         if(alertDialog!=null&&alertDialog.isShowing()){
             return;
         }
-        MyDebugUtils.v("BaseActivity this "+this);
+        MyDebugUtils.v("BaseActivity this "+this+" - "+mActivity);
         if(alertDialog==null){
-            alertDialog = new AlertDialog.Builder(this).create();
+            alertDialog = new AlertDialog.Builder(mActivity).create();
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
             alertDialog.setCancelable(true);
 //            alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
