@@ -32,6 +32,7 @@ import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
 import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.common.ToastManager;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.logger.LogUtil;
@@ -353,6 +354,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     public void signInSuccess(String mobile, LoginTokenResponse loginTokenResponse) {
         dismissLoadingDialog();
         loginCount = 0;
+        String loginOkStr = getResources().getString(R.string.login_success);
+        ToastManager.showToast(loginOkStr);
         HappySnackBar.showSnackBar(mViewCaptcha, R.string.login_success, SPKeyUtils.SNACKBAR_TYPE_TIP);
         SPUtils.getInstance().setToken(loginTokenResponse.getToken());
         SPUtils.getInstance().setMobile(mMobile);

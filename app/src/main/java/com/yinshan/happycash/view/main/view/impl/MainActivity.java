@@ -229,18 +229,19 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
         } else {
             checkPermissons();
         }
-        if (SplashActivity.isGetStatus) {
-            LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-            if (object != null && object.getStatus() != null) {
-                dealResult(object);
+        if(TokenManager.getInstance().hasLogin()) {
+            if (SplashActivity.isGetStatus) {
+                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+                if (object != null && object.getStatus() != null) {
+                    dealResult(object);
+                } else {
+                    showFragment(AppLoanStatus.UNLOAN);
+                    mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
+                }
             } else {
-                showFragment(AppLoanStatus.UNLOAN);
-                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
-            }
-        } else {
-            if (TokenManager.getInstance().hasLogin()) {
-                showFragment(AppLoanStatus.UNLOAN);
-                mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
+                if (TokenManager.getInstance().hasLogin()) {
+                    showFragment(AppLoanStatus.UNLOAN);
+                    mPresenter.getStatusInfo(TokenManager.getInstance().getToken());
 //                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
 //                if (object != null && object.getStatus() != null) {
 //                    dealResult(object);
@@ -248,8 +249,11 @@ public class MainActivity extends BaseActivity implements PerGuideDialogFragment
 //                    showFragment(AppLoanStatus.UNLOAN);
 //
 //                }
-            }else
-                showFragment(AppLoanStatus.UNLOAN);
+                }else
+                    showFragment(AppLoanStatus.UNLOAN);
+            }
+        }else{
+            showFragment(AppLoanStatus.UNLOAN);
         }
     }
 

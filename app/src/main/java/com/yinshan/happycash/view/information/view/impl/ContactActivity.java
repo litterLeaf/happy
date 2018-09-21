@@ -533,12 +533,14 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     private boolean isContactSame(String name, String phone, String compareName, String comparePhone) {
         phone = phone.trim().replace(" ","");
         comparePhone = comparePhone.trim().replace(" ","");
+        String promptWarning = getResources().getString(R.string.warning);
+        String understand = getResources().getString(R.string.understand);
 
         if (!StringUtil.isNullOrEmpty(name) && !StringUtil.isNullOrEmpty(phone) && !StringUtil.isNullOrEmpty(compareName) && !StringUtil.isNullOrEmpty(comparePhone)) {
             if (name.equals(compareName)) {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Warning: ");
-                alertDialogBuilder.setNeutralButton("Got it", new DialogInterface.OnClickListener() {
+                alertDialogBuilder.setTitle(promptWarning);
+                alertDialogBuilder.setNeutralButton(understand, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
@@ -557,8 +559,9 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
 
             if (phone.equals(comparePhone)) {
                 final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Warning: ");
-                alertDialogBuilder.setNeutralButton("Got it", new DialogInterface.OnClickListener() {
+
+                alertDialogBuilder.setTitle(promptWarning);
+                alertDialogBuilder.setNeutralButton(understand, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
