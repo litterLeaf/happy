@@ -25,6 +25,8 @@ import com.yinshan.happycash.view.loan.view.impl.support.ApplyAdapter;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
+import com.yinshan.happycash.widget.common.CommonClickListener;
+import com.yinshan.happycash.widget.dialog.CommonDialog;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
@@ -119,11 +121,20 @@ public class ApplyFragment extends BaseFragment implements IApplyView{
                 expandView();
                 break;
             case R.id.cancel:
-                LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
-                if(object!=null) {
-                    mPresenter.cancel(Long.valueOf(object.getLoanAppId()));
-                }
-
+                CommonClickListener listener = new CommonClickListener() {
+                    @Override
+                    public void onClick() {
+                        LastLoanAppBean object = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+                        if(object!=null) {
+                            mPresenter.cancel(Long.valueOf(object.getLoanAppId()));
+                        }
+                    }
+                };
+                String questionStr = mActivity.getResources().getString(R.string.are_you_want_cancel_loan);
+                String confirmStr = mActivity.getResources().getString(R.string.confirm);
+                String cancelStr = mActivity.getResources().getString(R.string.cancel);
+                CommonDialog cancelDialog = new CommonDialog(mActivity,listener,null,questionStr,cancelStr,confirmStr,true);
+                cancelDialog.show();
                 break;
         }
     }
