@@ -26,6 +26,11 @@ public enum InfoType {
     RECEIVINGBANK,
     //Method
     REPAYMETHOD,
+    Relation1,
+    Relation2,
+    Relation3,
+    Relation4,
+    Relation5,
     //Relation
     PARENT,
     FRIEND,

@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.information.view.impl;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -12,10 +13,13 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
+import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseSingleActivity;
 import com.yinshan.happycash.utils.SPKeyUtils;
@@ -24,13 +28,17 @@ import com.yinshan.happycash.view.information.model.ContactBean;
 import com.yinshan.happycash.view.information.model.RelationStatus;
 import com.yinshan.happycash.view.information.presenter.ContactPresenter;
 import com.yinshan.happycash.view.information.view.IContactView;
+import com.yinshan.happycash.view.information.view.impl.support.InfoAdapter;
+import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
+import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterString;
+import com.yinshan.happycash.view.information.view.impl.support.InfoType;
 import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.dialog.ListDialog;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -77,6 +85,8 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
 
     ContactPresenter mPresenter;
 
+    Dialog dialogRelative;
+
     @Override
     protected String bindTitle() {
         return getResources().getString(R.string.contact_info);
@@ -91,6 +101,7 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     protected void secondInit() {
         initUI();
         isCanSubmit();
+        RxBus.get().register(this);
         mPresenter = new ContactPresenter(this,this);
         mPresenter.getContactInfo();
     }
@@ -101,81 +112,74 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
     public void onViewClicked(View view){
         switch (view.getId()){
             case R.id.btnRelative1:
-                List<String> relativeList1 = new ArrayList<>();
-                relativeList1.add(getResources().getString(RelationStatus.PARENT.getShowString()));
-                relativeList1.add(getResources().getString(RelationStatus.SPOUSE.getShowString()));
-                relativeList1.add(getResources().getString(RelationStatus.SIBLING.getShowString()));
-                ListDialog listDialog = new ListDialog(this,R.style.DialogTheme,relativeList1){
-                    @Override
-                    public void clickIndex(int index) {
-                        showRelative1(relativeList1.get(index));
-                    }
-                };
-                listDialog.show();
+//                List<String> relativeList1 = new ArrayList<>();
+//                relativeList1.add(getResources().getString(RelationStatus.PARENT.getShowString()));
+//                relativeList1.add(getResources().getString(RelationStatus.SPOUSE.getShowString()));
+//                relativeList1.add(getResources().getString(RelationStatus.SIBLING.getShowString()));
+
+                final InfoAdapterEnum relationAdapter = (InfoAdapterEnum) getRelation1Adapter();
+                dialogRelative = DialogManager.newListViewDialog(this)
+                        .setAdapter(relationAdapter)
+                        .setExpanded(false)
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                dialogRelative.show();
+
+//                ListDialog listDialog = new ListDialog(this,R.style.DialogTheme,relativeList1){
+//                    @Override
+//                    public void clickIndex(int index) {
+//                        showRelative1(relativeList1.get(index));
+//                    }
+//                };
+//                listDialog.show();
                 break;
             case R.id.btnContact1:
                 getContactInfo(0);
                 break;
             case R.id.btnRelative2:
-                List<String> relativeList2 = new ArrayList<>();
-                relativeList2.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
-                relativeList2.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
-                relativeList2.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
-                ListDialog listDialog2 = new ListDialog(this,R.style.DialogTheme,relativeList2){
-                    @Override
-                    public void clickIndex(int index) {
-                        showRelative2(relativeList2.get(index));
-                    }
-                };
-                listDialog2.show();
+                final InfoAdapterEnum relationAdapter2 = (InfoAdapterEnum) getRelation2Adapter();
+                dialogRelative = DialogManager.newListViewDialog(this)
+                        .setAdapter(relationAdapter2)
+                        .setExpanded(false)
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                dialogRelative.show();
                 break;
             case R.id.btnContact2:
                 getContactInfo(1);
                 break;
             case R.id.btnRelative3:
-                List<String> relativeList3 = new ArrayList<>();
-                relativeList3.add(getResources().getString(RelationStatus.PARENT.getShowString()));
-                relativeList3.add(getResources().getString(RelationStatus.SPOUSE.getShowString()));
-                relativeList3.add(getResources().getString(RelationStatus.SIBLING.getShowString()));
-                ListDialog listDialog3 = new ListDialog(this,R.style.DialogTheme,relativeList3){
-                    @Override
-                    public void clickIndex(int index) {
-                        showRelative3(relativeList3.get(index));
-                    }
-                };
-                listDialog3.show();
+                final InfoAdapterEnum relationAdapter3 = (InfoAdapterEnum) getRelation3Adapter();
+                dialogRelative = DialogManager.newListViewDialog(this)
+                        .setAdapter(relationAdapter3)
+                        .setExpanded(false)
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                dialogRelative.show();
                 break;
             case R.id.btnContact3:
                 getContactInfo(2);
                 break;
             case R.id.btnRelative4:
-                List<String> relativeList4 = new ArrayList<>();
-                relativeList4.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
-                relativeList4.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
-                relativeList4.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
-                ListDialog listDialog4 = new ListDialog(this,R.style.DialogTheme,relativeList4){
-                    @Override
-                    public void clickIndex(int index) {
-                        showRelative4(relativeList4.get(index));
-                    }
-                };
-                listDialog4.show();
+                final InfoAdapterEnum relationAdapter4 = (InfoAdapterEnum) getRelation4Adapter();
+                dialogRelative = DialogManager.newListViewDialog(this)
+                        .setAdapter(relationAdapter4)
+                        .setExpanded(false)
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                dialogRelative.show();
                 break;
             case R.id.btnContact4:
                 getContactInfo(3);
                 break;
             case R.id.btnRelative5:
-                List<String> relativeList5 = new ArrayList<>();
-                relativeList5.add(getResources().getString(RelationStatus.CLASSMATE.getShowString()));
-                relativeList5.add(getResources().getString(RelationStatus.COLLEAGUE.getShowString()));
-                relativeList5.add(getResources().getString(RelationStatus.FRIEND.getShowString()));
-                ListDialog listDialog5 = new ListDialog(this,R.style.DialogTheme,relativeList5){
-                    @Override
-                    public void clickIndex(int index) {
-                        showRelative5(relativeList5.get(index));
-                    }
-                };
-                listDialog5.show();
+                final InfoAdapterEnum relationAdapter5 = (InfoAdapterEnum) getRelation5Adapter();
+                dialogRelative = DialogManager.newListViewDialog(this)
+                        .setAdapter(relationAdapter5)
+                        .setExpanded(false)
+                        .setGravity(Gravity.CENTER)
+                        .create();
+                dialogRelative.show();
                 break;
             case R.id.btnContact5:
                 getContactInfo(4);
@@ -599,4 +603,94 @@ public class ContactActivity extends BaseSingleActivity implements IContactView{
         }
         return false;
     }
+
+    @Subscribe
+    public void onAreaSelected(InfoAdapterEnum.ItemSelectedEvent<InfoAdapterEnum.InfoItem> event){
+        if(dialogRelative!=null&&dialogRelative.isShowing()){
+            dialogRelative.dismiss();
+        }
+        if(event.data.getType()== InfoType.Relation1){
+            showRelative1(event.data.getInfoStr());
+        }else if(event.data.getType()==InfoType.Relation2){
+            showRelative2(event.data.getInfoStr());
+        }else if(event.data.getType()==InfoType.Relation3){
+            showRelative3(event.data.getInfoStr());
+        }else if(event.data.getType()==InfoType.Relation4){
+            showRelative4(event.data.getInfoStr());
+        }else if(event.data.getType()==InfoType.Relation5){
+            showRelative5(event.data.getInfoStr());
+        }
+    }
+
+    /**
+     * Set Relation adapter;
+     * @return
+     */
+    public InfoAdapter getRelation1Adapter() {
+        InfoAdapterEnum relativeAdapter = new InfoAdapterEnum(this);
+
+        relativeAdapter.addItem(RelationStatus.PARENT, InfoType.Relation1);
+        relativeAdapter.addItem(RelationStatus.SPOUSE, InfoType.Relation1);
+        relativeAdapter.addItem(RelationStatus.SIBLING, InfoType.Relation1);
+
+        return relativeAdapter;
+    }
+
+    /**
+     * Set Relation adapter;
+     * @return
+     */
+    public InfoAdapter getRelation2Adapter() {
+        InfoAdapterEnum relativeAdapter = new InfoAdapterEnum(this);
+
+        relativeAdapter.addItem(RelationStatus.CLASSMATE, InfoType.Relation2);
+        relativeAdapter.addItem(RelationStatus.COLLEAGUE, InfoType.Relation2);
+        relativeAdapter.addItem(RelationStatus.FRIEND, InfoType.Relation2);
+
+        return relativeAdapter;
+    }
+
+    /**
+     * Set Relation adapter;
+     * @return
+     */
+    public InfoAdapter getRelation3Adapter() {
+        InfoAdapterEnum relativeAdapter = new InfoAdapterEnum(this);
+
+        relativeAdapter.addItem(RelationStatus.PARENT, InfoType.Relation3);
+        relativeAdapter.addItem(RelationStatus.SPOUSE, InfoType.Relation3);
+        relativeAdapter.addItem(RelationStatus.SIBLING, InfoType.Relation3);
+
+        return relativeAdapter;
+    }
+
+    /**
+     * Set Relation adapter;
+     * @return
+     */
+    public InfoAdapter getRelation4Adapter() {
+        InfoAdapterEnum relativeAdapter = new InfoAdapterEnum(this);
+
+        relativeAdapter.addItem(RelationStatus.CLASSMATE, InfoType.Relation4);
+        relativeAdapter.addItem(RelationStatus.COLLEAGUE, InfoType.Relation4);
+        relativeAdapter.addItem(RelationStatus.FRIEND, InfoType.Relation4);
+
+        return relativeAdapter;
+    }
+
+    /**
+     * Set Relation adapter;
+     * @return
+     */
+    public InfoAdapter getRelation5Adapter() {
+        InfoAdapterEnum relativeAdapter = new InfoAdapterEnum(this);
+
+        relativeAdapter.addItem(RelationStatus.CLASSMATE, InfoType.Relation5);
+        relativeAdapter.addItem(RelationStatus.COLLEAGUE, InfoType.Relation5);
+        relativeAdapter.addItem(RelationStatus.FRIEND, InfoType.Relation5);
+
+        return relativeAdapter;
+    }
+
+
 }
