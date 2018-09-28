@@ -77,9 +77,11 @@ public class InAdavanceRepayDialog extends Dialog{
                 mRepayPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumRepay));
                 mInterestPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumInterest));
                 mFinesPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumFines));
+
                 mEarlyRepayServiceFees.setText(cMSign+ StringFormatUtils.moneyFormat(sumEarlyRepay));
 
-                mCutDownFees.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getAdvanceFeeAmount()-200));
+                String cutDownStr = mContext.getResources().getString(R.string.cutDownMoney);
+                mCutDownFees.setText(cutDownStr+cMSign+ StringFormatUtils.moneyFormat(mBean.getAdvanceFeeAmount()-200));
             }
         }
 
