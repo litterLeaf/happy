@@ -22,6 +22,7 @@ public class LoanDetailBean {
     private double principalAmount;
     private long reapplyCounterDown;
     private String  status;
+    private boolean qualification;
     List<StageBean> lpayDtoList;
 
 
@@ -143,5 +144,13 @@ public class LoanDetailBean {
 
     public void setReapplyCounterDown(long reapplyCounterDown) {
         this.reapplyCounterDown = reapplyCounterDown;
+    }
+
+    public boolean isQualification() {
+        return qualification;
+    }
+
+    public void setQualification(boolean qualification) {
+        this.qualification = qualification;
     }
 }

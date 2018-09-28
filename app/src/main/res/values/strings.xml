@@ -1081,5 +1081,24 @@ Syarat dan Ketentuan Penggunaan Platform ini (“S&K”) dibuat untuk menetapkan
     <string name="confirm">Yakin</string>
     <string name="cancel">Batal</string>
 
-    <!--Rp 200.000(Bunga periode ini) + Rp 10.000(Benda keterlambatan)-->
+    <string name="left_principal_">Sisa biaya pokok:</string>
+    <string name="only_support_left_loan">Hanya mendukung satu kali penyelesaikan sisa pinjaman</string>
+    <string name="amount_of_payment_">Jumlah pembayaran:</string>
+    <string name="money_sign">Rp</string>
+    <string name="basic_costs_to_be_paid">Biaya pokok yang harus dibayar：</string>
+    <string name="interest_to_be_paid">Bunga yang harus dibayar：</string>
+    <string name="fines_to_be_paid">Denda yang harus dibayar：</string>
+    <string name="early_repayment_service_fees">Biaya layanan pelunasan lebih awal：</string>
+    <string name="attention">Perhatian</string>
+    <string name="cancel2">Batalkan</string>
+    <string name="ok2">OK</string>
+    <string name="early_paid_rule">1. Silakan lunasi pembayaran penuh offline pada tanggal pembayaran kembali；
+
+    \n2. Jika dalam 24jam waktu pembayaran masih belum menyelesaikan pembayaran, jumlah transfer akan diutamakan pembayaran saat itu；
+
+    \n3. Karena diproses oleh bank, waktu pencairan dana sesungguhnya akan ada keterlambatan, jika pembayaran penuh berhasil, mohon sabar menunggu beberapa menit atau hubungi customer service kami；
+</string>
+    <string name="cm_sign">Rp </string>
+
+        <!--Rp 200.000(Bunga periode ini) + Rp 10.000(Benda keterlambatan)-->
 </resources>
