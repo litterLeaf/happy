@@ -21,10 +21,12 @@ public class RepaymentDialogAdapter extends BaseAdapter{
 
     Context mContext;
     private List<String> mDepositMethods;
+    double mShouldPrePay;
 
-    public RepaymentDialogAdapter(Context context,List<String> strs){
+    public RepaymentDialogAdapter(Context context, List<String> strs, double shouldPrePay){
         mContext = context;
         mDepositMethods = strs;
+        mShouldPrePay = shouldPrePay;
     }
 
     @Override
@@ -62,6 +64,7 @@ public class RepaymentDialogAdapter extends BaseAdapter{
             public void onClick(View v) {
                 RepaymentDialogEvent<String> event = new RepaymentDialogEvent(position,mDepositMethods.get(position));
                 event.type = InfoAdapterEnum.RepaymentType;
+                event.shouldPrePay = mShouldPrePay;
                 RxBus.get().post(event);
             }
         });
@@ -77,6 +80,7 @@ public class RepaymentDialogAdapter extends BaseAdapter{
         public T data;
         public int pos;
         public int type;
+        public double shouldPrePay;
 
         public RepaymentDialogEvent(int pos, T data){
             this.pos = pos;

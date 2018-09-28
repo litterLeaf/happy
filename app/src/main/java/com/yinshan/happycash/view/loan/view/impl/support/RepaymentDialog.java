@@ -19,11 +19,13 @@ public class RepaymentDialog extends Dialog{
 
     Context mContext;
     DepositMethodsBean mBean;
+    double mShouldPrePay;
 
-    public RepaymentDialog(@NonNull Context context,DepositMethodsBean bean) {
+    public RepaymentDialog(@NonNull Context context, DepositMethodsBean bean, double shouldPrePay) {
         super(context);
         mContext = context;
         mBean = bean;
+        mShouldPrePay = shouldPrePay;
     }
 
     @Override
@@ -33,7 +35,7 @@ public class RepaymentDialog extends Dialog{
         setContentView(R.layout.dialog_repayment);
 
         ListView listView = (ListView)findViewById(R.id.list);
-        RepaymentDialogAdapter adapter = new RepaymentDialogAdapter(mContext,mBean.getDepositMethods());
+        RepaymentDialogAdapter adapter = new RepaymentDialogAdapter(mContext,mBean.getDepositMethods(),mShouldPrePay);
         listView.setAdapter(adapter);
     }
 

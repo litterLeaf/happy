@@ -22,7 +22,8 @@ public class LoanDetailBean {
     private double principalAmount;
     private long reapplyCounterDown;
     private String  status;
-    private boolean qualification;
+    private boolean c;
+    boolean qualification;
     List<StageBean> lpayDtoList;
 
 

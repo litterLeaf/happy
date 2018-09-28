@@ -112,6 +112,7 @@
     <string name="number">Jumlah</string>
     <string name="tenor">Tenor</string>
     <string name="details">Rincian</string>
+    <string name="early_repayment">Pelunasan lebih awal</string>
     <string name="time_period2">Jumlah Periode</string>
     <string name="rp_df">Rp--</string>
     <string name="df">--</string>

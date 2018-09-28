@@ -39,6 +39,7 @@ public class InAdavanceRepayDialog extends Dialog{
         super(context, R.style.DialogTheme);
         mContext = context;
         mListener = listener;
+        mBean = bean;
         initView(context);
     }
 
@@ -58,7 +59,7 @@ public class InAdavanceRepayDialog extends Dialog{
 
         String cMSign = mContext.getResources().getString(R.string.cm_sign);
         if(mBean!=null){
-            mAmountMoney.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getPrincipalAmount()));
+            mAmountMoney.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getAdvanceFeeAmount()));
             double sumRepay = 0;
             double sumInterest = 0;
             double sumFines = 0;
@@ -71,14 +72,14 @@ public class InAdavanceRepayDialog extends Dialog{
                     sumFines += preBean.getDefaultAccr() - preBean.getDefaultPaid();
                     sumEarlyRepay += preBean.getAdvanceFeeAccr() - preBean.getAdvanceFeePaid();
                 }
-                mAmountMoney.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getPrincipalAmount()));
+                mAmountMoney.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getAdvanceFeeAmount()));
 
                 mRepayPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumRepay));
-                mRepayPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumInterest));
-                mRepayPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumFines));
-                mRepayPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumEarlyRepay));
+                mInterestPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumInterest));
+                mFinesPaid.setText(cMSign+ StringFormatUtils.moneyFormat(sumFines));
+                mEarlyRepayServiceFees.setText(cMSign+ StringFormatUtils.moneyFormat(sumEarlyRepay));
 
-                mCutDownFees.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getPrepaymentFeeAmount()-mBean.getPrincipalAmount()));
+                mCutDownFees.setText(cMSign+ StringFormatUtils.moneyFormat(mBean.getAdvanceFeeAmount()-200));
             }
         }
 

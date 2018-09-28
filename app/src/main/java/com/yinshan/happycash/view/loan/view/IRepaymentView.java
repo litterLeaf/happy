@@ -10,11 +10,11 @@ import com.yinshan.happycash.widget.inter.IBaseView;
  */
 public interface IRepaymentView extends IBaseView{
 
-    void getRepaymentListOk(DepositMethodsBean bean);
+    void getRepaymentListOk(DepositMethodsBean bean, double shouldPrePay);
 
     void getRepaymentListFail(ApiException ex);
 
-    void getDepositOk(DepositResponseBean bean);
+    void getDepositOk(DepositResponseBean bean, double shouldPrePay);
 
     void getDepositFail(ApiException ex);
 }

@@ -13,6 +13,7 @@ import com.yinshan.happycash.view.loan.model.DepositResponseBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
 import com.yinshan.happycash.view.me.model.LoanItem;
+import com.yinshan.happycash.view.me.model.PrePaymentBean;
 
 import java.util.List;
 
@@ -156,6 +157,10 @@ public interface LoanApi {
     @GET("loanapps/{loanAppId}/detail")
     Observable<LoanDetailBean> getDetail(@Path("loanAppId") long loanAppId,
                                                  @Header("X-AUTH-TOKEN") String token);
+
+    @POST("loanapps/{loanAppId}/advance")
+    Observable<PrePaymentBean> advance(@Path("loanAppId") long loanAppId,
+                                       @Header("X-AUTH-TOKEN") String token);
 
     @GET("loanapps/{loanAppId}/employment")
     Observable<EmploymentBean> getEmployment(@Path("loanAppId") long loanAppId,

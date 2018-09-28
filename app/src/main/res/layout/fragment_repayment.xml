@@ -129,6 +129,49 @@
                             android:text="@string/pay" />
                     </RelativeLayout>
                 </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/viewPrePay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                    <RelativeLayout
+                        android:id="@+id/clickPrePay"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@color/white"
+                        >
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="43dp"
+                            android:textColor="@color/app_blue"
+                            android:textSize="14sp"
+                            android:text="@string/early_repayment"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="42dp"
+                            android:background="@drawable/right"
+                            />
+                        <!--<TextView-->
+                            <!--style="@style/text_wrap_layout"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:layout_marginRight="42dp"-->
+                            <!--android:textColor="@color/app_blue"-->
+                            <!--android:textSize="20sp"-->
+                            <!--android:text=">"-->
+                            <!--/>-->
+                    </RelativeLayout>
+                </LinearLayout>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp">

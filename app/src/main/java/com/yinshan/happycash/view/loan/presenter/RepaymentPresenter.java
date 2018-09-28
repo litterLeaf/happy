@@ -33,7 +33,7 @@ public class RepaymentPresenter {
         mApi = RxHttpUtils.getInstance().createApi(LoanApi.class);
     }
 
-    public void getRepaymentList(){
+    public void getRepaymentList(double shouldPrePay){
         mView.showLoadingDialog();
         mApi.getDepostMethods(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -43,7 +43,7 @@ public class RepaymentPresenter {
                     public void onNext(DepositMethodsBean bean) {
                         super.onNext(bean);
                         mView.dismissLoadingDialog();
-                        mView.getRepaymentListOk(bean);
+                        mView.getRepaymentListOk(bean,shouldPrePay);
                     }
 
                     @Override
@@ -57,7 +57,7 @@ public class RepaymentPresenter {
 
     }
 
-    public void doDeposit(String loanAppId,String method) {
+    public void doDeposit(String loanAppId, String method, double shouldPrePay) {
         Log.d("doDeposit",method);
         mApi.doDeposit(loanAppId,method,TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -65,7 +65,7 @@ public class RepaymentPresenter {
                     @Override
                     public void onNext(DepositResponseBean bean) {
                         super.onNext(bean);
-                        mView.getDepositOk(bean);
+                        mView.getDepositOk(bean,shouldPrePay);
                     }
 
                     @Override

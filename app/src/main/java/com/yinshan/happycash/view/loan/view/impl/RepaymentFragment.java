@@ -4,20 +4,19 @@ import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
-import com.yinshan.happycash.framework.DateManager;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.common.base.ApiException;
-import com.yinshan.happycash.utils.DebugUtil;
 import com.yinshan.happycash.utils.DensityUtil;
 import com.yinshan.happycash.utils.MyDebugUtils;
-import com.yinshan.happycash.utils.PaymentMethodManager;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
@@ -26,7 +25,9 @@ import com.yinshan.happycash.utils.ToastUtils;
 import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
 import com.yinshan.happycash.view.loan.model.DepositMethodsBean;
 import com.yinshan.happycash.view.loan.model.DepositResponseBean;
+import com.yinshan.happycash.view.loan.presenter.AdvancePresenter;
 import com.yinshan.happycash.view.loan.presenter.RepaymentPresenter;
+import com.yinshan.happycash.view.loan.view.IAdvanceView;
 import com.yinshan.happycash.view.loan.view.IRepaymentView;
 import com.yinshan.happycash.view.loan.view.impl.support.FullRepaymentDialog;
 import com.yinshan.happycash.view.loan.view.impl.support.RepaymentAdapter;
@@ -35,17 +36,17 @@ import com.yinshan.happycash.view.loan.view.impl.support.RepaymentDialogAdapter;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
+import com.yinshan.happycash.view.me.model.PrePaymentBean;
 import com.yinshan.happycash.view.me.model.StageBean;
 import com.yinshan.happycash.view.me.presenter.LoanDetailPresenter;
 import com.yinshan.happycash.view.me.view.ILoanDetailView;
-import com.yinshan.happycash.view.me.view.impl.RepaymentStrategyActivity;
+import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.common.CommonClickListener;
-import com.yinshan.happycash.widget.dialog.PowerDialog;
+import com.yinshan.happycash.widget.dialog.InAdavanceRepayDialog;
 import com.yinshan.happycash.widget.dialog.RepaymentShowDetailDialog;
 import com.yinshan.happycash.widget.pullrefresh.MyRefreshHeader;
 import com.yinshan.happycash.widget.pullrefresh.RefreshLayout;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -53,13 +54,16 @@ import butterknife.OnClick;
  * Created by huxin on 2018/2/1.
  */
 
-public class RepaymentFragment extends BaseFragment implements ILoanDetailView,IRepaymentView{
+public class RepaymentFragment extends BaseFragment implements ILoanDetailView,IRepaymentView,IAdvanceView{
 
     RefreshLayout refreshLayout;
     ListView listView;
     RepaymentAdapter mAdapter;
 
     TextView mClickFullPay;
+
+    LinearLayout mViewPrePay;
+    RelativeLayout mClickPrePay;
 
     TextView mCurrentReturn;
     TextView mPaymentDate;
@@ -69,6 +73,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
 
     LoanDetailPresenter mDetailPresenter;
     RepaymentPresenter mPresenter;
+    AdvancePresenter mAdvancePresenter;
 
     RepaymentDialog mDialog;
 
@@ -87,6 +92,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         initPullRefresh();
 
         mDetailPresenter = new LoanDetailPresenter(getActivity(),this);
+        mAdvancePresenter = new AdvancePresenter(getActivity(),this);
         refresh();
 
         mPresenter = new RepaymentPresenter(getActivity(),this);
@@ -108,6 +114,15 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         mTenor = (TextView)view.findViewById(R.id.tenor);
         mTitlePeriod = (TextView)view.findViewById(R.id.titlePeriod);
 
+        mViewPrePay = (LinearLayout) view.findViewById(R.id.viewPrePay);
+        mClickPrePay = (RelativeLayout) view.findViewById(R.id.clickPrePay);
+
+        mClickPrePay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAdvancePresenter.getAdvance(mDetail.getLoanAppId());
+            }
+        });
         mClickFullPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,7 +130,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
                     FullRepaymentDialog dialog = new FullRepaymentDialog(getActivity(), new CommonClickListener() {
                         @Override
                         public void onClick() {
-                            mPresenter.getRepaymentList();
+                            mPresenter.getRepaymentList(-1);
                         }
                     },mDetail);
                     dialog.show();
@@ -158,18 +173,24 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
             setListViewHeightBasedOnChildren(listView);
         }
         mMoney.setText("Rp "+ StringFormatUtils.moneyFormat(detail.getPrincipalAmount()));
+        if(true){
+//        if(detail.isQualification()){
+            mViewPrePay.setVisibility(View.VISIBLE);
+        }else{
+            mViewPrePay.setVisibility(View.GONE);
+        }
     }
 
     @OnClick(R.id.btnPay)
     public void btnPay(View view){
 
-        mPresenter.getRepaymentList();
+        mPresenter.getRepaymentList(-1);
     }
 
     @Override
-    public void getRepaymentListOk(DepositMethodsBean bean) {
+    public void getRepaymentListOk(DepositMethodsBean bean, double shouldPrePay) {
 //        SPUtils.getInstance().setObject(SPKeyUtils.DEPOSITMETHODS_METHODS,bean);
-        mDialog = new RepaymentDialog(getActivity(),bean);
+        mDialog = new RepaymentDialog(getActivity(),bean,shouldPrePay);
         mDialog.show();
     }
 
@@ -179,8 +200,10 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
     }
 
     @Override
-    public void getDepositOk(DepositResponseBean bean) {
+    public void getDepositOk(DepositResponseBean bean, double shouldPrePay) {
         MyDebugUtils.v("the wantImage is "+getActivity());
+        if(shouldPrePay != -1)
+            bean.setAmount((long) shouldPrePay);
         depositRB = bean;
 
         if(getActivity()==null) {
@@ -225,16 +248,16 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
             return;
         String str = event.data;
         MyDebugUtils.v(str);
-        doRepayRequest(str);
+        doRepayRequest(str,event.shouldPrePay);
 
     }
 
-    public void doRepayRequest(String str){
+    public void doRepayRequest(String str, double shouldPrePay){
         LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN,LastLoanAppBean.class);
         String appId;
         if(bean!=null&&bean.getLoanAppId()!=null){
             appId = bean.getLoanAppId();
-            mPresenter.doDeposit(appId,str);
+            mPresenter.doDeposit(appId,str,shouldPrePay);
         }
     }
 
@@ -266,5 +289,23 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         });
         MyRefreshHeader header = new MyRefreshHeader(getActivity());
         refreshLayout.setRefreshHeader(header);
+    }
+
+    @Override
+    public void showAdvanceFail(String displayMessage) {
+        HappySnackBar.showSnackBar(mMoney,displayMessage,SPKeyUtils.SNACKBAR_TYPE_WORN);
+
+    }
+
+    @Override
+    public void showAdvance(PrePaymentBean bean) {
+        CommonClickListener listener = new CommonClickListener() {
+            @Override
+            public void onClick() {
+                mPresenter.getRepaymentList(bean.getAdvanceFeeAmount());
+            }
+        };
+        InAdavanceRepayDialog dialog = new InAdavanceRepayDialog(getActivity(),listener,bean);
+        dialog.show();
     }
 }
