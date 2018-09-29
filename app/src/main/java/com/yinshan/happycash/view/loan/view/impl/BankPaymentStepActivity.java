@@ -15,6 +15,7 @@ import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.config.inner.AppDefaultConfig;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.DensityUtil;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.ScreenUtils;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
 import com.yinshan.happycash.widget.custom.NoScrollListView;
@@ -349,7 +350,9 @@ public class BankPaymentStepActivity extends BaseActivity {
         for (int i = 0; i < listAdapter.getCount(); i++) {
             View listItem = listAdapter.getView(i, null, listView);
             listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
+            int itemHeight = listItem.getMeasuredHeight();
+            MyDebugUtils.v("stepHeight item list is "+i+"    "+itemHeight+"       ");
+            totalHeight += itemHeight;
         }
 
         ViewGroup.LayoutParams params = listView.getLayoutParams();

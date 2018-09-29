@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yinshan.happycash.utils.DensityUtil;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.ScreenUtils;
 
 /**
@@ -67,6 +68,7 @@ public class CustomTextView extends AppCompatTextView{
                 line++;
             height = (this.getPaint().getFontMetrics().descent - this.getPaint().getFontMetrics().ascent) * line + (line - 1) * DensityUtil.dip2px(mContext, 6);
         }
+        MyDebugUtils.v("stepHeight item text is "+height +"   "+str+"    "+this.getPaint().measureText(str));
         return height;
     }
 }
