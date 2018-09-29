@@ -368,4 +368,10 @@ public class UploadPhotoActivity extends BaseSingleActivity implements IUploadPh
             HappySnackBar.showSnackBar(mBtnInfoSubmit, R.string.show_upload_failed, SPKeyUtils.SNACKBAR_TYPE_ERROR);
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        RxBus.get().unregister(this);
+        super.onDestroy();
+    }
 }
