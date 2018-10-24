@@ -2,29 +2,42 @@ package com.yinshan.happycash.view.information.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hwangjr.rxbus.RxBus;
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.framework.TokenManager;
+import com.yinshan.happycash.utils.AppLoanStatus;
+import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.StatusManagementUtils;
+import com.yinshan.happycash.view.information.model.PersonalBean;
 import com.yinshan.happycash.view.information.model.ProgressBean;
+import com.yinshan.happycash.view.information.presenter.BpjsPresenter;
 import com.yinshan.happycash.view.information.presenter.InformationPresenter;
 import com.yinshan.happycash.view.information.view.impl.ContactActivity;
 import com.yinshan.happycash.view.information.view.impl.JobInformation;
 import com.yinshan.happycash.view.information.view.impl.PersonalInformation;
 import com.yinshan.happycash.view.information.view.impl.UploadPhotoActivity;
 import com.yinshan.happycash.view.information.view.impl.support.InfoUploadEvent;
-import com.yinshan.happycash.widget.userdefined.ProfilProgressView;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.me.view.IGetPersonView;
+import com.yinshan.happycash.view.me.view.impl.support.GetPersonInfoPresenter;
+import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.common.ToastManager;
 
-import org.greenrobot.eventbus.EventBus;
 
-import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import cn.fraudmetrix.octopus.aspirit.bean.OctopusParam;
+import cn.fraudmetrix.octopus.aspirit.main.OctopusManager;
+import cn.fraudmetrix.octopus.aspirit.main.OctopusTaskCallBack;
 
 
 /**
@@ -50,36 +63,29 @@ import butterknife.Unbinder;
  *         on 2018/1/31
  */
 
-public class InformationFragment extends BaseFragment implements IInfoView{
+public class InformationFragment extends BaseFragment implements IInfoView,IBpjsView,IGetPersonView{
 
-    @BindView(R.id.progressView)
-    ProfilProgressView mProgressView;
-    @BindView(R.id.progressText)
+    ProgressBar mProgressView;
     TextView mProgressText;
-    @BindView(R.id.textView)
-    TextView textView;
-    @BindView(R.id.view_not_finish_person)
-    RelativeLayout notFinishPerson;
-    @BindView(R.id.view_finish_person)
-    RelativeLayout finishPerson;
-    @BindView(R.id.view_not_finish_employ)
-    RelativeLayout notFinishEmploy;
-    @BindView(R.id.view_finish_employ)
-    RelativeLayout finishEmploy;
-    @BindView(R.id.view_not_finish_contact)
-    RelativeLayout notFinishContact;
-    @BindView(R.id.view_finish_contact)
-    RelativeLayout finishContact;
-    @BindView(R.id.view_not_finish_upload_photo)
-    RelativeLayout notFinishUploadPhoto;
-    @BindView(R.id.view_finish_upload_photo)
-    RelativeLayout finishUploadPhoto;
+
+    RelativeLayout mViewPerson;
+    RelativeLayout mViewJob;
+    RelativeLayout mViewContact;
+    RelativeLayout mViewSS;
+    RelativeLayout mViewPhoto;
+    ImageView mCheckPerson;
+    ImageView mCheckJob;
+    ImageView mCheckContact;
+    ImageView mCheckSS;
+    ImageView mCheckPhoto;
     Unbinder unbinder;
 
-    @BindView(R.id.submit)
     RelativeLayout mSubmit;
 
     InformationPresenter mPresenter;
+    BpjsPresenter mBpjsPresenter;
+    GetPersonInfoPresenter mGetPersonPresenter;
+
     private ProgressBean mProgressBean;
 
     private static final int REQUEST_PERSONAL     = 1100;
@@ -89,11 +95,19 @@ public class InformationFragment extends BaseFragment implements IInfoView{
 
     @Override
     protected void initView() {
-
-        resetProgress();
-
         mPresenter = new InformationPresenter(getActivity(),this);
-        mPresenter.getProgress();
+        mBpjsPresenter = new BpjsPresenter(getActivity(),this);
+        mGetPersonPresenter = new GetPersonInfoPresenter(getActivity(),this);
+
+        RxBus.get().register(this);
+
+        resume();
+    }
+
+    public void resume(){
+        resetProgress();
+        if(TokenManager.getInstance().hasLogin())
+            mPresenter.getProgress();
     }
 
     @Override
@@ -101,36 +115,11 @@ public class InformationFragment extends BaseFragment implements IInfoView{
         return R.layout.fragment_information;
     }
 
-    @OnClick({R.id.view_not_finish_person, R.id.view_finish_person, R.id.view_not_finish_employ, R.id.view_finish_employ,
-            R.id.view_not_finish_contact,R.id.view_finish_contact,R.id.view_not_finish_upload_photo,R.id.view_finish_upload_photo,R.id.submit})
+    @OnClick({R.id.submit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.view_not_finish_person:
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
-                break;
-            case R.id.view_finish_person:
-                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL);
-                break;
-            case R.id.view_not_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
-                break;
-            case R.id.view_finish_employ:
-                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL);
-                break;
-            case R.id.view_not_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
-                break;
-            case R.id.view_finish_contact:
-                changeToForResult(ContactActivity.class,REQUEST_CONTACT);
-                break;
-            case R.id.view_not_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
-                break;
-            case R.id.view_finish_upload_photo:
-                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO);
-                break;
             case R.id.submit:
-                EventBus.getDefault().post(new InfoUploadEvent());
+                RxBus.get().post(new InfoUploadEvent());
                 break;
         }
     }
@@ -170,65 +159,199 @@ public class InformationFragment extends BaseFragment implements IInfoView{
     private void updateProgress(){
         int progress = 0;
         if(mProgressBean.isPersonalInfoPart()){
-            notFinishPerson.setVisibility(View.INVISIBLE);
-            finishPerson.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckPerson.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishPerson.setVisibility(View.VISIBLE);
-            finishPerson.setVisibility(View.INVISIBLE);
+            mCheckPerson.setVisibility(View.GONE);
         }
         if(mProgressBean.isEmploymentPart()){
-            notFinishEmploy.setVisibility(View.INVISIBLE);
-            finishEmploy.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckJob.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishEmploy.setVisibility(View.VISIBLE);
-            finishEmploy.setVisibility(View.INVISIBLE);
+            mCheckJob.setVisibility(View.GONE);
         }
         if(mProgressBean.isContactPart()){
-            notFinishContact.setVisibility(View.INVISIBLE);
-            finishContact.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckContact.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishContact.setVisibility(View.VISIBLE);
-            finishContact.setVisibility(View.INVISIBLE);
+            mCheckContact.setVisibility(View.GONE);
+        }
+        if(mProgressBean.isBpjsPart()){
+            mCheckSS.setVisibility(View.VISIBLE);
+            progress += 20;
+        }else{
+            mCheckSS.setVisibility(View.GONE);
         }
         if(mProgressBean.isFilePart()){
-            notFinishUploadPhoto.setVisibility(View.INVISIBLE);
-            finishUploadPhoto.setVisibility(View.VISIBLE);
-            progress += 25;
+            mCheckPhoto.setVisibility(View.VISIBLE);
+            progress += 20;
         }else{
-            notFinishUploadPhoto.setVisibility(View.VISIBLE);
-            finishUploadPhoto.setVisibility(View.INVISIBLE);
+            mCheckPhoto.setVisibility(View.GONE);
         }
         setProgress(progress);
         showApplyButton(progress);
     }
 
     private void setProgress(int progress){
-        mProgressView.setCurrentProgress((float)(progress*0.01));
+        mProgressView.setProgress(progress);
         mProgressView.invalidate();
-        SpannableStringBuilder spannableString = new SpannableStringBuilder();
-        spannableString.append(String.valueOf(progress));
-        spannableString.append("%");
+//        SpannableStringBuilder spannableString = new SpannableStringBuilder();
+//        spannableString.append(String.valueOf(progress));
+//        spannableString.append("%");
 //        AbsoluteSizeSpan sizeSpan = new AbsoluteSizeSpan(20);
 //        AbsoluteSizeSpan sizeSpan2 = new AbsoluteSizeSpan(10);
 //        spannableString.setSpan(sizeSpan, 0, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 //        spannableString.setSpan(sizeSpan2, 3, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        mProgressText.setText(spannableString);
+        mProgressText.setText(String.valueOf(progress)+"%");
     }
 
     private void showApplyButton(int progress){
         if(!TokenManager.getInstance().hasLogin()){
             mSubmit.setVisibility(View.INVISIBLE);
         }else{
-            if(progress==100){
-                mSubmit.setClickable(true);
-                mSubmit.setAlpha(0.8f);
-            }else{
-                mSubmit.setClickable(false);
-                mSubmit.setAlpha(0.3f);
+            LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+            if(bean==null)
+                showProgressButton(progress);
+            else{
+                String loanStatus = StatusManagementUtils.loanBtnStatus(bean);
+                if(loanStatus.equals(AppLoanStatus.UNLOAN)){
+                    showProgressButton(progress);
+                }else{
+                    mSubmit.setVisibility(View.INVISIBLE);
+                }
             }
         }
+    }
+
+    private void showProgressButton(int progress) {
+        mSubmit.setVisibility(View.VISIBLE);
+        if(progress==100){
+            mSubmit.setClickable(true);
+            mSubmit.setAlpha(0.8f);
+        }else{
+            mSubmit.setClickable(false);
+            mSubmit.setAlpha(0.3f);
+        }
+    }
+
+    @Override
+    protected void initUIValue(View view){
+        mProgressView = (ProgressBar)view.findViewById(R.id.progressView);
+        mProgressText = (TextView)view.findViewById(R.id.progressNum);
+
+        mViewPerson = (RelativeLayout)view.findViewById(R.id.viewPerson);
+        mViewJob = (RelativeLayout)view.findViewById(R.id.viewJob);
+        mViewContact = (RelativeLayout)view.findViewById(R.id.viewContact);
+        mViewSS = (RelativeLayout)view.findViewById(R.id.viewSS);
+        mViewPhoto = (RelativeLayout)view.findViewById(R.id.viewPhoto);
+
+        mCheckPerson = (ImageView)view.findViewById(R.id.personCheck);
+        mCheckJob = (ImageView)view.findViewById(R.id.jobCheck);
+        mCheckContact = (ImageView)view.findViewById(R.id.contactCheck);
+        mCheckSS = (ImageView) view.findViewById(R.id.ssCheck);
+        mCheckPhoto = (ImageView)view.findViewById(R.id.photoCheck);
+
+        mViewPerson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(PersonalInformation.class,REQUEST_PERSONAL,true);
+            }
+        });
+        mViewJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(JobInformation.class,REQUEST_PROFESSIONAL,true);
+            }
+        });
+        mViewContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(ContactActivity.class,REQUEST_CONTACT,true);
+            }
+        });
+        mViewSS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mProgressBean==null)
+                    mPresenter.getProgress();
+                else{
+                    if(mProgressBean.isPersonalInfoPart()){
+                        if(!TextUtils.isEmpty(SPUtils.getInstance().getUserKtp()))
+                            doBpjsAction();
+                        else
+                            mGetPersonPresenter.getPersonInfo();
+                    }else{
+                        String str = getActivity().getString(R.string.please_input_your_person_info_first);
+                        ToastManager.showToast(str);
+                    }
+                }
+            }
+        });
+        mViewPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeToForResult(UploadPhotoActivity.class,REQUEST_PHOTO,true);
+            }
+        });
+
+        mSubmit = (RelativeLayout)view.findViewById(R.id.submit);
+    }
+
+    private void doBpjsAction(){
+//        OctopusParam param = new OctopusParam();
+////                param.passbackarams=“*****”//选填;
+//        param.identityCode = "420143198805163322";//必填，作为唯⼀一标识关联多数据源数据;
+        OctopusParam param = new OctopusParam();
+        param.passbackarams = SPUtils.getInstance().getMobile();
+        param.identityCode = SPUtils.getInstance().getUserKtp();//必填，作为唯⼀一标识关联多数据源数据;
+
+        OctopusManager.getInstance().setNavImgResId(R.drawable.path_3_copy);
+        OctopusManager.getInstance().setPrimaryColorResId(R.color.app_yellow);
+//                OctopusManager.getInstance().setTitleColorResId(R.color.app_yellow);
+//                OctopusManager.getInstance().setTitleSize(14);
+        OctopusManager.getInstance().setShowWarnDialog(true);
+        OctopusManager.getInstance().setStatusBarBg(R.color.app_yellow);
+        OctopusManager.getInstance().getChannel(getActivity(),"105002",param,octopusTaskCallBack);
+    }
+
+    @Override
+    public void bpjsOk() {
+        mProgressBean.setBpjsPart(true);
+        updateProgress();
+        //ToastManager.showToast("Selamat, sukses dalam memperoleh informasi keamanan sosial!");
+    }
+
+    @Override
+    public void bpjsFail(String message) {
+        HappySnackBar.showSnackBar(mSubmit,message, SPKeyUtils.SNACKBAR_TYPE_WORN);
+    }
+
+    private OctopusTaskCallBack octopusTaskCallBack = new OctopusTaskCallBack() { @Override
+        public void onCallBack(int code, String taskId) {
+            String msg = "成功";
+            if(code == 0){//code为0表示成功，f⾮非0表示失败
+    //只有code为0时taskid才会有值。msg+=taskId;
+                mBpjsPresenter.initBpjs(taskId);
+            }else {
+                msg = "失败："+code;
+                HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
+            }
+        }
+    };
+
+    @Override
+    public void showInfo(PersonalBean personalBean) {
+        if(personalBean!=null&&!TextUtils.isEmpty(personalBean.getCredentialNo())) {
+            SPUtils.getInstance().setUserKtp(personalBean.getCredentialNo());
+            doBpjsAction();
+        }else{
+            String str = getActivity().getString(R.string.please_input_your_person_info_first);
+            ToastManager.showToast(str);
+        }
+    }
+
+    @Override
+    public void showPersonInfoError() {
+        //HappySnackBar.showSnackBar(mSubmit,"Gagal mendapatkan informasi keamanan sosial, silakan coba lagi", SPKeyUtils.SNACKBAR_TYPE_WORN);
     }
 }

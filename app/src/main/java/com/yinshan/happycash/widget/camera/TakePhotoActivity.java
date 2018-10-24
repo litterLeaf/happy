@@ -37,7 +37,7 @@ import com.yinshan.happycash.support.takepicture.bean.PhotoInfo;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.Util;
 import com.yinshan.happycash.view.information.view.impl.support.FileUploadType;
-import com.yinshan.happycash.view.main.MainActivity;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 
 import java.io.File;
@@ -70,7 +70,7 @@ public class TakePhotoActivity extends BaseActivity {
     private int mFinishCount;
 
     public void onTaken(final byte[] data) {
-
+        showLoadingDialog();
         Observable.create(new Observable.OnSubscribe<PhotoInfo>(){
             @Override
             public void call(Subscriber<? super PhotoInfo> subscriber) {
@@ -124,10 +124,13 @@ public class TakePhotoActivity extends BaseActivity {
                     System.gc();
                     out.flush();
                     out.close();
+//                    dismissLoadingDialog();
                 } catch (FileNotFoundException e) {
+//                    dismissLoadingDialog();
                     Log.d("In Saving File", e + "");
                     subscriber.onError(e);
                 } catch (IOException e) {
+//                    dismissLoadingDialog();
                     Log.d("In Saving File", e + "");
                     subscriber.onError(e);
                 }
@@ -148,13 +151,13 @@ public class TakePhotoActivity extends BaseActivity {
                     public void onError(Throwable e) {
 //                         ToastManager.showToast(getString(R.string.show_generate_wrong));
                         HappySnackBar.showSnackBar(mbtnCancel,R.string.show_generate_wrong, SPKeyUtils.SNACKBAR_TYPE_ERROR);
-                        dismissLoading();
+                        dismissLoadingDialog();
                         finish();
                     }
                     @Override
                     public void onNext(PhotoInfo photoInfo) {
                         RxBus.get().post(photoInfo);
-                        dismissLoading();
+                        dismissLoadingDialog();
                         finish();
                     }
                 });
@@ -252,7 +255,8 @@ public class TakePhotoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 btnCapture.setClickable(false);
-                showLoading(getString(R.string.loading_storing_img));
+                //showLoadingDialog();
+                //showLoadingDialog(getString(R.string.loading_storing_img));
                 mCameraContainer.takePicture();
 
             }

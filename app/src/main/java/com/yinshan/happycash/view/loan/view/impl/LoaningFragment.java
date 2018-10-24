@@ -3,10 +3,12 @@ package com.yinshan.happycash.view.loan.view.impl;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hwangjr.rxbus.RxBus;
@@ -18,14 +20,18 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.HappyAppSP;
 import com.yinshan.happycash.framework.BaseFragment;
 import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.StringFormatUtils;
 import com.yinshan.happycash.view.bindcard.view.impl.BindCardActivity;
 import com.yinshan.happycash.view.bindcard.model.BandCardBean;
 import com.yinshan.happycash.view.information.view.impl.support.InfoAdapterEnum;
 import com.yinshan.happycash.view.information.view.impl.support.InfoType;
+import com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity;
 import com.yinshan.happycash.view.loan.model.ApplyPurpose;
 import com.yinshan.happycash.view.loan.presenter.LoaningPresenter;
 import com.yinshan.happycash.view.loan.view.ILoaningView;
+import com.yinshan.happycash.view.main.model.LastLoanAppBean;
+import com.yinshan.happycash.view.main.view.impl.MainActivity;
 import com.yinshan.happycash.widget.HappySnackBar;
 import com.yinshan.happycash.widget.dialog.DialogManager;
 
@@ -35,36 +41,52 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
- * Created by admin on 2018/2/1.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：提交申请付款页面
+ *    创建人：     admin
+ *    创建时间：2018/2/01
+ *
  */
 
 public class LoaningFragment extends BaseFragment implements ILoaningView{
 
-    @BindView(R.id.id_textview_repayment_amount)
     TextView idTextviewRepaymentAmount;
-    private final long lMaxAmount = 50000000;
-    private final long lMinAmount = 10000000;
     private final int subLength = 10;
-    long moneyAmount;
 
-    @BindView(R.id.bt_period_1_unloan)
     Button choose1Period;
-    @BindView(R.id.bt_period_3_unloan)
     Button choose3Period;
 
-    @BindView(R.id.loan_before_bind_card)
     TextViewExpand beforeBindCard;
-    @BindView(R.id.loan_bind_card)
     TextViewExpand bindCard;
-    @BindView(R.id.loan_reason)
     TextViewExpand borrowReason;
+
+    ImageView mAddButton;
+    ImageView mSubButton;
+
+    TextView mEveryPay;
 
     LoaningPresenter mPresenter;
     Dialog dialogPlus;
 
     private int mRequestCode = 1333;
 
-    int choosePeriod;
     private String smsCode;
 
     private String borrowReasonString;
@@ -77,12 +99,39 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         RxBus.get().register(this);
         MobAgent.onEvent(MobEvent.IN_LOANING_FRAGMENT);
 
-        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(lMaxAmount));
-        moneyAmount = lMaxAmount;
-        choosePeriod = 1;
+        resume();
+    }
 
+    @Override
+    protected void initUIValue(View view) {
+        idTextviewRepaymentAmount = (TextView)view.findViewById(R.id.id_textview_repayment_amount);
+        choose1Period = (Button)view.findViewById(R.id.bt_period_1_unloan);
+        choose3Period = (Button)view.findViewById(R.id.bt_period_3_unloan);
+
+        beforeBindCard = (TextViewExpand)view.findViewById(R.id.loan_before_bind_card);
+        bindCard = (TextViewExpand)view.findViewById(R.id.loan_bind_card);
+        borrowReason = (TextViewExpand)view.findViewById(R.id.loan_reason);
+
+        mAddButton = (ImageView)view.findViewById(R.id.add);
+        mSubButton = (ImageView)view.findViewById(R.id.sub);
+        mEveryPay = (TextView)view.findViewById(R.id.everyPay);
+    }
+
+
+    public void resume() {
+        BandCardBean bean = SPUtils.getInstance().getObject(SPKeyUtils.BANDCARDBEAN, BandCardBean.class);
+        if(bean!=null)
+            setBankdCardBean(bean);
         mPresenter = new LoaningPresenter(getActivity(),this);
         mPresenter.getBankCard();
+
+        if(MainActivity.choosePeriod==3){
+            setChoose3Period();
+        }else if(MainActivity.choosePeriod==1){
+            setChoose1Period();
+        }
+        setAddSubIcon();
+        idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
     }
 
     @Override
@@ -93,11 +142,19 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
     @Override
     public void showBindBankCard(BandCardBean bean) {
         if(bean!=null){
-            beforeBindCard.setVisibility(View.GONE);
-            bindCard.setVisibility(View.VISIBLE);
-            bindCard.setCenterString(bean.getCardNo());
-            bindCard.setLeftString(bean.getBankCode());
+            SPUtils.getInstance().setObject(SPKeyUtils.BANDCARDBEAN,bean);
+            setBankdCardBean(bean);
         }
+    }
+
+    private void setBankdCardBean(BandCardBean bean) {
+        bankCardName = bean.getBankCode();
+        bankCardNumber = bean.getCardNo();
+        userName = bean.getHolderName();
+        beforeBindCard.setVisibility(View.GONE);
+        bindCard.setVisibility(View.VISIBLE);
+        bindCard.setCenterString(bean.getCardNo());
+        bindCard.setLeftString(bean.getBankCode());
     }
 
     @Override
@@ -117,35 +174,88 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
 
     @Override
     public void submitLoanOk() {
-
+//        AppReport.sendUserData();
+//        Need ACCESS_COARSE_LOCATION or ACCESS_FINE_LOCATION permission to get scan results
+        LastLoanAppBean bean = SPUtils.getInstance().getObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        bean.setStatus("SUBMITTED");
+        SPUtils.getInstance().setObject(SPKeyUtils.LOANAPPBEAN, LastLoanAppBean.class);
+        Intent intent;
+        if (SPUtils.getInstance().getLiveNess()||true) {
+            intent = new Intent(getActivity(), OliveStartActivity.class);
+            startActivity(intent);
+        }
     }
 
-    @OnClick({R.id.loan_before_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan})
+    @Override
+    public void submitFail(String displayMessage) {
+        HappySnackBar.showSnackBar(mAddButton,displayMessage, SPKeyUtils.SNACKBAR_TYPE_WORN);
+    }
+
+    @OnClick({R.id.loan_before_bind_card,R.id.loan_bind_card,R.id.loan_reason,R.id.btnSubmit,R.id.bt_period_1_unloan,R.id.bt_period_3_unloan,R.id.add,R.id.sub})
     public void onClick(View view){
         switch (view.getId()){
             case R.id.loan_before_bind_card:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.BIND_BANK_CARD);
                 Intent intent = new Intent(getActivity(), BindCardActivity.class);
+                MainActivity.isNotResume = true;
                 startActivityForResult(intent,mRequestCode);
+                break;
+            case R.id.loan_bind_card:
+                MobAgent.onEvent(MobEvent.CLICK+MobEvent.BIND_BANK_CARD);
+                Intent intent2 = new Intent(getActivity(), BindCardActivity.class);
+                MainActivity.isNotResume = true;
+                startActivityForResult(intent2,mRequestCode);
                 break;
             case R.id.loan_reason:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.BORROW_REANSON);
                 mPresenter.getPurpose();
                 break;
             case R.id.btnSubmit:
-                MobAgent.onEvent(MobEvent.CLICK+MobEvent.APPLY_LOANING);
+//                MobAgent.onEvent(MobEvent.CLICK+MobEvent.APPLY_LOANING);
                 applyLoanAppSubmit();
+//                if (SPUtils.getInstance().getLiveNess()||true) {
+//                    intent = new Intent(getActivity(), OliveStartActivity.class);
+//                    startActivity(intent);
+//                }
+
                 break;
             case R.id.bt_period_1_unloan:
-                choosePeriod = 1;
-                choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
-                choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
+                setChoose1Period();
                 break;
             case R.id.bt_period_3_unloan:
-                choosePeriod = 3;
-                choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
-                choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+                setChoose3Period();
                 break;
+            case R.id.add:
+                if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
+                    long addValue = MainActivity.loanMoney+(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
+                    MainActivity.loanMoney = addValue;
+                    idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+                }
+                mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
+                setAddSubIcon();
+                break;
+            case R.id.sub:
+                if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
+                    long subValue = MainActivity.loanMoney-(MainActivity.MAX_VALUE-MainActivity.MIN_VALUE)/MainActivity.MONEY_SEG;
+                    MainActivity.loanMoney = subValue;
+                    idTextviewRepaymentAmount.setText(StringFormatUtils.moneyFormat(MainActivity.loanMoney));
+                }
+                mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
+                setAddSubIcon();
+                break;
+        }
+    }
+
+    private void setAddSubIcon(){
+        if(MainActivity.loanMoney<MainActivity.MAX_VALUE){
+            mAddButton.setBackgroundResource(R.drawable.add_icon);
+        }else{
+            mAddButton.setBackgroundResource(R.drawable.add_icon_disable);
+        }
+        if(MainActivity.loanMoney>MainActivity.MIN_VALUE){
+            mSubButton.setBackgroundResource(R.drawable.sub_icon);
+        }else{
+            mSubButton.setBackgroundResource(R.drawable.sub_icon_disable);
         }
     }
 
@@ -177,7 +287,8 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
             }
             borrowReason.setCenterString(event.data.getInfoStr());
             borrowReasonString = event.data.getValueStr();
-            borrowReason.setBackground(getResources().getDrawable(R.drawable.shape_amount_selected));
+//            Drawable drawable = getResources().getDrawable(R.drawable.shape_amount_selected);
+//            borrowReason.setBackground(drawable);
             MobAgent.onEvent("LOANING_REASON_"+MobEvent.LIST+borrowReasonString);
         }
     }
@@ -201,7 +312,6 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         }
 
         String loanType = "PAYDAY";
-        long period = choosePeriod;
         String periodUnit = "M";
         String bankCode = bankCardName;
         String cardNo = bankCardNumber;
@@ -213,9 +323,23 @@ public class LoaningFragment extends BaseFragment implements ILoaningView{
         String imie = HappyAppSP.getInstance().getImei();
         smsCode ="SMSCode";
 
-        moneyAmount = 800000;
 
-        mPresenter.submitLoanApp(loanType,String.valueOf(moneyAmount),String.valueOf(period),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
+        mPresenter.submitLoanApp(loanType,String.valueOf(MainActivity.loanMoney),String.valueOf(MainActivity.choosePeriod),periodUnit,bankCode,cardNo,holderName,applyPurpose,applyFor,
                 applyChannel,applyPlatform,imie,smsCode);
     }
+
+    private void setChoose1Period(){
+        MainActivity.choosePeriod = 1;
+        choose1Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+        choose3Period.setBackgroundResource(R.drawable.shape_period_bg);
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
+    }
+
+    private void setChoose3Period(){
+        MainActivity.choosePeriod = 3;
+        choose1Period.setBackgroundResource(R.drawable.shape_period_bg);
+        choose3Period.setBackgroundResource(R.drawable.shape_unloan_bg);
+        mEveryPay.setText(getResources().getString(R.string.every_pay)+" "+StringFormatUtils.moneyFormat(MainActivity.getLastMoney()));
+    }
+
 }

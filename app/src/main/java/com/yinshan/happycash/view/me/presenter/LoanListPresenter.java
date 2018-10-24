@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.me.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.LoanApi;
 import com.yinshan.happycash.network.api.UserApi;
@@ -30,6 +31,7 @@ public class LoanListPresenter {
     }
 
     public void getList(){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(LoanApi.class)
                 .getLoanList(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -37,12 +39,15 @@ public class LoanListPresenter {
                     @Override
                     public void onNext(List<LoanItem> value) {
                         super.onNext(value);
+                        mView.dismissLoadingDialog();
                         mView.showList(value);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

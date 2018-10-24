@@ -4,6 +4,7 @@
     <color name="colorAccent">#ffe232</color>
     <color name="colorPrimary">#ffe232</color>
     <color name="colorPrimaryDark">#ffe232</color>
+    <color name="colorSPTextPrimary">#F5A623</color>
     <color name="colorWrong">#FF4081</color>
     <color name="transparent_color">#00000000</color>
     <color name="hc_text">#FCA849</color>
@@ -24,7 +25,7 @@
 
     <color name="app_bg">#f6f6f6</color>
     <color name="app_white">#ffffff</color>
-    <color name="app_yellow">#ffe232</color>
+    <color name="app_yellow">#FFE232</color>
     <color name="app_orange">#f5a623</color>
     <color name="app_blue">#9187F6</color>
     <color name="app_brown">#4A2E09</color>
@@ -32,18 +33,23 @@
     <color name="f6f6f6">#f6f6f6</color>
     <color name="text_white">#ffffff</color>
     <color name="text_blue">#9187f6</color>
-    <color name="text_red">#fca849</color>
+    <color name="text_orange">#fca849</color>
     <color name="text_d6d6d6">#d6d6d6</color>
     <color name="line">#d6d6d6</color>
     <color name="line2">#f6f6f6</color>
+    <color name="color_shadow_yellow">#FFF097</color>
+    <color name="a2_blue">#A29DF8</color>
 
     <color name="re10a90">#4b000000</color>
     <color name="gray_9b">#9B9B9B</color>
-
+    <color name="black_00">#CC000000</color>
+    <color name="transparent">#00000000</color>
     <color name="color_camera_button">#59d6d4</color>
     <color name="color_camera_button_pressed">#59d6e6</color>
     <color name="colorBlack">#000</color>
 
     <color name="color_expiry_red">#F46262</color>
+
+    <color name="snackbar_bg">#fffcec</color>
 
 </resources>

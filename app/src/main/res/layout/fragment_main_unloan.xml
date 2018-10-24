@@ -18,11 +18,11 @@
             android:background="@color/colorPrimary">
 
             <TextView
+                android:id="@+id/chooseMoney"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dp30"
                 android:gravity="center"
-                android:text="1.500.000"
                 android:textStyle="bold"
                 android:textColor="@color/hc_input_text"
                 android:textSize="@dimen/sp40" />
@@ -35,23 +35,30 @@
                 android:text="Jumlah Pinjaman(Rp)"
                 android:textColor="@color/hc_input_text"
                 android:textSize="@dimen/sp14" />
+            <!--<LinearLayout-->
+                <!--android:layout_width=-->
+                <!--android:layout_height=""></LinearLayout>-->
 
             <SeekBar
                 android:id="@+id/unloan_seeker"
-                android:padding="@dimen/dp5"
+                android:paddingTop="@dimen/dp5"
+                android:paddingBottom="@dimen/dp5"
                 style="?android:attr/seekBarStyle"
                 android:layout_marginTop="@dimen/dp20"
                 android:layout_marginLeft="@dimen/dp30"
                 android:layout_marginRight="@dimen/dp30"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:thumb="@drawable/button_1"
-                />
+                android:paddingLeft="@dimen/dp15"
+                android:paddingRight="@dimen/dp15"
+                android:progress="0"
+                android:progressDrawable="@drawable/seek_layer"
+                android:thumb="@drawable/button_1" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tenor Pinjaman(hulan)"
+                android:text="Tenor Pinjaman(bulan)"
                 android:textColor="@color/hc_input_text"
                 android:layout_marginTop="@dimen/dp15"
                 android:layout_gravity="center"
@@ -70,7 +77,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
                     <Button
                         android:id="@+id/bt_period_1_unloan"
@@ -170,7 +178,6 @@
                             android:layout_marginBottom="@dimen/dp50"
                             android:gravity="center"
                             android:padding="@dimen/dp5"
-                            android:text=" 14000"
                             android:textColor="@color/hc_input_text"
                             android:textSize="@dimen/sp16" />
 

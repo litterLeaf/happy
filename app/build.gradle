@@ -1,14 +1,23 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.jakewharton.butterknife'
 
 android {
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.yinshan.happycash"
         minSdkVersion 16
         targetSdkVersion 26
         buildToolsVersion '26.0.2'
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.0.0.2"
+        multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
 //        jackOptions {
@@ -20,6 +29,9 @@ android {
             }
         }
 
+        dexOptions {
+            javaMaxHeapSize "4g"
+        }
 
         sourceSets{
             main{
@@ -27,6 +39,9 @@ android {
             }
         }
 
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -36,7 +51,15 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明，后一个文件是自己的定义混淆文件
+
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -67,11 +90,16 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/BaiduLBS_Android.jar')
 
     //olive s
     implementation(name: 'camera-release', ext: 'aar')
     implementation(name: 'livenessdetectionviewsdk-release', ext: 'aar')
     implementation(name: 'livenessdetectorsdk-release', ext: 'aar')
+    //环信
+//    implementation project(':kefu-easeui')
+    //社保SDK
+    implementation(name: 'android-shujumohe-sdk-beta-20180827-1081', ext: 'aar')
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:multidex:1.0.2'
@@ -81,13 +109,13 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     //Rxjava2.0+okhttp3+retrofit
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.7'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.2.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
     implementation 'com.squareup.okhttp3:okhttp:3.8.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android:2.0.1'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-components:2.0.1'
@@ -102,17 +130,29 @@ dependencies {
     //butterknife
     implementation 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+
     //ARouter
     implementation 'com.alibaba:arouter-api:1.3.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'
     testImplementation 'junit:junit:4.12'
+
+
+
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 
     implementation 'com.github.litterLeaf:TextViewExpand:1.0.1'
-    implementation 'org.greenrobot:eventbus:3.0.0'
     //csv
     implementation 'com.opencsv:opencsv:4.0'
     //apache
     implementation 'org.apache.commons:commons-lang3:3.6'
+
+    //appsFlyer
+    compile 'com.appsflyer:af-android-sdk:4.8.11'
+
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //社保SDK附加架包
+    compile 'com.alibaba:fastjson:1.1.58.android'
 }

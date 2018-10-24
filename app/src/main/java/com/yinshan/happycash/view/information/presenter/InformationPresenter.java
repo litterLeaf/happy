@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.information.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.common.RxHttpUtils;
@@ -28,6 +29,7 @@ public class InformationPresenter {
     }
 
     public void getProgress(){
+        mView.showLoadingDialog();
         RxHttpUtils.getInstance().createApi(RecordApi.class)
                 .progress(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
@@ -35,12 +37,15 @@ public class InformationPresenter {
                     @Override
                     public void onNext(ProgressBean bean) {
                         super.onNext(bean);
+                        mView.dismissLoadingDialog();
                         mView.showProgress(bean);
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

@@ -18,6 +18,7 @@ import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseSingleActivity;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.StringUtil;
 import com.yinshan.happycash.view.information.model.EmploymentBean;
 import com.yinshan.happycash.view.information.model.JobStatus;
@@ -47,43 +48,24 @@ import butterknife.OnClick;
  */
 
 public class JobInformation extends BaseSingleActivity implements IJobView{
-    @BindView(R.id.tv_job_work_type)
     TextView jobWorkType;
-    @BindView(R.id.ll_job_work_type)
     LinearLayout llJobWorkType;
-    @BindView(R.id.tv_job_monthly_income)
     TextView jobMonthlyIncome;
-    @BindView(R.id.ll_job_monthly_income)
     LinearLayout llJobMonthlyIncome;
-    @BindView(R.id.tv_job_company_name)
     BandaEditText jobCompanyName;
-    @BindView(R.id.ll_job_company_name)
     LinearLayout llJobCompanyName;
-    @BindView(R.id.tv_job_company_province)
     TextView jobCompanyProvince;
-    @BindView(R.id.ll_job_company_provice)
     LinearLayout llCompanyProvice;
-    @BindView(R.id.tv_job_company_city)
     TextView jobCompanyCity;
-    @BindView(R.id.ll_job_company_city)
     LinearLayout llJobCompanyCity;
-    @BindView(R.id.tv_job_company_street)
     TextView jobCompanyStreet;
-    @BindView(R.id.ll_job_company_street)
     LinearLayout llJobCompanyStreet;
-    @BindView(R.id.tv_job_company_in_the_village)
     TextView jobCompanyInTheVillage;
-    @BindView(R.id.ll_job_company_in_the_village)
     LinearLayout llJobCompanyInTheVillage;
-    @BindView(R.id.et_job_company_address)
     BandaEditText jobCompanyAddress;
-    @BindView(R.id.ll_job_company_address)
     LinearLayout llJobCompanyAddress;
-    @BindView(R.id.bdlv_job_info_telpre)
     DropListView mbdlv;
-    @BindView(R.id.id_edittext_job_info_tel)
     BandaEditText edittextJobInfoTel;
-    @BindView(R.id.rl_job_confirm)
     RelativeLayout jobConfirm;
 
     JobPresenter mPresenter;
@@ -109,11 +91,11 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
 
     @Override
     protected void secondInit() {
+        initUI();
         mPresenter = new JobPresenter(this,this);
         mPresenter.getJobInfo();
 
         RxBus.get().register(this);
-        initWorkTelPre();
         jobWorkType.requestFocus();
         mBean = new EmploymentBean();
         initListener();
@@ -239,27 +221,32 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         String companyPhone = bean.getCompanyPhone();
         List<String> areaCodes = bean.getAreaCodes();
         if (areaCodes != null) {
+            mTelPreStrings.clear();
             for (int i = 0; i < areaCodes.size(); i++) {
+                if(!TextUtils.isEmpty(areaCodes.get(i)))
+                    mTelPreStrings.add(areaCodes.get(i));
                 if (companyPhone.startsWith(areaCodes.get(i))) {
                     companyPhone = companyPhone.substring(areaCodes.get(i).length());
                     break;
                 }
             }
         }
+        initWorkTelPre();
         if(!TextUtils.isEmpty(companyPhone)){
             String[] c=bean.getCompanyPhone().split(companyPhone);
             if(c.length>0){
                 String areaCode = c[0];
                 if(areaCode!=null){
                     if(!TextUtils.isEmpty(areaCode)){
-//                        mbdlv.setText(areaCode);
+                        mbdlv.setText(areaCode);
                     }else {
-//                        mbdlv.setText(areaCodes.get(0));
+                        mbdlv.setText(areaCodes.get(0));
                     }
                 }
             }
         }
         edittextJobInfoTel.setText(companyPhone);
+
     }
 
     private void submitData(){
@@ -267,21 +254,29 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
         if(isCheckedField()){
             mBean.setCompanyName(jobCompanyName.getText().toString().trim());
             mBean.setCompanyAddress(jobCompanyAddress.getText().toString().trim());
-            mBean.setCompanyPhone(edittextJobInfoTel.getText().toString().trim());
+            mBean.setCompanyPhone(mbdlv.getText().toString()+edittextJobInfoTel.getText().toString().trim());
             mPresenter.submitJobInfo(mBean);
         }
     }
 
     @Override
     public void submitOk() {
+        setResult(RESULT_OK);
         finish();
     }
+    int times=0;
 
     @Subscribe
     public void onSelected(InfoAdapterEnum.ItemSelectedEvent<InfoAdapterEnum.InfoItem> event){
+        times++;
+        MyDebugUtils.v("click event enter "+times);
         if(dialogPlus!=null&&dialogPlus.isShowing()){
             dialogPlus.dismiss();
         }
+        MyDebugUtils.v("click event 1 "+event.data);
+        MyDebugUtils.v("click event 2 "+event.data.getInfoStr());
+        MyDebugUtils.v("click event 3 "+event.data.getValueStr());
+        MyDebugUtils.v("click event 4 "+jobWorkType);
         if(event.data.getType()==InfoType.JOBTYPE){
             jobWorkType.setText(event.data.getInfoStr());
             mBean.setProfession(event.data.getValueStr());
@@ -487,5 +482,30 @@ public class JobInformation extends BaseSingleActivity implements IJobView{
             jobConfirm.setClickable(false);
             jobConfirm.setAlpha(0.3f);
         }
+    }
+
+    private void initUI(){
+        jobWorkType = (TextView)findViewById(R.id.tv_job_work_type);
+        llJobWorkType = (LinearLayout)findViewById(R.id.ll_job_work_type);
+        jobMonthlyIncome = (TextView)findViewById(R.id.tv_job_monthly_income);
+        llJobMonthlyIncome = (LinearLayout)findViewById(R.id.ll_job_monthly_income);
+
+        jobCompanyName = (BandaEditText)findViewById(R.id.tv_job_company_name);
+        llJobCompanyName = (LinearLayout)findViewById(R.id.ll_job_company_name);
+        jobCompanyProvince = (TextView)findViewById(R.id.tv_job_company_province);
+        llCompanyProvice = (LinearLayout)findViewById(R.id.ll_job_company_provice);
+        jobCompanyCity = (TextView)findViewById(R.id.tv_job_company_city);
+
+        llJobCompanyCity = (LinearLayout)findViewById(R.id.ll_job_company_city);
+        jobCompanyStreet = (TextView)findViewById(R.id.tv_job_company_street);
+        llJobCompanyStreet = (LinearLayout)findViewById(R.id.ll_job_company_street);
+        jobCompanyInTheVillage = (TextView)findViewById(R.id.tv_job_company_in_the_village);
+        llJobCompanyInTheVillage = (LinearLayout)findViewById(R.id.ll_job_company_in_the_village);
+
+        jobCompanyAddress = (BandaEditText)findViewById(R.id.et_job_company_address);
+        llJobCompanyAddress = (LinearLayout)findViewById(R.id.ll_job_company_address);
+        mbdlv = (DropListView)findViewById(R.id.bdlv_job_info_telpre);
+        edittextJobInfoTel = (BandaEditText)findViewById(R.id.id_edittext_job_info_tel);
+        jobConfirm = (RelativeLayout)findViewById(R.id.rl_job_confirm);
     }
 }

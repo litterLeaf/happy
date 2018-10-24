@@ -34,4 +34,8 @@ public class CodeException {
     public static final int UNKNOWN_ERROR = 204;
     /*运行时异常-包含自定义异常*/
     public static final int RUNTIME_ERROR = 205;
+
+
+    /*未知错误*/
+    public static final int E_EOF_ERROR = 1001;
 }

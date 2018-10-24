@@ -16,6 +16,10 @@ public class BaseURL {
      */
     public static final int HTTP_404 = 404;
     /**
+     * HTTP 401 错误
+     */
+    public static final int HTTP_401 = 401;
+    /**
      * 业务成功代码：0<br>
      */
     public static final int APP_BUSINESS_SUCCESS = 0;

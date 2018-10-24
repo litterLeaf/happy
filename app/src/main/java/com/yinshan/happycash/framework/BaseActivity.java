@@ -1,33 +1,57 @@
 package com.yinshan.happycash.framework;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+
 
 import com.yinshan.happycash.R;
 import com.yinshan.happycash.analytic.event.MobAgent;
 import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.application.AppManager;
+import com.yinshan.happycash.network.api.UserApi;
+import com.yinshan.happycash.network.common.RxHttpUtils;
+import com.yinshan.happycash.utils.DensityUtil;
+import com.yinshan.happycash.utils.LoggerWrapper;
+import com.yinshan.happycash.utils.MyDebugUtils;
+import com.yinshan.happycash.utils.SPKeyUtils;
+import com.yinshan.happycash.utils.SPUtils;
+import com.yinshan.happycash.utils.ToastUtils;
+import com.yinshan.happycash.view.login.LoginActivity;
+import com.yinshan.happycash.widget.inter.IBaseView;
 import com.yinshan.happycash.widget.userdefined.BandaEditText;
 import com.yinshan.happycash.widget.userdefined.GoEditTextListener;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.UUID;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * ┏┓　　　┏┓
@@ -53,7 +77,7 @@ import io.reactivex.disposables.Disposable;
  *
  */
 
-public abstract class BaseActivity extends RxSupportActivity {
+public abstract class BaseActivity extends RxSupportActivity implements IBaseView{
     /**
      * 当前Activity渲染的视图View
      **/
@@ -61,13 +85,22 @@ public abstract class BaseActivity extends RxSupportActivity {
     protected final String TAG = this.getClass().getSimpleName();
     private Unbinder unbinder;
 
+    private AlertDialog alertDialog;
 
-    @Subscribe
+    BaseActivity mActivity;
+
+    /**
+     * 是否处理请求返回的数据（避免页面destory后请求返回的数据刷新ui导致crash）
+     */
+    protected boolean shouldHandleResponseData = true;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        mActivity = this;
 
 
         if (mContextView == null) {
@@ -77,7 +110,6 @@ public abstract class BaseActivity extends RxSupportActivity {
         secondLayout();
 
         ButterKnife.bind(this);
-        EventBus.getDefault().register(this);
         unbinder = ButterKnife.bind(this, mContextView);
         initView(mContextView, savedInstanceState);
 
@@ -106,15 +138,6 @@ public abstract class BaseActivity extends RxSupportActivity {
     //子页面的INIT
     protected abstract void secondInit();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-//        if (disposables2Stop != null) {
-//            throw new IllegalStateException("onStart called multiple times");
-//        }
-//        disposables2Stop = new CompositeDisposable();
-    }
-
 
     @CallSuper
     @Override
@@ -122,9 +145,9 @@ public abstract class BaseActivity extends RxSupportActivity {
         super.onDestroy();
         if (unbinder != null)
             unbinder.unbind();
-        if(EventBus.getDefault().isRegistered(this))
-            EventBus.getDefault().unregister(this);
+        shouldHandleResponseData = false;
     }
+
     @Override
     public void finish() {
         super.finish();
@@ -138,7 +161,7 @@ public abstract class BaseActivity extends RxSupportActivity {
 //        overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
     }
 
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
+    public void setListViewHeightBasedOnChildren(ListView listView) {
         ListAdapter listAdapter = listView.getAdapter();
         if (listAdapter == null) {
             // pre-condition
@@ -156,6 +179,7 @@ public abstract class BaseActivity extends RxSupportActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
     public  void mStartActivity(Context packageContext, Class<?> cls){
         Intent intent = new Intent(packageContext,cls);
         startActivity(intent);
@@ -166,12 +190,42 @@ public abstract class BaseActivity extends RxSupportActivity {
         startActivity(intent);
     }
 
-    public void dismissLoading() {
-
+    @Override
+    public void dismissLoadingDialog() {
+        if (null != alertDialog && alertDialog.isShowing()) {
+            alertDialog.dismiss();
+        }
     }
 
-    public void showLoading(String message){
+    @Override
+    public void showLoadingDialog() {
+        if(isFinishing())
+            return;
+        if(alertDialog!=null&&alertDialog.isShowing()){
+            return;
+        }
+        MyDebugUtils.v("BaseActivity this "+this+" - "+mActivity);
+        if(alertDialog==null){
+            alertDialog = new AlertDialog.Builder(mActivity).create();
+            alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable());
+            alertDialog.setCancelable(true);
+//            alertDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+//                @Override
+//                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+//                    if (keyCode == KeyEvent.KEYCODE_SEARCH || keyCode == KeyEvent.KEYCODE_BACK)
+//                        return true;
+//                    return false;
+//                }
+//            });
+        }
+        alertDialog.show();
+        alertDialog.setContentView(R.layout.loading_alert);
+        alertDialog.setCanceledOnTouchOutside(false);
+    }
 
+    @Override
+    public boolean isShouldHandleResponseData() {
+        return shouldHandleResponseData;
     }
 
     public void onFocusChange(View view,final String i){
@@ -198,4 +252,44 @@ public abstract class BaseActivity extends RxSupportActivity {
             }
         });
     }
+    /**
+     * 注入消息
+     */
+    public void inputMessage(){
+//        Message message = Message.createReceiveMessage(Message.Type.TXT);
+//        //从本地获取保存的string
+//        String str = SPUtils.get("rob_welcome","");
+//        EMTextMessageBody body = null;
+//        if(!TextUtils.isEmpty(str)){
+//            if(!isRobotMenu(str)){
+//                //文字消息直接去设置给消息
+//                body = new EMTextMessageBody(str);
+//            }else{
+//                //菜单消息需要设置给消息扩展
+//                try{
+//                    body = new EMTextMessageBody("");
+//                    JSONObject msgtype = new JSONObject(str);
+//                    message.setAttribute("msgtype",msgtype);
+//                }catch (Exception e){
+//                    e.printStackTrace();
+//                }
+//            }
+//            message.setFrom(SPKeyUtils.IMSERVICE);
+//            message.addBody(body);
+//            message.setMsgTime(System.currentTimeMillis());
+//            message.setStatus(Message.Status.SUCCESS);
+//            message.setMsgId(UUID.randomUUID().toString());
+//            ChatClient.getInstance().chatManager().saveMessage(message);
+//        }
+    }
+    private boolean isRobotMenu(String str){
+        try {
+            JSONObject json = new JSONObject(str);
+            JSONObject obj = json.getJSONObject("choice");
+        }catch (Exception e){
+            return false;
+        }
+        return true;
+    }
+
 }

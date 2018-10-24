@@ -12,15 +12,20 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.yinshan.happycash.R;
+import com.yinshan.happycash.application.AppApplication;
+import com.yinshan.happycash.utils.ScreenUtils;
+import com.yinshan.happycash.widget.common.ToastManager;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -51,136 +56,48 @@ public class DialogManager {
         }
         return dialog;
     }
-//    public static void showNewStatementDialog(Context context, String titleText, final String name , final String ktp, final String[] detailText) {
-//        if (!(context instanceof Activity)) {
-//            return;
-//        }
-//        final Date date = new Date();
-//        View view = View.inflate(context, R.layout.dialog_show_statement_new, null);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (getResources().getDisplayMetrics().widthPixels * 0.8), (int) (getResources().getDisplayMetrics().heightPixels * 0.8));
-//        params.gravity = Gravity.CENTER;
-//        view.setLayoutParams(params);
-//        TextView title = (TextView) view.findViewById(R.id.tv_show_statement_title);
-//        title.setText(titleText);
-////        TextView contentTv = (TextView) view.findViewById(R.id.content);
-////        contentTv.setText(StringUtils.getInstance().setStringWordsWihtDialog(content,
-////                        date.getDate()+"",
-////                        ToolsUtils.getMonth(date.getMonth()),
-////                DateUtil.ynYear(),
-////                        DateUtil.newYNDate(),
-////                        name, ktp));
-//        LinearLayout detail = (LinearLayout) view.findViewById(R.id.ll_show_statement_detail);
-//        detail.setPadding(DensityUtils.dp2px(context, 14), 0, DensityUtils.dp2px(context, 14), 0);
-//        ListView listView = new ListView(context);
-//        listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
-//        listView.setDividerHeight(0);
-//
-//        detail.addView(listView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().heightPixels * 0.6)));
-//        listView.setAdapter(new BaseAdapter() {
-//            @Override
-//            public int getCount() {
-//                return detailText == null ? 0 : detailText.length;
-//            }
-//
-//            @Override
-//            public String getItem(int position) {
-//                return detailText[position];
-//            }
-//
-//            @Override
-//            public long getItemId(int position) {
-//                return position;
-//            }
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                if (convertView == null) {
-//                    TextView textView = new TextView(parent.getContext());
-//                    textView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//                    textView.setGravity(Gravity.LEFT);
-//                    textView.setTextColor(getResources().getColor(R.color.color_text_gray));
-//                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-//                    convertView = textView;
-//                }
-//                if(position ==0){
-//                    TextView tv = (TextView) convertView;
-//                    try {
-//
-////                    StringToFormattedSpannable stt = new StringToFormattedSpannable(getItem(position), true);
-//                        tv.setText(StringUtils.getInstance().setStringWordsWihtDialog(R.string.loan_agreement_data1,
-//                                date.getDate()+"",
-//                                ToolsUtils.getMonth(Calendar.getInstance().get(Calendar.MONTH)+1),
-//                                DateUtil.showDate("yyyy"),
-//                                DateUtil.showDate("dd-MM-yyyy"),
-//                                name, ktp));
-//                        tv.setTextColor(Color.BLACK);
-//                    }catch (Exception e){
-//                        e.printStackTrace();
-//                    }
-//                    return convertView;
-//                }else {
-//                    TextView tv = (TextView) convertView;
-//                    StringToFormattedSpannable stt = new StringToFormattedSpannable(getItem(position), true);
-//                    tv.setText(stt.getSsb());
-//                    tv.setPadding(stt.getPaddingLeft(), 0, 0, 0);
-//                    return convertView;
-//                }
-//
-//            }
-//        });
-//        DialogManager.newDialog(context, view);
-//    }
-//    public static void showStatementDialog(Context context, String titleText, final String[] detailText) {
-//        if (!(context instanceof Activity)) {
-//            return;
-//        }
-//        View view = View.inflate(context, R.layout.dialog_show_statement, null);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (getResources().getDisplayMetrics().widthPixels * 0.8), (int) (getResources().getDisplayMetrics().heightPixels * 0.8));
-//        params.gravity = Gravity.CENTER;
-//        view.setLayoutParams(params);
-//        TextView title = (TextView) view.findViewById(R.id.tv_show_statement_title);
-//        title.setText(titleText);
-//        LinearLayout detail = (LinearLayout) view.findViewById(R.id.ll_show_statement_detail);
-//        detail.setPadding(DensityUtils.dp2px(context, 14), 0, DensityUtils.dp2px(context, 14), 0);
-//        ListView listView = new ListView(context);
-//        listView.setDivider(new ColorDrawable(Color.TRANSPARENT));
-//        listView.setDividerHeight(0);
-//        detail.addView(listView, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (int) (getResources().getDisplayMetrics().heightPixels * 0.6)));
-//        listView.setAdapter(new BaseAdapter() {
-//            @Override
-//            public int getCount() {
-//                return detailText == null ? 0 : detailText.length;
-//            }
-//
-//            @Override
-//            public String getItem(int position) {
-//                return detailText[position];
-//            }
-//
-//            @Override
-//            public long getItemId(int position) {
-//                return position;
-//            }
-//
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                if (convertView == null) {
-//                    TextView textView = new TextView(parent.getContext());
-//                    textView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-//                    textView.setGravity(Gravity.LEFT);
-//                    textView.setTextColor(getResources().getColor(R.color.color_text_gray));
-//                    textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-//                    convertView = textView;
-//                }
-//                TextView tv = (TextView) convertView;
-//                StringToFormattedSpannable stt = new StringToFormattedSpannable(getItem(position), true);
-//                tv.setText(stt.getSsb());
-//                tv.setPadding(stt.getPaddingLeft(), 0, 0, 0);
-//                return convertView;
-//            }
-//        });
-//        DialogManager.newDialog(context, view);
-//    }
+
+    private static Dialog createDialog(Context context, View view, float heightFloat) {
+        AlertDialog  dialog = new AlertDialog.Builder(context)
+                .setView(view)
+                .setCancelable(true)
+                .create();
+        Window dialogWindow = dialog.getWindow();
+
+        if (!dialog.isShowing()) {
+            dialog.show();
+        }
+        dialog.setCanceledOnTouchOutside(true);
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.height = (int) (ScreenUtils.getScreenHeight(context)*heightFloat);
+        lp.width = ScreenUtils.getScreenWidth(context);
+        dialogWindow.setAttributes(lp);
+
+        return dialog;
+    }
+
+    public static void loanAgreementDialog(Context context,int type){
+        if (!(context instanceof Activity)) {
+            return;
+        }
+        View view = View.inflate(context, R.layout.dialog_show_agreement_dialog, null);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) (AppApplication.mScreenWidth * 0.8),
+                (int) (AppApplication.mScreenHeight* 0.7));
+        params.gravity = Gravity.CENTER;
+        view.setLayoutParams(params);
+        TextView title = view.findViewById(R.id.agreement_title);
+        TextView content = view.findViewById(R.id.agreement_content);
+
+        if(type==0){
+            title.setText("Kebijakan privasi");
+            content.setText(AppApplication.appContext.getResources().getString(R.string.loan_agreement_data_privacy));
+        }else if(type==1) {
+            title.setText("Syarat dan Ketentuan");
+            content.setText(AppApplication.appContext.getResources().getString(R.string.loan_agreement_terms_conditions));
+        }
+
+        DialogManager.createDialog(context, view,0.8f);
+    }
 
     public static DialogBuilder newListViewDialog(Context context) {
         return new DialogBuilder(context);

@@ -2,6 +2,7 @@ package com.yinshan.happycash.view.me.presenter;
 
 import android.content.Context;
 
+import com.yinshan.happycash.application.AppException;
 import com.yinshan.happycash.framework.TokenManager;
 import com.yinshan.happycash.network.api.RecordApi;
 import com.yinshan.happycash.network.api.UserApi;
@@ -33,18 +34,22 @@ public class SafeSettingPresenter {
     }
 
     public void logout(){
+        mView.showLoadingDialog();
         mApi.logout(TokenManager.getInstance().getToken())
                 .compose(RxTransformer.io_main())
                 .subscribe(new BaseObserver<ResponseBody>(new SoftReference(mContext)){
                     @Override
                     public void onNext(ResponseBody body) {
                         super.onNext(body);
+                        mView.dismissLoadingDialog();
                         mView.logoutOk();
                     }
 
                     @Override
                     protected void onError(ApiException ex) {
                         super.onError(ex);
+                        mView.dismissLoadingDialog();
+                        AppException.handleException(mContext,ex.getCode(),ex.getMessage());
                     }
                 });
     }

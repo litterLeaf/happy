@@ -11,6 +11,7 @@
         android:layout_height="10dp"/>
 
     <RelativeLayout
+        android:id="@+id/bgView"
         android:layout_width="match_parent"
         android:layout_height="121dp"
         android:background="@drawable/bg_round_white">
@@ -18,9 +19,10 @@
         <TextView
             android:id="@+id/time"
             style="@style/text_wrap_layout"
-            android:textColor="@color/text_blue"
+            android:textColor="@color/gray_9b"
             android:textSize="@dimen/text_normal"
             android:text="@string/test"
+            android:textStyle="bold"
             android:layout_marginTop="18dp"
             android:layout_marginLeft="20dp"
             />
@@ -28,14 +30,16 @@
         <TextView
             android:id="@+id/id"
             style="@style/text_wrap_layout"
-            android:textColor="@color/text_blue"
+            android:textColor="@color/gray_9b"
             android:textSize="@dimen/text_normal"
+            android:textStyle="bold"
             android:text="@string/test"
             android:layout_marginTop="18dp"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             />
         <View
+            android:id="@+id/line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginLeft="20dp"
@@ -44,6 +48,7 @@
             android:background="@color/line2"
             />
         <TextView
+            android:id="@+id/title1"
             style="@style/text_wrap_layout"
             android:textColor="#d6d6d6"
             android:textSize="12sp"
@@ -62,6 +67,7 @@
             android:layout_marginLeft="20dp"
             />
         <TextView
+            android:id="@+id/title2"
             style="@style/text_wrap_layout"
             android:textColor="#d6d6d6"
             android:textSize="12sp"
@@ -80,6 +86,7 @@
             android:layout_marginLeft="124dp"
             />
         <TextView
+            android:id="@+id/title3"
             style="@style/text_wrap_layout"
             android:textColor="#d6d6d6"
             android:textSize="12sp"

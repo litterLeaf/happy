@@ -106,7 +106,8 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="gone">
             <TextView
                 android:id="@+id/id_textview_tab_online_qa"
                 android:layout_width="match_parent"

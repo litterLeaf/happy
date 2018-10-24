@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingRight="@dimen/oliveapp_activity_horizontal_margin"
+    android:paddingTop="@dimen/oliveapp_activity_vertical_margin"
+    android:paddingBottom="@dimen/oliveapp_activity_vertical_margin"
+    android:background="@color/colorPrimary"
+    tools:context="com.yinshan.happycash.view.liveness.view.impl.OliveStartActivity">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="Hadapkan wajah Anda ke layar ponsel, pastikan pencahayaan pada saat Anda merekam memadai"
+        android:textSize="20sp"
+        android:textColor="#000000"/>
+
+    <Button
+        android:layout_width="210dp"
+        android:layout_height="48dp"
+        android:text="Mulai Verifikasi"
+        android:textColor="#FFFFFF"
+        android:id="@+id/oliveappStartLivenessButton"
+        android:background="@drawable/shape_button"
+        android:layout_below="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_below="@+id/oliveappStartLivenessButton"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pastikan pemilik akun harus merekam sendiri"
+            android:textColor="#000000"
+            android:textSize="14sp"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="account saya"-->
+            <!--android:textColor="#FFFFFF"-->
+            <!--android:textSize="14sp"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="operasi"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="14sp"/>-->
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="215dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/oliveapp_normative_gestures"
+        android:layout_centerInParent="true"
+        android:scaleType="fitCenter" />
+</RelativeLayout>

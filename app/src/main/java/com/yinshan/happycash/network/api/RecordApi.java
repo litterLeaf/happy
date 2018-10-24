@@ -44,6 +44,18 @@ public interface RecordApi {
                                                @Field("secondContactName") String secondContactName,
                                                @Field("secondContactMobile") String secondContactMobile,
                                                @Field("secondContactRelation") String secondContactRelation,
+
+                                               @Field("thirdContactName") String thirdContactName,
+                                               @Field("thirdContactMobile") String thirdContactMobile,
+                                               @Field("thirdContactRelation") String thirdContactRelation,
+
+                                               @Field("fourthContactName") String fourthContactName,
+                                               @Field("fourthContactMobile") String fourthContactMobile,
+                                               @Field("fourthContactRelation") String fourthContactRelation,
+
+                                               @Field("fifthContactName") String fifthContactName,
+                                               @Field("fifthContactMobile") String fifthContactMobile,
+                                               @Field("fifthContactRelation") String fifthContactRelation,
                                                @Header("X-AUTH-TOKEN") String token);
 
     @GET("record/employment")
@@ -100,4 +112,8 @@ public interface RecordApi {
 
     @GET("record/rating")
     Observable<RatingBean> getRatingInfo(@Header("X-AUTH-TOKEN") String token);
+
+    @FormUrlEncoded
+    @PUT("record/bpjsInit")
+    Observable<ResponseBody> initBpjs(@Header("X-AUTH-TOKEN") String token,@Field("thirdpartyTaskID") String taskID);
 }

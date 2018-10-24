@@ -100,7 +100,7 @@ public class RxHttpUtils {
 
         //OkHttpClient
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
-                .connectTimeout(20, TimeUnit.SECONDS)
+                .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
                 .writeTimeout(20,TimeUnit.SECONDS)
                 .addInterceptor(new RequestInterceptor())

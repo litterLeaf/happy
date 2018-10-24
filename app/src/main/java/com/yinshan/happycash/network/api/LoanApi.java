@@ -13,6 +13,7 @@ import com.yinshan.happycash.view.loan.model.DepositResponseBean;
 import com.yinshan.happycash.view.main.model.LastLoanAppBean;
 import com.yinshan.happycash.view.me.model.LoanDetailBean;
 import com.yinshan.happycash.view.me.model.LoanItem;
+import com.yinshan.happycash.view.me.model.PrePaymentBean;
 
 import java.util.List;
 
@@ -77,7 +78,7 @@ public interface LoanApi {
     Observable<LoanDetailBean> getLoanDetail(@Header("X-AUTH-TOKEN") String token,
                                              @Path("loanAppId") long loanAppId);
 
-    @GET("loanapps/deposit/methods/v5")
+    @GET("loanapps/deposit/methods")
     Observable<DepositMethodsBean> getDepostMethods(@Header("X-AUTH-TOKEN") String token);
 
     @GET("loanapps/latest")
@@ -93,6 +94,12 @@ public interface LoanApi {
 
     @GET("loanapps/qualification")
     Observable<ApplyResponseBean> isQualification(@Header("X-AUTH-TOKEN") String token);
+
+    @FormUrlEncoded
+    @POST("loanapps/appMsgShownStatus")
+    Observable<ResponseBody> updateAppMsgShownStataus(@Header("X-AUTH-TOKEN") String token,
+                                                      @Field("loanAppId") long loanAppId ,
+                                                      @Field("type") String type);
 
     @PATCH("loanapps/{loanAppId}")
     Observable<ResponseBody> cancelLoanApp(@Path("loanAppId") long loanAppId,
@@ -130,25 +137,30 @@ public interface LoanApi {
                                                   @Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded
-    @PUT("loanapps/contracts/bio/v3")
-    Observable<ResponseBody> uploadBio1(@Field("bioFile") String content,
+    @PUT("loanapps/{loanAppId}/contracts/bio")
+    Observable<ResponseBody> uploadBio1(
+                                        @Path("loanAppId") String loanAppId,
+                                        @Field("bioFile") String content,
                                         @Field("sFile") String sFile,
                                         @Field("clFile") String clFile,
                                         @Field("ctFile") String ctFile,
                                         @Field("bhFile") String eFile,
-                                        @Field("loanAppId") String loanAppId,
+                                        @Field("dvFile") String devFile,
                                         @Header("X-AUTH-TOKEN") String token);
 
     @FormUrlEncoded
-    @POST("loanapps/deposit")
-    Observable<DepositResponseBean> doDeposit(@Field("loanAppId") String loanAppId,
-                                              @Field("currency") String currency,
+    @POST("loanapps/{loanAppId}/deposit")
+    Observable<DepositResponseBean> doDeposit(@Path("loanAppId") String loanAppId,
                                               @Field("depositMethod") String method,
                                               @Header("X-AUTH-TOKEN") String token);
 
     @GET("loanapps/{loanAppId}/detail")
     Observable<LoanDetailBean> getDetail(@Path("loanAppId") long loanAppId,
                                                  @Header("X-AUTH-TOKEN") String token);
+
+    @POST("loanapps/{loanAppId}/advance")
+    Observable<PrePaymentBean> advance(@Path("loanAppId") long loanAppId,
+                                       @Header("X-AUTH-TOKEN") String token);
 
     @GET("loanapps/{loanAppId}/employment")
     Observable<EmploymentBean> getEmployment(@Path("loanAppId") long loanAppId,

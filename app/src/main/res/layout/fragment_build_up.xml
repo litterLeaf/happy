@@ -23,6 +23,7 @@
             android:paddingRight="@dimen/dp25"
             android:paddingLeft="@dimen/dp25"
             android:src="@drawable/messages"
+            android:visibility="gone"
             />
     </RelativeLayout>
     <com.yinshan.happycash.widget.pullrefresh.RefreshLayout

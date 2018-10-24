@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="oliveapp_init_fail">Tidak dapat menginisialisasi analisa wajah</string>
+    <string name="oliveapp_goodjob">Berhasil</string>
+    <string name="oliveapp_liveness_detection_pass_hint">Selamat\n analisa wajah berhasil</string>
+    <string name="oliveapp_liveness_detection_fail_hint">Analisa gagal\n silahkan coba lagi</string>
+    <string name="oliveapp_liveness_detection_cancel_hint">Analisa batal\n silahkan coba lagi</string>
+
+    <string name="oliveapp_step_eyeclose">Tutup mata anda\n kemudian buka mata</string>
+    <string name="oliveapp_step_focus">Mohon menghadap pada layar</string>
+    <string name="oliveapp_step_headleft">Silahkan menghadap perlahan ke kiri</string>
+    <string name="oliveapp_step_headright">Silahkan menghadap perlahan ke kanan</string>
+    <string name="oliveapp_step_headshake">Silahkan menghadap ke kiri dan kekanan</string>
+    <string name="oliveapp_step_headup">Silahkan menganguk perlahan ke atas</string>
+    <string name="oliveapp_step_mouthopen">Silahkan buka mulut anda \n kemudian tutup mulut anda</string>
+    <string name="oliveapp_step_normal">Silahkan melihat lurus ke layar</string>
+    <string name="oliveapp_step_prestart_focus">Mohon sesuaikan posisi wajah Anda pada layar</string>
+</resources>

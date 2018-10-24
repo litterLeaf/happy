@@ -9,7 +9,9 @@
     <RelativeLayout
         android:id="@+id/nameRow"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/dp15"
+        android:paddingBottom="@dimen/dp15">
         <TextView
             android:id="@+id/name"
             style="@style/text_wrap_layout"
@@ -20,27 +22,28 @@
             android:textColor="#9b9b9b"
             android:text="@string/test"
             />
+
         <RelativeLayout
             android:layout_width="50dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_alignParentRight="true">
+
             <ImageView
                 style="@style/image_wrap_layout"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="25dp"
-                android:background="@drawable/down_1"
-                />
+                android:background="@drawable/down_1" />
         </RelativeLayout>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/descRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/bg_round_f6f6f6"
         android:visibility="gone"
         >

@@ -2,13 +2,14 @@ package com.yinshan.happycash.view.main.model;
 
 import com.yinshan.happycash.framework.BaseLoanAppBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by admin on 2018/3/20.
  */
 
-public class LastLoanAppBean extends BaseLoanAppBean{
+public class LastLoanAppBean extends BaseLoanAppBean implements Serializable{
 
     /**
      * amount : 0

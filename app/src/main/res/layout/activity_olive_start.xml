@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="400dp">
+
+            <ImageView
+                android:id="@+id/top"
+                style="@style/image_wrap_layout"
+                android:src="@drawable/cat_1"
+                android:layout_centerHorizontal="true"/>
+
+            <RelativeLayout
+                android:id="@+id/center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_below="@+id/top"
+                android:layout_marginTop="-2dp"
+                android:background="@drawable/bg_round_50_white">
+
+                <TextView
+                    style="@style/text_wrap_layout"
+                    android:layout_marginLeft="17dp"
+                    android:layout_marginRight="17dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginBottom="45dp"
+                    android:textColor="#4a2e09"
+                    android:textSize="14sp"
+                    android:text="@string/about_desc"
+                    />
+
+            </RelativeLayout>
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:layout_alignParentRight="true"
+                android:layout_alignBottom="@+id/center"
+                android:layout_marginBottom="20dp"
+                android:layout_marginRight="42dp"
+                android:background="@drawable/about_us"
+                />
+            <ImageView
+                style="@style/image_wrap_layout"
+                android:src="@drawable/cat_11"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@+id/top"
+                android:layout_marginBottom="-6dp"
+                />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

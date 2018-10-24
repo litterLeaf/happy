@@ -23,7 +23,7 @@ public class DepositResponseBean {
     private String depositMethod;
     private String operatorId;
     private String paymentCode;
-    private int price;
+    private long amount;
     private String productId;
 
     public String getCurrency() {
@@ -74,12 +74,12 @@ public class DepositResponseBean {
         this.paymentCode = paymentCode;
     }
 
-    public int getPrice() {
-        return price;
+    public long getAmount() {
+        return amount;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setAmount(long amount) {
+        this.amount = amount;
     }
 
     public String getProductId() {
@@ -90,4 +90,17 @@ public class DepositResponseBean {
         this.productId = productId;
     }
 
+    @Override
+    public String toString() {
+        return "DepositResponseBean{" +
+                "currency='" + currency + '\'' +
+                ", depositChannel='" + depositChannel + '\'' +
+                ", depositId='" + depositId + '\'' +
+                ", depositMethod='" + depositMethod + '\'' +
+                ", operatorId='" + operatorId + '\'' +
+                ", paymentCode='" + paymentCode + '\'' +
+                ", amount=" + amount +
+                ", productId='" + productId + '\'' +
+                '}';
+    }
 }

@@ -70,6 +70,9 @@
     <uses-permission android:name="android.permission.READ_SYNC_STATS" />
     <uses-permission android:name="android.permission.READ_SYNC_SETTINGS" />
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
+
+    <permission android:name="android.permission.INTERACT_ACROSS_USERS_FULL" android:protectionLevel="signature"/>
+
     <application
         android:name=".application.AppApplication"
         android:allowBackup="true"
@@ -86,9 +89,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.MainActivity"
+        <activity android:name=".view.main.view.impl.MainActivity"
             android:screenOrientation="portrait"
-            android:launchMode="singleTop">
+            android:launchMode="singleTask">
 
         </activity>
         <activity android:name=".view.login.LoginActivity"
@@ -101,6 +104,7 @@
 
         </activity>
         <activity android:name=".view.information.view.impl.UploadPhotoActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" >
 
         </activity>
@@ -140,16 +144,36 @@
         <activity android:name=".view.information.view.impl.PersonalInformation"
         android:screenOrientation="portrait" >
 
-    </activity>
+        </activity>
         <activity android:name=".view.information.view.impl.JobInformation"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"/>
+        <activity android:name=".view.loan.view.impl.BankPaymentActivity"
+            android:screenOrientation="portrait">
 
         </activity>
+        <activity android:name=".view.loan.view.impl.BankPaymentStepActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity android:name=".view.main.QuestionActivity"
             android:screenOrientation="portrait"
             />
 
+        <activity android:name=".view.liveness.view.impl.OliveStartActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.liveness.view.impl.OliveLivenessActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.liveness.view.impl.LivenessDetectionMainActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name=".view.liveness.view.impl.OliveResultActivity"
+            android:screenOrientation="portrait"
+            />
 
+        <service android:name=".analytic.collection.AlyService" />
     </application>
 
 </manifest>

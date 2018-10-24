@@ -3,6 +3,7 @@ package com.yinshan.happycash.view.login;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -24,7 +25,6 @@ import com.yinshan.happycash.analytic.event.MobEvent;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.network.api.CaptchaApi;
 import com.yinshan.happycash.utils.MachineUtils;
-import com.yinshan.happycash.utils.MobileUtil;
 import com.yinshan.happycash.utils.SPKeyUtils;
 import com.yinshan.happycash.utils.SPUtils;
 import com.yinshan.happycash.utils.ToolsUtils;
@@ -32,6 +32,8 @@ import com.yinshan.happycash.view.login.contract.LoginContract;
 import com.yinshan.happycash.view.login.model.LoginTokenResponse;
 import com.yinshan.happycash.view.login.presenter.LoginPresenter;
 import com.yinshan.happycash.widget.HappySnackBar;
+import com.yinshan.happycash.widget.common.ToastManager;
+import com.yinshan.happycash.widget.dialog.DialogManager;
 import com.yinshan.happycash.widget.happyedittext.OnCheckInputResultAdapter;
 import com.yinshan.happycash.widget.logger.LogUtil;
 import com.yinshan.happycash.widget.userdefined.OnCheckInputResult;
@@ -45,7 +47,28 @@ import butterknife.OnClick;
 import okhttp3.ResponseBody;
 
 /**
- * Created by admin on 2018/1/31.
+ * ┏┓　　　┏┓
+ * ┏┛┻━━━┛┻┓
+ * ┃　　　　　　　┃
+ * ┃　　　━　　　┃
+ * ┃　┳┛　┗┳　┃
+ * ┃　　　　　　　┃
+ * ┃　　　┻　　　┃
+ * ┃　　　　　　　┃
+ * ┗━┓　　　┏━┛
+ *        ┃　　　┃   兽神保佑
+ *        ┃　　　┃   代码无BUG！
+ *        ┃　　　┗━━━┓
+ *        ┃　　　　　　　┣┓
+ *        ┃　　　　　　　┏┛
+ *        ┗┓┓┏━┳┓┏┛
+ *           ┃┫┫　┃┫┫
+ *           ┗┻┛　┗┻┛
+ *
+ *    描述：         登录+发送验证码（文字和语音）
+ *    创建人：     admin
+ *    创建时间：2018/1/31 
+ *
  */
 
 public class LoginActivity extends BaseActivity implements LoginContract.View{
@@ -53,39 +76,32 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     LoginPresenter mPresenter;
     int loginCount = 0;
 
+    boolean isShowTip = false;
+
     String mSmsCode;
     String mCaptcha;
     String mMobile;
     String mInviteCode;
 
-    @BindView(R.id.mobileLayout)
     LinearLayout mMobileLayout;
-    @BindView(R.id.id_edittext_phone_number)
     RupiahEditText mEditMobile;
-    @BindView(R.id.login_edit1)
     SmsEditText mSmsCode1;
-    @BindView(R.id.login_edit2)
     SmsEditText mSmsCode2;
-    @BindView(R.id.login_edit3)
     SmsEditText mSmsCode3;
-    @BindView(R.id.login_edit4)
     SmsEditText mSmsCode4;
 
     //发送短信验证码按钮
-    @BindView(R.id.btnSendSms)
     Button mBtnSendSms;
     //登录按钮
-    @BindView(R.id.id_button_login)
     Button mBtnLogin;
 
-    @BindView(R.id.id_linearlayout_graphical_code)
     LinearLayout mViewCaptcha;
-    @BindView(R.id.id_imageview_code)
     ImageView mImageCaptcha;
-    @BindView(R.id.id_edittext_graphical_code)
     EditText mTextCaptcha;
     //图形验证码实际值
     String mSid;
+
+    CountDownTimer mTimer;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -108,6 +124,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
     }
 
     private void init(){
+        initUI();
         mPresenter = new LoginPresenter(this);
         mPresenter.attachView(this);
         updateSendSmsState();
@@ -115,7 +132,15 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         setFocusListener();
     }
 
-    @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code})
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mTimer!=null)
+            mTimer.cancel();
+    }
+
+    @OnClick({R.id.id_button_login,R.id.btnSendSms,R.id.id_imageview_code,R.id.id_login_statement_data_privacy,R.id.id_login_statement_terms_conditions})
     public void onClick(View view){
         switch (view.getId()){
 
@@ -124,15 +149,24 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
                 mSmsCode = getSmsCode();
                 mCaptcha = "";
                 mInviteCode = "";
+                showLoadingDialog();
                 mPresenter.signIn(mSmsCode,mSid,mTextCaptcha.getText().toString(),mMobile,mInviteCode, MachineUtils.getAndroidId(getApplicationContext()));
                 break;
             case R.id.btnSendSms:
-                mMobile = mEditMobile.getText().toString();
-                mPresenter.sendSms(mMobile);
+                if(!isShowTip) {
+                    mMobile = mEditMobile.getText().toString();
+                    mPresenter.sendSms(mMobile);
+                }
                 break;
             case R.id.id_imageview_code:
                 MobAgent.onEvent(MobEvent.CLICK+MobEvent.REFRESH);
                 refreshCaptcha();
+                break;
+            case R.id.id_login_statement_data_privacy:
+                DialogManager.loanAgreementDialog(this,0);
+                break;
+            case R.id.id_login_statement_terms_conditions:
+                DialogManager.loanAgreementDialog(this,1);
                 break;
         }
 
@@ -191,7 +225,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
             mBtnSendSms.setClickable(true);
             mBtnSendSms.setAlpha(0.8f);
         }else{
-            mBtnSendSms.setClickable(true);
+            mBtnSendSms.setClickable(false);
             mBtnSendSms.setAlpha(0.3f);
         }
     }
@@ -214,7 +248,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         }else if(TextUtils.isEmpty(mSmsCode) || mSmsCode.length()<4){
             result = false;
         }else{
-            return true;
+            result = true;
         }
         return result;
     }
@@ -285,6 +319,21 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
         }
     };
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (event.getKeyCode() == KeyEvent.KEYCODE_DEL) {
+            if (mSmsCode4.isFocused() && mSmsCode4.length() == 0) {
+                mSmsCode3.requestFocus();
+            } else if (mSmsCode3.isFocused() && mSmsCode3.length() == 0) {
+                mSmsCode2.requestFocus();
+            } else if (mSmsCode2.isFocused() && mSmsCode2.length() == 0) {
+                mSmsCode1.requestFocus();
+            }
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+
     //点击软键盘回车键的处理
     private TextView.OnEditorActionListener mEditorListener = new TextView.OnEditorActionListener() {
         @Override
@@ -303,20 +352,19 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void signInSuccess(String mobile, LoginTokenResponse loginTokenResponse) {
+        dismissLoadingDialog();
         loginCount = 0;
+        String loginOkStr = getResources().getString(R.string.login_success);
+        ToastManager.showToast(loginOkStr);
         HappySnackBar.showSnackBar(mViewCaptcha, R.string.login_success, SPKeyUtils.SNACKBAR_TYPE_TIP);
-
-        String saveMobile = MobileUtil.trimMobile(mobile);
         SPUtils.getInstance().setToken(loginTokenResponse.getToken());
-        SPUtils.getInstance().setAction(loginTokenResponse.getAction());
-        SPUtils.getInstance().setPassword(loginTokenResponse.getPassword());
-        SPUtils.getInstance().setMobile(saveMobile);
-
+        SPUtils.getInstance().setMobile(mMobile);
         finish();
     }
 
     @Override
     public void signInError(String message) {
+        dismissLoadingDialog();
         loginCount++;
         if(loginCount>=2){
             mViewCaptcha.setVisibility(View.VISIBLE);
@@ -328,7 +376,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 
     @Override
     public void getSMSCodeSuccess(ResponseBody responseBody) {
-
+        mTimer = new TimeCount(60000, 1000).start();
     }
 
     private void refreshCaptcha(){
@@ -356,5 +404,47 @@ public class LoginActivity extends BaseActivity implements LoginContract.View{
 //                AppsFlyerLib.getInstance().trackEvent(getApplicationContext(), "Register", eventValue);
 //            }
 //        }
+    }
+
+    class TimeCount extends CountDownTimer {
+        public TimeCount(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+
+        @Override
+        public void onFinish() {
+            if(mTimer!=null)
+                mTimer.cancel();
+            mBtnSendSms.setText(getResources().getText(R.string.button_obtain_code));
+            mBtnSendSms.setSelected(false);
+            mBtnSendSms.setClickable(true);
+            mBtnSendSms.setAlpha(0.8f);
+            isShowTip = false;
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            mBtnSendSms.setSelected(true);
+            mBtnSendSms.setClickable(false);
+            mBtnSendSms.setAlpha(0.3f);
+            mBtnSendSms.setText(millisUntilFinished / 1000 + "s");
+            isShowTip = true;
+        }
+    }
+
+    private void initUI() {
+        mMobileLayout = (LinearLayout)findViewById(R.id.mobileLayout);
+        mEditMobile = (RupiahEditText)findViewById(R.id.id_edittext_phone_number);
+        mSmsCode1 = (SmsEditText)findViewById(R.id.login_edit1);
+        mSmsCode2 = (SmsEditText)findViewById(R.id.login_edit2);
+        mSmsCode3 = (SmsEditText)findViewById(R.id.login_edit3);
+        mSmsCode4 = (SmsEditText)findViewById(R.id.login_edit4);
+
+        mBtnSendSms = (Button)findViewById(R.id.btnSendSms);
+        mBtnLogin = (Button)findViewById(R.id.id_button_login);
+        mViewCaptcha = (LinearLayout)findViewById(R.id.id_linearlayout_graphical_code);
+        mImageCaptcha = (ImageView)findViewById(R.id.id_imageview_code);
+        mTextCaptcha = (EditText)findViewById(R.id.id_edittext_graphical_code);
     }
 }

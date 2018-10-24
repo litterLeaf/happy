@@ -7,185 +7,238 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/top_height"
+        android:layout_height="30dp"
         android:background="@color/app_yellow">
         <TextView
+            android:id="@+id/clickFullPay"
             style="@style/text_wrap_layout"
-            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
             android:textColor="@color/text_blue"
             android:textSize="16sp"
-            android:text="@string/full_repayment" />
+            android:text="@string/full_repayment"
+            android:visibility="gone"/>
     </RelativeLayout>
 
-    <ScrollView
+    <!--中间下拉界面-->
+    <com.yinshan.happycash.widget.pullrefresh.RefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/top_height"
-        android:background="@color/app_bg"
-        android:scrollbars="none">
-        <LinearLayout
+        android:layout_marginTop="30dp">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="290dp">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="170dp"
-                    android:background="@color/app_yellow">
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_centerHorizontal="true"
-                        android:textColor="@color/text_blue"
-                        android:textSize="12sp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/number_of_returns_for_this_period" />
-                    <TextView
-                        android:id="@+id/currentReturn"
-                        style="@style/text_wrap_layout"
-                        android:layout_centerHorizontal="true"
-                        android:textColor="@color/text_blue"
-                        android:textSize="50sp"
-                        android:textStyle="bold"
-                        android:layout_marginTop="43dp"
-                        android:text="--"
-                        />
-                    <TextView
-                        android:id="@+id/paymentDate"
-                        style="@style/text_wrap_layout"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="113dp"
-                        android:textColor="@color/text_blue"
-                        android:textSize="12sp"
-                        android:textStyle="bold"
-                        android:text="@string/payment_date_df" />
-                </RelativeLayout>
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="170dp"
-                    android:background="@color/app_white">
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_marginLeft="43dp"
-                        android:layout_marginTop="52dp"
-                        android:textColor="@color/app_orange"
-                        android:textSize="14sp"
-                        android:text="@string/number" />
-                    <!--number-->
-                    <TextView
-                        android:id="@+id/money"
-                        style="@style/text_wrap_layout"
-                        android:layout_marginRight="43dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="52dp"
-                        android:textColor="@color/app_blue"
-                        android:textSize="14sp"
-                        android:text="Rp --" />
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_marginLeft="43dp"
-                        android:layout_marginTop="81dp"
-                        android:textColor="@color/app_orange"
-                        android:textSize="14sp"
-                        android:text="@string/tenor" />
-                    <!--tenor-->
-                    <TextView
-                        android:id="@+id/tenor"
-                        style="@style/text_wrap_layout"
-                        android:layout_marginRight="43dp"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginTop="81dp"
-                        android:textColor="@color/app_blue"
-                        android:textSize="14sp"
-                        android:text="" />
-                </RelativeLayout>
-                <!--btnPay-->
-                <RelativeLayout
-                    android:id="@+id/btnPay"
-                    android:layout_width="match_parent"
-                    android:layout_height="44dp"
-                    android:layout_marginTop="148dp"
-                    android:layout_marginLeft="43dp"
-                    android:layout_marginRight="43dp"
-                    android:background="@drawable/bg_btn_blue">
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_centerInParent="true"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:text="@string/pay" />
-                </RelativeLayout>
-            </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp">
-                <TextView
-                    style="@style/text_wrap_layout"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="25dp"
-                    android:textColor="#9f9f9f"
-                    android:textSize="14sp"
-                    android:textStyle="bold"
-                    android:text="@string/details"
-                    />
-            </RelativeLayout>
+            android:layout_height="match_parent"
+            android:layout_marginTop="30dp"
+            android:background="@color/app_bg"
+            android:scrollbars="none">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
                 android:orientation="vertical">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="42dp"
+                    android:layout_height="290dp">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp"
+                        android:background="@color/app_yellow">
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="12sp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/number_of_returns_for_this_period" />
+                        <TextView
+                            android:id="@+id/currentReturn"
+                            style="@style/text_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:textColor="@color/text_blue"
+                            android:textSize="50sp"
+                            android:textStyle="bold"
+                            android:layout_marginTop="43dp"
+                            android:text="--"
+                            />
+                        <TextView
+                            android:id="@+id/paymentDate"
+                            style="@style/text_wrap_layout"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="113dp"
+                            android:textColor="@color/text_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold"
+                            android:text="@string/payment_date_df" />
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="170dp"
+                        android:background="@color/app_white">
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginLeft="43dp"
+                            android:layout_marginTop="52dp"
+                            android:textColor="@color/app_orange"
+                            android:textSize="14sp"
+                            android:text="@string/number" />
+                        <!--number-->
+                        <TextView
+                            android:id="@+id/money"
+                            style="@style/text_wrap_layout"
+                            android:layout_marginRight="43dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="52dp"
+                            android:textColor="@color/app_blue"
+                            android:textSize="14sp"
+                            android:text="Rp --" />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginLeft="43dp"
+                            android:layout_marginTop="81dp"
+                            android:textColor="@color/app_orange"
+                            android:textSize="14sp"
+                            android:text="@string/tenor" />
+                        <!--tenor-->
+                        <TextView
+                            android:id="@+id/tenor"
+                            style="@style/text_wrap_layout"
+                            android:layout_marginRight="43dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="81dp"
+                            android:textColor="@color/app_blue"
+                            android:textSize="14sp"
+                            android:text="" />
+                    </RelativeLayout>
+                    <!--btnPay-->
+                    <RelativeLayout
+                        android:id="@+id/btnPay"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="148dp"
+                        android:layout_marginLeft="43dp"
+                        android:layout_marginRight="43dp"
+                        android:background="@drawable/bg_btn_blue">
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_centerInParent="true"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="@string/pay" />
+                    </RelativeLayout>
+                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/viewPrePay"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone"
                     >
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"/>
+                    <RelativeLayout
+                        android:id="@+id/clickPrePay"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:background="@color/white"
+                        >
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="43dp"
+                            android:textColor="@color/app_blue"
+                            android:textSize="14sp"
+                            android:text="@string/early_repayment"
+                            />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="42dp"
+                            android:background="@drawable/right"
+                            />
+                        <!--<TextView-->
+                            <!--style="@style/text_wrap_layout"-->
+                            <!--android:layout_centerVertical="true"-->
+                            <!--android:layout_alignParentRight="true"-->
+                            <!--android:layout_marginRight="42dp"-->
+                            <!--android:textColor="@color/app_blue"-->
+                            <!--android:textSize="20sp"-->
+                            <!--android:text=">"-->
+                            <!--/>-->
+                    </RelativeLayout>
+                </LinearLayout>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp">
                     <TextView
-                        android:id="@+id/titlePeriod"
                         style="@style/text_wrap_layout"
                         android:layout_marginTop="20dp"
                         android:layout_marginLeft="25dp"
-                        android:textColor="#C8C8C8"
-                        android:textSize="12sp"
-                        android:text="@string/time_period2"
-                        />
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginLeft="168dp"
-                        android:textColor="#C8C8C8"
-                        android:textSize="12sp"
-                        android:text="@string/number"
-                        />
-                    <TextView
-                        style="@style/text_wrap_layout"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="25dp"
-                        android:layout_alignParentRight="true"
-                        android:textColor="#C8C8C8"
-                        android:textSize="12sp"
-                        android:text="@string/status"
+                        android:textColor="#9f9f9f"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:text="@string/details"
                         />
                 </RelativeLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    android:background="#d6d6d6"/>
-                <ListView
-                    android:id="@+id/listView"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="20dp"
-                    android:scrollbars="none"
-                    android:listSelector="#ffffff"
-                    android:divider="@null">
-                </ListView>
+                    android:background="@color/white"
+                    android:orientation="vertical">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="42dp"
+                        >
+                        <TextView
+                            android:id="@+id/titlePeriod"
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="25dp"
+                            android:textColor="#C8C8C8"
+                            android:textSize="12sp"
+                            android:text="@string/time_period2"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginLeft="168dp"
+                            android:textColor="#C8C8C8"
+                            android:textSize="12sp"
+                            android:text="@string/number"
+                            />
+                        <TextView
+                            style="@style/text_wrap_layout"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="25dp"
+                            android:layout_alignParentRight="true"
+                            android:textColor="#C8C8C8"
+                            android:textSize="12sp"
+                            android:text="@string/status"
+                            />
+                    </RelativeLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.5dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginRight="25dp"
+                        android:background="#d6d6d6"/>
+                    <ListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginBottom="20dp"
+                        android:scrollbars="none"
+                        android:listSelector="#ffffff"
+                        android:divider="@null">
+                    </ListView>
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-
+        </ScrollView>
+    </com.yinshan.happycash.widget.pullrefresh.RefreshLayout>
 </RelativeLayout>

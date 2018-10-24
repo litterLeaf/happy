@@ -33,13 +33,13 @@
                         android:text="@string/name"
                         />
                     <TextView
+                        android:id="@+id/name"
                         style="@style/text_wrap_layout"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="42dp"
                         android:textColor="@color/app_blue"
                         android:textSize="14sp"
-                        android:text="@string/test"
                         />
                 </RelativeLayout>
                 <View
@@ -61,13 +61,13 @@
                         android:text="@string/telephone"
                         />
                     <TextView
+                        android:id="@+id/phone"
                         style="@style/text_wrap_layout"
                         android:layout_centerVertical="true"
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="42dp"
                         android:textColor="@color/app_blue"
                         android:textSize="14sp"
-                        android:text="@string/test"
                         />
                 </RelativeLayout>
                 <View
@@ -88,7 +88,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@color/white">
+                android:background="@color/white"
+                android:visibility="gone">
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="16dp"/>
