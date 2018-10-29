@@ -173,8 +173,8 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
             setListViewHeightBasedOnChildren(listView);
         }
         mMoney.setText("Rp "+ StringFormatUtils.moneyFormat(detail.getPrincipalAmount()));
-        if(true){
-//        if(detail.isQualification()){
+//        if(true){
+        if(detail.isQualification()){
             mViewPrePay.setVisibility(View.VISIBLE);
         }else{
             mViewPrePay.setVisibility(View.GONE);
