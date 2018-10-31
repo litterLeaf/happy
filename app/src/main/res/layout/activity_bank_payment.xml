@@ -259,7 +259,6 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="@dimen/bank_payment_left"
                 android:layout_marginRight="@dimen/bank_payment_left"
-                android:dividerHeight="0dp"
                 android:divider="@null"
                 android:scrollbars="none"
                 android:background="@null"

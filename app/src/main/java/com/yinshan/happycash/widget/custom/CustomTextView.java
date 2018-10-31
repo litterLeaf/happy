@@ -43,32 +43,86 @@ public class CustomTextView extends AppCompatTextView{
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int mode = MeasureSpec.getMode(heightMeasureSpec);
 
         Layout layout = getLayout();
         if (layout != null) {
-            int height = (int)Math.ceil(getMaxLineHeight(this.getText().toString()))
+            int height = (int)Math.ceil(getMaxLineHeight(this.getText().toString(),mode))
                     + getCompoundPaddingTop() + getCompoundPaddingBottom();
             int width = getMeasuredWidth();
             setMeasuredDimension(width, height);
         }
     }
 
-    private float getMaxLineHeight(String str) {
+    private float getMaxLineHeight(String str,int mode) {
         float height = 0.0f;
-        float screenW = ScreenUtils.getScreenWidth(mContext)-DensityUtil.dip2px(mContext,50+31+10);
+        float screenW = ScreenUtils.getScreenWidth(mContext)-DensityUtil.dip2px(mContext,50+31);
         float paddingLeft = ((LinearLayout)this.getParent()).getPaddingLeft();
         float paddingReft = ((LinearLayout)this.getParent()).getPaddingRight();
 //这里具体this.getPaint()要注意使用，要看你的TextView在什么位置，这个是拿TextView父控件的Padding的，为了更准确的算出换行
-        int line = (int) Math.ceil( (this.getPaint().measureText(str)/(screenW-paddingLeft-paddingReft)));
+        int line = 0;
 
-        if(line==0) {
-            height = (this.getPaint().getFontMetrics().descent - this.getPaint().getFontMetrics().ascent) * 1 + DensityUtil.dip2px(mContext, 6);
-        }else {
-            if(isSN)
+        float rowLength = screenW*str.length()/getPaint().measureText(str);
+
+        String testStr = "1234567890";
+        String w = testStr.substring(0,3);
+        int l = testStr.lastIndexOf('5');
+
+
+        if(getPaint().measureText(str)<=screenW){
+            line = 1;
+        }else{
+            //安全的文字长度，保证兼容性
+            int safeRowLength = (int) (rowLength -2);
+
+            while(getPaint().measureText(str.substring(0,safeRowLength))<screenW){
+                safeRowLength++;
+            }
+            safeRowLength = safeRowLength - 1;
+
+            int countLength = 0;
+
+            while(countLength<str.length()){
+//                MyDebugUtils.v("stepHeight1 "+countLength);
                 line++;
-            height = (this.getPaint().getFontMetrics().descent - this.getPaint().getFontMetrics().ascent) * line + (line - 1) * DensityUtil.dip2px(mContext, 6);
+                if(countLength+safeRowLength>=str.length()) {
+                    MyDebugUtils.v("stepHeight x "+str.substring(countLength,str.length()));
+                    countLength = countLength + safeRowLength;
+                    break;
+                }else{
+                    if(str.charAt(countLength+safeRowLength-1)!=' '){
+                        String substring = str.substring(countLength, countLength + safeRowLength);
+                        int lastIndex = substring.lastIndexOf(' ');
+//                        if(lastIndex>(safeRowLength-20))
+                        if(lastIndex==0||lastIndex==-1) {
+                            MyDebugUtils.v("stepHeight x "+str.substring(countLength,countLength+safeRowLength));
+                            countLength = countLength + safeRowLength;
+                        }else {
+                            MyDebugUtils.v("stepHeight x "+str.substring(countLength,countLength + lastIndex + 1));
+                            countLength = countLength + lastIndex + 1;
+                        }
+                    }else{
+                        MyDebugUtils.v("stepHeight x "+str.substring(countLength,countLength+safeRowLength));
+                        countLength = countLength + safeRowLength;
+                    }
+                }
+
+            }
         }
-        MyDebugUtils.v("stepHeight item text is "+height +"   "+str+"    "+this.getPaint().measureText(str));
+
+//        if(mode == MeasureSpec.UNSPECIFIED){
+//             line = (int) Math.ceil( (this.getPaint().measureText(str)/(screenW-paddingLeft-paddingReft-getPaddingLeft()-getPaddingRight())));
+//        }else{
+//            line = (int) Math.ceil( (this.getPaint().measureText(str)/(screenW-getPaddingLeft()-getPaddingRight())));
+//        }
+        if(line==1) {
+            height = (this.getPaint().getFontMetrics().descent - this.getPaint().getFontMetrics().ascent) * 1 + DensityUtil.dip2px(mContext, 2);
+        }else {
+//            if(isSN)
+//                line++;
+            height = (this.getPaint().getFontMetrics().descent - this.getPaint().getFontMetrics().ascent+DensityUtil.dip2px(mContext, 2)) * line ;
+        }
+        MyDebugUtils.v("stepHeight item text is "+height +"   "+str+"    "+this.getPaint().measureText(str)+ "     "+line+"   "+ScreenUtils.getScreenWidth(mContext)+"  "+screenW+"  "+mode+"  "+paddingLeft+"  "+paddingReft+"  "+getPaddingLeft()+"  "+getPaddingRight());
         return height;
     }
 }

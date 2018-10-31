@@ -22,6 +22,7 @@ import com.yinshan.happycash.widget.custom.NoScrollListView;
 
 /**
  * Created by huxin on 2018/8/31.
+ * 还款步骤页面
  */
 public class BankPaymentStepActivity extends BaseActivity {
 
@@ -270,7 +271,8 @@ public class BankPaymentStepActivity extends BaseActivity {
                 finish();
             }
         });
-        mTitle.setText("Pembayaran "+RepaymentFragment.depositRB.getDepositMethod());
+        if(RepaymentFragment.depositRB!=null)
+            mTitle.setText("Pembayaran "+RepaymentFragment.depositRB.getDepositMethod());
         mViewATM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

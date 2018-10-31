@@ -199,6 +199,7 @@ public class RepaymentFragment extends BaseFragment implements ILoanDetailView,I
         ToastUtils.showShort(ex.getMessage());
     }
 
+    //跳转到还款步骤页面
     @Override
     public void getDepositOk(DepositResponseBean bean, double shouldPrePay) {
         MyDebugUtils.v("the wantImage is "+getActivity());
