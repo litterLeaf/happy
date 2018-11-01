@@ -589,6 +589,9 @@ dari App Store: https://itunes.apple.com/id/app/mandiri-online/id1117312908?mt=8
     </string-array>
 
     <string-array name="bni_xendit_atm">
+        <!--<item>abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg abcdefg</item>-->
+        <!--<item>(12345) (12345) (12345) (12345) (12345) (12345) (12345) (12345) (12345) (12345)</item>-->
+        <!--<item>(12345) (12345: (12345: (12345) (12345: (12345: (12345) (12345) (12345) (12345)</item>-->
         <item>Pilih "Menu Lainnya".</item>
         <item>Pilih "Transfer".</item>
         <item>Pilih “TRANSAKSI LAINNYA”.</item>

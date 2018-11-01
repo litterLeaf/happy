@@ -80,6 +80,8 @@ public class CustomTextView extends AppCompatTextView{
             }
             safeRowLength = safeRowLength - 1;
 
+            MyDebugUtils.v("stepHeight safeRowLength "+safeRowLength);
+
             int countLength = 0;
 
             while(countLength<str.length()){
