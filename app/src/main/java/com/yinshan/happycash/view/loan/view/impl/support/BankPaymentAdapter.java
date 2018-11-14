@@ -85,7 +85,8 @@ public class BankPaymentAdapter extends BaseAdapter{
             viewHolder = new ViewHolder();
             viewHolder.topLine = (View)view.findViewById(R.id.topLine);
             viewHolder.bottomLine = (View)view.findViewById(R.id.bottomLine);
-            viewHolder.text = (CustomTextView)view.findViewById(R.id.text);
+//            viewHolder.text = (CustomTextView)view.findViewById(R.id.text);
+            viewHolder.text = (TextView) view.findViewById(R.id.text);
             viewHolder.num = (TextView)view.findViewById(R.id.num);
             view.setTag(viewHolder);
         }else{
@@ -109,10 +110,12 @@ public class BankPaymentAdapter extends BaseAdapter{
         if(strings!=null){
             if(strings.length==1){
                 if(strings[0].equals(AppDataConfig.DATA_AMOUNT)){
-                    viewHolder.text.setIsSN(true);
+                    //CustomTextView
+//                    viewHolder.text.setIsSN(true);
                     viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getAmount()),R.color.colorSPTextPrimary));
                 }else if(strings[0].equals(AppDataConfig.DATA_VIRTUAL_ACCOUNT)){
-                    viewHolder.text.setIsSN(true);
+                    //CustomTextView
+//                    viewHolder.text.setIsSN(true);
                     viewHolder.text.setText(StringUtils.getInstance().setBoldStringWords(mList.get(position), String.valueOf(RepaymentFragment.depositRB.getPaymentCode()),R.color.colorSPTextPrimary));
                 }
             }else if(strings.length==2){
@@ -128,11 +131,13 @@ public class BankPaymentAdapter extends BaseAdapter{
                 }else if(strings[1].equals(AppDataConfig.DATA_VIRTUAL_ACCOUNT)){
                     str2 = String.valueOf(RepaymentFragment.depositRB.getPaymentCode());
                 }
-                viewHolder.text.setIsSN(true);
+                //CustomTextView
+//                viewHolder.text.setIsSN(true);
                 viewHolder.text.setText(StringUtils.getInstance().setStringWords(mList.get(position), str1,str2));
             }
         }else{
-            viewHolder.text.setIsSN(false);
+            //CustomTextView
+//            viewHolder.text.setIsSN(false);
             viewHolder.text.setText(mList.get(position));
         }
 
@@ -143,6 +148,7 @@ public class BankPaymentAdapter extends BaseAdapter{
         View bottomLine;
         View topLine;
         TextView num;
-        CustomTextView text;
+        TextView text;
+//        CustomTextView text;
     }
 }

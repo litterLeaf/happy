@@ -1,6 +1,7 @@
 package com.yinshan.happycash.widget.custom;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.Layout;
@@ -85,6 +86,20 @@ public class CustomTextView extends AppCompatTextView{
             int countLength = 0;
 
             while(countLength<str.length()){
+                line++;
+                if(countLength+safeRowLength>=str.length()){
+                    break;
+                }else{
+                    //递归
+                    if(getPaint().measureText(str.substring(countLength,safeRowLength))>screenW){
+                        getPaint().measureText(str.substring(countLength,safeRowLength-1));
+                    }else{
+                        getPaint().measureText(str.substring(countLength,safeRowLength+1));
+                    }
+                }
+            }
+
+            while(countLength<str.length()){
 //                MyDebugUtils.v("stepHeight1 "+countLength);
                 line++;
                 if(countLength+safeRowLength>=str.length()) {
@@ -126,5 +141,70 @@ public class CustomTextView extends AppCompatTextView{
         }
         MyDebugUtils.v("stepHeight item text is "+height +"   "+str+"    "+this.getPaint().measureText(str)+ "     "+line+"   "+ScreenUtils.getScreenWidth(mContext)+"  "+screenW+"  "+mode+"  "+paddingLeft+"  "+paddingReft+"  "+getPaddingLeft()+"  "+getPaddingRight());
         return height;
+    }
+
+    //返回本行阶段数据个数，返回-1，代表本行，返回-2代表加一行，返回其他大于0的数据代表本行截断数据个数
+    private int getSafeRowLength(Paint paint, String str, int countLength,int guessCount, int textWidth,boolean isIgnoreScale){
+        int strLength = str.length();
+        if(isIgnoreScale){
+
+        }
+        //判断是否超过字数长度
+        if(countLength+guessCount>str.length())
+            //不合理字数，超过行宽
+            if(paint.measureText(str.substring(countLength,str.length()-guessCount))>textWidth){
+                getSafeRowLength(paint,str,countLength,str.length()-guessCount-1,textWidth,false);
+            //达到最后一行了
+            }else{
+                return -1;
+            }
+        //没有超过字数长度，正常
+        else{
+            //不合理字数，超过行宽
+            if(paint.measureText(str.substring(countLength,countLength+guessCount))>textWidth)
+                getSafeRowLength(paint,str,countLength,guessCount-1,textWidth,false);
+            //正好等于行宽
+            else if(paint.measureText(str.substring(countLength,countLength+guessCount))==textWidth){
+                return guessCount;
+            //当前小于行宽
+            }else{
+                //如果可以进行下一位空格与否判断，最正常的情况
+                if((countLength+guessCount+1)<=str.length()){
+                    //如果下一个字小于行宽，递归取值
+                    if(paint.measureText(str.substring(countLength,countLength+guessCount+1))<textWidth){
+                        getSafeRowLength(paint,str,countLength,str.length()-guessCount+1,textWidth,false);
+                    //如果下一个字等于行宽
+                    }else if(paint.measureText(str.substring(countLength,countLength+guessCount+1))==textWidth&&(countLength+guessCount+2)<=strLength&&str.charAt(countLength+guessCount+1)==' '){
+                        return guessCount+1;
+                    //如果下一个字大于行宽
+                    }else{
+                        //正常情况
+                        if(guessCount<3)
+                            return -1;
+                        else{
+                            if(str.charAt(countLength+guessCount-1)==' '){
+                                return guessCount;
+                            }else{
+                                getSafeRowLength(paint,str,countLength,str.length()-guessCount-1,textWidth,true);
+                            }
+                        }
+                    }
+                //到最后一行了，只多一个字
+                }else{
+                    //小于行宽
+                    if(paint.measureText(str.substring(countLength,countLength+guessCount-1))<textWidth){
+                        getSafeRowLength(paint,str,countLength,guessCount-1,textWidth,false);
+                    //因为只多了一个字，
+                    }else if(paint.measureText(str.substring(countLength,countLength+guessCount-1))==textWidth){
+                        return guessCount-1;
+                    }
+                    //不可能大于，上面已经判断了
+                    else {
+                        return -1;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 }
