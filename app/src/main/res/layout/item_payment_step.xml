@@ -46,7 +46,15 @@
     <View
         android:layout_width="16dp"
         android:layout_height="wrap_content"/>
-    <com.yinshan.happycash.widget.custom.CustomTextView
+    <!--<com.yinshan.happycash.widget.custom.CustomTextView-->
+        <!--android:id="@+id/text"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="10dp"-->
+        <!--android:textSize="14sp"-->
+        <!--android:textColor="#4A2E09"/>-->
+
+    <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
