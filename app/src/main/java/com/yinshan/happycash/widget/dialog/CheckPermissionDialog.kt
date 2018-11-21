@@ -37,7 +37,7 @@ class CheckPermissionDialog(context: Context, private val mOnConfirmClickListene
     private var confirmBtn: Button? = null
     private var cancelBtn: Button? = null
 
-    override fun onCreate(savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_permission_check)
         contentTv = findViewById(R.id.check_permission_text) as TextView
