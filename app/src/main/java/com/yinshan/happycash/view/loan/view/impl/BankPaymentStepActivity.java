@@ -15,12 +15,14 @@ import com.yinshan.happycash.config.inner.AppDataConfig;
 import com.yinshan.happycash.config.inner.AppDefaultConfig;
 import com.yinshan.happycash.framework.BaseActivity;
 import com.yinshan.happycash.utils.DensityUtil;
+import com.yinshan.happycash.utils.MyDebugUtils;
 import com.yinshan.happycash.utils.ScreenUtils;
 import com.yinshan.happycash.view.loan.view.impl.support.BankPaymentAdapter;
 import com.yinshan.happycash.widget.custom.NoScrollListView;
 
 /**
  * Created by huxin on 2018/8/31.
+ * 还款步骤页面
  */
 public class BankPaymentStepActivity extends BaseActivity {
 
@@ -40,7 +42,7 @@ public class BankPaymentStepActivity extends BaseActivity {
     TextView mVa;
 
     LinearLayout mViewChoose;
-    ScrollView mScrollView;
+//    ScrollView mScrollView;
     RelativeLayout mViewATM;
     RelativeLayout mViewOnline;
     RelativeLayout mViewBank;
@@ -184,8 +186,8 @@ public class BankPaymentStepActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         setMTextListViewHeightBasedOnChildren(mListStep);
-        mScrollView.smoothScrollTo(0,0);
-        mScrollView.invalidate();
+//        mScrollView.smoothScrollTo(0,0);
+//        mScrollView.invalidate();
     }
 
     private void init(){
@@ -258,7 +260,7 @@ public class BankPaymentStepActivity extends BaseActivity {
         mListStep = (NoScrollListView)findViewById(R.id.listStep);
         mAdapter = new BankPaymentAdapter(this);
         mViewChoose = (LinearLayout)findViewById(R.id.viewChoose);
-        mScrollView = (ScrollView)findViewById(R.id.scrollView);
+//        mScrollView = (ScrollView)findViewById(R.id.scrollView);
         mViewATM = (RelativeLayout)findViewById(R.id.viewATM);
         mViewOnline = (RelativeLayout)findViewById(R.id.viewOnline);
         mViewBank = (RelativeLayout)findViewById(R.id.viewBanking);
@@ -269,14 +271,17 @@ public class BankPaymentStepActivity extends BaseActivity {
                 finish();
             }
         });
-        mTitle.setText("Pembayaran "+RepaymentFragment.depositRB.getDepositMethod());
+        if(RepaymentFragment.depositRB!=null)
+            mTitle.setText("Pembayaran "+RepaymentFragment.depositRB.getDepositMethod());
         mViewATM.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 clickIndex(0);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ATM], getInserStrIndexIndexs[REPAYMENT_ATM], getInsertStrIndexs[REPAYMENT_ATM]);
                 mAdapter.notifyDataSetChanged();
-                setMTextListViewHeightBasedOnChildren(mListStep);
+//                setMTextListViewHeightBasedOnChildren(mListStep);
+
+                mListStep.setSelection(0);
 //                mScrollView.smoothScrollTo(0,0);
 //                mScrollView.invalidate();
             }
@@ -287,7 +292,8 @@ public class BankPaymentStepActivity extends BaseActivity {
                 clickIndex(1);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_ONLINE], getInserStrIndexIndexs[REPAYMENT_ONLINE], getInsertStrIndexs[REPAYMENT_ONLINE]);
                 mAdapter.notifyDataSetChanged();
-                setMTextListViewHeightBasedOnChildren(mListStep);
+//                setMTextListViewHeightBasedOnChildren(mListStep);
+                mListStep.setSelection(0);
 //                mScrollView.smoothScrollTo(0,0);
 //                mScrollView.invalidate();
             }
@@ -298,7 +304,8 @@ public class BankPaymentStepActivity extends BaseActivity {
                 clickIndex(2);
                 mAdapter.setNewArray(getIndexs[REPAYMENT_BANK], getInserStrIndexIndexs[REPAYMENT_BANK], getInsertStrIndexs[REPAYMENT_BANK]);
                 mAdapter.notifyDataSetChanged();
-                setMTextListViewHeightBasedOnChildren(mListStep);
+//                setMTextListViewHeightBasedOnChildren(mListStep);
+                mListStep.setSelection(0);
 //                mScrollView.smoothScrollTo(0,0);
 //                mScrollView.invalidate();
             }
@@ -335,27 +342,30 @@ public class BankPaymentStepActivity extends BaseActivity {
         mClickBank.setVisibility(index==2?View.VISIBLE:View.GONE);
         mNormalBank.setVisibility(index!=2?View.VISIBLE:View.GONE);
         mLineBank.setVisibility(index==2?View.VISIBLE:View.GONE);
+
     }
 
 
     public void setMTextListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null) {
-            // pre-condition
-            return;
-        }
-
-        int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            View listItem = listAdapter.getView(i, null, listView);
-            listItem.measure(0, 0);
-            totalHeight += listItem.getMeasuredHeight();
-        }
-
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        int length = listView.getDividerHeight();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1))+DensityUtil.dip2px(this,50);
-        listView.setLayoutParams(params);
+//        ListAdapter listAdapter = listView.getAdapter();
+//        if (listAdapter == null) {
+//            // pre-condition
+//            return;
+//        }
+//
+//        int totalHeight = 0;
+//        for (int i = 0; i < listAdapter.getCount(); i++) {
+//            View listItem = listAdapter.getView(i, null, listView);
+//            listItem.measure(0, 0);
+//            int itemHeight = listItem.getMeasuredHeight();
+//            MyDebugUtils.v("stepHeight item list is "+i+"    "+itemHeight+"       ");
+//            totalHeight += itemHeight;
+//        }
+//
+//        ViewGroup.LayoutParams params = listView.getLayoutParams();
+//        int length = listView.getDividerHeight();
+//        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1))+DensityUtil.dip2px(this,50);
+//        listView.setLayoutParams(params);
     }
 
 //    public int setMTextListViewHeightBasedOnChildren(ListView listView) {
