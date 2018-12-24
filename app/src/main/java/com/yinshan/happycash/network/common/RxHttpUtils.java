@@ -17,6 +17,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static okhttp3.OkHttpClient.*;
+
 /**
  * ┏┓　　　┏┓
  * ┏┛┻━━━┛┻┓
@@ -94,18 +96,17 @@ public class RxHttpUtils {
         return getOkHttpBuilder().build();
     }
 
-    private static OkHttpClient.Builder getOkHttpBuilder(){
+    private static Builder getOkHttpBuilder(){
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         //OkHttpClient
-        OkHttpClient.Builder builder = new OkHttpClient.Builder()
+        return new Builder()
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
                 .writeTimeout(20,TimeUnit.SECONDS)
                 .addInterceptor(new RequestInterceptor())
                 .addInterceptor(new ResponseInterceptor())
                 .addInterceptor(httpLoggingInterceptor);
-        return builder;
     }
 }
